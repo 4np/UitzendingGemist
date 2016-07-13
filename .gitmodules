@@ -1,0 +1,12 @@
+[submodule "Carthage/Checkouts/Alamofire"]
+	path = NPOKit/Carthage/Checkouts/Alamofire
+	url = https://github.com/Alamofire/Alamofire.git
+[submodule "Carthage/Checkouts/CocoaLumberjack"]
+	path = NPOKit/Carthage/Checkouts/CocoaLumberjack
+	url = https://github.com/CocoaLumberjack/CocoaLumberjack.git
+[submodule "Carthage/Checkouts/Swift-PureJsonSerializer"]
+	path = NPOKit/Carthage/Checkouts/Swift-PureJsonSerializer
+	url = https://github.com/gfx/Swift-PureJsonSerializer.git
+[submodule "Carthage/Checkouts/Genome"]
+	path = NPOKit/Carthage/Checkouts/Genome
+	url = https://github.com/LoganWright/Genome.git

@@ -1,0 +1,6 @@
+framework module PureJsonSerializer {
+  umbrella header "PureJsonSerializer-umbrella.h"
+
+  export *
+  module * { export * }
+}

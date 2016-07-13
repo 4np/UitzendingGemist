@@ -1,0 +1,27 @@
+PODS:
+  - Alamofire (3.4.1)
+  - CocoaLumberjack/Core (2.3.0)
+  - CocoaLumberjack/Default (2.3.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.3.0):
+    - CocoaLumberjack/Default
+  - CocoaLumberjack/Swift (2.3.0):
+    - CocoaLumberjack/Extensions
+  - Genome (2.0.4):
+    - PureJsonSerializer (~> 1.0.0)
+  - PureJsonSerializer (1.0.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.4)
+  - CocoaLumberjack/Swift
+  - Genome (~> 2.0.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
+  Genome: ee22f71d87eefac0f622f77e75d1fef7f7fa12e7
+  PureJsonSerializer: 81d6bc0e21ed4b837193279aa3d29981f75f9057
+
+PODFILE CHECKSUM: acba7a594063b8624f254082772f86771dd86982
+
+COCOAPODS: 1.0.1

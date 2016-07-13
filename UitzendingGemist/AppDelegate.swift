@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import CocoaLumberjack
+//import SLF4Swift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        setupLoggers()
+        
         return true
     }
 
@@ -42,5 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-}
+    //MARK: Logging
 
+    private func setupLoggers() {
+        // see https://gist.github.com/erica/d20639b409fe1b318c0e
+        let logLevel: DDLogLevel = _isDebugAssertConfiguration() ? .Verbose : .Warning
+        
+        DDLog.addLogger(DDASLLogger.sharedInstance(), withLevel: logLevel)  // ASL = Apple System Logs
+        DDLog.addLogger(DDTTYLogger.sharedInstance(), withLevel: logLevel)  // TTY = Xcode console
+        DDTTYLogger.sharedInstance().colorsEnabled = true                   //       use colors
+    }
+}

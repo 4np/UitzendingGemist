@@ -1,0 +1,33 @@
+{
+  "name": "NPOKit",
+  "version": "1.0.0",
+  "summary": "NPOKit framework.",
+  "homepage": "https://github.com/4np/UitzendingGemist",
+  "license": {
+    "type": "APACHE",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Jeroen Wesbeek": "github@osx.eu"
+  },
+  "platforms": {
+    "tvos": "9.0"
+  },
+  "requires_arc": true,
+  "source": {
+    "git": "https://github.com/4np/UitzendingGemist.git",
+    "submodules": true
+  },
+  "source_files": "NPOKit/**/*.{h,swift}",
+  "dependencies": {
+    "CocoaLumberjack/Swift": [
+
+    ],
+    "Alamofire": [
+      "~> 3.4"
+    ],
+    "Genome": [
+      "~> 2.0.0"
+    ]
+  }
+}

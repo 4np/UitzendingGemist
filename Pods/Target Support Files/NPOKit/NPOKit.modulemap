@@ -1,0 +1,6 @@
+framework module NPOKit {
+  umbrella header "NPOKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
