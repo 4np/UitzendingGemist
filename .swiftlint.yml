@@ -1,0 +1,12 @@
+disabled_rules:
+  - line_length
+  - trailing_newline
+  - trailing_whitespace
+opt_in_rules:
+  - force_unwrapping
+excluded:
+  - Carthage
+  - Pods
+  - UitzendingGemist/DOFavoriteButton.swift
+variable_name:
+    min_length: 2
