@@ -95,12 +95,12 @@ extension NPOManager {
     // http://apps-api.uitzendinggemist.nl/series/POMS_S_VPRO_472240.json
     public func getEpisodes(forProgram program: NPOProgram, withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) {
         guard let mid = program.mid else {
-            completed(episode: nil, error: .NoMIDError)
+            completed(episodes: nil, error: .NoMIDError)
             return
         }
         
         let path = "series/\(mid).json"
-        self.fetchModel(ofType: NPOEpisode.self, fromPath: path, withKeyPath: "episodes", withCompletion: completed)
+        self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withKeyPath: "episodes", withCompletion: completed)
     }
     
     // http://apps-api.uitzendinggemist.nl/series/POMS_S_VPRO_472240.json
