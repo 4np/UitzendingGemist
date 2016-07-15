@@ -8,6 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		C4C6A4C45D38806FBB6406A3 /* Pods_NPOKitAbstract_NPOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C578F1ED7479A60DC56792 /* Pods_NPOKitAbstract_NPOKit.framework */; };
+		F317B97B1D37BEEA00927ACD /* NPOManager+Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B97A1D37BEEA00927ACD /* NPOManager+Token.swift */; };
+		F317B97D1D37BF4B00927ACD /* NPOManager+Programs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B97C1D37BF4B00927ACD /* NPOManager+Programs.swift */; };
+		F317B9821D37D69D00927ACD /* NPOProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9811D37D69D00927ACD /* NPOProgram.swift */; };
+		F317B9841D37E54E00927ACD /* NPOManager+Generics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9831D37E54E00927ACD /* NPOManager+Generics.swift */; };
+		F317B9861D37E8F400927ACD /* NPOTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9851D37E8F400927ACD /* NPOTip.swift */; };
+		F317B9881D37E96A00927ACD /* NPOManager+Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9871D37E96A00927ACD /* NPOManager+Tips.swift */; };
+		F317B98A1D37EA7300927ACD /* NPOEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9891D37EA7300927ACD /* NPOEpisode.swift */; };
+		F317B98C1D37EC8B00927ACD /* Mappable+CustomDebugStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B98B1D37EC8B00927ACD /* Mappable+CustomDebugStringConvertible.swift */; };
+		F317B98E1D37EDE300927ACD /* Mappable+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B98D1D37EDE300927ACD /* Mappable+CustomStringConvertible.swift */; };
+		F317B9901D38DD7F00927ACD /* NPOMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B98F1D38DD7F00927ACD /* NPOMedia.swift */; };
+		F317B9921D38E0FF00927ACD /* NPOManager+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9911D38E0FF00927ACD /* NPOManager+Image.swift */; };
+		F317B9941D38E55C00927ACD /* NPOImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9931D38E55C00927ACD /* NPOImage.swift */; };
+		F317B9961D38E8A700927ACD /* NPODetailedMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9951D38E8A700927ACD /* NPODetailedMedia.swift */; };
+		F317B9981D38E9DC00927ACD /* NPOStill.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9971D38E9DC00927ACD /* NPOStill.swift */; };
+		F317B99A1D38EB3C00927ACD /* NPOFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9991D38EB3C00927ACD /* NPOFragment.swift */; };
+		F317B99C1D38EE0D00927ACD /* NPORestriction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B99B1D38EE0D00927ACD /* NPORestriction.swift */; };
+		F317B99E1D38EECF00927ACD /* NPOTimeRestriction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B99D1D38EECF00927ACD /* NPOTimeRestriction.swift */; };
+		F317B9A31D38F85E00927ACD /* NPOManager+Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9A21D38F85E00927ACD /* NPOManager+Episodes.swift */; };
+		F317B9A51D3901AC00927ACD /* NPORestrictedMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9A41D3901AC00927ACD /* NPORestrictedMedia.swift */; };
 		F33621E81D366DA900645603 /* NPOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F33621E71D366DA900645603 /* NPOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F33621EF1D366DA900645603 /* NPOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F33621E41D366DA900645603 /* NPOKit.framework */; };
 		F33621F41D366DA900645603 /* NPOKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33621F31D366DA900645603 /* NPOKitTests.swift */; };
@@ -28,6 +47,25 @@
 		526F416396C3D376EE22A2D5 /* Pods-NPOKitAbstract-NPOKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NPOKitAbstract-NPOKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-NPOKitAbstract-NPOKit/Pods-NPOKitAbstract-NPOKit.release.xcconfig"; sourceTree = "<group>"; };
 		857C6A40416C109BB2C91B68 /* Pods-NPOKitAbstract-NPOKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NPOKitAbstract-NPOKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NPOKitAbstract-NPOKit/Pods-NPOKitAbstract-NPOKit.debug.xcconfig"; sourceTree = "<group>"; };
 		89C578F1ED7479A60DC56792 /* Pods_NPOKitAbstract_NPOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NPOKitAbstract_NPOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F317B97A1D37BEEA00927ACD /* NPOManager+Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Token.swift"; sourceTree = "<group>"; };
+		F317B97C1D37BF4B00927ACD /* NPOManager+Programs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Programs.swift"; sourceTree = "<group>"; };
+		F317B9811D37D69D00927ACD /* NPOProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOProgram.swift; sourceTree = "<group>"; };
+		F317B9831D37E54E00927ACD /* NPOManager+Generics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Generics.swift"; sourceTree = "<group>"; };
+		F317B9851D37E8F400927ACD /* NPOTip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOTip.swift; sourceTree = "<group>"; };
+		F317B9871D37E96A00927ACD /* NPOManager+Tips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Tips.swift"; sourceTree = "<group>"; };
+		F317B9891D37EA7300927ACD /* NPOEpisode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOEpisode.swift; sourceTree = "<group>"; };
+		F317B98B1D37EC8B00927ACD /* Mappable+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mappable+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
+		F317B98D1D37EDE300927ACD /* Mappable+CustomStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mappable+CustomStringConvertible.swift"; sourceTree = "<group>"; };
+		F317B98F1D38DD7F00927ACD /* NPOMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOMedia.swift; sourceTree = "<group>"; };
+		F317B9911D38E0FF00927ACD /* NPOManager+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Image.swift"; sourceTree = "<group>"; };
+		F317B9931D38E55C00927ACD /* NPOImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOImage.swift; sourceTree = "<group>"; };
+		F317B9951D38E8A700927ACD /* NPODetailedMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPODetailedMedia.swift; sourceTree = "<group>"; };
+		F317B9971D38E9DC00927ACD /* NPOStill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOStill.swift; sourceTree = "<group>"; };
+		F317B9991D38EB3C00927ACD /* NPOFragment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOFragment.swift; sourceTree = "<group>"; };
+		F317B99B1D38EE0D00927ACD /* NPORestriction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPORestriction.swift; sourceTree = "<group>"; };
+		F317B99D1D38EECF00927ACD /* NPOTimeRestriction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOTimeRestriction.swift; sourceTree = "<group>"; };
+		F317B9A21D38F85E00927ACD /* NPOManager+Episodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Episodes.swift"; sourceTree = "<group>"; };
+		F317B9A41D3901AC00927ACD /* NPORestrictedMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPORestrictedMedia.swift; sourceTree = "<group>"; };
 		F33621E41D366DA900645603 /* NPOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NPOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33621E71D366DA900645603 /* NPOKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NPOKit.h; sourceTree = "<group>"; };
 		F33621E91D366DA900645603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,6 +104,63 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F317B9801D37D5DE00927ACD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F317B99F1D38F21E00927ACD /* Extensions */,
+				F317B9A11D38F25700927ACD /* Base Models */,
+				F317B9A01D38F23300927ACD /* Child Models */,
+				F317B9811D37D69D00927ACD /* NPOProgram.swift */,
+				F317B9851D37E8F400927ACD /* NPOTip.swift */,
+				F317B9891D37EA7300927ACD /* NPOEpisode.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		F317B99F1D38F21E00927ACD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F317B98D1D37EDE300927ACD /* Mappable+CustomStringConvertible.swift */,
+				F317B98B1D37EC8B00927ACD /* Mappable+CustomDebugStringConvertible.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		F317B9A01D38F23300927ACD /* Child Models */ = {
+			isa = PBXGroup;
+			children = (
+				F317B9971D38E9DC00927ACD /* NPOStill.swift */,
+				F317B9991D38EB3C00927ACD /* NPOFragment.swift */,
+				F317B99B1D38EE0D00927ACD /* NPORestriction.swift */,
+				F317B99D1D38EECF00927ACD /* NPOTimeRestriction.swift */,
+			);
+			name = "Child Models";
+			sourceTree = "<group>";
+		};
+		F317B9A11D38F25700927ACD /* Base Models */ = {
+			isa = PBXGroup;
+			children = (
+				F317B9931D38E55C00927ACD /* NPOImage.swift */,
+				F317B98F1D38DD7F00927ACD /* NPOMedia.swift */,
+				F317B9A41D3901AC00927ACD /* NPORestrictedMedia.swift */,
+				F317B9951D38E8A700927ACD /* NPODetailedMedia.swift */,
+			);
+			name = "Base Models";
+			sourceTree = "<group>";
+		};
+		F317B9A61D390E5F00927ACD /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F317B97A1D37BEEA00927ACD /* NPOManager+Token.swift */,
+				F317B9831D37E54E00927ACD /* NPOManager+Generics.swift */,
+				F317B9911D38E0FF00927ACD /* NPOManager+Image.swift */,
+				F317B9871D37E96A00927ACD /* NPOManager+Tips.swift */,
+				F317B97C1D37BF4B00927ACD /* NPOManager+Programs.swift */,
+				F317B9A21D38F85E00927ACD /* NPOManager+Episodes.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
 		F33621DA1D366DA900645603 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +187,8 @@
 				F33621E71D366DA900645603 /* NPOKit.h */,
 				F33621E91D366DA900645603 /* Info.plist */,
 				F3C9F3FD1D366E1A007E3B8D /* NPOManager.swift */,
+				F317B9A61D390E5F00927ACD /* Networking */,
+				F317B9801D37D5DE00927ACD /* Models */,
 			);
 			path = NPOKit;
 			sourceTree = "<group>";
@@ -137,6 +234,7 @@
 				F33621E11D366DA900645603 /* Headers */,
 				F33621E21D366DA900645603 /* Resources */,
 				5090092CDF8EC7BF4022DAED /* [CP] Copy Pods Resources */,
+				F317B9741D37BB6500927ACD /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -249,6 +347,20 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		F317B9741D37BB6500927ACD /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -256,7 +368,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F317B9961D38E8A700927ACD /* NPODetailedMedia.swift in Sources */,
+				F317B9821D37D69D00927ACD /* NPOProgram.swift in Sources */,
+				F317B98A1D37EA7300927ACD /* NPOEpisode.swift in Sources */,
+				F317B9881D37E96A00927ACD /* NPOManager+Tips.swift in Sources */,
+				F317B9841D37E54E00927ACD /* NPOManager+Generics.swift in Sources */,
+				F317B99E1D38EECF00927ACD /* NPOTimeRestriction.swift in Sources */,
 				F3C9F3FE1D366E1A007E3B8D /* NPOManager.swift in Sources */,
+				F317B97B1D37BEEA00927ACD /* NPOManager+Token.swift in Sources */,
+				F317B97D1D37BF4B00927ACD /* NPOManager+Programs.swift in Sources */,
+				F317B9901D38DD7F00927ACD /* NPOMedia.swift in Sources */,
+				F317B9941D38E55C00927ACD /* NPOImage.swift in Sources */,
+				F317B98E1D37EDE300927ACD /* Mappable+CustomStringConvertible.swift in Sources */,
+				F317B9A51D3901AC00927ACD /* NPORestrictedMedia.swift in Sources */,
+				F317B9A31D38F85E00927ACD /* NPOManager+Episodes.swift in Sources */,
+				F317B98C1D37EC8B00927ACD /* Mappable+CustomDebugStringConvertible.swift in Sources */,
+				F317B9861D37E8F400927ACD /* NPOTip.swift in Sources */,
+				F317B99A1D38EB3C00927ACD /* NPOFragment.swift in Sources */,
+				F317B9921D38E0FF00927ACD /* NPOManager+Image.swift in Sources */,
+				F317B99C1D38EE0D00927ACD /* NPORestriction.swift in Sources */,
+				F317B9981D38E9DC00927ACD /* NPOStill.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

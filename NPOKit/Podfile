@@ -9,7 +9,9 @@ abstract_target 'NPOKitAbstract' do
         platform :tvos, '9.0'
 
         pod 'Alamofire', '~> 3.4'
-        pod 'Genome', '~> 2.0.0'
+        pod 'AlamofireObjectMapper', '~> 3.0'
+        pod 'AlamofireImage', '~> 2.0'
+        pod 'RealmSwift'
     end
 
     post_install do |installer|

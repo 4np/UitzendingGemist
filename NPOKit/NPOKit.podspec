@@ -13,5 +13,7 @@ Pod::Spec.new do |spec|
 
   spec.dependency 'CocoaLumberjack/Swift'
   spec.dependency 'Alamofire', '~> 3.4'
-  spec.dependency 'Genome', '~> 2.0.0'
+  spec.dependency 'AlamofireObjectMapper', '~> 3.0'
+  spec.dependency 'AlamofireImage', '~> 2.0'
+  spec.dependency 'RealmSwift'
 end

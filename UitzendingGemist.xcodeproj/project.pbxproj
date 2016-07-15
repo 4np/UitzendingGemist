@@ -17,6 +17,8 @@
 /* Begin PBXFileReference section */
 		6436CDABDC0DC5F68784C374 /* Pods-UitzendingGemistAbstract-UitzendingGemist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UitzendingGemistAbstract-UitzendingGemist.release.xcconfig"; path = "Pods/Target Support Files/Pods-UitzendingGemistAbstract-UitzendingGemist/Pods-UitzendingGemistAbstract-UitzendingGemist.release.xcconfig"; sourceTree = "<group>"; };
 		E0CC28CF2011F55FC2401886 /* Pods_UitzendingGemistAbstract_UitzendingGemist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UitzendingGemistAbstract_UitzendingGemist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F317B9771D37BDA300927ACD /* NPO Sans Bold v1.01.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPO Sans Bold v1.01.otf"; sourceTree = "<group>"; };
+		F317B9781D37BDA300927ACD /* NPO Sans Regular v1.01.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPO Sans Regular v1.01.otf"; sourceTree = "<group>"; };
 		F3D0C2541D36650F00A5BE93 /* UitzendingGemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UitzendingGemist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D0C2571D36650F00A5BE93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D0C2591D36650F00A5BE93 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +57,25 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F317B9761D37BD9400927ACD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F317B9791D37BDA700927ACD /* Fonts */,
+				F3D0C25E1D36650F00A5BE93 /* Assets.xcassets */,
+				F3D0C2601D36650F00A5BE93 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F317B9791D37BDA700927ACD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F317B9771D37BDA300927ACD /* NPO Sans Bold v1.01.otf */,
+				F317B9781D37BDA300927ACD /* NPO Sans Regular v1.01.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		F3D0C24B1D36650F00A5BE93 = {
 			isa = PBXGroup;
 			children = (
@@ -79,8 +100,7 @@
 				F3D0C2571D36650F00A5BE93 /* AppDelegate.swift */,
 				F3D0C2591D36650F00A5BE93 /* ViewController.swift */,
 				F3D0C25B1D36650F00A5BE93 /* Main.storyboard */,
-				F3D0C25E1D36650F00A5BE93 /* Assets.xcassets */,
-				F3D0C2601D36650F00A5BE93 /* Info.plist */,
+				F317B9761D37BD9400927ACD /* Resources */,
 			);
 			path = UitzendingGemist;
 			sourceTree = "<group>";
@@ -98,6 +118,7 @@
 				F3D0C2521D36650F00A5BE93 /* Resources */,
 				0126273C49925259853D70A4 /* [CP] Embed Pods Frameworks */,
 				7BC21F9749A65E4DE8564BFC /* [CP] Copy Pods Resources */,
+				F317B9751D37BB8800927ACD /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -198,6 +219,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		F317B9751D37BB8800927ACD /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

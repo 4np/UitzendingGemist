@@ -1,6 +1,0 @@
-framework module Genome {
-  umbrella header "Genome-umbrella.h"
-
-  export *
-  module * { export * }
-}

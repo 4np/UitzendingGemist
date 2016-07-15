@@ -1,5 +1,10 @@
 PODS:
   - Alamofire (3.4.1)
+  - AlamofireImage (2.4.0):
+    - Alamofire (~> 3.3)
+  - AlamofireObjectMapper (3.0.2):
+    - Alamofire (~> 3.2)
+    - ObjectMapper (~> 1.0)
   - CocoaLumberjack/Core (2.3.0)
   - CocoaLumberjack/Default (2.3.0):
     - CocoaLumberjack/Core
@@ -7,21 +12,29 @@ PODS:
     - CocoaLumberjack/Default
   - CocoaLumberjack/Swift (2.3.0):
     - CocoaLumberjack/Extensions
-  - Genome (2.0.4):
-    - PureJsonSerializer (~> 1.0.0)
-  - PureJsonSerializer (1.0.2)
+  - ObjectMapper (1.3.0)
+  - Realm (1.0.1):
+    - Realm/Headers (= 1.0.1)
+  - Realm/Headers (1.0.1)
+  - RealmSwift (1.0.1):
+    - Realm (= 1.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
+  - AlamofireImage (~> 2.0)
+  - AlamofireObjectMapper (~> 3.0)
   - CocoaLumberjack/Swift
-  - Genome (~> 2.0.0)
+  - RealmSwift
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
+  AlamofireObjectMapper: 70f97cbf45c01c48d26aa07a1a7059a60ed7411d
   CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
-  Genome: ee22f71d87eefac0f622f77e75d1fef7f7fa12e7
-  PureJsonSerializer: 81d6bc0e21ed4b837193279aa3d29981f75f9057
+  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
+  Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
+  RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
 
-PODFILE CHECKSUM: acba7a594063b8624f254082772f86771dd86982
+PODFILE CHECKSUM: 1860eda7890d5cbed10e09431cea02b30fe094a5
 
 COCOAPODS: 1.0.1

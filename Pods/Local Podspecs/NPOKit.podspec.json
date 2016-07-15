@@ -26,8 +26,14 @@
     "Alamofire": [
       "~> 3.4"
     ],
-    "Genome": [
-      "~> 2.0.0"
+    "AlamofireObjectMapper": [
+      "~> 3.0"
+    ],
+    "AlamofireImage": [
+      "~> 2.0"
+    ],
+    "RealmSwift": [
+
     ]
   }
 }
