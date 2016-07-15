@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DDC9799294245F00E02A94E8 /* Pods_UitzendingGemistAbstract_UitzendingGemist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0CC28CF2011F55FC2401886 /* Pods_UitzendingGemistAbstract_UitzendingGemist.framework */; };
+		F317B9A81D39291D00927ACD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9A71D39291D00927ACD /* HomeViewController.swift */; };
+		F317B9AA1D392DD200927ACD /* TipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9A91D392DD200927ACD /* TipCollectionViewCell.swift */; };
 		F3D0C2581D36650F00A5BE93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D0C2571D36650F00A5BE93 /* AppDelegate.swift */; };
 		F3D0C25A1D36650F00A5BE93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D0C2591D36650F00A5BE93 /* ViewController.swift */; };
 		F3D0C25D1D36650F00A5BE93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D0C25B1D36650F00A5BE93 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 		E0CC28CF2011F55FC2401886 /* Pods_UitzendingGemistAbstract_UitzendingGemist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UitzendingGemistAbstract_UitzendingGemist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F317B9771D37BDA300927ACD /* NPO Sans Bold v1.01.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPO Sans Bold v1.01.otf"; sourceTree = "<group>"; };
 		F317B9781D37BDA300927ACD /* NPO Sans Regular v1.01.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPO Sans Regular v1.01.otf"; sourceTree = "<group>"; };
+		F317B9A71D39291D00927ACD /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F317B9A91D392DD200927ACD /* TipCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3D0C2541D36650F00A5BE93 /* UitzendingGemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UitzendingGemist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D0C2571D36650F00A5BE93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D0C2591D36650F00A5BE93 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 				F3D0C2571D36650F00A5BE93 /* AppDelegate.swift */,
 				F3D0C2591D36650F00A5BE93 /* ViewController.swift */,
 				F3D0C25B1D36650F00A5BE93 /* Main.storyboard */,
+				F317B9A71D39291D00927ACD /* HomeViewController.swift */,
+				F317B9A91D392DD200927ACD /* TipCollectionViewCell.swift */,
 				F317B9761D37BD9400927ACD /* Resources */,
 			);
 			path = UitzendingGemist;
@@ -243,6 +249,8 @@
 			files = (
 				F3D0C25A1D36650F00A5BE93 /* ViewController.swift in Sources */,
 				F3D0C2581D36650F00A5BE93 /* AppDelegate.swift in Sources */,
+				F317B9AA1D392DD200927ACD /* TipCollectionViewCell.swift in Sources */,
+				F317B9A81D39291D00927ACD /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

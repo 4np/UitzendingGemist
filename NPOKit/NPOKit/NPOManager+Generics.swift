@@ -38,12 +38,20 @@ extension NPOManager {
     
     //MARK: Fetch Single Model
     
+    internal func fetchModel<T: Mappable>(ofType type: T.Type, fromURL url: String, withCompletion completed: (element: T?, error: NPOError?) -> () = { element, error in }) {
+        self.fetchModel(ofType: type, fromURL: url, withKeyPath: nil, withCompletion: completed)
+    }
+
     internal func fetchModel<T: Mappable>(ofType type: T.Type, fromPath path: String, withCompletion completed: (element: T?, error: NPOError?) -> () = { element, error in }) {
-        self.fetchModel(ofType: type, fromPath: path, withKeyPath: nil)
+        self.fetchModel(ofType: type, fromPath: path, withKeyPath: nil, withCompletion: completed)
     }
     
     internal func fetchModel<T: Mappable>(ofType type: T.Type, fromPath path: String, withKeyPath keyPath: String?, withCompletion completed: (element: T?, error: NPOError?) -> () = { element, error in }) {
         let url = self.getURL(forPath: path)
+        self.fetchModel(ofType: type, fromURL: url, withKeyPath: keyPath, withCompletion: completed)
+    }
+    
+    internal func fetchModel<T: Mappable>(ofType type: T.Type, fromURL url: String, withKeyPath keyPath: String?, withCompletion completed: (element: T?, error: NPOError?) -> () = { element, error in }) {
         Alamofire.request(.GET, url, headers: self.getHeaders())
             .responseObject(keyPath: keyPath) { (response: Response<T, NSError>) in
                 switch response.result {

@@ -11,7 +11,7 @@ import RealmSwift
 import AlamofireObjectMapper
 import ObjectMapper
 
-public class NPOEpisode: NPODetailedMedia { //, NPOResource {
+public class NPOEpisode: NPODetailedMedia {
     // Episode specific properties
     // http://apps-api.uitzendinggemist.nl/episodes/AT_2049573.json
     // http://apps-api.uitzendinggemist.nl/tips.json
@@ -22,13 +22,7 @@ public class NPOEpisode: NPODetailedMedia { //, NPOResource {
     required convenience public init?(_ map: Map) {
         self.init()
     }
-    
-//    //MARK: NPOResource
-//    
-//    static func path() -> String {
-//        return "popular.json"
-//    }
-//    
+       
     //MARK: Mapping
     
     public override func mapping(map: Map) {

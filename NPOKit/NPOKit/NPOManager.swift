@@ -16,6 +16,7 @@ public enum NPOError: ErrorType {
     case NetworkError(String)
     case NoImageError
     case NoMIDError
+    case NoEpisodeError
 }
 
 public enum NPOGenre: String {

@@ -11,7 +11,7 @@ import Alamofire
 
 extension NPOManager {
     
-    internal func fetchToken(withCompletion completed: (token: String?, error: NPOError?) -> () = { token, error in }) {
+    internal func getToken(withCompletion completed: (token: String?, error: NPOError?) -> () = { token, error in }) {
         let url = "http://ida.omroep.nl/npoplayer/i.js"
         
         Alamofire.request(.GET, url, headers: getHeaders())
@@ -49,8 +49,7 @@ extension NPOManager {
     internal func fix(token token: String) -> String {
         let minIndex = 4
         let maxIndex = token.characters.count - 4
-        let matches = token.characters.enumerate()
-            .filter { Int("\($0.element)") != nil && $0.index > minIndex && $0.index < maxIndex }
+        let matches = token.characters.enumerate().filter { Int("\($0.element)") != nil && $0.index > minIndex && $0.index < maxIndex }
         
         // Make sure we have 2 or more matches
         guard matches.count >= 2 else {

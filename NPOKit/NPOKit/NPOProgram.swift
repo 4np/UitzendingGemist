@@ -11,7 +11,7 @@ import RealmSwift
 import AlamofireObjectMapper
 import ObjectMapper
 
-public class NPOProgram: NPORestrictedMedia { //, NPOResource {
+public class NPOProgram: NPORestrictedMedia {
     // program specific properties
     // e.g. http://apps-api.uitzendinggemist.nl/episodes/AT_2049573.json
     public internal(set) var stills: [NPOStill]?

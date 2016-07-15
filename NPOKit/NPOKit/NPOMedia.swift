@@ -32,4 +32,10 @@ public class NPOMedia: NPOImage {
 //        neboID <- map["nebo_id"]
         name <- map["name"]
     }
+    
+    //MARK: Video Stream
+    
+    public func getVideoStream(withCompletion completed: (url: NSURL?, error: NPOError?) -> () = { url, error in }) {
+        NPOManager.sharedInstance.getVideoStream(forMID: mid, withCompletion: completed)
+    }
 }
