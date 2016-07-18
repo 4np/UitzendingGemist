@@ -16,6 +16,9 @@ public class NPORestrictedMedia: NPOMedia {
     internal var revoked = false
     internal var active = true
     public internal(set) var restriction: NPORestriction?
+    public internal(set) var views = 0
+    public internal(set) var stills: [NPOStill]?
+    public internal(set) var fragments: [NPOFragment]?
     
     public var available: Bool {
         get {
@@ -39,5 +42,8 @@ public class NPORestrictedMedia: NPOMedia {
         revoked <- map["revoked"]
         active <- map["active"]
         restriction <- map["restrictions"]
+        stills <- map["stills"]
+        fragments <- map["fragments"]
+        views <- map["views"]
     }
 }

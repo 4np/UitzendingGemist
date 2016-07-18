@@ -12,9 +12,11 @@ import AlamofireObjectMapper
 import ObjectMapper
 
 // Equatable
+// swiftlint:disable operator_whitespace
 public func ==(lhs: NPOTip, rhs: NPOTip) -> Bool {
     return lhs.episode?.mid == rhs.episode?.mid
 }
+// swiftlint:enable operator_whitespace
 
 extension Array where Element: NPOTip {
     func contains(tip: NPOTip) -> Bool {

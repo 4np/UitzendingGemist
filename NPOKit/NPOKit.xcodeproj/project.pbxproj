@@ -20,7 +20,6 @@
 		F317B9901D38DD7F00927ACD /* NPOMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B98F1D38DD7F00927ACD /* NPOMedia.swift */; };
 		F317B9921D38E0FF00927ACD /* NPOManager+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9911D38E0FF00927ACD /* NPOManager+Image.swift */; };
 		F317B9941D38E55C00927ACD /* NPOImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9931D38E55C00927ACD /* NPOImage.swift */; };
-		F317B9961D38E8A700927ACD /* NPODetailedMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9951D38E8A700927ACD /* NPODetailedMedia.swift */; };
 		F317B9981D38E9DC00927ACD /* NPOStill.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9971D38E9DC00927ACD /* NPOStill.swift */; };
 		F317B99A1D38EB3C00927ACD /* NPOFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9991D38EB3C00927ACD /* NPOFragment.swift */; };
 		F317B99C1D38EE0D00927ACD /* NPORestriction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B99B1D38EE0D00927ACD /* NPORestriction.swift */; };
@@ -30,6 +29,9 @@
 		F317B9AC1D393DB900927ACD /* NPOManager+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9AB1D393DB900927ACD /* NPOManager+Stream.swift */; };
 		F317B9AE1D39429D00927ACD /* NPOStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9AD1D39429D00927ACD /* NPOStream.swift */; };
 		F317B9B01D395BCC00927ACD /* NPOStreamLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9AF1D395BCC00927ACD /* NPOStreamLocation.swift */; };
+		F32BAA9B1D3C8CC60026CAFB /* RealmProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAA9A1D3C8CC60026CAFB /* RealmProgram.swift */; };
+		F32BAA9D1D3C8CD00026CAFB /* RealmEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAA9C1D3C8CD00026CAFB /* RealmEpisode.swift */; };
+		F32BAAA41D3CA3880026CAFB /* Int+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAA31D3CA3880026CAFB /* Int+Time.swift */; };
 		F33560C81D3A98F1002CFCEB /* NSDate+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33560C71D3A98F1002CFCEB /* NSDate+Formatting.swift */; };
 		F33560CB1D3A99D8002CFCEB /* NPOConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33560CA1D3A99D8002CFCEB /* NPOConstants.swift */; };
 		F33621E81D366DA900645603 /* NPOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F33621E71D366DA900645603 /* NPOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,7 +66,6 @@
 		F317B98F1D38DD7F00927ACD /* NPOMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOMedia.swift; sourceTree = "<group>"; };
 		F317B9911D38E0FF00927ACD /* NPOManager+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Image.swift"; sourceTree = "<group>"; };
 		F317B9931D38E55C00927ACD /* NPOImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOImage.swift; sourceTree = "<group>"; };
-		F317B9951D38E8A700927ACD /* NPODetailedMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPODetailedMedia.swift; sourceTree = "<group>"; };
 		F317B9971D38E9DC00927ACD /* NPOStill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOStill.swift; sourceTree = "<group>"; };
 		F317B9991D38EB3C00927ACD /* NPOFragment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOFragment.swift; sourceTree = "<group>"; };
 		F317B99B1D38EE0D00927ACD /* NPORestriction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPORestriction.swift; sourceTree = "<group>"; };
@@ -74,6 +75,9 @@
 		F317B9AB1D393DB900927ACD /* NPOManager+Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Stream.swift"; sourceTree = "<group>"; };
 		F317B9AD1D39429D00927ACD /* NPOStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOStream.swift; sourceTree = "<group>"; };
 		F317B9AF1D395BCC00927ACD /* NPOStreamLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOStreamLocation.swift; sourceTree = "<group>"; };
+		F32BAA9A1D3C8CC60026CAFB /* RealmProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmProgram.swift; sourceTree = "<group>"; };
+		F32BAA9C1D3C8CD00026CAFB /* RealmEpisode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmEpisode.swift; sourceTree = "<group>"; };
+		F32BAAA31D3CA3880026CAFB /* Int+Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Time.swift"; sourceTree = "<group>"; };
 		F33560C71D3A98F1002CFCEB /* NSDate+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Formatting.swift"; sourceTree = "<group>"; };
 		F33560CA1D3A99D8002CFCEB /* NPOConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOConstants.swift; sourceTree = "<group>"; };
 		F33621E41D366DA900645603 /* NPOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NPOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +124,7 @@
 				F317B99F1D38F21E00927ACD /* Extensions */,
 				F317B9A11D38F25700927ACD /* Base Models */,
 				F317B9A01D38F23300927ACD /* Child Models */,
+				F32BAA9E1D3C8CD60026CAFB /* Realm */,
 				F317B9811D37D69D00927ACD /* NPOProgram.swift */,
 				F317B9851D37E8F400927ACD /* NPOTip.swift */,
 				F317B9891D37EA7300927ACD /* NPOEpisode.swift */,
@@ -153,7 +158,6 @@
 				F317B9931D38E55C00927ACD /* NPOImage.swift */,
 				F317B98F1D38DD7F00927ACD /* NPOMedia.swift */,
 				F317B9A41D3901AC00927ACD /* NPORestrictedMedia.swift */,
-				F317B9951D38E8A700927ACD /* NPODetailedMedia.swift */,
 				F317B9AD1D39429D00927ACD /* NPOStream.swift */,
 				F317B9AF1D395BCC00927ACD /* NPOStreamLocation.swift */,
 			);
@@ -174,10 +178,20 @@
 			name = Networking;
 			sourceTree = "<group>";
 		};
+		F32BAA9E1D3C8CD60026CAFB /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				F32BAA9A1D3C8CC60026CAFB /* RealmProgram.swift */,
+				F32BAA9C1D3C8CD00026CAFB /* RealmEpisode.swift */,
+			);
+			name = Realm;
+			sourceTree = "<group>";
+		};
 		F33560C91D3A98F8002CFCEB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				F33560C71D3A98F1002CFCEB /* NSDate+Formatting.swift */,
+				F32BAAA31D3CA3880026CAFB /* Int+Time.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -391,7 +405,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F317B9961D38E8A700927ACD /* NPODetailedMedia.swift in Sources */,
 				F317B9821D37D69D00927ACD /* NPOProgram.swift in Sources */,
 				F317B98A1D37EA7300927ACD /* NPOEpisode.swift in Sources */,
 				F317B9881D37E96A00927ACD /* NPOManager+Tips.swift in Sources */,
@@ -401,7 +414,9 @@
 				F317B97B1D37BEEA00927ACD /* NPOManager+Token.swift in Sources */,
 				F317B97D1D37BF4B00927ACD /* NPOManager+Programs.swift in Sources */,
 				F317B9901D38DD7F00927ACD /* NPOMedia.swift in Sources */,
+				F32BAA9D1D3C8CD00026CAFB /* RealmEpisode.swift in Sources */,
 				F317B9941D38E55C00927ACD /* NPOImage.swift in Sources */,
+				F32BAAA41D3CA3880026CAFB /* Int+Time.swift in Sources */,
 				F317B98E1D37EDE300927ACD /* Mappable+CustomStringConvertible.swift in Sources */,
 				F317B9A51D3901AC00927ACD /* NPORestrictedMedia.swift in Sources */,
 				F317B9B01D395BCC00927ACD /* NPOStreamLocation.swift in Sources */,
@@ -413,6 +428,7 @@
 				F317B9861D37E8F400927ACD /* NPOTip.swift in Sources */,
 				F317B99A1D38EB3C00927ACD /* NPOFragment.swift in Sources */,
 				F317B9921D38E0FF00927ACD /* NPOManager+Image.swift in Sources */,
+				F32BAA9B1D3C8CC60026CAFB /* RealmProgram.swift in Sources */,
 				F317B99C1D38EE0D00927ACD /* NPORestriction.swift in Sources */,
 				F317B9981D38E9DC00927ACD /* NPOStill.swift in Sources */,
 				F317B9AC1D393DB900927ACD /* NPOManager+Stream.swift in Sources */,

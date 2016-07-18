@@ -11,6 +11,7 @@ import UIKit
 import NPOKit
 import CocoaLumberjack
 import AVKit
+import UIColor_Hex_Swift
 
 class EpisodeViewController: UIViewController {
     @IBOutlet weak private var backgroundImageView: UIImageView!
@@ -30,6 +31,8 @@ class EpisodeViewController: UIViewController {
     @IBOutlet weak private var toProgramLabel: UILabel!
     @IBOutlet weak private var favoriteButton: UIButton!
     @IBOutlet weak private var favoriteLabel: UILabel!
+    
+    @IBOutlet weak private var stillCollectionView: UICollectionView!
     
     private var tip: NPOTip?
     private var episode: NPOEpisode?
@@ -246,7 +249,7 @@ class EpisodeViewController: UIViewController {
         self.episodeNameLabel.text = self.episodeName
         
         self.dateLabel.text = self.broadcastDisplayValue?.capitalizedString
-        self.durationLabel.text = self.episode?.durationDisplayValue
+        self.durationLabel.text = self.episode?.duration.timeDisplayValue
         self.descriptionLabel.text = self.episodeDescription?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         self.genreTitleLabel.text = UitzendingGemistConstants.genreText.uppercaseString
@@ -262,9 +265,21 @@ class EpisodeViewController: UIViewController {
         self.toProgramLabel.enabled = (self.program != nil)
         self.toProgramLabel.text = UitzendingGemistConstants.toProgramText
         
-        self.favoriteButton.enabled = false
-        self.favoriteLabel.enabled = false
+        self.favoriteButton.enabled = (self.program != nil)
+        self.favoriteLabel.enabled = (self.program != nil)
         self.favoriteLabel.text = UitzendingGemistConstants.favoriteText
+        self.updateFavoriteButtonTitleColor()
+        
+        self.stillCollectionView.reloadData()
+    }
+    
+    private func updateFavoriteButtonTitleColor() {
+        let isFavorite = self.program?.favorite ?? false
+        let favoriteColor = UIColor(rgba: "#F1A9A0")
+        let color = isFavorite ? favoriteColor : UIColor.whiteColor()
+        let focusColor = isFavorite ? favoriteColor : UIColor.blackColor()
+        self.favoriteButton.setTitleColor(color, forState: .Normal)
+        self.favoriteButton.setTitleColor(focusColor, forState: .Focused)
     }
     
     //MARK: Images
@@ -322,47 +337,131 @@ class EpisodeViewController: UIViewController {
         }
     }
     
+    //MARK: UICollectionViewDataSource
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.episode?.stills?.count ?? 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Still.rawValue, forIndexPath: indexPath)
+        
+        guard let stillCell = cell as? StillCollectionViewCell, stills = self.episode?.stills where indexPath.row >= 0 && indexPath.row < stills.count else {
+            return cell
+        }
+        
+        stillCell.configure(withStill: stills[indexPath.row])
+        return stillCell
+    }
+    
     //MARK: Play
     
-    @IBAction func didPressPlayButton(sender: UIButton) {
-        self.episode?.getVideoStream() { [weak self] url, error in
-            guard let url = url else {
-                DDLogError("Coult not get video stream (\(error))")
-                return
-            }
-        
-            self?.playVideo(withURL: url)
-        }
+    @IBAction private func didPressPlayButton(sender: UIButton) {
+        self.play()
     }
     
     //MARK: Player
     
-    private func playVideo(withURL url: NSURL) {
+    private func play() {
+        guard let episode = self.episode else {
+            DDLogError("Could not play episode...")
+            return
+        }
+        
+        // check if this episode has already been watched
+        guard episode.watchDuration > 59 && !episode.watched, let watchDuration = episode.watchDuration else {
+            self.play(beginAt: 0)
+            return
+        }
+        
+        // show alert
+        let alertController = UIAlertController(title: UitzendingGemistConstants.continueWatchingTitleText, message: UitzendingGemistConstants.continueWatchingMessageText, preferredStyle: .ActionSheet)
+        let coninueTitleText = String.localizedStringWithFormat(UitzendingGemistConstants.coninueWatchingFromText, watchDuration.timeDisplayValue)
+        let continueAction = UIAlertAction(title: coninueTitleText, style: .Default) { [weak self] _ in
+            self?.play(beginAt: watchDuration)
+        }
+        alertController.addAction(continueAction)
+        let fromBeginningAction = UIAlertAction(title: UitzendingGemistConstants.watchFromStartText, style: .Default) { [weak self] _ in
+            self?.play(beginAt: 0)
+        }
+        alertController.addAction(fromBeginningAction)
+        let cancelAction = UIAlertAction(title: UitzendingGemistConstants.cancelText, style: .Cancel) { _ in
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+        }
+        alertController.addAction(cancelAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    private func play(beginAt begin: Int) {
+        guard let episode = self.episode else {
+            DDLogError("Could not play episode...")
+            return
+        }
+
+        episode.getVideoStream() { [weak self] url, error in
+            guard let url = url else {
+                DDLogError("Could not play episode (\(error))")
+                return
+            }
+            
+            self?.play(episode: episode, withVideoStream: url, beginAt: begin)
+        }
+    }
+    
+    private func play(episode episode: NPOEpisode, withVideoStream url: NSURL, beginAt seconds: Int) {
         // set up player
         let player = AVPlayer(URL: url)
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         
-        //        // (re)set play data
-        //        episode.watchDuration = 0
-        //
-        //        // observe player
-        //        let interval = CMTimeMakeWithSeconds(1, 1) // 1 second
-        //        player.addPeriodicTimeObserverForInterval(interval, queue: dispatch_get_main_queue()) { time in
-        //            let seconds = Int(time.seconds)
-        //
-        //            guard seconds > episode.watchDuration else {
-        //                return
-        //            }
-        //
-        //            episode.watchDuration = seconds
-        //        }
+        // (re)set play data
+        episode.watched = false
+        episode.watchDuration = seconds
+        
+        // seek to start?
+        if seconds > 0 {
+            let seekTime = CMTimeMakeWithSeconds(Float64(seconds), 1)
+            player.seekToTime(seekTime, toleranceBefore: kCMTimePositiveInfinity, toleranceAfter: kCMTimeZero)
+        }
+        
+        // reset playback time
+        episode.watchDuration = seconds
+        
+        // observe player
+        let interval = CMTimeMakeWithSeconds(1, 1) // 1 second
+        player.addPeriodicTimeObserverForInterval(interval, queue: dispatch_get_main_queue()) { [weak self] time in
+            guard let episode = self?.episode else {
+                return
+            }
+            
+            let seconds = Int(time.seconds)
+            
+            guard seconds > episode.watchDuration else {
+                return
+            }
+            
+            episode.watchDuration = seconds
+        }
         
         // present player
         self.presentViewController(playerViewController, animated: true) {
-            DDLogDebug("playing video file from \(url.absoluteString)")
-            
             playerViewController.player?.play()
         }
+        
+    }
+    
+    //MARK: Favorite
+    
+    @IBAction private func didPressFavoriteButton(sender: UIButton) {
+        guard let program = self.program else {
+            return
+        }
+        
+        program.toggleFavorite()
+        self.updateFavoriteButtonTitleColor()
     }
 }

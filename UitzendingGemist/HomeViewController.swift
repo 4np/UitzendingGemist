@@ -12,10 +12,6 @@ import NPOKit
 import CocoaLumberjack
 import AVKit
 
-enum CollectionViewCells: String {
-    case Tip = "tipCollectionViewCell"
-}
-
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak private var tipsCollectionView: UICollectionView!
     
@@ -85,7 +81,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = tipsCollectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Tip.rawValue, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Tip.rawValue, forIndexPath: indexPath)
         
         guard let tipCell = cell as? TipCollectionViewCell else {
             return cell

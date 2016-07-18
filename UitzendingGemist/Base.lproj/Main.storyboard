@@ -251,6 +251,9 @@
                                                                         <rect key="frame" x="400" y="21" width="150" height="86"/>
                                                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                                                         <state key="normal" title="♥︎"/>
+                                                                        <connections>
+                                                                            <action selector="didPressFavoriteButton:" destination="nup-1z-UxQ" eventType="primaryActionTriggered" id="riw-lp-lHh"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Favoriet" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbq-yX-kac">
                                                                         <rect key="frame" x="400" y="150" width="150" height="28"/>
@@ -311,12 +314,56 @@
                                                     <constraint firstItem="cEN-mO-kAA" firstAttribute="leading" secondItem="CXL-fC-mfs" secondAttribute="leading" id="YTu-V9-PkD"/>
                                                 </constraints>
                                             </view>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="k3Y-CL-Hvl">
+                                                <rect key="frame" x="0.0" y="710" width="1920" height="146"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Jyq-Fk-aKG">
+                                                    <size key="itemSize" width="260" height="146"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="380" minY="0.0" maxX="90" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="stillCollectionViewCell" reuseIdentifier="stillCollectionViewCell" id="6No-WP-e7F" customClass="StillCollectionViewCell" customModule="UitzendingGemist" customModuleProvider="target">
+                                                        <rect key="frame" x="380" y="13" width="260" height="146"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                            <rect key="frame" x="0.0" y="0.0" width="260" height="146"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ivq-Jj-aEq">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="308" height="172"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="Ivq-Jj-aEq" secondAttribute="height" multiplier="130:73" id="7c8-Ye-Pih"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </view>
+                                                        <constraints>
+                                                            <constraint firstItem="Ivq-Jj-aEq" firstAttribute="top" secondItem="6No-WP-e7F" secondAttribute="top" id="HY5-sL-eO2"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Ivq-Jj-aEq" secondAttribute="trailing" id="N0t-Dh-Ebf"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Ivq-Jj-aEq" secondAttribute="bottom" id="Osx-j2-V42"/>
+                                                            <constraint firstItem="Ivq-Jj-aEq" firstAttribute="leading" secondItem="6No-WP-e7F" secondAttribute="leading" id="RUN-ho-qKt"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outlet property="stillImageView" destination="Ivq-Jj-aEq" id="k5v-0u-KzL"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                </cells>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="nup-1z-UxQ" id="p90-97-Nvq"/>
+                                                    <outlet property="delegate" destination="nup-1z-UxQ" id="EGL-ea-Z5S"/>
+                                                </connections>
+                                            </collectionView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="k3Y-CL-Hvl" firstAttribute="top" secondItem="CXL-fC-mfs" secondAttribute="bottom" constant="100" id="0JO-dt-UnI"/>
                                             <constraint firstItem="blZ-3R-Tvb" firstAttribute="top" secondItem="PRI-kX-8Pb" secondAttribute="top" constant="100" id="1Hp-FQ-zjP"/>
                                             <constraint firstItem="0yi-oQ-Rbs" firstAttribute="leading" secondItem="PRI-kX-8Pb" secondAttribute="leading" constant="90" id="1yA-y6-bDW"/>
                                             <constraint firstItem="CXL-fC-mfs" firstAttribute="leading" secondItem="0yi-oQ-Rbs" secondAttribute="trailing" constant="50" id="Ef0-M3-NlR"/>
                                             <constraint firstItem="CXL-fC-mfs" firstAttribute="top" secondItem="blZ-3R-Tvb" secondAttribute="bottom" constant="8" id="IWM-0r-fdT"/>
+                                            <constraint firstAttribute="trailing" secondItem="k3Y-CL-Hvl" secondAttribute="trailing" id="OHh-OI-xow"/>
+                                            <constraint firstItem="k3Y-CL-Hvl" firstAttribute="leading" secondItem="PRI-kX-8Pb" secondAttribute="leading" id="OS1-VY-ULE"/>
                                             <constraint firstAttribute="trailing" secondItem="CXL-fC-mfs" secondAttribute="trailing" constant="90" id="c9f-b9-bAY"/>
                                             <constraint firstItem="0yi-oQ-Rbs" firstAttribute="top" secondItem="blZ-3R-Tvb" secondAttribute="bottom" constant="8" id="dT4-Oh-iA3"/>
                                             <constraint firstAttribute="trailing" secondItem="blZ-3R-Tvb" secondAttribute="trailing" constant="90" id="oQK-E5-Aca"/>
@@ -355,6 +402,7 @@
                         <outlet property="playButton" destination="Gh1-Q7-fYK" id="03v-X1-u5g"/>
                         <outlet property="playLabel" destination="2Ha-Qb-eYp" id="fcL-aH-cKe"/>
                         <outlet property="programNameLabel" destination="z7c-Am-1Jy" id="Dic-fV-s5g"/>
+                        <outlet property="stillCollectionView" destination="k3Y-CL-Hvl" id="BmO-DZ-55w"/>
                         <outlet property="toProgramButton" destination="rts-xq-taD" id="p7K-dd-Ciw"/>
                         <outlet property="toProgramLabel" destination="4g8-hb-1Ce" id="z7A-0P-DrC"/>
                     </connections>

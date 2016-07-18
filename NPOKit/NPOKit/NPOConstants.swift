@@ -15,7 +15,9 @@ internal class NPOConstants {
     static let dayBeforeYesterdayText = NSLocalizedString("eergisteren", comment: "Day before yesterday")
     static let daysAgoText = NSLocalizedString("%d dagen geleden", comment: "Number of days ago")
     
-    static let durationInHoursAndMinutesText = NSLocalizedString("%d u %d min", comment: "Duration in hours and minutes")
+    static let durationInWeeksText = NSLocalizedString("%d w", comment: "Duration in weeks")
+    static let durationInDaysText = NSLocalizedString("%d d", comment: "Duration in days")
+    static let durationInHoursText = NSLocalizedString("%d h", comment: "Duration in hours")
     static let durationInMinutesText = NSLocalizedString("%d min", comment: "Duration in minutes")
     static let durationInSecondsText = NSLocalizedString("%d sec", comment: "Duration in seconds")
 }

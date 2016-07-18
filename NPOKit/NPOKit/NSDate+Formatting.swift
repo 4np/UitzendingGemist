@@ -18,14 +18,14 @@ extension NSDate {
             let days = diffDateComponents.day
             
             switch days {
-            case 0:
-                return NPOConstants.todayText
-            case 1:
-                return NPOConstants.yesterdayText
-            case 2:
-                return NPOConstants.dayBeforeYesterdayText
-            default:
-                return String.localizedStringWithFormat(NPOConstants.daysAgoText, days)
+                case 0:
+                    return NPOConstants.todayText
+                case 1:
+                    return NPOConstants.yesterdayText
+                case 2:
+                    return NPOConstants.dayBeforeYesterdayText
+                default:
+                    return String.localizedStringWithFormat(NPOConstants.daysAgoText, days)
             }
         }
     }
