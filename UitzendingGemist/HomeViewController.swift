@@ -19,32 +19,59 @@ enum CollectionViewCells: String {
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak private var tipsCollectionView: UICollectionView!
     
-    private var tips = [NPOTip]() {
-        didSet {
-            self.tipsCollectionView.reloadData()
-        }
-    }
+    private var tips = [NPOTip]()
     
     //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        self.fetchTips()
+        // refresh tips
+        self.getTips()
     }
 
-    
     //MARK: Networking
     
-    private func fetchTips() {
+    private func getTips() {
+        // get tips
         NPOManager.sharedInstance.getTips() { [weak self] tips, error in
             guard let tips = tips else {
                 DDLogError("Error fetching tips (\(error))")
                 return
             }
             
-            self?.tips = tips
+            // set tips
+            guard self?.tips.count > 0 else {
+                self?.tips = tips
+                self?.tipsCollectionView.reloadData()
+                return
+            }
+            
+            // update collection view
+            self?.tipsCollectionView.performBatchUpdates({ 
+                self?.updateCollectionView(withTips: tips)
+            }, completion: { success in
+                //DDLogDebug("finished updating tip collection: \(success)")
+            })
         }
+    }
+    
+    private func updateCollectionView(withTips tips: [NPOTip]) {
+        // insert new tips
+        let newTips = tips.filter({ !self.tips.contains($0) })
+        let newIndexPaths = newTips.enumerate().map { NSIndexPath(forRow: $0.index, inSection: 0) }
+        self.tips = newTips + self.tips
+        self.tipsCollectionView.insertItemsAtIndexPaths(newIndexPaths)
+        
+        // remove old tips (in reverse order)
+        let oldTips = self.tips.enumerate().filter({ !tips.contains($0.element) }).reverse()
+        let oldIndexPaths = oldTips.map { NSIndexPath(forRow: $0.index, inSection: 0) }
+        for oldTip in oldTips { self.tips.removeAtIndex(oldTip.index) }
+        self.tipsCollectionView.deleteItemsAtIndexPaths(oldIndexPaths)
     }
     
     //MARK: UICollectionViewDataSource
@@ -58,63 +85,43 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let row = indexPath.row
-        let identifier = CollectionViewCells.Tip.rawValue
-
-        let cell = tipsCollectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath)
+        let cell = tipsCollectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Tip.rawValue, forIndexPath: indexPath)
         
         guard let tipCell = cell as? TipCollectionViewCell else {
-            DDLogError("could not cast cell")
             return cell
         }
         
-        tipCell.configure(withTip: self.tips[row])
+        tipCell.configure(withTip: self.tips[indexPath.row])
         return tipCell
     }
     
     //MARK: UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let tip = self.tips[indexPath.row]
+    }
+
+    //MARK: Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let segueIdentifier = segue.identifier else {
+            return
+        }
         
-        tip.getVideoStream() { [weak self] url, error in
-            guard let url = url else {
-                DDLogError("Could not get video stream (\(error))")
-                return
-            }
-            
-            self?.playVideo(withURL: url)
+        switch segueIdentifier {
+            case "HomeTipToEpisodeSegue":
+                prepareForSegueToEpisodeView(segue, sender: sender)
+                break
+            default:
+                DDLogError("Unhandled segue with identifier '\(segueIdentifier)' in Home view")
+                break
         }
     }
     
-    //MARK: Player
-    
-    func playVideo(withURL url: NSURL) {
-        // set up player
-        let player = AVPlayer(URL: url)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        
-//        // (re)set play data
-//        episode.watchDuration = 0
-//        
-//        // observe player
-//        let interval = CMTimeMakeWithSeconds(1, 1) // 1 second
-//        player.addPeriodicTimeObserverForInterval(interval, queue: dispatch_get_main_queue()) { time in
-//            let seconds = Int(time.seconds)
-//            
-//            guard seconds > episode.watchDuration else {
-//                return
-//            }
-//            
-//            episode.watchDuration = seconds
-//        }
-        
-        // present player
-        self.presentViewController(playerViewController, animated: true) {
-            DDLogDebug("playing video file from \(url.absoluteString)")
-            
-            playerViewController.player?.play()
+    private func prepareForSegueToEpisodeView(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let vc = segue.destinationViewController as? EpisodeViewController, cell = sender as? TipCollectionViewCell, indexPath = self.tipsCollectionView.indexPathForCell(cell) where indexPath.row >= 0 && indexPath.row < self.tips.count else {
+            return
         }
+        
+        vc.configure(withTip: self.tips[indexPath.row])
     }
 }

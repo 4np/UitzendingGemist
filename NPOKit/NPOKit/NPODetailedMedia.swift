@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 import AlamofireObjectMapper
 import ObjectMapper
+import CocoaLumberjack
 
 public class NPODetailedMedia: NPORestrictedMedia {
     public internal(set) var broadcasters = [NPOBroadcaster]()
@@ -19,6 +20,29 @@ public class NPODetailedMedia: NPORestrictedMedia {
     public internal(set) var broadcasted: NSDate?
     public internal(set) var broadcastChannel: String?
     public internal(set) var program: NPOProgram?
+    
+    public var broadcastedDisplayValue: String {
+        guard let broadcasted = self.broadcasted else {
+            return NPOConstants.unknownText
+        }
+        
+        return broadcasted.daysAgoDisplayValue
+    }
+    
+    public var durationDisplayValue: String {
+        //let days: Int = duration / (3600 * 24)
+        let hours: Int = duration / 3600
+        let minutes: Int = (duration % 3600) / 60
+        let seconds: Int = (duration % 3600) % 60
+        
+        if hours > 0 {
+            return String.localizedStringWithFormat(NPOConstants.durationInHoursAndMinutesText, hours, minutes)
+        } else if minutes > 0 {
+            return String.localizedStringWithFormat(NPOConstants.durationInMinutesText, minutes)
+        } else {
+            return String.localizedStringWithFormat(NPOConstants.durationInSecondsText, seconds)
+        }
+    }
     
     //MARK: Lifecycle
     

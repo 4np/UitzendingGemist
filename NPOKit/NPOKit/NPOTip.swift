@@ -11,7 +11,18 @@ import RealmSwift
 import AlamofireObjectMapper
 import ObjectMapper
 
-public class NPOTip: NPOImage {
+// Equatable
+public func ==(lhs: NPOTip, rhs: NPOTip) -> Bool {
+    return lhs.episode?.mid == rhs.episode?.mid
+}
+
+extension Array where Element: NPOTip {
+    func contains(tip: NPOTip) -> Bool {
+        return self.indexOf({ $0 == tip }) != nil
+    }
+}
+
+public class NPOTip: NPOImage, Equatable {
     // http://apps-api.uitzendinggemist.nl/tips.json
     public private(set) var name: String?
     public private(set) var description: String?
@@ -22,26 +33,10 @@ public class NPOTip: NPOImage {
     public var publishedDisplayValue: String {
         get {
             guard let published = self.published else {
-                return NSLocalizedString("onbekend", comment: "Unkown")
+                return NPOConstants.unknownText
             }
             
-            let today = NSCalendar.currentCalendar().startOfDayForDate(NSDate())
-            let compareDate = NSCalendar.currentCalendar().startOfDayForDate(published)
-            
-            let diffDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.Day], fromDate: compareDate, toDate: today, options: NSCalendarOptions.init(rawValue: 0))
-            let days = diffDateComponents.day
-            
-            switch days {
-                case 0:
-                    return NSLocalizedString("vandaag", comment: "Today")
-                case 1:
-                    return NSLocalizedString("gisteren", comment: "Yesterday")
-                case 2:
-                    return NSLocalizedString("eergisteren", comment: "Day before yesterday")
-                default:
-                    let text = NSLocalizedString("%d dagen geleden", comment: "Number of days ago")
-                    return String.localizedStringWithFormat(text, days)
-            }
+            return published.daysAgoDisplayValue
         }
     }
     
