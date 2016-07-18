@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import Alamofire
 
 extension NPOManager {
     // http://apps-api.uitzendinggemist.nl/series.json
-    public func getPrograms(withCompletion completed: (programs: [NPOProgram]?, error: NPOError?) -> () = { programs, error in }) {
-        self.fetchModels(ofType: NPOProgram.self, fromPath: "series.json") { programs, error in
+    public func getPrograms(withCompletion completed: (programs: [NPOProgram]?, error: NPOError?) -> () = { programs, error in }) -> Request? {
+        return self.fetchModels(ofType: NPOProgram.self, fromPath: "series.json") { programs, error in
             // filter programs based on whether or not they are available
             let availablePrograms = programs?.filter { $0.available == true }
             completed(programs: availablePrograms, error: error)
@@ -19,13 +20,13 @@ extension NPOManager {
     }
     
     // http://apps-api.uitzendinggemist.nl/series/AT_2051232.json
-    public func getDetails(forProgram program: NPOProgram, withCompletion completed: (program: NPOProgram?, error: NPOError?) -> () = { program, error in }) {
+    public func getDetails(forProgram program: NPOProgram, withCompletion completed: (program: NPOProgram?, error: NPOError?) -> () = { program, error in }) -> Request? {
         guard let mid = program.mid else {
             completed(program: nil, error: .NoMIDError)
-            return
+            return nil
         }
         
         let path = "series/\(mid).json"
-        self.fetchModel(ofType: NPOProgram.self, fromPath: path, withCompletion: completed)
+        return self.fetchModel(ofType: NPOProgram.self, fromPath: path, withCompletion: completed)
     }
 }

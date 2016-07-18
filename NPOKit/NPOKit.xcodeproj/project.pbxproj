@@ -37,6 +37,7 @@
 		F33621E81D366DA900645603 /* NPOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F33621E71D366DA900645603 /* NPOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F33621EF1D366DA900645603 /* NPOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F33621E41D366DA900645603 /* NPOKit.framework */; };
 		F33621F41D366DA900645603 /* NPOKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33621F31D366DA900645603 /* NPOKitTests.swift */; };
+		F35C03E11D3D143C0025BA4B /* NPORequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35C03E01D3D143C0025BA4B /* NPORequest.swift */; };
 		F3C9F3FE1D366E1A007E3B8D /* NPOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C9F3FD1D366E1A007E3B8D /* NPOManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 		F33621EE1D366DA900645603 /* NPOKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NPOKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33621F31D366DA900645603 /* NPOKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPOKitTests.swift; sourceTree = "<group>"; };
 		F33621F51D366DA900645603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F35C03E01D3D143C0025BA4B /* NPORequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPORequest.swift; sourceTree = "<group>"; };
 		F3C9F3FD1D366E1A007E3B8D /* NPOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,6 +225,7 @@
 				F33621E91D366DA900645603 /* Info.plist */,
 				F3C9F3FD1D366E1A007E3B8D /* NPOManager.swift */,
 				F33560CA1D3A99D8002CFCEB /* NPOConstants.swift */,
+				F35C03E01D3D143C0025BA4B /* NPORequest.swift */,
 				F33560C91D3A98F8002CFCEB /* Extensions */,
 				F317B9A61D390E5F00927ACD /* Networking */,
 				F317B9801D37D5DE00927ACD /* Models */,
@@ -410,6 +413,7 @@
 				F317B9881D37E96A00927ACD /* NPOManager+Tips.swift in Sources */,
 				F317B9841D37E54E00927ACD /* NPOManager+Generics.swift in Sources */,
 				F317B99E1D38EECF00927ACD /* NPOTimeRestriction.swift in Sources */,
+				F35C03E11D3D143C0025BA4B /* NPORequest.swift in Sources */,
 				F3C9F3FE1D366E1A007E3B8D /* NPOManager.swift in Sources */,
 				F317B97B1D37BEEA00927ACD /* NPOManager+Token.swift in Sources */,
 				F317B97D1D37BF4B00927ACD /* NPOManager+Programs.swift in Sources */,

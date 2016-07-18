@@ -137,6 +137,8 @@ class EpisodeViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         // add blur effect to background image
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         visualEffectView.frame = backgroundImageView.bounds
@@ -295,7 +297,7 @@ class EpisodeViewController: UIViewController {
     }
     
     private func getImage(forTip tip: NPOTip, andImageView imageView: UIImageView) {
-        tip.getImage(ofSize: imageView.frame.size) { [weak self] image, error in
+        tip.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not get image for tip (\(error))")
                 self?.getImage(forEpisode: tip.episode, andImageView: imageView)
@@ -311,7 +313,7 @@ class EpisodeViewController: UIViewController {
             return
         }
         
-        episode.getImage(ofSize: imageView.frame.size) { [weak self] image, error in
+        episode.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not get image for episode (\(error))")
                 self?.getImage(forProgram: episode.program, andImageView: imageView)
@@ -327,7 +329,7 @@ class EpisodeViewController: UIViewController {
             return
         }
         
-        program.getImage(ofSize: imageView.frame.size) { image, error in
+        program.getImage(ofSize: imageView.frame.size) { image, error, _ in
             guard let image = image else {
                 DDLogError("Could not get image for program (\(error))")
                 return

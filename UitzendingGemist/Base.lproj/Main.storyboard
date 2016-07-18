@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="Sb9-j2-V3Q">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="zgt-By-Pf4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Tips-->
         <scene sceneID="pfl-4J-95p">
             <objects>
                 <viewController id="Sb9-j2-V3Q" customClass="HomeViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
@@ -91,13 +91,121 @@
                             <constraint firstAttribute="trailingMargin" secondItem="pca-lW-C2t" secondAttribute="trailing" constant="-20" id="ytl-fH-RJX"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Tips" id="8Zx-oR-qul"/>
                     <connections>
                         <outlet property="tipsCollectionView" destination="pca-lW-C2t" id="OP4-2n-V3q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTl-KM-ufA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="718" y="365"/>
+            <point key="canvasLocation" x="2850" y="365"/>
+        </scene>
+        <!--Programmas-->
+        <scene sceneID="c8Q-ql-9KL">
+            <objects>
+                <viewController id="aSd-1z-Npz" customClass="ProgramViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AV7-PU-zfb"/>
+                        <viewControllerLayoutGuide type="bottom" id="UKf-fV-XS5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Uol-Yz-3Zz">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Kd-xY-trO">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="140"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Favorieten" id="SxV-e2-i8B"/>
+                                    <tabBarItem tag="1" title="#" id="UMO-4R-Icq"/>
+                                    <tabBarItem tag="2" title="A-E" id="Rff-fg-JYg"/>
+                                    <tabBarItem tag="3" title="F-J" id="dW3-FY-HDL"/>
+                                    <tabBarItem tag="4" title="K-O" id="Ebf-mD-Azh"/>
+                                    <tabBarItem tag="5" title="P-T" id="T2V-95-C1A"/>
+                                    <tabBarItem tag="6" title="U-Z" id="esx-BT-cfD"/>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="aSd-1z-Npz" id="POv-F3-NBF"/>
+                                </connections>
+                            </tabBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S4I-7U-Oqk">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jOn-hQ-a7j">
+                                <rect key="frame" x="0.0" y="140" width="1920" height="940"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="100" minimumInteritemSpacing="80" id="p0u-ef-F01">
+                                    <size key="itemSize" width="375" height="320"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="90" minY="100" maxX="90" maxY="100"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="programCollectionViewCell" reuseIdentifier="programCollectionViewCell" id="gRm-o2-5fE" customClass="ProgramCollectionViewCell" customModule="UitzendingGemist" customModuleProvider="target">
+                                        <rect key="frame" x="90" y="100" width="375" height="320"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b0R-gt-Exb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="b0R-gt-Exb" secondAttribute="height" multiplier="25:14" id="m7K-fS-Hew"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Program Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qB1-cu-ew1">
+                                                    <rect key="frame" x="8" y="275" width="359" height="37"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="shadowOffset" width="1" height="2"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="qB1-cu-ew1" firstAttribute="bottom" secondItem="gRm-o2-5fE" secondAttribute="bottomMargin" id="Eii-aM-5VI"/>
+                                            <constraint firstItem="b0R-gt-Exb" firstAttribute="top" secondItem="gRm-o2-5fE" secondAttribute="topMargin" constant="-8" id="Onp-0n-quR"/>
+                                            <constraint firstItem="b0R-gt-Exb" firstAttribute="leading" secondItem="gRm-o2-5fE" secondAttribute="leadingMargin" constant="-8" id="P6c-vm-GDr"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="b0R-gt-Exb" secondAttribute="trailing" constant="-8" id="jZt-eW-Bxz"/>
+                                            <constraint firstItem="qB1-cu-ew1" firstAttribute="trailing" secondItem="gRm-o2-5fE" secondAttribute="trailingMargin" id="uH2-a3-fJj"/>
+                                            <constraint firstItem="qB1-cu-ew1" firstAttribute="leading" secondItem="gRm-o2-5fE" secondAttribute="leadingMargin" id="zmm-2o-Nbz"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="programImageView" destination="b0R-gt-Exb" id="EbA-O9-YRK"/>
+                                            <outlet property="programNameLabel" destination="qB1-cu-ew1" id="nVc-9k-YGG"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="aSd-1z-Npz" id="d9K-H0-Kwl"/>
+                                    <outlet property="delegate" destination="aSd-1z-Npz" id="71I-kA-p0a"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="S4I-7U-Oqk" firstAttribute="top" secondItem="AV7-PU-zfb" secondAttribute="bottom" id="5L8-X0-eym"/>
+                            <constraint firstItem="UKf-fV-XS5" firstAttribute="top" secondItem="S4I-7U-Oqk" secondAttribute="bottom" id="Ne8-er-ece"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jOn-hQ-a7j" secondAttribute="trailing" constant="-20" id="O9X-ij-9Pe"/>
+                            <constraint firstItem="S4I-7U-Oqk" firstAttribute="leading" secondItem="Uol-Yz-3Zz" secondAttribute="leading" id="T4p-BL-Ptd"/>
+                            <constraint firstItem="jOn-hQ-a7j" firstAttribute="leading" secondItem="Uol-Yz-3Zz" secondAttribute="leadingMargin" constant="-20" id="ZME-tY-HvQ"/>
+                            <constraint firstItem="UKf-fV-XS5" firstAttribute="top" secondItem="jOn-hQ-a7j" secondAttribute="bottom" id="lT2-O0-WoX"/>
+                            <constraint firstItem="jOn-hQ-a7j" firstAttribute="top" secondItem="5Kd-xY-trO" secondAttribute="bottom" id="uJp-OZ-v7e"/>
+                            <constraint firstAttribute="trailing" secondItem="S4I-7U-Oqk" secondAttribute="trailing" id="v04-ao-sm1"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <tabBarItem key="tabBarItem" title="Programmas" id="H7r-W7-fUD"/>
+                    <simulatedTabBarMetrics key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="S4I-7U-Oqk" id="tR9-FF-2DI"/>
+                        <outlet property="programCollectionView" destination="jOn-hQ-a7j" id="bcd-ws-QSO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W9G-Jj-qIa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2947" y="1761"/>
         </scene>
         <!--Episode View Controller-->
         <scene sceneID="BdX-1N-9PM">
@@ -324,7 +432,7 @@
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="stillCollectionViewCell" reuseIdentifier="stillCollectionViewCell" id="6No-WP-e7F" customClass="StillCollectionViewCell" customModule="UitzendingGemist" customModuleProvider="target">
-                                                        <rect key="frame" x="380" y="13" width="260" height="146"/>
+                                                        <rect key="frame" x="380" y="0.0" width="260" height="146"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                             <rect key="frame" x="0.0" y="0.0" width="260" height="146"/>
@@ -409,7 +517,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4do-ai-hcH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3100" y="365"/>
+            <point key="canvasLocation" x="5232" y="365"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="QEk-9P-JSh">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="zgt-By-Pf4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Vga-Ow-rrT">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Sb9-j2-V3Q" kind="relationship" relationship="viewControllers" id="Dxb-7v-CQU"/>
+                        <segue destination="aSd-1z-Npz" kind="relationship" relationship="viewControllers" id="BHg-AM-xiv"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uCC-mY-OcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="718" y="365"/>
         </scene>
     </scenes>
 </document>

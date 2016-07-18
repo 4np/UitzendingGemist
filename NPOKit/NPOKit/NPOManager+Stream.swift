@@ -11,7 +11,6 @@ import Alamofire
 import CocoaLumberjack
 
 extension NPOManager {
-
     internal func getVideoStream(forMID mid: String?, withCompletion completed: (url: NSURL?, error: NPOError?) -> () = { url, error in }) {
         guard let mid = mid else {
             completed(url: nil, error: .NoMIDError)
@@ -37,8 +36,8 @@ extension NPOManager {
         }
     }
     
-    private func getVideoStreamLocation(forURL url: NSURL, withCompletion completed: (url: NSURL?, error: NPOError?) -> () = { url, error in }) {
-        self.fetchModel(ofType: NPOStreamLocation.self, fromURL: url.absoluteString) { streamLocation, error in
+    private func getVideoStreamLocation(forURL url: NSURL, withCompletion completed: (url: NSURL?, error: NPOError?) -> () = { url, error in }) -> Request? {
+        return self.fetchModel(ofType: NPOStreamLocation.self, fromURL: url.absoluteString) { streamLocation, error in
             completed(url: streamLocation?.url, error: error)
         }
     }

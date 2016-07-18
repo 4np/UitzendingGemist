@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
 import RealmSwift
@@ -120,5 +121,44 @@ public class NPOProgram: NPORestrictedMedia {
     
     public func toggleFavorite() {
         favorite = !favorite
+    }
+    
+    //MARK: Image fetching
+    
+    internal override func getImageURLs(withCompletion completed: (urls: [NSURL]) -> ()) -> Request? {
+        var urls = [NSURL]()
+        var stills = [NSURL]()
+        
+        // add program image
+        if let url = self.imageURL {
+            urls.append(url)
+        }
+        
+        // fetch episodes
+        return NPOManager.sharedInstance.getEpisodes(forProgram: self) { episodes, error in
+            guard let episodes = episodes else {
+                completed(urls: urls)
+                return
+            }
+            
+            for episode in episodes {
+                // add episode image url
+                if let url = episode.imageURL {
+                    urls.append(url)
+                }
+                
+                // add still image urls
+                for still in episode.stills ?? [] {
+                    if let url = still.imageURL {
+                        stills.append(url)
+                    }
+                }
+            }
+            
+            // combine image and still urls
+            urls.appendContentsOf(stills)
+            
+            completed(urls: urls)
+        }
     }
 }

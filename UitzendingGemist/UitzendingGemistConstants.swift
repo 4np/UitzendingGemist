@@ -11,6 +11,7 @@ import Foundation
 enum CollectionViewCells: String {
     case Tip = "tipCollectionViewCell"
     case Still = "stillCollectionViewCell"
+    case Program = "programCollectionViewCell"
 }
 
 public class UitzendingGemistConstants {
