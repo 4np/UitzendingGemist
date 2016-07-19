@@ -29,6 +29,7 @@ class ProgramCollectionViewCell: UICollectionViewCell {
         
         //self.request?.cancel()
         self.programNameLabel.text = nil
+        self.programNameLabel.textColor = UIColor.whiteColor()
         self.programImageView.image = nil
     }
     
@@ -42,8 +43,14 @@ class ProgramCollectionViewCell: UICollectionViewCell {
     
     func configure(withProgram program: NPOProgram) {
         let size = self.programImageView.frame.size
+        var name = program.name ?? ""
         
-        self.programNameLabel.text = program.name
+        if program.favorite {
+            name += " ♥︎"
+        }
+        
+        self.programNameLabel.text = name
+        self.programNameLabel.textColor = program.favorite ? UIColor.waxFlower : UIColor.whiteColor()
         
         self.request = program.getImage(ofSize: size) { [weak self] image, error, request in
             guard let image = image else {

@@ -277,7 +277,7 @@ class EpisodeViewController: UIViewController {
     
     private func updateFavoriteButtonTitleColor() {
         let isFavorite = self.program?.favorite ?? false
-        let favoriteColor = UIColor(rgba: "#F1A9A0")
+        let favoriteColor = UIColor.waxFlower
         let color = isFavorite ? favoriteColor : UIColor.whiteColor()
         let focusColor = isFavorite ? favoriteColor : UIColor.blackColor()
         self.favoriteButton.setTitleColor(color, forState: .Normal)

@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="top" id="HAL-JC-qT1"/>
                         <viewControllerLayoutGuide type="bottom" id="Kxy-ky-PmB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cog-xu-MS9">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="cog-xu-MS9">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -91,6 +91,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="pca-lW-C2t" secondAttribute="trailing" constant="-20" id="ytl-fH-RJX"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Tips" id="8Zx-oR-qul"/>
                     <connections>
                         <outlet property="tipsCollectionView" destination="pca-lW-C2t" id="OP4-2n-V3q"/>
@@ -108,40 +109,39 @@
                         <viewControllerLayoutGuide type="top" id="AV7-PU-zfb"/>
                         <viewControllerLayoutGuide type="bottom" id="UKf-fV-XS5"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Uol-Yz-3Zz">
+                    <view key="view" contentMode="scaleToFill" id="Uol-Yz-3Zz">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S4I-7U-Oqk">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                            </imageView>
                             <tabBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Kd-xY-trO">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="140"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
                                     <tabBarItem title="Favorieten" id="SxV-e2-i8B"/>
-                                    <tabBarItem tag="1" title="#" id="UMO-4R-Icq"/>
-                                    <tabBarItem tag="2" title="A-E" id="Rff-fg-JYg"/>
-                                    <tabBarItem tag="3" title="F-J" id="dW3-FY-HDL"/>
-                                    <tabBarItem tag="4" title="K-O" id="Ebf-mD-Azh"/>
-                                    <tabBarItem tag="5" title="P-T" id="T2V-95-C1A"/>
-                                    <tabBarItem tag="6" title="U-Z" id="esx-BT-cfD"/>
+                                    <tabBarItem tag="1" title="#-E" id="Rff-fg-JYg"/>
+                                    <tabBarItem tag="2" title="F-J" id="dW3-FY-HDL"/>
+                                    <tabBarItem tag="3" title="K-O" id="Ebf-mD-Azh"/>
+                                    <tabBarItem tag="4" title="P-T" id="T2V-95-C1A"/>
+                                    <tabBarItem tag="5" title="U-Z" id="esx-BT-cfD"/>
                                 </items>
                                 <connections>
                                     <outlet property="delegate" destination="aSd-1z-Npz" id="POv-F3-NBF"/>
                                 </connections>
                             </tabBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S4I-7U-Oqk">
-                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
-                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jOn-hQ-a7j">
                                 <rect key="frame" x="0.0" y="140" width="1920" height="940"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="100" minimumInteritemSpacing="80" id="p0u-ef-F01">
                                     <size key="itemSize" width="375" height="320"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="200"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="90" minY="100" maxX="90" maxY="100"/>
+                                    <inset key="sectionInset" minX="90" minY="48" maxX="90" maxY="100"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="programCollectionViewCell" reuseIdentifier="programCollectionViewCell" id="gRm-o2-5fE" customClass="ProgramCollectionViewCell" customModule="UitzendingGemist" customModuleProvider="target">
-                                        <rect key="frame" x="90" y="100" width="375" height="320"/>
+                                        <rect key="frame" x="90" y="248" width="375" height="320"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
@@ -178,6 +178,35 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="programCollectionViewHeader" reuseIdentifier="programCollectionViewHeader" id="v7f-mL-Imb" customClass="ProgramSectionHeaderView" customModule="UitzendingGemist" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="1920" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4z6-b6-4MB">
+                                            <rect key="frame" x="90" y="101" width="1740" height="91"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6t-N1-R51">
+                                                    <rect key="frame" x="749" y="0.0" width="241" height="91"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="P6t-N1-R51" firstAttribute="centerX" secondItem="4z6-b6-4MB" secondAttribute="centerX" id="4KW-Zl-yBQ"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4z6-b6-4MB" firstAttribute="bottom" secondItem="v7f-mL-Imb" secondAttribute="bottomMargin" id="IG8-Lf-IP6"/>
+                                        <constraint firstItem="4z6-b6-4MB" firstAttribute="leading" secondItem="v7f-mL-Imb" secondAttribute="leadingMargin" constant="82" id="Tdk-Wy-bOV"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="4z6-b6-4MB" secondAttribute="trailing" constant="82" id="kuC-02-NPi"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="headerBackgroundView" destination="4z6-b6-4MB" id="zQl-K2-PGW"/>
+                                        <outlet property="headerLabel" destination="P6t-N1-R51" id="FCG-p8-rD2"/>
+                                    </connections>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="aSd-1z-Npz" id="d9K-H0-Kwl"/>
                                     <outlet property="delegate" destination="aSd-1z-Npz" id="71I-kA-p0a"/>
@@ -195,7 +224,6 @@
                             <constraint firstAttribute="trailing" secondItem="S4I-7U-Oqk" secondAttribute="trailing" id="v04-ao-sm1"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Programmas" id="H7r-W7-fUD"/>
                     <simulatedTabBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>

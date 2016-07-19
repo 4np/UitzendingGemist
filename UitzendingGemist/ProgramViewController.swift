@@ -13,12 +13,26 @@ import CocoaLumberjack
 import AVKit
 
 class ProgramViewController: UIViewController, UITabBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
-    private var programs = [NPOProgram]()
+    private var programs = [NPOProgram]() {
+        didSet {
+            self.programCollectionView.reloadData()
+        }
+    }
+    
     private var filteredPrograms = [NPOProgram]() {
         didSet {
             self.programCollectionView.reloadData()
         }
     }
+    
+    // swiftlint:disable force_unwrapping
+    private var uniqueLetters: [String] {
+        get {
+            let firstLetters = self.filteredPrograms.filter({ $0.firstLetter != nil }).map({ $0.firstLetter! })
+            return Array(Set(firstLetters)).sort()
+        }
+    }
+    // swiftlint:enable force_unwrapping
     
     @IBOutlet weak private var backgroundImageView: UIImageView!
     @IBOutlet weak private var programCollectionView: UICollectionView!
@@ -61,6 +75,10 @@ class ProgramViewController: UIViewController, UITabBarDelegate, UICollectionVie
     //MARK: UITabBarDelegate
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        guard item != tabBar.selectedItem else {
+            return
+        }
+        
         var letters = [String]()
         
         switch item.tag {
@@ -68,21 +86,18 @@ class ProgramViewController: UIViewController, UITabBarDelegate, UICollectionVie
                 self.filteredPrograms = self.programs.filter { $0.favorite }
                 return
             case 1:
-                letters = ["#"]
+                letters = ["#", "a", "b", "c", "d", "e"]
                 break
             case 2:
-                letters = ["a", "b", "c", "d", "e"]
-                break
-            case 3:
                 letters = ["f", "g", "h", "i", "j"]
                 break
-            case 4:
+            case 3:
                 letters = ["k", "l", "m", "n", "o"]
                 break
-            case 5:
+            case 4:
                 letters = ["p", "q", "r", "s", "t"]
                 break
-            case 6:
+            case 5:
                 letters = ["u", "v", "w", "x", "y", "z"]
                 break
             default:
@@ -92,27 +107,54 @@ class ProgramViewController: UIViewController, UITabBarDelegate, UICollectionVie
         self.filteredPrograms = self.programs.filter { letters.contains($0.firstLetter ?? "n/a") }
     }
     
+    //MARK: Programs for section
+    
+    private func programs(forSection section: Int) -> [NPOProgram]? {
+        let uniqueLetters = self.uniqueLetters
+        
+        guard section >= 0 && section < uniqueLetters.count else {
+            return nil
+        }
+
+        let letter = uniqueLetters[section]
+        return self.filteredPrograms.filter { $0.firstLetter == letter }
+    }
+    
     //MARK: UICollectionViewDataSource
+
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return self.uniqueLetters.count
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.filteredPrograms.count
+        let letter = self.uniqueLetters[section]
+        let programs = self.filteredPrograms.filter({ $0.firstLetter == letter })
+        return programs.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Program.rawValue, forIndexPath: indexPath)
-        
-        guard let programCell = cell as? ProgramCollectionViewCell where indexPath.row >= 0 && indexPath.row < self.filteredPrograms.count else {
+
+        guard let programCell = cell as? ProgramCollectionViewCell, programsForSection = self.programs(forSection: indexPath.section)
+            where indexPath.row >= 0 && indexPath.row < programsForSection.count else {
             return cell
         }
         
-        let program = self.filteredPrograms[indexPath.row]
-        programCell.configure(withProgram: program)
-    
+        programCell.configure(withProgram: programsForSection[indexPath.row])
         return programCell
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: CollectionViewHeaders.Program.rawValue, forIndexPath: indexPath)
+        let uniqueLetters = self.uniqueLetters
+        
+        guard let headerView = view as? ProgramSectionHeaderView where indexPath.section >= 0 && indexPath.section < uniqueLetters.count else {
+            return view
+        }
+        
+        headerView.configure(withText: uniqueLetters[indexPath.section])
+        return headerView
     }
     
     //MARK: UICollectionViewDelegate
@@ -120,11 +162,12 @@ class ProgramViewController: UIViewController, UITabBarDelegate, UICollectionVie
     weak private var backgroundImageRequest: NPORequest?
     
     func collectionView(collectionView: UICollectionView, didUpdateFocusInContext context: UICollectionViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        guard let indexPath = context.nextFocusedIndexPath where indexPath.row >= 0 && indexPath.row < self.filteredPrograms.count else {
-            return
+        guard let indexPath = context.nextFocusedIndexPath, programsForSection = self.programs(forSection: indexPath.section)
+            where indexPath.row >= 0 && indexPath.row < programsForSection.count else {
+                return
         }
         
-        let program = self.filteredPrograms[indexPath.row]
+        let program = programsForSection[indexPath.row]
         self.loadBackgroundImage(forProgram: program)
     }
     

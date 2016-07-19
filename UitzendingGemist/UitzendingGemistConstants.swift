@@ -14,6 +14,10 @@ enum CollectionViewCells: String {
     case Program = "programCollectionViewCell"
 }
 
+enum CollectionViewHeaders: String {
+    case Program = "programCollectionViewHeader"
+}
+
 public class UitzendingGemistConstants {
     static let unknownText = NSLocalizedString("Onbekend", comment: "Unkown")
     static let genreText = NSLocalizedString("Genre", comment: "Genre")
