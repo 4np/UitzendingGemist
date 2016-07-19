@@ -18,6 +18,13 @@ enum CollectionViewHeaders: String {
     case Program = "programCollectionViewHeader"
 }
 
+enum Segues: String {
+    case TipToEpisodeDetails = "TipToEpisodeDetailsSegue"
+    case EpisodeToProgramDetails = "EpisodeToProgramDetailsSegue"
+    case ProgramToDetails = "ProgramToProgramDetailsSegue"
+    case ProgramToPlayEpisode = "ProgramToPlayEpisodeSegue"
+}
+
 public class UitzendingGemistConstants {
     static let unknownText = NSLocalizedString("Onbekend", comment: "Unkown")
     static let genreText = NSLocalizedString("Genre", comment: "Genre")

@@ -11,6 +11,7 @@
 		F317B9A81D39291D00927ACD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9A71D39291D00927ACD /* HomeViewController.swift */; };
 		F317B9AA1D392DD200927ACD /* TipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9A91D392DD200927ACD /* TipCollectionViewCell.swift */; };
 		F317B9B21D3A7B2400927ACD /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9B11D3A7B2400927ACD /* EpisodeViewController.swift */; };
+		F32724711D3E58A600ACADEA /* ProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32724701D3E58A600ACADEA /* ProgramViewController.swift */; };
 		F32BAAA61D3CCAE40026CAFB /* StillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAA51D3CCAE40026CAFB /* StillCollectionViewCell.swift */; };
 		F32BAAA81D3CDD9E0026CAFB /* ProgramListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAA71D3CDD9E0026CAFB /* ProgramListViewController.swift */; };
 		F32BAAAD1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAAC1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift */; };
@@ -30,6 +31,7 @@
 		F317B9A71D39291D00927ACD /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F317B9A91D392DD200927ACD /* TipCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipCollectionViewCell.swift; sourceTree = "<group>"; };
 		F317B9B11D3A7B2400927ACD /* EpisodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
+		F32724701D3E58A600ACADEA /* ProgramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramViewController.swift; sourceTree = "<group>"; };
 		F32BAAA51D3CCAE40026CAFB /* StillCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StillCollectionViewCell.swift; sourceTree = "<group>"; };
 		F32BAAA71D3CDD9E0026CAFB /* ProgramListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramListViewController.swift; sourceTree = "<group>"; };
 		F32BAAAC1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -92,6 +94,14 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		F32724721D3E58BB00ACADEA /* Program */ = {
+			isa = PBXGroup;
+			children = (
+				F32724701D3E58A600ACADEA /* ProgramViewController.swift */,
+			);
+			name = Program;
+			sourceTree = "<group>";
+		};
 		F32BAAA91D3CEDD50026CAFB /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +157,7 @@
 				F3D71E8D1D3D5C1600B9AEB0 /* UIColor+Colors.swift */,
 				F32BAAA91D3CEDD50026CAFB /* Home */,
 				F32BAAAA1D3CEDF00026CAFB /* Episode */,
+				F32724721D3E58BB00ACADEA /* Program */,
 				F32BAAAB1D3CEE010026CAFB /* Program List */,
 				F317B9761D37BD9400927ACD /* Resources */,
 			);
@@ -297,6 +308,7 @@
 				F32BAAA61D3CCAE40026CAFB /* StillCollectionViewCell.swift in Sources */,
 				F3D0C2581D36650F00A5BE93 /* AppDelegate.swift in Sources */,
 				F317B9AA1D392DD200927ACD /* TipCollectionViewCell.swift in Sources */,
+				F32724711D3E58A600ACADEA /* ProgramViewController.swift in Sources */,
 				F317B9B21D3A7B2400927ACD /* EpisodeViewController.swift in Sources */,
 				F317B9A81D39291D00927ACD /* HomeViewController.swift in Sources */,
 			);

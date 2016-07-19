@@ -142,7 +142,7 @@ class EpisodeViewController: UIViewController {
         // add blur effect to background image
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         visualEffectView.frame = backgroundImageView.bounds
-        backgroundImageView.addSubview(visualEffectView)
+        self.backgroundImageView.addSubview(visualEffectView)
         
         // clear out values
         self.backgroundImageView.image = nil
@@ -193,9 +193,15 @@ class EpisodeViewController: UIViewController {
         self.getDetails(forEpisode: episode)
     }
     
+    func configureAndPlay(withEpisode episode: NPOEpisode?) {
+        self.getDetails(forEpisode: episode) { [weak self] in
+            self?.play()
+        }
+    }
+    
     //MARK: Networking
     
-    private func getDetails(forEpisode episode: NPOEpisode?) {
+    private func getDetails(forEpisode episode: NPOEpisode?, withCompletion completed: () -> () = {}) {
         guard let episode = episode else {
             return
         }
@@ -210,11 +216,11 @@ class EpisodeViewController: UIViewController {
             
             // update episode
             self?.episode = episode
-            self?.getDetails(forProgram: episode.program)
+            self?.getDetails(forProgram: episode.program, withCompletion: completed)
         }
     }
     
-    private func getDetails(forProgram program: NPOProgram?) {
+    private func getDetails(forProgram program: NPOProgram?, withCompletion completed: () -> () = {}) {
         guard let program = program else {
             return
         }
@@ -230,6 +236,7 @@ class EpisodeViewController: UIViewController {
             // update program
             self?.program = program
             self?.needLayout = true
+            completed()
         }
     }
     
@@ -453,17 +460,37 @@ class EpisodeViewController: UIViewController {
         self.presentViewController(playerViewController, animated: true) {
             playerViewController.player?.play()
         }
-        
     }
     
     //MARK: Favorite
     
     @IBAction private func didPressFavoriteButton(sender: UIButton) {
-        guard let program = self.program else {
+        self.program?.toggleFavorite()
+        self.updateFavoriteButtonTitleColor()
+    }
+    
+    //MARK: Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let segueIdentifier = segue.identifier else {
+            return
+        }
+
+        switch segueIdentifier {
+            case Segues.EpisodeToProgramDetails.rawValue:
+                prepareForSegueToProgramView(segue, sender: sender)
+                break
+            default:
+                DDLogError("Unhandled segue with identifier '\(segueIdentifier)' in Home view")
+                break
+        }
+    }
+    
+    private func prepareForSegueToProgramView(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let vc = segue.destinationViewController as? ProgramViewController, program = self.program else {
             return
         }
         
-        program.toggleFavorite()
-        self.updateFavoriteButtonTitleColor()
+        vc.configure(withProgram: program)
     }
 }

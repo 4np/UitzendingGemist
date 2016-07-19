@@ -51,7 +51,6 @@ class ProgramListViewController: UIViewController, UITabBarDelegate, UICollectio
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // refresh programs
         self.getPrograms()
     }
     
@@ -179,5 +178,31 @@ class ProgramListViewController: UIViewController, UITabBarDelegate, UICollectio
             
             self?.backgroundImageView.image = image
         }
+    }
+    
+    //MARK: Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let segueIdentifier = segue.identifier else {
+            return
+        }
+        
+        switch segueIdentifier {
+            case Segues.ProgramToDetails.rawValue:
+                prepareForSegueToProgramView(segue, sender: sender)
+                break
+            default:
+                DDLogError("Unhandled segue with identifier '\(segueIdentifier)' in Home view")
+                break
+        }
+    }
+    
+    private func prepareForSegueToProgramView(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let vc = segue.destinationViewController as? ProgramViewController, cell = sender as? ProgramListCollectionViewCell, indexPath = self.programCollectionView.indexPathForCell(cell), programs = self.programs(forSection: indexPath.section) where indexPath.row >= 0 && indexPath.row < programs.count else {
+            return
+        }
+        
+        let program = programs[indexPath.row]
+        vc.configure(withProgram: program)
     }
 }

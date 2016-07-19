@@ -13,6 +13,8 @@ import ObjectMapper
 
 public class NPORestrictedMedia: NPOMedia {
     public internal(set) var description: String?
+    public internal(set) var broadcasters = [NPOBroadcaster]()
+    public internal(set) var genres = [NPOGenre]()
     internal var revoked = false
     internal var active = true
     public internal(set) var restriction: NPORestriction?
@@ -39,6 +41,8 @@ public class NPORestrictedMedia: NPOMedia {
         super.mapping(map)
         
         description <- map["description"]
+        broadcasters <- (map["broadcasters"], EnumTransform<NPOBroadcaster>())
+        genres <- (map["genres"], EnumTransform<NPOGenre>())
         revoked <- map["revoked"]
         active <- map["active"]
         restriction <- map["restrictions"]

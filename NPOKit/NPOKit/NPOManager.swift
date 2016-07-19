@@ -21,36 +21,51 @@ public enum NPOError: ErrorType {
 
 public enum NPOGenre: String {
     case Amusement = "Amusement"
+    case Crime = "Misdaad"
+    case Cultural = "Kunst/Cultuur"
+    case Comedy = "Comedy"
     case Documentary = "Documentaire"
+    case Drama = "Drama"
     case Film = "Film"
+    case Health = "Gezondheid"
     case Informative = "Informatief"
     case Music = "Muziek"
     case Nature = "Natuur"
+    case News = "Nieuws/actualiteiten"
+    case Religious = "Religieus"
+    case Series = "Serie/soap"
     case Sport = "Sport"
     case Youth = "Jeugd"
     
-    static let all = [Amusement, Documentary, Film, Informative, Music, Nature, Sport, Youth]
+    static let all = [Amusement, Crime, Cultural, Comedy, Documentary, Drama, Film, Health, Informative, Music, Nature, News, Religious, Series, Sport, Youth]
 }
 
 public enum NPOBroadcaster: String {
     case VARA = "VARA"
     case NOS = "NOS"
-    //case KRO = "KRO"
-    //case NCRV = "NCRV"
-    case NCRV = "KRO-NCRV"
-    //case AVRO = "AVRO"
-    //case TROS = "TROS"
+    case KRO = "KRO"
+    case NCRV = "NCRV"
+    case KRONCRV = "KRO-NCRV"
+    case AVRO = "AVRO"
+    case TROS = "TROS"
     case AVROTROS = "AVROTROS"
     case BNN = "BNN"
     case EO = "EO"
     case HUMAN = "HUMAN"
+    case IKON = "IKON"
     case MAX = "MAX"
     case NTR = "NTR"
+    case NPS = "NPS"
+    case OHM = "OHM"
     case VPRO = "VPRO"
     case WNL = "WNL"
     case PowNed = "PowNed"
+    case BOS = "BOS"
+    case ZAPP = "NPO Zapp"
+    case ZAPPELIN = "NPO Zappelin"
+    case JoodseOmroep = "Joodse Omroep"
     
-    static let all = [VARA, NOS, AVROTROS, BNN, EO, HUMAN, MAX, NTR, VPRO, WNL, PowNed]
+    static let all = [VARA, NOS, KRO, NCRV, KRONCRV, AVRO, TROS, AVROTROS, BNN, EO, HUMAN, IKON, MAX, NTR, NPS, OHM, VPRO, WNL, PowNed, BOS, JoodseOmroep, ZAPP, ZAPPELIN]
 }
 
 public class NPOManager {

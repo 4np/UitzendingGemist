@@ -19,8 +19,6 @@ public class NPOEpisode: NPORestrictedMedia {
     // http://apps-api.uitzendinggemist.nl/tips.json
     // http://apps-api.uitzendinggemist.nl/episodes/popular.json
     
-    public internal(set) var broadcasters = [NPOBroadcaster]()
-    public internal(set) var genres = [NPOGenre]()
     public internal(set) var duration: Int = 0
     public internal(set) var advisories = [String]()
     public internal(set) var broadcasted: NSDate?
@@ -46,8 +44,6 @@ public class NPOEpisode: NPORestrictedMedia {
     public override func mapping(map: Map) {
         super.mapping(map)
         
-        broadcasters <- (map["broadcasters"], EnumTransform<NPOBroadcaster>())
-        genres <- (map["genres"], EnumTransform<NPOGenre>())
         duration <- map["duration"]
         advisories <- map["advisories"]
         broadcasted <- (map["broadcasted_at"], DateTransform())

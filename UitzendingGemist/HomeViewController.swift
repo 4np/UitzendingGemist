@@ -90,11 +90,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         tipCell.configure(withTip: self.tips[indexPath.row])
         return tipCell
     }
-    
-    //MARK: UICollectionViewDelegate
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    }
 
     //MARK: Segues
     
@@ -104,7 +99,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         switch segueIdentifier {
-            case "HomeTipToEpisodeSegue":
+            case Segues.TipToEpisodeDetails.rawValue:
                 prepareForSegueToEpisodeView(segue, sender: sender)
                 break
             default:

@@ -11,7 +11,7 @@ import Alamofire
 import AlamofireImage
 
 extension NPOManager {
-    final public func getImage(forURL url: NSURL?, withCompletion completed: (image: UIImage?, error: NPOError?) -> () = { image, error in }) -> Request? {
+    internal func getImage(forURL url: NSURL?, withCompletion completed: (image: UIImage?, error: NPOError?) -> () = { image, error in }) -> Request? {
         guard let url = url else {
             completed(image: nil, error: .NoImageError)
             return nil
@@ -30,7 +30,7 @@ extension NPOManager {
         }
     }
     
-    final public func getImage(forURL url: NSURL?, ofSize size: CGSize, withCompletion completed: (image: UIImage?, error: NPOError?) -> () = { image, error in }) -> Request? {
+    internal func getImage(forURL url: NSURL?, ofSize size: CGSize, withCompletion completed: (image: UIImage?, error: NPOError?) -> () = { image, error in }) -> Request? {
         return self.getImage(forURL: url) { image, error in
             guard let image = image else {
                 completed(image: nil, error: error)

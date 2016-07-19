@@ -19,6 +19,8 @@ public class NPOProgram: NPORestrictedMedia {
     // e.g. http://apps-api.uitzendinggemist.nl/episodes/AT_2049573.json
     internal var online: NSDate?
     internal var offline: NSDate?
+    public private(set) var episodes: [NPOEpisode]?
+    public private(set) var nextEpisode: NPOEpisode?
     
     public var firstLetter: String? {
         guard let char = self.name?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).characters.first else {
@@ -54,6 +56,8 @@ public class NPOProgram: NPORestrictedMedia {
         
         online <- (map["expected_online_at"], DateTransform())
         offline <- (map["expected_offline_at"], DateTransform())
+        episodes <- map["episodes"]
+        nextEpisode <- map["next_episode"]
     }
     
     //MARK: Date checking
