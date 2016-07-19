@@ -12,14 +12,14 @@
 		F317B9AA1D392DD200927ACD /* TipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9A91D392DD200927ACD /* TipCollectionViewCell.swift */; };
 		F317B9B21D3A7B2400927ACD /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9B11D3A7B2400927ACD /* EpisodeViewController.swift */; };
 		F32BAAA61D3CCAE40026CAFB /* StillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAA51D3CCAE40026CAFB /* StillCollectionViewCell.swift */; };
-		F32BAAA81D3CDD9E0026CAFB /* ProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAA71D3CDD9E0026CAFB /* ProgramViewController.swift */; };
-		F32BAAAD1D3CEE160026CAFB /* ProgramCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAAC1D3CEE160026CAFB /* ProgramCollectionViewCell.swift */; };
+		F32BAAA81D3CDD9E0026CAFB /* ProgramListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAA71D3CDD9E0026CAFB /* ProgramListViewController.swift */; };
+		F32BAAAD1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAAC1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift */; };
 		F343082B1D3B91940070911F /* UitzendingGemistConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343082A1D3B91940070911F /* UitzendingGemistConstants.swift */; };
 		F3D0C2581D36650F00A5BE93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D0C2571D36650F00A5BE93 /* AppDelegate.swift */; };
 		F3D0C25D1D36650F00A5BE93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D0C25B1D36650F00A5BE93 /* Main.storyboard */; };
 		F3D0C25F1D36650F00A5BE93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D0C25E1D36650F00A5BE93 /* Assets.xcassets */; };
 		F3D71E8E1D3D5C1600B9AEB0 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D71E8D1D3D5C1600B9AEB0 /* UIColor+Colors.swift */; };
-		F3D71E901D3E1B9D00B9AEB0 /* ProgramSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D71E8F1D3E1B9D00B9AEB0 /* ProgramSectionHeaderView.swift */; };
+		F3D71E901D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +31,8 @@
 		F317B9A91D392DD200927ACD /* TipCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipCollectionViewCell.swift; sourceTree = "<group>"; };
 		F317B9B11D3A7B2400927ACD /* EpisodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
 		F32BAAA51D3CCAE40026CAFB /* StillCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StillCollectionViewCell.swift; sourceTree = "<group>"; };
-		F32BAAA71D3CDD9E0026CAFB /* ProgramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramViewController.swift; sourceTree = "<group>"; };
-		F32BAAAC1D3CEE160026CAFB /* ProgramCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramCollectionViewCell.swift; sourceTree = "<group>"; };
+		F32BAAA71D3CDD9E0026CAFB /* ProgramListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramListViewController.swift; sourceTree = "<group>"; };
+		F32BAAAC1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramListCollectionViewCell.swift; sourceTree = "<group>"; };
 		F343082A1D3B91940070911F /* UitzendingGemistConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UitzendingGemistConstants.swift; sourceTree = "<group>"; };
 		F3D0C2541D36650F00A5BE93 /* UitzendingGemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UitzendingGemist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D0C2571D36650F00A5BE93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		F3D0C25E1D36650F00A5BE93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3D0C2601D36650F00A5BE93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3D71E8D1D3D5C1600B9AEB0 /* UIColor+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
-		F3D71E8F1D3E1B9D00B9AEB0 /* ProgramSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramSectionHeaderView.swift; sourceTree = "<group>"; };
+		F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramListSectionHeaderView.swift; sourceTree = "<group>"; };
 		F91D545EA47AA85066BCC6D2 /* Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UitzendingGemistAbstract-UitzendingGemist/Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,14 +110,14 @@
 			name = Episode;
 			sourceTree = "<group>";
 		};
-		F32BAAAB1D3CEE010026CAFB /* Program */ = {
+		F32BAAAB1D3CEE010026CAFB /* Program List */ = {
 			isa = PBXGroup;
 			children = (
-				F32BAAA71D3CDD9E0026CAFB /* ProgramViewController.swift */,
-				F32BAAAC1D3CEE160026CAFB /* ProgramCollectionViewCell.swift */,
-				F3D71E8F1D3E1B9D00B9AEB0 /* ProgramSectionHeaderView.swift */,
+				F32BAAA71D3CDD9E0026CAFB /* ProgramListViewController.swift */,
+				F32BAAAC1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift */,
+				F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */,
 			);
-			name = Program;
+			name = "Program List";
 			sourceTree = "<group>";
 		};
 		F3D0C24B1D36650F00A5BE93 = {
@@ -147,7 +147,7 @@
 				F3D71E8D1D3D5C1600B9AEB0 /* UIColor+Colors.swift */,
 				F32BAAA91D3CEDD50026CAFB /* Home */,
 				F32BAAAA1D3CEDF00026CAFB /* Episode */,
-				F32BAAAB1D3CEE010026CAFB /* Program */,
+				F32BAAAB1D3CEE010026CAFB /* Program List */,
 				F317B9761D37BD9400927ACD /* Resources */,
 			);
 			path = UitzendingGemist;
@@ -291,9 +291,9 @@
 			files = (
 				F343082B1D3B91940070911F /* UitzendingGemistConstants.swift in Sources */,
 				F3D71E8E1D3D5C1600B9AEB0 /* UIColor+Colors.swift in Sources */,
-				F32BAAAD1D3CEE160026CAFB /* ProgramCollectionViewCell.swift in Sources */,
-				F32BAAA81D3CDD9E0026CAFB /* ProgramViewController.swift in Sources */,
-				F3D71E901D3E1B9D00B9AEB0 /* ProgramSectionHeaderView.swift in Sources */,
+				F32BAAAD1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift in Sources */,
+				F32BAAA81D3CDD9E0026CAFB /* ProgramListViewController.swift in Sources */,
+				F3D71E901D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift in Sources */,
 				F32BAAA61D3CCAE40026CAFB /* StillCollectionViewCell.swift in Sources */,
 				F3D0C2581D36650F00A5BE93 /* AppDelegate.swift in Sources */,
 				F317B9AA1D392DD200927ACD /* TipCollectionViewCell.swift in Sources */,

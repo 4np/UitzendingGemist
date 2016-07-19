@@ -1,5 +1,5 @@
 //
-//  ProgramViewController.swift
+//  ProgramListViewController.swift
 //  UitzendingGemist
 //
 //  Created by Jeroen Wesbeek on 18/07/16.
@@ -12,7 +12,7 @@ import NPOKit
 import CocoaLumberjack
 import AVKit
 
-class ProgramViewController: UIViewController, UITabBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class ProgramListViewController: UIViewController, UITabBarDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     private var programs = [NPOProgram]() {
         didSet {
             self.programCollectionView.reloadData()
@@ -136,7 +136,7 @@ class ProgramViewController: UIViewController, UITabBarDelegate, UICollectionVie
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Program.rawValue, forIndexPath: indexPath)
 
-        guard let programCell = cell as? ProgramCollectionViewCell, programsForSection = self.programs(forSection: indexPath.section)
+        guard let programCell = cell as? ProgramListCollectionViewCell, programsForSection = self.programs(forSection: indexPath.section)
             where indexPath.row >= 0 && indexPath.row < programsForSection.count else {
             return cell
         }
@@ -149,7 +149,7 @@ class ProgramViewController: UIViewController, UITabBarDelegate, UICollectionVie
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: CollectionViewHeaders.Program.rawValue, forIndexPath: indexPath)
         let uniqueLetters = self.uniqueLetters
         
-        guard let headerView = view as? ProgramSectionHeaderView where indexPath.section >= 0 && indexPath.section < uniqueLetters.count else {
+        guard let headerView = view as? ProgramListSectionHeaderView where indexPath.section >= 0 && indexPath.section < uniqueLetters.count else {
             return view
         }
         

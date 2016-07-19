@@ -1,5 +1,5 @@
 //
-//  ProgramSectionHeaderView.swift
+//  ProgramListSectionHeaderView.swift
 //  UitzendingGemist
 //
 //  Created by Jeroen Wesbeek on 19/07/16.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProgramSectionHeaderView: UICollectionReusableView {
+class ProgramListSectionHeaderView: UICollectionReusableView {
     @IBOutlet weak var headerBackgroundView: UIView!
     @IBOutlet weak var headerLabel: UILabel!
     

@@ -1,5 +1,5 @@
 //
-//  ProgramCollectionViewCell.swift
+//  ProgramListCollectionViewCell.swift
 //  UitzendingGemist
 //
 //  Created by Jeroen Wesbeek on 18/07/16.
@@ -12,7 +12,7 @@ import NPOKit
 import Alamofire
 import CocoaLumberjack
 
-class ProgramCollectionViewCell: UICollectionViewCell {
+class ProgramListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak private var programImageView: UIImageView!
     @IBOutlet weak private var programNameLabel: UILabel!
     

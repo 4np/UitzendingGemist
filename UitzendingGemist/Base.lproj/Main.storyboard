@@ -104,12 +104,12 @@
         <!--Programmas-->
         <scene sceneID="c8Q-ql-9KL">
             <objects>
-                <viewController id="aSd-1z-Npz" customClass="ProgramViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aSd-1z-Npz" customClass="ProgramListViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AV7-PU-zfb"/>
                         <viewControllerLayoutGuide type="bottom" id="UKf-fV-XS5"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Uol-Yz-3Zz">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Uol-Yz-3Zz">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -140,7 +140,7 @@
                                     <inset key="sectionInset" minX="90" minY="48" maxX="90" maxY="100"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="programCollectionViewCell" reuseIdentifier="programCollectionViewCell" id="gRm-o2-5fE" customClass="ProgramCollectionViewCell" customModule="UitzendingGemist" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="programCollectionViewCell" reuseIdentifier="programCollectionViewCell" id="gRm-o2-5fE" customClass="ProgramListCollectionViewCell" customModule="UitzendingGemist" customModuleProvider="target">
                                         <rect key="frame" x="90" y="248" width="375" height="320"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -178,7 +178,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="programCollectionViewHeader" reuseIdentifier="programCollectionViewHeader" id="v7f-mL-Imb" customClass="ProgramSectionHeaderView" customModule="UitzendingGemist" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="programCollectionViewHeader" reuseIdentifier="programCollectionViewHeader" id="v7f-mL-Imb" customClass="ProgramListSectionHeaderView" customModule="UitzendingGemist" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="1920" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -224,6 +224,7 @@
                             <constraint firstAttribute="trailing" secondItem="S4I-7U-Oqk" secondAttribute="trailing" id="v04-ao-sm1"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Programmas" id="H7r-W7-fUD"/>
                     <simulatedTabBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>
@@ -233,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9G-Jj-qIa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2947" y="1761"/>
+            <point key="canvasLocation" x="2850" y="1785"/>
         </scene>
         <!--Episode View Controller-->
         <scene sceneID="BdX-1N-9PM">
@@ -563,7 +564,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uCC-mY-OcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="718" y="365"/>
+            <point key="canvasLocation" x="614" y="1125"/>
         </scene>
     </scenes>
 </document>
