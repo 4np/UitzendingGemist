@@ -13,7 +13,7 @@ import CocoaLumberjack
 import AVKit
 import UIColor_Hex_Swift
 
-class ProgramViewController: UIViewController {
+class ProgramViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var programImageView: UIImageView!
     @IBOutlet weak var programNameLabel: UILabel!
@@ -28,6 +28,8 @@ class ProgramViewController: UIViewController {
     @IBOutlet weak var playLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var favoriteLabel: UILabel!
+    
+    @IBOutlet weak var episodeCollectionView: UICollectionView!
     
     private var program: NPOProgram?
     
@@ -163,6 +165,9 @@ class ProgramViewController: UIViewController {
         
         // fetch images
         self.layoutImages(forProgram: program)
+        
+        // layout episodes
+        self.episodeCollectionView.reloadData()
     }
     
     private func updateFavoriteButtonTitleColor() {
@@ -203,6 +208,27 @@ class ProgramViewController: UIViewController {
         self.updateFavoriteButtonTitleColor()
     }
     
+    //MARK: UICollectionViewDataSource
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.episodes?.count ?? 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Episode.rawValue, forIndexPath: indexPath)
+        
+        guard let episodeCell = cell as? EpisodeCollectionViewCell, episodes = self.episodes where indexPath.row >= 0 && indexPath.row < episodes.count else {
+            return cell
+        }
+        
+        episodeCell.configure(withEpisode: episodes[indexPath.row])
+        return episodeCell
+    }
+    
     //MARK: Segues
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -211,6 +237,9 @@ class ProgramViewController: UIViewController {
         }
         
         switch segueIdentifier {
+            case Segues.ProgramToEpisode.rawValue:
+                prepareForSegueToEpisodeView(segue, sender: sender)
+                break
             case Segues.ProgramToPlayEpisode.rawValue:
                 prepareForSegueToPlayEpisodeView(segue, sender: sender)
                 break
@@ -220,6 +249,15 @@ class ProgramViewController: UIViewController {
         }
     }
     
+    private func prepareForSegueToEpisodeView(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let vc = segue.destinationViewController as? EpisodeViewController, cell = sender as? EpisodeCollectionViewCell, indexPath = self.episodeCollectionView.indexPathForCell(cell), episodes = self.episodes where indexPath.row >= 0 && indexPath.row < episodes.count else {
+            return
+        }
+        
+        let episode = episodes[indexPath.row]
+        vc.configure(withEpisode: episode)
+    }
+
     private func prepareForSegueToPlayEpisodeView(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let vc = segue.destinationViewController as? EpisodeViewController, episode = self.unwatchedEpisodes?.first else {
             return

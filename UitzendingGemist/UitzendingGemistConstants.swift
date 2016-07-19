@@ -12,6 +12,7 @@ enum CollectionViewCells: String {
     case Tip = "tipCollectionViewCell"
     case Still = "stillCollectionViewCell"
     case Program = "programCollectionViewCell"
+    case Episode = "episodeCollectionViewCell"
 }
 
 enum CollectionViewHeaders: String {
@@ -22,6 +23,7 @@ enum Segues: String {
     case TipToEpisodeDetails = "TipToEpisodeDetailsSegue"
     case EpisodeToProgramDetails = "EpisodeToProgramDetailsSegue"
     case ProgramToDetails = "ProgramToProgramDetailsSegue"
+    case ProgramToEpisode = "ProgramToEpisodeSegue"
     case ProgramToPlayEpisode = "ProgramToPlayEpisodeSegue"
 }
 
