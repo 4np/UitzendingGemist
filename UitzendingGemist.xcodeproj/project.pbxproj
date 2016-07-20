@@ -23,6 +23,7 @@
 		F3D0C25F1D36650F00A5BE93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D0C25E1D36650F00A5BE93 /* Assets.xcassets */; };
 		F3D71E8E1D3D5C1600B9AEB0 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D71E8D1D3D5C1600B9AEB0 /* UIColor+Colors.swift */; };
 		F3D71E901D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */; };
+		F3FD00731D3FFC7900034A76 /* ToProgramButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD00721D3FFC7900034A76 /* ToProgramButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		F3D0C2601D36650F00A5BE93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3D71E8D1D3D5C1600B9AEB0 /* UIColor+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
 		F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramListSectionHeaderView.swift; sourceTree = "<group>"; };
+		F3FD00721D3FFC7900034A76 /* ToProgramButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToProgramButton.swift; sourceTree = "<group>"; };
 		F91D545EA47AA85066BCC6D2 /* Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UitzendingGemistAbstract-UitzendingGemist/Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +149,7 @@
 			children = (
 				F317B9B11D3A7B2400927ACD /* EpisodeViewController.swift */,
 				F32BAAA51D3CCAE40026CAFB /* StillCollectionViewCell.swift */,
+				F3FD00721D3FFC7900034A76 /* ToProgramButton.swift */,
 			);
 			name = Episode;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				F32724711D3E58A600ACADEA /* ProgramViewController.swift in Sources */,
 				F317B9B21D3A7B2400927ACD /* EpisodeViewController.swift in Sources */,
 				F317B9A81D39291D00927ACD /* HomeViewController.swift in Sources */,
+				F3FD00731D3FFC7900034A76 /* ToProgramButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

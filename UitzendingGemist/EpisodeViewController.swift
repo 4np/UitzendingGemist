@@ -31,9 +31,9 @@ class EpisodeViewController: UIViewController {
     @IBOutlet weak private var toProgramLabel: UILabel!
     @IBOutlet weak private var favoriteButton: UIButton!
     @IBOutlet weak private var favoriteLabel: UILabel!
-    
     @IBOutlet weak private var stillCollectionView: UICollectionView!
-    
+
+    private var toProgramButtonImageView: UIImageView?
     private var tip: NPOTip?
     private var episode: NPOEpisode?
     private var program: NPOProgram?
