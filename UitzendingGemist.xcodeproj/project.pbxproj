@@ -25,6 +25,7 @@
 		F3D71E901D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */; };
 		F3FD00731D3FFC7900034A76 /* ToProgramButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD00721D3FFC7900034A76 /* ToProgramButton.swift */; };
 		F3FD00791D400FD800034A76 /* UIView+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD00781D400FD800034A76 /* UIView+Activity.swift */; };
+		F3FD00811D40202100034A76 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD00801D40202100034A76 /* UpdateManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramListSectionHeaderView.swift; sourceTree = "<group>"; };
 		F3FD00721D3FFC7900034A76 /* ToProgramButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToProgramButton.swift; sourceTree = "<group>"; };
 		F3FD00781D400FD800034A76 /* UIView+Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Activity.swift"; sourceTree = "<group>"; };
+		F3FD00801D40202100034A76 /* UpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
 		F91D545EA47AA85066BCC6D2 /* Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UitzendingGemistAbstract-UitzendingGemist/Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				F343082A1D3B91940070911F /* UitzendingGemistConstants.swift */,
+				F3FD00801D40202100034A76 /* UpdateManager.swift */,
 				F30FE23A1D3FB9E400ABFAE8 /* Extensions */,
 				F30FE2391D3FB9DF00ABFAE8 /* Views */,
 			);
@@ -348,6 +351,7 @@
 				F3D0C2581D36650F00A5BE93 /* AppDelegate.swift in Sources */,
 				F317B9AA1D392DD200927ACD /* TipCollectionViewCell.swift in Sources */,
 				F32724711D3E58A600ACADEA /* ProgramViewController.swift in Sources */,
+				F3FD00811D40202100034A76 /* UpdateManager.swift in Sources */,
 				F317B9B21D3A7B2400927ACD /* EpisodeViewController.swift in Sources */,
 				F317B9A81D39291D00927ACD /* HomeViewController.swift in Sources */,
 				F3FD00731D3FFC7900034A76 /* ToProgramButton.swift in Sources */,

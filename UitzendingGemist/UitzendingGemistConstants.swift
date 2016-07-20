@@ -45,4 +45,8 @@ public class UitzendingGemistConstants {
     static let cancelText = NSLocalizedString("Annuleren", comment: "Cancel")
     
     static let waitText = NSLocalizedString("Een ogenblik geduld alstublieft...", comment: "Please wait text")
+    
+    static let updateAvailableTitle = NSLocalizedString("Nieuwere versie beschikbaar", comment: "A newer version is available")
+    static let updateAvailableText = NSLocalizedString("Uitzending Gemist versie '%@' is beschikbaar op %@ . Momenteel maakt u gebruik van Uitzending Gemist versie '%@'.", comment: "A newer version is available for download")
+    static let okayButtonText = NSLocalizedString("OK", comment: "OK Button Text")
 }

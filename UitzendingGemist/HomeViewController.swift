@@ -28,6 +28,28 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         // refresh tips
         self.getTips()
+        
+        // check for version update
+        self.checkForUpdate()
+    }
+    
+    //MARK: Version check
+    
+    private func checkForUpdate() {
+        // update check
+        UpdateManager.sharedInstance.updateAvailable() { [weak self] latestRelease, currentVersion in
+            // update available, show an alert
+            let latestVersion = latestRelease?.version ?? UitzendingGemistConstants.unknownText
+            let downloadURL = latestRelease?.url ?? UitzendingGemistConstants.unknownText
+            let thisVersion = currentVersion ?? UitzendingGemistConstants.unknownText
+            let alertText = String.localizedStringWithFormat(UitzendingGemistConstants.updateAvailableText, latestVersion, downloadURL, thisVersion)
+            let alertController = UIAlertController(title: UitzendingGemistConstants.updateAvailableTitle, message: alertText, preferredStyle: .ActionSheet)
+            let cancelAction = UIAlertAction(title: UitzendingGemistConstants.okayButtonText, style: .Cancel) { _ in
+                alertController.dismissViewControllerAnimated(true, completion: nil)
+            }
+            alertController.addAction(cancelAction)
+            self?.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
 
     //MARK: Networking

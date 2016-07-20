@@ -23,6 +23,10 @@ extension NPOManager {
     
     internal func fetchModels<T: Mappable>(ofType type: T.Type, fromPath path: String, withKeyPath keyPath: String?, withCompletion completed: (elements: [T]?, error: NPOError?) -> () = { elements, error in }) -> Request? {
         let url = self.getURL(forPath: path)
+        return self.fetchModels(ofType: type, fromURL: url, withKeyPath: keyPath, withCompletion: completed)
+    }
+    
+    internal func fetchModels<T: Mappable>(ofType type: T.Type, fromURL url: String, withKeyPath keyPath: String?, withCompletion completed: (elements: [T]?, error: NPOError?) -> () = { elements, error in }) -> Request? {
         return Alamofire.request(.GET, url, headers: self.getHeaders())
             .responseArray(keyPath: keyPath) { (response: Response<[T], NSError>) in
                 switch response.result {
