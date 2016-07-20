@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="top" id="HAL-JC-qT1"/>
                         <viewControllerLayoutGuide type="bottom" id="Kxy-ky-PmB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cog-xu-MS9">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="cog-xu-MS9">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -109,7 +109,7 @@
                         <viewControllerLayoutGuide type="top" id="AV7-PU-zfb"/>
                         <viewControllerLayoutGuide type="bottom" id="UKf-fV-XS5"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Uol-Yz-3Zz">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Uol-Yz-3Zz">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -649,7 +649,7 @@
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hw7-lY-ZDN">
+                                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hw7-lY-ZDN" customClass="AutoScrollView" customModule="UitzendingGemist" customModuleProvider="target">
                                                         <rect key="frame" x="-20" y="35" width="992" height="200"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8M7-tO-WMg">
@@ -829,6 +829,7 @@
                         <outlet property="broadcasterLabel" destination="uwg-HP-bkJ" id="rF9-qv-zjR"/>
                         <outlet property="broadcasterTitleLabel" destination="nRe-Ei-oKS" id="6rR-IQ-kV4"/>
                         <outlet property="descriptionLabel" destination="8M7-tO-WMg" id="anF-W0-9fC"/>
+                        <outlet property="descriptionScrollView" destination="hw7-lY-ZDN" id="ojh-2Q-TPI"/>
                         <outlet property="episodeCollectionView" destination="uMZ-aw-JNr" id="rKD-8i-I61"/>
                         <outlet property="favoriteButton" destination="tbA-B6-2Kx" id="3Ma-PP-H8n"/>
                         <outlet property="favoriteLabel" destination="S6D-5B-w60" id="eiR-f8-9HN"/>

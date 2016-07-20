@@ -22,6 +22,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var broadcasterTitleLabel: UILabel!
     @IBOutlet weak var broadcasterLabel: UILabel!
     
+    @IBOutlet weak var descriptionScrollView: AutoScrollView!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var playButton: UIButton!
