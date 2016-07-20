@@ -1,8 +1,8 @@
 {
   "name": "NPOKit",
   "version": "1.0.0",
-  "summary": "NPOKit framework.",
-  "homepage": "https://github.com/4np/UitzendingGemist",
+  "summary": "NPOKit framework for interfacing with the Nederlandse Publieke Omroep (NPO: the Dutch public broadcaster.)",
+  "homepage": "https://github.com/4np/NPOKit",
   "license": {
     "type": "APACHE",
     "file": "LICENSE"
@@ -10,12 +10,13 @@
   "authors": {
     "Jeroen Wesbeek": "github@osx.eu"
   },
+  "documentation_url": "https://github.com/4np/NPOKit/blob/master/README.md",
   "platforms": {
     "tvos": "9.0"
   },
   "requires_arc": true,
   "source": {
-    "git": "https://github.com/4np/UitzendingGemist.git",
+    "git": "https://github.com/4np/NPOKit.git",
     "submodules": true
   },
   "source_files": "NPOKit/**/*.{h,swift}",

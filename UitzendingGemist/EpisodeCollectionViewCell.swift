@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import NPOKit
+import CocoaLumberjack
 
 class EpisodeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak private var episodeImageView: UIImageView!
@@ -33,12 +34,23 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     
     //MARK: Configuration
     
-    func configure(withEpisode episode: NPOEpisode) {
+    func configure(withEpisode episode: NPOEpisode, andProgram program: NPOProgram?) {
         self.episodeNameLabel.text = episode.name
         self.dateLabel.text = episode.broadcastedDisplayValue
         
         // get image
         episode.getImage(ofSize: self.episodeImageView.frame.size) { [weak self] image, _, _ in
+            guard let image = image else {
+                self?.fetchImage(byProgram: program)
+                return
+            }
+            
+            self?.episodeImageView.image = image
+        }
+    }
+    
+    private func fetchImage(byProgram program: NPOProgram?) {
+        program?.getImage(ofSize: self.episodeImageView.frame.size) { [weak self] image, _, _ in
             self?.episodeImageView.image = image
         }
     }

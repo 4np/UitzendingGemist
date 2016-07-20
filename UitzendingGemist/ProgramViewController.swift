@@ -226,7 +226,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
             return cell
         }
         
-        episodeCell.configure(withEpisode: episodes[indexPath.row])
+        episodeCell.configure(withEpisode: episodes[indexPath.row], andProgram: self.program)
         return episodeCell
     }
     
