@@ -6,9 +6,20 @@
 
 Watching videos is very snappy and almost instantaneous, contrary to streaming from your iDevice to Apple TV over Airplay or using the built-in player in your smart tv.
 
-# Okay, that's great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
+# Features
 
-Unfortunately the app cannot be distributed in the Appstore as the NPO does not allow third parties in doing so. However, using a free Apple Developer account you *can* compile it yourself and install it in your own Apple TV 4. 
+- Fast *_native_* app for Apple TV
+- Easy to use interface for browsing Programs and Episodes
+- Allows creation of favorites
+- Remembers watched episodes and will allow you to resume watching
+
+# NOTE
+
+This is a complete rewrite of the previous version. While functional it is still work in progress (you can ask for features or report bugs here) so be sure to come back for updated versions. If you want the _previous_ version of the app, you can find it in the [Legacy Branch](https://github.com/4np/UitzendingGemist/tree/legacy).
+
+# Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
+
+Unfortunately the app cannot be distributed in the Appstore as the NPO does not allow third parties in doing so. However, using a _free_ Apple Developer account you *can* compile it yourself and install it in your own Apple TV 4. 
 
 **Prerequisites:**
 
