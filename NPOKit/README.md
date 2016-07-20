@@ -48,6 +48,7 @@ NPOManager.sharedInstance.getTips() { [weak self] tips, error in
 	// assign tips
 	self?.tips = tips
 }
+```
 
 ### Fetch programs
 
