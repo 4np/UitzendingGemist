@@ -45,8 +45,10 @@ class UpdateManager {
             }
             
             if myVersion.compare(latestVersion, options: NSStringCompareOptions.NumericSearch) == .OrderedAscending {
-                DDLogDebug("Newer version available (current version: \(myVersion), latest version: \(latestVersion)")
+                DDLogDebug("Newer version available (current: \(myVersion), latest: \(latestVersion)")
                 completed(release: latestRelease, currentVersion: myVersion)
+            } else {
+                DDLogDebug("No update available (current: \(myVersion), latest: \(latestVersion))")
             }
         }
     }
