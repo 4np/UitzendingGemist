@@ -12,7 +12,7 @@ import Alamofire
 extension NPOManager {
     
     // http://apps-api.uitzendinggemist.nl/tips.json
-    public func getTips(withCompletion completed: (programs: [NPOTip]?, error: NPOError?) -> () = { tips, error in }) -> Request? {
+    public func getTips(withCompletion completed: (tips: [NPOTip]?, error: NPOError?) -> () = { tips, error in }) -> Request? {
         return self.fetchModels(ofType: NPOTip.self, fromPath: "tips.json", withCompletion: completed)
     }
 }
