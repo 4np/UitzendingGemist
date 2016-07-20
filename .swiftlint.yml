@@ -11,7 +11,7 @@ excluded:
 variable_name:
     min_length: 2
 file_length:
-    warning: 500
+    warning: 600
     error: 1200
 type_body_length:
     warning: 300

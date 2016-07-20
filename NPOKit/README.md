@@ -220,6 +220,24 @@ let episode: NPOEpisode = ...
 episode.getVideoStream() { url, error in ... }
 ```
 
+## Special API
+
+hile the other API methods are all about interfacing with the NPO, NPOKit also includes convencience methods for simplifying some other tasks.
+
+### GitHub Latest Releases API
+
+The [Uitzending Gemist App](https://github.com/4np/UitzendingGemist) uses this API method to provide version update notifications to the end user. As the app is distributed by source on Github it does not tap into the native AppStore to push version updates. To make sure users are aware of version updates this API is used to determine whether or not updates are available.
+
+```
+let githubUsername = "4np"
+let githubRepository = "UitzendingGemist"
+NPOManager.sharedInstance.getGitHubReleases(forUsername: githubUsername, andRepositoryName: githubRepository) { releases, currentVersion in
+	...
+}
+```
+
+### Get the latest GitHub releases
+
 # License
 
 See the accompanying [LICENSE](LICENSE) and [NOTICE](NOTICE) files for more information.
