@@ -45,7 +45,7 @@ class EpisodeViewController: UIViewController {
             }
         }
     }
-    
+
     //MARK: Calculated Properties
     
     private var programName: String? {
@@ -410,8 +410,14 @@ class EpisodeViewController: UIViewController {
             DDLogError("Could not play episode...")
             return
         }
-
+        
+        // show progress hud
+        self.view.startLoading()
+    
+        // play video stream
         episode.getVideoStream() { [weak self] url, error in
+            self?.view.stopLoading()
+            
             guard let url = url else {
                 DDLogError("Could not play episode (\(error))")
                 return

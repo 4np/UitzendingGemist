@@ -24,6 +24,7 @@
 		F3D71E8E1D3D5C1600B9AEB0 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D71E8D1D3D5C1600B9AEB0 /* UIColor+Colors.swift */; };
 		F3D71E901D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */; };
 		F3FD00731D3FFC7900034A76 /* ToProgramButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD00721D3FFC7900034A76 /* ToProgramButton.swift */; };
+		F3FD00791D400FD800034A76 /* UIView+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD00781D400FD800034A76 /* UIView+Activity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		F3D71E8D1D3D5C1600B9AEB0 /* UIColor+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
 		F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramListSectionHeaderView.swift; sourceTree = "<group>"; };
 		F3FD00721D3FFC7900034A76 /* ToProgramButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToProgramButton.swift; sourceTree = "<group>"; };
+		F3FD00781D400FD800034A76 /* UIView+Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Activity.swift"; sourceTree = "<group>"; };
 		F91D545EA47AA85066BCC6D2 /* Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UitzendingGemistAbstract-UitzendingGemist/Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				F3D71E8D1D3D5C1600B9AEB0 /* UIColor+Colors.swift */,
+				F3FD00781D400FD800034A76 /* UIView+Activity.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F343082B1D3B91940070911F /* UitzendingGemistConstants.swift in Sources */,
+				F3FD00791D400FD800034A76 /* UIView+Activity.swift in Sources */,
 				F3D71E8E1D3D5C1600B9AEB0 /* UIColor+Colors.swift in Sources */,
 				F32BAAAD1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift in Sources */,
 				F32BAAA81D3CDD9E0026CAFB /* ProgramListViewController.swift in Sources */,

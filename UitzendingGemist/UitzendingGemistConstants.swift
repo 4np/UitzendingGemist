@@ -43,4 +43,6 @@ public class UitzendingGemistConstants {
     static let watchFromStartText = NSLocalizedString("Bij het begin beginnen", comment: "Start watching from the beginning")
     
     static let cancelText = NSLocalizedString("Annuleren", comment: "Cancel")
+    
+    static let waitText = NSLocalizedString("Een ogenblik geduld alstublieft...", comment: "Please wait text")
 }
