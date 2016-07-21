@@ -15,7 +15,7 @@ Watching videos is very snappy and almost instantaneous, contrary to streaming f
 
 # NOTE
 
-This is a complete rewrite of the previous version. While the app works and provides the above features, functionallity wise it is still work in progress (you can leave your comments, suggestions or bug reports [here](https://github.com/4np/UitzendingGemist/issues)) so be sure to come back for updated versions. If you want to install the _previous_ (e.g. _legacy_) version of the app, you can find it in the [Legacy Branch](https://github.com/4np/UitzendingGemist/tree/Legacy).
+This is a complete rewrite of the previous version. While the app works and provides the above features, functionallity wise it is still work in progress (you can leave your comments, suggestions or bug reports [here](https://github.com/4np/UitzendingGemist/issues)) so be sure to come back for updated versions. If you want to install the _previous_ (e.g. _legacy_) version of the app, you can find it in the [Legacy Branch](https://github.com/4np/UitzendingGemist/tree/legacy).
 
 # Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
 
