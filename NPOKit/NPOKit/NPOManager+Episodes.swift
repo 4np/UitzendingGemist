@@ -12,6 +12,14 @@ import Alamofire
 
 extension NPOManager {
     
+    //MARK: Trending Episodes
+    
+    // http://apps-api.uitzendinggemist.nl/episodes/trending.json
+    public func getTrendingEpisodes(withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) -> Request? {
+        let path = "episodes/trending.json"
+        return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
+    }
+    
     //MARK: Popular Episodes
     
     // http://apps-api.uitzendinggemist.nl/episodes/popular.json

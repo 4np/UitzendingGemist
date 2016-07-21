@@ -13,6 +13,7 @@ enum CollectionViewCells: String {
     case Still = "stillCollectionViewCell"
     case Program = "programCollectionViewCell"
     case Episode = "episodeCollectionViewCell"
+    case Live = "liveCollectionViewCell"
 }
 
 enum CollectionViewHeaders: String {

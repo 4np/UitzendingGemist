@@ -99,7 +99,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTl-KM-ufA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2850" y="365"/>
+            <point key="canvasLocation" x="2870" y="-219"/>
         </scene>
         <!--Programmas-->
         <scene sceneID="c8Q-ql-9KL">
@@ -226,7 +226,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <tabBarItem key="tabBarItem" title="Programmas" id="H7r-W7-fUD"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Programmas" id="H7r-W7-fUD"/>
                     <simulatedTabBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="S4I-7U-Oqk" id="tR9-FF-2DI"/>
@@ -235,7 +235,77 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9G-Jj-qIa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2850" y="1785"/>
+            <point key="canvasLocation" x="2870" y="1201"/>
+        </scene>
+        <!--Live-->
+        <scene sceneID="fx5-Bf-M8M">
+            <objects>
+                <viewController id="GCj-uU-Sjj" customClass="LiveViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rCl-ja-lDA"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZbT-Wy-azo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="ZeN-b7-8z8">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-co-fDS">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="80" minimumInteritemSpacing="80" id="dEv-Ba-TTF">
+                                    <size key="itemSize" width="375" height="450"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="90" minY="100" maxX="90" maxY="100"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="liveCollectionViewCell" reuseIdentifier="liveCollectionViewCell" id="usc-Wm-Ox5" customClass="LiveCollectionViewCell" customModule="UitzendingGemist" customModuleProvider="target">
+                                        <rect key="frame" x="90" y="100" width="375" height="450"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="450"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U1z-rd-LOL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="U1z-rd-LOL" secondAttribute="height" multiplier="3:2" id="PpO-Yd-IT0"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="U1z-rd-LOL" secondAttribute="trailing" constant="-8" id="CCY-Yp-myN"/>
+                                            <constraint firstItem="U1z-rd-LOL" firstAttribute="top" secondItem="usc-Wm-Ox5" secondAttribute="topMargin" constant="-8" id="THW-EL-ATO"/>
+                                            <constraint firstItem="U1z-rd-LOL" firstAttribute="leading" secondItem="usc-Wm-Ox5" secondAttribute="leadingMargin" constant="-8" id="TZV-i1-7NU"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="channelImageView" destination="U1z-rd-LOL" id="8YA-z5-GO7"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="GCj-uU-Sjj" id="UHP-BX-oik"/>
+                                    <outlet property="delegate" destination="GCj-uU-Sjj" id="gz4-f0-EsO"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="ZbT-Wy-azo" firstAttribute="top" secondItem="ev8-co-fDS" secondAttribute="bottom" id="0Xz-VE-gsR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ev8-co-fDS" secondAttribute="trailing" constant="-20" id="Zc0-ux-ecQ"/>
+                            <constraint firstItem="ev8-co-fDS" firstAttribute="leading" secondItem="ZeN-b7-8z8" secondAttribute="leadingMargin" constant="-20" id="iYT-E3-qsq"/>
+                            <constraint firstItem="ev8-co-fDS" firstAttribute="top" secondItem="rCl-ja-lDA" secondAttribute="bottom" id="w6M-Jc-MbN"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Live" id="QdK-hj-VJc"/>
+                    <connections>
+                        <outlet property="liveCollectionView" destination="ev8-co-fDS" id="WGg-uy-xzy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FDX-Er-gQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2862" y="2610"/>
         </scene>
         <!--Episode View Controller-->
         <scene sceneID="BdX-1N-9PM">
@@ -549,7 +619,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4do-ai-hcH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5214" y="365"/>
+            <point key="canvasLocation" x="5234" y="-219"/>
         </scene>
         <!--Program View Controller-->
         <scene sceneID="q8f-Vc-JPV">
@@ -826,7 +896,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rcs-VN-UCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5214" y="1825"/>
+            <point key="canvasLocation" x="5234" y="1241"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="QEk-9P-JSh">
@@ -840,11 +910,12 @@
                     <connections>
                         <segue destination="Sb9-j2-V3Q" kind="relationship" relationship="viewControllers" id="Dxb-7v-CQU"/>
                         <segue destination="aSd-1z-Npz" kind="relationship" relationship="viewControllers" id="BHg-AM-xiv"/>
+                        <segue destination="GCj-uU-Sjj" kind="relationship" relationship="viewControllers" id="rxs-Ii-9sJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uCC-mY-OcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="614" y="1125"/>
+            <point key="canvasLocation" x="634" y="541"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
