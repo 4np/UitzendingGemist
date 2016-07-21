@@ -24,28 +24,28 @@ public enum NPOLive: String {
     
     public static let all = [NED1, NED2, NED3, NPO_101, NPO_POLITIEK, NPO_BEST, NPO_HOLLAND_DOC, NPO_CULTURA, NPO_HUMOR, NPO_ZAPPELIN]
     
-    internal var configuration: (name: String, type: String, audioQuality: Int, videoQuality: Int) {
+    internal var configuration: (name: String, type: String, audioQuality: Int, audioStream: String, videoQuality: Int) {
         switch self {
             case NED1:
-                return (name: "ned1", type: "tvlive", audioQuality: 128000, videoQuality: 1400000)
+                return (name: "ned1", type: "tvlive", audioQuality: 128000, audioStream: "", videoQuality: 1400000)
             case NED2:
-                return (name: "ned2", type: "tvlive", audioQuality: 128000, videoQuality: 1400000)
+                return (name: "ned2", type: "tvlive", audioQuality: 128000, audioStream: "_1", videoQuality: 1400000)
             case NED3:
-                return (name: "ned3", type: "tvlive", audioQuality: 128000, videoQuality: 1400000)
+                return (name: "ned3", type: "tvlive", audioQuality: 128000, audioStream: "", videoQuality: 1400000)
             case NPO_101:
-                return (name: "101tv", type: "thematv", audioQuality: 64000, videoQuality: 1000000)
+                return (name: "101tv", type: "thematv", audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
             case NPO_POLITIEK:
-                return (name: "politiek24", type: "thematv", audioQuality: 64000, videoQuality: 1000000)
+                return (name: "politiek24", type: "thematv", audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
             case NPO_BEST:
-                return (name: "best24", type: "thematv", audioQuality: 64000, videoQuality: 1000000)
+                return (name: "best24", type: "thematv", audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
             case NPO_HOLLAND_DOC:
-                return (name: "hollanddoc24", type: "thematv", audioQuality: 64000, videoQuality: 1000000)
+                return (name: "hollanddoc24", type: "thematv", audioQuality: 64000, audioStream: "", videoQuality: 1000000)
             case NPO_CULTURA:
-                return (name: "cultura24", type: "thematv", audioQuality: 64000, videoQuality: 1000000)
+                return (name: "cultura24", type: "thematv", audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
             case NPO_HUMOR:
-                return (name: "humor24", type: "thematv", audioQuality: 64000, videoQuality: 1000000)
+                return (name: "humor24", type: "thematv", audioQuality: 64000, audioStream: "", videoQuality: 1000000)
             case NPO_ZAPPELIN:
-                return (name: "zappelin24", type: "thematv", audioQuality: 64000, videoQuality: 1000000)
+                return (name: "zappelin24", type: "thematv", audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
         }
     }
 }
@@ -90,7 +90,7 @@ extension NPOManager {
             }
             
             let configuration = channel.configuration
-            let url = "http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/\(configuration.type)/\(configuration.name)/\(configuration.name).isml/\(configuration.name)-audio=\(configuration.audioQuality)-video=\(configuration.videoQuality).m3u8&token=\(token)"
+            let url = "http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/\(configuration.type)/\(configuration.name)/\(configuration.name).isml/\(configuration.name)-audio\(configuration.audioStream)=\(configuration.audioQuality)-video=\(configuration.videoQuality).m3u8&token=\(token)"
             
             self?.fetchModel(ofType: NPOLiveStream.self, fromURL: url) { liveStream, error in
                 guard let url = liveStream?.url where liveStream?.success == true else {
