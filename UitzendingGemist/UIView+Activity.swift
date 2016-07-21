@@ -11,7 +11,7 @@ import UIKit
 
 extension UIView {
     private struct AssociatedKeys {
-        static var overlayView:UIView?
+        static var overlayView: UIView?
     }
     
     //MARK: Loading

@@ -15,7 +15,7 @@ Watching videos is very snappy and almost instantaneous, contrary to streaming f
 
 # NOTE
 
-This is a complete rewrite of the previous version. While functional it is still work in progress (you leave your comments, suggestions or bugs [here](https://github.com/4np/UitzendingGemist/issues)) so be sure to come back for updated versions. If you want the _previous_ version of the app, you can find it in the [Legacy Branch](https://github.com/4np/UitzendingGemist/tree/Legacy).
+This is a complete rewrite of the previous version. While the app works and provides the above features, functionallity wise it is still work in progress (you can leave your comments, suggestions or bug reports [here](https://github.com/4np/UitzendingGemist/issues)) so be sure to come back for updated versions. If you want to install the _previous_ (e.g. _legacy_) version of the app, you can find it in the [Legacy Branch](https://github.com/4np/UitzendingGemist/tree/Legacy).
 
 # Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
 
@@ -24,13 +24,13 @@ Unfortunately the app cannot be distributed in the Appstore as the NPO does not 
 **Prerequisites:**
 
 - an [Apple TV](http://www.apple.com/tv/) 4th generation (the one that has an AppStore)
-- a recent Apple Computer running ```OS X 10.10.x Yosemite``` or ```OS X 10.11.x El Capitan```
+- a recent Apple Computer running ```macOS 10.11.x El Capitan```
 - a (free) Apple Developer account (signup [here](http://developer.apple.com))
 - a [USB-C cable](http://www.apple.com/nl/shop/product/HHSP2ZM/B/belkin-usb-c-naar-usb-a-oplaadkabel?fnode=85) to connect your Apple TV to your Apple Computer
 
 ## 1. Xcode
 
-The code was developed in [Xcode 7.3.1](https://developer.apple.com/xcode/download/) so you need at least to have that version installed. Continue with the following steps when you have finished installing ```Xcode``` as the next steps require a finished installation.
+The code was developed in [Xcode 7.3.1](https://itunes.apple.com/nl/app/xcode/id497799835?mt=12) ([alternative link](https://developer.apple.com/xcode/download/)) so you need at least to have that version installed. Continue with the following steps when you have finished installing ```Xcode``` as the next steps require a finished installation.
 
 ## 2. Clone the project
 
@@ -68,7 +68,7 @@ In order to deploy the application to the Apple TV it needs to be signed with yo
 
 ## 7. Select the Build Device
 
-On the top left in Xcode click on the device the compiled program will be deployed to (see **5** in the screnshot above). If your Apple TV 4 is properly connected you will be able to pick you Apple TV device (otherwise it will run in the Simulator).
+On the top left in Xcode click on the device the compiled program will be deployed to (see **5** in the screenshot above). If your Apple TV 4 is properly connected you will be able to pick you Apple TV device (otherwise it will run in the Simulator).
 
 ## 8. Run the application
 
@@ -87,6 +87,18 @@ You're done! You can disconnect your Apple TV and start watching! :)
 ## Application screen with Application Icon and Top Shelf image
 
 ![Main Screen](https://cloud.githubusercontent.com/assets/1049693/11430705/e585f7aa-948a-11e5-8b4d-a35dc1ab617a.png)
+
+## Episode screen
+
+![Episode Screen](https://cloud.githubusercontent.com/assets/1049693/17013452/f20c801c-4f1e-11e6-886d-70396c818f81.png)
+
+## Program screen
+
+![Program Screen](https://cloud.githubusercontent.com/assets/1049693/17013453/f20ebf1c-4f1e-11e6-9a92-12ded3126241.png)
+
+## Update screen
+
+![Update Screen](https://cloud.githubusercontent.com/assets/1049693/17013518/61df0220-4f1f-11e6-81eb-340f0fe0c452.png)
 
 # License
 

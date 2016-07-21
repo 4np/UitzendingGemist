@@ -8,7 +8,6 @@
 
 import UIKit
 import CocoaLumberjack
-//import SLF4Swift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -88,7 +88,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         // remove old tips (in reverse order)
         let oldTips = self.tips.enumerate().filter({ !tips.contains($0.element) }).reverse()
         let oldIndexPaths = oldTips.map { NSIndexPath(forRow: $0.index, inSection: 0) }
-        for oldTip in oldTips { self.tips.removeAtIndex(oldTip.index) }
+        for oldTip in oldTips {
+            guard oldTip.index >= 0 && oldTip.index < self.tips.count else {
+                continue
+            }
+            
+            self.tips.removeAtIndex(oldTip.index)
+        }
         self.tipsCollectionView.deleteItemsAtIndexPaths(oldIndexPaths)
     }
     
