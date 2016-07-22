@@ -15,12 +15,45 @@ import CocoaLumberjack
 class LiveViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var liveCollectionView: UICollectionView!
     
+    private var guides: [NPOLive: [NPOBroadcast]]? {
+        didSet {
+            guard let guides = guides, oldValue = oldValue where oldValue.count > 0 else {
+                self.liveCollectionView.reloadData()
+                return
+            }
+            
+            // refresh cells rather than reloading to make the UI behave better
+            for (index, channel) in NPOLive.all.enumerate() {
+                let path = NSIndexPath(forRow: index, inSection: 0)
+                if let cell = self.liveCollectionView.cellForItemAtIndexPath(path) as? LiveCollectionViewCell {
+                    cell.configure(withLiveChannel: channel, andGuide: guides[channel])
+                }
+            }
+        }
+    }
+    
     //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.liveCollectionView.reloadData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.fetchGuides()
+    }
+    
+    //MARK: Networking
+    
+    private func fetchGuides() {
+        NPOManager.sharedInstance.getGuides(forChannels: NPOLive.all, onDate: NSDate()) { [weak self] guides, errors in
+            // log errors if we have any
+            for (channel, error) in errors ?? [NPOLive: NPOError]() {
+                DDLogError("Could not get guide for '\(channel)' (\(error))")
+            }
+            
+            self?.guides = guides
+        }
     }
     
     //MARK: UICollectionViewDataSource
@@ -41,7 +74,7 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         let channel = NPOLive.all[indexPath.row]
-        liveCell.configure(withLiveChannel: channel)
+        liveCell.configure(withLiveChannel: channel, andGuide: self.guides?[channel])
         return liveCell
     }
     

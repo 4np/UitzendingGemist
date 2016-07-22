@@ -10,42 +10,47 @@ import Foundation
 import Alamofire
 import CocoaLumberjack
 
+public enum NPOLiveType: String {
+    case TV = "tvlive"
+    case THEMA = "thematv"
+}
+
 public enum NPOLive: String {
-    case NED1 = "NED1"
-    case NED2 = "NED2"
-    case NED3 = "NED3"
+    case NPO_1 = "NPO_1"
+    case NPO_2 = "NPO_2"
+    case NPO_3 = "NPO_3"
+    case NPO_ZAPP_XTRA = "NPO_ZAPP_XTRA"
     case NPO_101 = "NPO_101"
+    case NPO_NIEUWS = "NPO_NIEUWS"
     case NPO_POLITIEK = "NPO_POLITIEK"
     case NPO_BEST = "NPO_BEST"
-    case NPO_HOLLAND_DOC = "NPO_HOLLAND_DOC"
     case NPO_CULTURA = "NPO_CULTURA"
-    case NPO_HUMOR = "NPO_HUMOR"
-    case NPO_ZAPPELIN = "NPO_ZAPPELIN"
+//    case NPO_ZAPP = "NPO_ZAPP"
     
-    public static let all = [NED1, NED2, NED3, NPO_101, NPO_POLITIEK, NPO_BEST, NPO_HOLLAND_DOC, NPO_CULTURA, NPO_HUMOR, NPO_ZAPPELIN]
+    public static let all = [NPO_1, NPO_2, NPO_3, NPO_ZAPP_XTRA, NPO_101, NPO_NIEUWS, NPO_POLITIEK, NPO_BEST, NPO_CULTURA]
     
-    internal var configuration: (name: String, type: String, audioQuality: Int, audioStream: String, videoQuality: Int) {
+    internal var configuration: (name: String, shortName: String, type: NPOLiveType, audioQuality: Int, audioStream: String, videoQuality: Int) {
         switch self {
-            case NED1:
-                return (name: "ned1", type: "tvlive", audioQuality: 128000, audioStream: "", videoQuality: 1400000)
-            case NED2:
-                return (name: "ned2", type: "tvlive", audioQuality: 128000, audioStream: "_1", videoQuality: 1400000)
-            case NED3:
-                return (name: "ned3", type: "tvlive", audioQuality: 128000, audioStream: "", videoQuality: 1400000)
+            case NPO_1:
+                return (name: "ned1", shortName: "ned1", type: .TV, audioQuality: 128000, audioStream: "", videoQuality: 1400000)
+            case NPO_2:
+                return (name: "ned2", shortName: "ned2", type: .TV, audioQuality: 128000, audioStream: "_1", videoQuality: 1400000)
+            case NPO_3:
+                return (name: "ned3", shortName: "ned3", type: .TV, audioQuality: 128000, audioStream: "", videoQuality: 1400000)
+            case NPO_ZAPP_XTRA:
+                return (name: "zappelin24", shortName: "opvo", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
             case NPO_101:
-                return (name: "101tv", type: "thematv", audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
+                return (name: "101tv", shortName: "_101_", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
+            case NPO_NIEUWS:
+                return (name: "journaal24", shortName: "nosj", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
             case NPO_POLITIEK:
-                return (name: "politiek24", type: "thematv", audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
+                return (name: "politiek24", shortName: "po24", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
             case NPO_BEST:
-                return (name: "best24", type: "thematv", audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
-            case NPO_HOLLAND_DOC:
-                return (name: "hollanddoc24", type: "thematv", audioQuality: 64000, audioStream: "", videoQuality: 1000000)
+                return (name: "best24", shortName: "hilv", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
             case NPO_CULTURA:
-                return (name: "cultura24", type: "thematv", audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
-            case NPO_HUMOR:
-                return (name: "humor24", type: "thematv", audioQuality: 64000, audioStream: "", videoQuality: 1000000)
-            case NPO_ZAPPELIN:
-                return (name: "zappelin24", type: "thematv", audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
+                return (name: "cultura24", shortName: "cult", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
+//            case NPO_ZAPP_XTRA:
+//                return (name: "zapp", shortName: "ned1", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
         }
     }
 }
@@ -90,7 +95,7 @@ extension NPOManager {
             }
             
             let configuration = channel.configuration
-            let url = "http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/\(configuration.type)/\(configuration.name)/\(configuration.name).isml/\(configuration.name)-audio\(configuration.audioStream)=\(configuration.audioQuality)-video=\(configuration.videoQuality).m3u8&token=\(token)"
+            let url = "http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/\(configuration.type.rawValue)/\(configuration.name)/\(configuration.name).isml/\(configuration.name)-audio\(configuration.audioStream)=\(configuration.audioQuality)-video=\(configuration.videoQuality).m3u8&token=\(token)"
             
             self?.fetchModel(ofType: NPOLiveStream.self, fromURL: url) { liveStream, error in
                 guard let url = liveStream?.url where liveStream?.success == true else {

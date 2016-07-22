@@ -39,6 +39,8 @@
 		F33621F41D366DA900645603 /* NPOKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33621F31D366DA900645603 /* NPOKitTests.swift */; };
 		F33BCE8B1D40EC6500CD232C /* NPOLiveStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCE8A1D40EC6500CD232C /* NPOLiveStream.swift */; };
 		F35C03E11D3D143C0025BA4B /* NPORequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35C03E01D3D143C0025BA4B /* NPORequest.swift */; };
+		F36FFCBF1D417C3900FAB6CB /* NPOManager+Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36FFCBE1D417C3900FAB6CB /* NPOManager+Guide.swift */; };
+		F36FFCC11D417D6300FAB6CB /* NPOBroadcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36FFCC01D417D6300FAB6CB /* NPOBroadcast.swift */; };
 		F3C9F3FE1D366E1A007E3B8D /* NPOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C9F3FD1D366E1A007E3B8D /* NPOManager.swift */; };
 		F3FD007D1D401B1100034A76 /* NPOManager+GitHubReleases.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD007C1D401B1100034A76 /* NPOManager+GitHubReleases.swift */; };
 		F3FD007F1D401B4100034A76 /* GitHubRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD007E1D401B4100034A76 /* GitHubRelease.swift */; };
@@ -92,6 +94,8 @@
 		F33621F51D366DA900645603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F33BCE8A1D40EC6500CD232C /* NPOLiveStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOLiveStream.swift; sourceTree = "<group>"; };
 		F35C03E01D3D143C0025BA4B /* NPORequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPORequest.swift; sourceTree = "<group>"; };
+		F36FFCBE1D417C3900FAB6CB /* NPOManager+Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Guide.swift"; sourceTree = "<group>"; };
+		F36FFCC01D417D6300FAB6CB /* NPOBroadcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOBroadcast.swift; sourceTree = "<group>"; };
 		F3C9F3FD1D366E1A007E3B8D /* NPOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOManager.swift; sourceTree = "<group>"; };
 		F3FD007C1D401B1100034A76 /* NPOManager+GitHubReleases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+GitHubReleases.swift"; sourceTree = "<group>"; };
 		F3FD007E1D401B4100034A76 /* GitHubRelease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubRelease.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				F317B9811D37D69D00927ACD /* NPOProgram.swift */,
 				F317B9851D37E8F400927ACD /* NPOTip.swift */,
 				F317B9891D37EA7300927ACD /* NPOEpisode.swift */,
+				F36FFCC01D417D6300FAB6CB /* NPOBroadcast.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				F317B9871D37E96A00927ACD /* NPOManager+Tips.swift */,
 				F317B97C1D37BF4B00927ACD /* NPOManager+Programs.swift */,
 				F317B9A21D38F85E00927ACD /* NPOManager+Episodes.swift */,
+				F36FFCBE1D417C3900FAB6CB /* NPOManager+Guide.swift */,
 				F3FD007C1D401B1100034A76 /* NPOManager+GitHubReleases.swift */,
 			);
 			name = Networking;
@@ -425,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F36FFCC11D417D6300FAB6CB /* NPOBroadcast.swift in Sources */,
 				F317B9821D37D69D00927ACD /* NPOProgram.swift in Sources */,
 				F317B98A1D37EA7300927ACD /* NPOEpisode.swift in Sources */,
 				F317B9881D37E96A00927ACD /* NPOManager+Tips.swift in Sources */,
@@ -443,6 +450,7 @@
 				F317B98E1D37EDE300927ACD /* Mappable+CustomStringConvertible.swift in Sources */,
 				F317B9A51D3901AC00927ACD /* NPORestrictedMedia.swift in Sources */,
 				F317B9B01D395BCC00927ACD /* NPOStreamLocation.swift in Sources */,
+				F36FFCBF1D417C3900FAB6CB /* NPOManager+Guide.swift in Sources */,
 				F317B9AE1D39429D00927ACD /* NPOStream.swift in Sources */,
 				F33560C81D3A98F1002CFCEB /* NSDate+Formatting.swift in Sources */,
 				F33560CB1D3A99D8002CFCEB /* NPOConstants.swift in Sources */,

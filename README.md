@@ -10,8 +10,9 @@ Watching videos is very snappy and almost instantaneous, contrary to streaming f
 
 - Fast *_native_* app for Apple TV
 - Easy to use interface for browsing Programs and Episodes
-- Allows creation of favorites
+- Favoriting programs
 - Remembers watched episodes and will allow you to resume watching
+- Live TV (and NPO1, NPO2 and NPO3 in high quality)
 
 # NOTE
 
@@ -88,15 +89,19 @@ You're done! You can disconnect your Apple TV and start watching! :)
 
 ![Main Screen](https://cloud.githubusercontent.com/assets/1049693/11430705/e585f7aa-948a-11e5-8b4d-a35dc1ab617a.png)
 
-## Episode screen
+## Episode Screen
 
 ![Episode Screen](https://cloud.githubusercontent.com/assets/1049693/17013452/f20c801c-4f1e-11e6-886d-70396c818f81.png)
 
-## Program screen
+## Program Screen
 
 ![Program Screen](https://cloud.githubusercontent.com/assets/1049693/17013453/f20ebf1c-4f1e-11e6-9a92-12ded3126241.png)
 
-## Update screen
+## Live TV Screen
+
+![Live TV](https://cloud.githubusercontent.com/assets/1049693/17067892/3ca9ac46-504e-11e6-8786-4ecf8501017f.png)
+
+## Update Screen
 
 ![Update Screen](https://cloud.githubusercontent.com/assets/1049693/17013518/61df0220-4f1f-11e6-81eb-340f0fe0c452.png)
 
