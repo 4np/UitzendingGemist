@@ -17,16 +17,23 @@ class UpdateManager {
     private var githubUsername = "4np"
     private var githubRepository = "UitzendingGemist"
     private var checkAfterDays = 1
-    
     private var lastCheckDate: NSDate?
     
-    func updateAvailable(withCompletion completed: (release: GitHubRelease?, currentVersion: String?) -> () = { release in }) {
+    private func shouldCheckForUpdates() -> Bool {
+        guard let lastCheckDate = self.lastCheckDate else {
+            return true
+        }
+        
         let now = NSDate()
-        let diffDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.Day], fromDate: self.lastCheckDate ?? now, toDate: now, options: NSCalendarOptions.init(rawValue: 0))
+        let diffDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.Day], fromDate: lastCheckDate, toDate: now, options: NSCalendarOptions.init(rawValue: 0))
         let days = diffDateComponents.day
         
         // check if we should compare versions with the latest GitHub tag
-        guard days >= self.checkAfterDays else {
+        return days >= self.checkAfterDays
+    }
+    
+    func updateAvailable(withCompletion completed: (release: GitHubRelease?, currentVersion: String?) -> () = { release in }) {
+        guard self.shouldCheckForUpdates() else {
             return
         }
         
