@@ -221,6 +221,16 @@ let episode: NPOEpisode = ...
 episode.getVideoStream() { url, error in ... }
 ```
 
+### Get the video stream URL of a Live TV or themed channel
+
+The function taked an argument of enum ```NPOLive``` and the completion closure returns an optional url (e.g. ```NSURL?```) which can be used to feed into a video player (for example into ```AVPlayer```):
+
+```
+NPOManager.sharedManager.getVideoStream(forLiveChannel channel: NPOLive.NPO_1) { url, error in 
+	...
+}
+```
+
 ## Special API
 
 hile the other API methods are all about interfacing with the NPO, NPOKit also includes convencience methods for simplifying some other tasks.
