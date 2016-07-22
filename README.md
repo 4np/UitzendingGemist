@@ -98,9 +98,13 @@ You're done! You can disconnect your Apple TV and start watching! :)
 
 ![Program Screen](https://cloud.githubusercontent.com/assets/1049693/17013453/f20ebf1c-4f1e-11e6-9a92-12ded3126241.png)
 
+## Continue Watching
+
+![Continue Watching](https://cloud.githubusercontent.com/assets/1049693/17069835/116a35fe-5059-11e6-8e21-bf75d2209732.png)
+
 ## Live TV Screen
 
-![Live TV](https://cloud.githubusercontent.com/assets/1049693/17067892/3ca9ac46-504e-11e6-8786-4ecf8501017f.png)
+![Live TV](https://cloud.githubusercontent.com/assets/1049693/17069836/116dc34a-5059-11e6-8d2f-bd4cf63eaecc.png)
 
 ## Update Screen
 
