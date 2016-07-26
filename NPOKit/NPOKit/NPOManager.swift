@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import CocoaLumberjack
 import Alamofire
+import AlamofireImage
 
 public enum NPOError: ErrorType {
     case ModelMappingError(String)//, JSON)
@@ -93,4 +93,15 @@ public class NPOManager {
             "X-UitzendingGemist-PlatformVersion": (infoDictionary?["DTPlatformVersion"] as? String ?? "unknown")
         ]
     }
+
+    //MARK: Image caching
+    
+    lazy internal var imageCache: AutoPurgingImageCache = {
+        let imageCache = AutoPurgingImageCache(
+            memoryCapacity: 500 * 1024 * 1024,
+            preferredMemoryUsageAfterPurge: 120 * 1024 * 1024
+        )
+        //DDLogDebug("memory usage: \(imageCache.memoryUsage), capacity: \(imageCache.memoryCapacity), prefered after purge: \(imageCache.preferredMemoryUsageAfterPurge)")
+        return imageCache
+    }()
 }

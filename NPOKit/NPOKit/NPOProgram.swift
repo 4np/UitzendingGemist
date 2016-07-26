@@ -23,17 +23,7 @@ public class NPOProgram: NPORestrictedMedia {
     public private(set) var nextEpisode: NPOEpisode?
     
     public var firstLetter: String? {
-        guard let char = self.name?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).characters.first else {
-            return nil
-        }
-        
-        let letter = "\(char)".lowercaseString
-        
-        if let _ = Int(letter) {
-            return "#"
-        } else {
-            return letter
-        }
+        return self.getFirstLetter()
     }
     
     override public var available: Bool {
@@ -104,6 +94,43 @@ public class NPOProgram: NPORestrictedMedia {
         }
     }()
     
+    //MARK: Get first letter
+    
+    private func getFirstLetter() -> String? {
+        guard let trimmedName = self.name?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) else {
+            return nil
+        }
+        
+        let words = trimmedName.componentsSeparatedByString(" ")
+        let wordMapper = [
+            "'t"    : "het",
+            "t"     : "het"
+        ]
+        
+        for word in words {
+            var useWord = word
+            
+            // check if we need to map this word to something else
+            if let mappedWord = wordMapper[word] {
+                useWord = mappedWord
+            }
+            
+            guard let char = useWord.characters.first else {
+                continue
+            }
+            
+            let letter = "\(char)".lowercaseString
+            
+            if let _ = Int(letter) {
+                return "#"
+            } else {
+                return letter
+            }
+        }
+        
+        return nil
+    }
+    
     //MARK: Favoriting
     
     public var favorite: Bool {
@@ -136,6 +163,22 @@ public class NPOProgram: NPORestrictedMedia {
         // add program image
         if let url = self.imageURL {
             urls.append(url)
+        }
+        
+        // add still image urls
+        for still in self.stills ?? [] {
+            if let url = still.imageURL {
+                urls.append(url)
+            }
+        }
+        
+        // add fragment stills
+        for fragment in self.fragments ?? [] {
+            for still in fragment.stills ?? [] {
+                if let url = still.imageURL {
+                    urls.append(url)
+                }
+            }
         }
         
         // fetch episodes

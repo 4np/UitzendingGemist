@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import CocoaLumberjack
 
 extension NPOManager {
     // https://api.github.com/repos/:user/:repo/releases

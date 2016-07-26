@@ -7,12 +7,9 @@
 //
 
 import Foundation
-import RealmSwift
 import Alamofire
 import AlamofireObjectMapper
-import AlamofireImage
 import ObjectMapper
-import CocoaLumberjack
 
 public class NPOBroadcast: Mappable, CustomDebugStringConvertible {
     public internal(set) var rerun: Bool = false

@@ -7,11 +7,9 @@
 //
 
 import Foundation
-import CocoaLumberjack
 import Alamofire
 
 extension NPOManager {
-    
     //MARK: Trending Episodes
     
     // http://apps-api.uitzendinggemist.nl/episodes/trending.json
@@ -121,5 +119,33 @@ extension NPOManager {
         
         let path = "series/\(mid).json"
         return self.fetchModel(ofType: NPOEpisode.self, fromPath: path, withKeyPath: "next_episode", withCompletion: completed)
+    }
+    
+    //MARK: By Favorite Programs
+    
+    public func getRecentEpisodesForFavoritePrograms(withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) {
+        // get favorite programs
+        self.getDetailedFavoritePrograms() { programs, errors in
+            guard let programs = programs else {
+                completed(episodes: nil, error: .NoEpisodeError)
+                return
+            }
+            
+            var episodes = [NPOEpisode]()
+            
+            for program in programs {
+                if let programEpisodes = program.episodes, oldestUnwatchedEpisode = programEpisodes.filter({ $0.watched == false }).sort({
+                    guard let firstDate = $0.broadcasted, secondDate = $1.broadcasted else {
+                        return false
+                    }
+                    
+                    return firstDate.lies(before: secondDate)
+                }).first {
+                    episodes.append(oldestUnwatchedEpisode)
+                }
+            }
+            
+            completed(episodes: episodes, error: nil)
+        }
     }
 }

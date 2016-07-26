@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
 import RealmSwift
@@ -131,5 +132,42 @@ public class NPOEpisode: NPORestrictedMedia {
                 DDLogError("Could not write episode to realm (\(error.localizedDescription))")
             }
         }
+    }
+    
+    //MARK: Image fetching
+    
+    internal override func getImageURLs(withCompletion completed: (urls: [NSURL]) -> ()) -> Request? {
+        var urls = [NSURL]()
+        
+        // add program image
+        if let url = self.imageURL {
+            urls.append(url)
+        }
+        
+        // add still image urls
+        for still in self.stills ?? [] {
+            if let url = still.imageURL {
+                urls.append(url)
+            }
+        }
+        
+        // add fragment stills
+        for fragment in self.fragments ?? [] {
+            for still in fragment.stills ?? [] {
+                if let url = still.imageURL {
+                    urls.append(url)
+                }
+            }
+        }
+        
+        // got a program url?
+        if let url = self.program?.imageURL {
+            urls.append(url)
+        }
+    
+        // done
+        completed(urls: urls)
+        
+        return nil
     }
 }

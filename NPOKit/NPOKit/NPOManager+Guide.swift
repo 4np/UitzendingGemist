@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Alamofire
-import CocoaLumberjack
 
 extension NPOManager {
     // http://apps-api.uitzendinggemist.nl/guide/2016-07-21.json
@@ -44,7 +43,7 @@ extension NPOManager {
         
         // done
         dispatch_group_notify(group, dispatch_get_main_queue()) {
-            completed(guides: guides.count > 0 ? guides : nil, errors: errors)
+            completed(guides: guides.count > 0 ? guides : nil, errors: errors.count > 0 ? errors : nil)
         }
     }
 }

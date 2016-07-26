@@ -16,6 +16,9 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var episodeNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
+    weak var episodeRequest: NPORequest?
+    weak var programRequest: NPORequest?
+    
     //MARK: Lifecycle
     
     override func prepareForReuse() {
@@ -39,9 +42,15 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         self.dateLabel.text = episode.broadcastedDisplayValue
         
         // get image
-        episode.getImage(ofSize: self.episodeImageView.frame.size) { [weak self] image, _, _ in
+        self.episodeRequest = episode.getImage(ofSize: self.episodeImageView.frame.size) { [weak self] image, _, request in
             guard let image = image else {
+                // fallback to program
                 self?.fetchImage(byProgram: program)
+                return
+            }
+            
+            guard request == self?.episodeRequest else {
+                // this is the result of another cell, ignore it
                 return
             }
             
@@ -50,7 +59,12 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     }
     
     private func fetchImage(byProgram program: NPOProgram?) {
-        program?.getImage(ofSize: self.episodeImageView.frame.size) { [weak self] image, _, _ in
+        self.programRequest = program?.getImage(ofSize: self.episodeImageView.frame.size) { [weak self] image, _, request in
+            guard request == self?.programRequest else {
+                // this is the result of another cell, ignore it
+                return
+            }
+            
             self?.episodeImageView.image = image
         }
     }

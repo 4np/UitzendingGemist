@@ -6,31 +6,72 @@ Currently the library only supports ```tvOS```, but support might become wider i
 
 ## Installation
 
-### Cocoapods
+### CocoaPods
 
-Add the following lines to your ```Podfile```:
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
 
+```bash
+[sudo] gem install cocoapods
 ```
+
+> CocoaPods 1.0+ is required.
+
+To integrate NPOKit into your project, specify it in your [Podfile](http://guides.cocoapods.org/using/the-podfile.html):
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.0'
 use_frameworks!
 
 pod 'NPOKit', :git => 'https://github.com/4np/NPOKit.git'
 ```
 
-Then import it where you use it:
+Then, run the following command:
 
-```
-import NPOKit
+```bash
+$ pod install
 ```
 
 ### Carthage
 
-_Todo_
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+brew update
+brew install carthage
+```
+
+To integrate NPOKit into your Xcode project using Carthage, specify it in your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile):
+
+```
+github "4np/NPOKit" ~> 1.0
+```
+
+Run `carthage update` to build the framework and drag the built `NPOKit.framework` into your Xcode project.
 
 ### Swift Package Manager
 
 _Todo_
 
-## APIManager
+---
+
+## Usage
+
+In order to use NPOKit in your application, you need to import NPOKit in every file you want to use it in and call an API method on the NPOManager.
+
+```
+import NPOKit
+
+...
+
+NPOManager.sharedInstance.someMethodCall(...) { [weak self] in
+	...completion closure...
+}
+```
+
+### APIManager
 
 The ```APIManager``` is the main manager to interact with and allows you to fetch programs, episodes and images, (un)favoriting programs, keep track of (partially) played episodes and fetch video stream URLs.
 

@@ -14,7 +14,7 @@ import ObjectMapper
 
 public class NPOMedia: NPOImage {
     public internal(set) var mid: String?
-//    internal var neboID: String?
+    //internal var neboID: String?
     public internal(set) var name: String?
     
     //MARK: Lifecycle
@@ -29,8 +29,24 @@ public class NPOMedia: NPOImage {
         super.mapping(map)
         
         mid <- map["mid"]
-//        neboID <- map["nebo_id"]
+        //neboID <- map["nebo_id"]
         name <- map["name"]
+    }
+    
+    //MARK: Image cache identifier
+    
+    override func getImageIdentifier(forSize size: CGSize?) -> String? {
+        guard let mid = self.mid else {
+            return nil
+        }
+        
+        var identifier = mid
+        
+        if let size = size {
+            identifier += "_\(size.width)-\(size.height)"
+        }
+        
+        return identifier
     }
     
     //MARK: Video Stream

@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
 
@@ -69,5 +70,29 @@ public class NPOTip: NPOImage, Equatable {
         }
         
         episode.getVideoStream(withCompletion: completed)
+    }
+    
+    //MARK: Image fetching
+    
+    internal override func getImageURLs(withCompletion completed: (urls: [NSURL]) -> () = { urls in }) -> Request? {
+        var urls = [NSURL]()
+        
+        // tip image
+        if let url = self.imageURL {
+            urls.append(url)
+        }
+        
+        // episode image
+        if let url = self.episode?.imageURL {
+            urls.append(url)
+        }
+        
+        // program image
+        if let url = self.episode?.program?.imageURL {
+            urls.append(url)
+        }
+        
+        completed(urls: urls)
+        return nil
     }
 }

@@ -34,7 +34,6 @@ class TipCollectionViewCell: UICollectionViewCell {
     
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
         self.imageView.adjustsImageWhenAncestorFocused = self.focused
-        //self.nameLabel.adjustsFontSizeToFitWidth = true
     }
     
     //MARK: Configuration
@@ -55,7 +54,7 @@ class TipCollectionViewCell: UICollectionViewCell {
                 DDLogError("Could not fetch image for tip (\(error))")
                 return
             }
-            
+
             self?.imageView.image = image
         }
     }

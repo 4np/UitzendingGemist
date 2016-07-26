@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import CocoaLumberjack
 
 // Equatable
 // swiftlint:disable operator_whitespace
