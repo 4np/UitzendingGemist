@@ -64,7 +64,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         
         return episodes.sort {
-            if let date0 = $0.broadcasted, date1 = $1.broadcasted where date0.compare(date1) == .OrderedAscending {
+            if let date0 = $0.broadcasted, date1 = $1.broadcasted where date0.compare(date1) == .OrderedDescending {
                 return true
             } else {
                 return false
