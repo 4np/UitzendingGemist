@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		DDC9799294245F00E02A94E8 /* Pods_UitzendingGemistAbstract_UitzendingGemist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0CC28CF2011F55FC2401886 /* Pods_UitzendingGemistAbstract_UitzendingGemist.framework */; };
+		F309EAAF1D47B316003B46A1 /* ProgramRootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309EAAE1D47B316003B46A1 /* ProgramRootTableViewController.swift */; };
+		F309EAB41D47BC38003B46A1 /* ProgramRootTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309EAB31D47BC38003B46A1 /* ProgramRootTableViewCell.swift */; };
+		F309EAB61D488F4A003B46A1 /* ProgramDetailedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309EAB51D488F4A003B46A1 /* ProgramDetailedCollectionViewController.swift */; };
 		F30FE2361D3F9D0F00ABFAE8 /* AutoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30FE2351D3F9D0F00ABFAE8 /* AutoScrollView.swift */; };
 		F317B9A81D39291D00927ACD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9A71D39291D00927ACD /* HomeViewController.swift */; };
 		F317B9AA1D392DD200927ACD /* TipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9A91D392DD200927ACD /* TipCollectionViewCell.swift */; };
@@ -20,6 +23,9 @@
 		F33BCE911D40F3EF00CD232C /* LiveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCE901D40F3EF00CD232C /* LiveCollectionViewCell.swift */; };
 		F343082B1D3B91940070911F /* UitzendingGemistConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343082A1D3B91940070911F /* UitzendingGemistConstants.swift */; };
 		F34A15511D3E7B88000E0D4F /* EpisodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A15501D3E7B88000E0D4F /* EpisodeCollectionViewCell.swift */; };
+		F3A71A881D4936CE00F331F9 /* ProgramSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A71A871D4936CE00F331F9 /* ProgramSplitViewController.swift */; };
+		F3A71A8A1D49FE1000F331F9 /* Array+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A71A891D49FE1000F331F9 /* Array+Random.swift */; };
+		F3C193E01D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C193DF1D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift */; };
 		F3D0C2581D36650F00A5BE93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D0C2571D36650F00A5BE93 /* AppDelegate.swift */; };
 		F3D0C25D1D36650F00A5BE93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D0C25B1D36650F00A5BE93 /* Main.storyboard */; };
 		F3D0C25F1D36650F00A5BE93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D0C25E1D36650F00A5BE93 /* Assets.xcassets */; };
@@ -33,6 +39,9 @@
 /* Begin PBXFileReference section */
 		6436CDABDC0DC5F68784C374 /* Pods-UitzendingGemistAbstract-UitzendingGemist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UitzendingGemistAbstract-UitzendingGemist.release.xcconfig"; path = "Pods/Target Support Files/Pods-UitzendingGemistAbstract-UitzendingGemist/Pods-UitzendingGemistAbstract-UitzendingGemist.release.xcconfig"; sourceTree = "<group>"; };
 		E0CC28CF2011F55FC2401886 /* Pods_UitzendingGemistAbstract_UitzendingGemist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UitzendingGemistAbstract_UitzendingGemist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F309EAAE1D47B316003B46A1 /* ProgramRootTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramRootTableViewController.swift; sourceTree = "<group>"; };
+		F309EAB31D47BC38003B46A1 /* ProgramRootTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramRootTableViewCell.swift; sourceTree = "<group>"; };
+		F309EAB51D488F4A003B46A1 /* ProgramDetailedCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDetailedCollectionViewController.swift; sourceTree = "<group>"; };
 		F30FE2351D3F9D0F00ABFAE8 /* AutoScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoScrollView.swift; sourceTree = "<group>"; };
 		F317B9771D37BDA300927ACD /* NPO Sans Bold v1.01.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPO Sans Bold v1.01.otf"; sourceTree = "<group>"; };
 		F317B9781D37BDA300927ACD /* NPO Sans Regular v1.01.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPO Sans Regular v1.01.otf"; sourceTree = "<group>"; };
@@ -47,6 +56,9 @@
 		F33BCE901D40F3EF00CD232C /* LiveCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCollectionViewCell.swift; sourceTree = "<group>"; };
 		F343082A1D3B91940070911F /* UitzendingGemistConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UitzendingGemistConstants.swift; sourceTree = "<group>"; };
 		F34A15501D3E7B88000E0D4F /* EpisodeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3A71A871D4936CE00F331F9 /* ProgramSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramSplitViewController.swift; sourceTree = "<group>"; };
+		F3A71A891D49FE1000F331F9 /* Array+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Random.swift"; sourceTree = "<group>"; };
+		F3C193DF1D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDetailedCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3D0C2541D36650F00A5BE93 /* UitzendingGemist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UitzendingGemist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D0C2571D36650F00A5BE93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D0C25C1D36650F00A5BE93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,6 +101,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F309EAB01D47B319003B46A1 /* Program List */ = {
+			isa = PBXGroup;
+			children = (
+				F3A71A871D4936CE00F331F9 /* ProgramSplitViewController.swift */,
+				F309EAAE1D47B316003B46A1 /* ProgramRootTableViewController.swift */,
+				F309EAB31D47BC38003B46A1 /* ProgramRootTableViewCell.swift */,
+				F309EAB51D488F4A003B46A1 /* ProgramDetailedCollectionViewController.swift */,
+				F3C193DF1D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift */,
+			);
+			name = "Program List";
+			sourceTree = "<group>";
+		};
 		F30FE2391D3FB9DF00ABFAE8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +126,7 @@
 			children = (
 				F3D71E8D1D3D5C1600B9AEB0 /* UIColor+Colors.swift */,
 				F3FD00781D400FD800034A76 /* UIView+Activity.swift */,
+				F3A71A891D49FE1000F331F9 /* Array+Random.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -164,14 +189,14 @@
 			name = Episode;
 			sourceTree = "<group>";
 		};
-		F32BAAAB1D3CEE010026CAFB /* Program List */ = {
+		F32BAAAB1D3CEE010026CAFB /* Program List (Old) */ = {
 			isa = PBXGroup;
 			children = (
 				F32BAAA71D3CDD9E0026CAFB /* ProgramListViewController.swift */,
 				F32BAAAC1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift */,
 				F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */,
 			);
-			name = "Program List";
+			name = "Program List (Old)";
 			sourceTree = "<group>";
 		};
 		F33BCE8D1D40EF7500CD232C /* Live */ = {
@@ -210,7 +235,8 @@
 				F32BAAA91D3CEDD50026CAFB /* Home */,
 				F32BAAAA1D3CEDF00026CAFB /* Episode */,
 				F32724721D3E58BB00ACADEA /* Program */,
-				F32BAAAB1D3CEE010026CAFB /* Program List */,
+				F309EAB01D47B319003B46A1 /* Program List */,
+				F32BAAAB1D3CEE010026CAFB /* Program List (Old) */,
 				F33BCE8D1D40EF7500CD232C /* Live */,
 				F317B9761D37BD9400927ACD /* Resources */,
 			);
@@ -373,10 +399,15 @@
 				F3D71E8E1D3D5C1600B9AEB0 /* UIColor+Colors.swift in Sources */,
 				F32BAAAD1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift in Sources */,
 				F32BAAA81D3CDD9E0026CAFB /* ProgramListViewController.swift in Sources */,
+				F309EAAF1D47B316003B46A1 /* ProgramRootTableViewController.swift in Sources */,
 				F3D71E901D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift in Sources */,
+				F3C193E01D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift in Sources */,
+				F3A71A8A1D49FE1000F331F9 /* Array+Random.swift in Sources */,
 				F30FE2361D3F9D0F00ABFAE8 /* AutoScrollView.swift in Sources */,
 				F32BAAA61D3CCAE40026CAFB /* StillCollectionViewCell.swift in Sources */,
+				F3A71A881D4936CE00F331F9 /* ProgramSplitViewController.swift in Sources */,
 				F34A15511D3E7B88000E0D4F /* EpisodeCollectionViewCell.swift in Sources */,
+				F309EAB61D488F4A003B46A1 /* ProgramDetailedCollectionViewController.swift in Sources */,
 				F3D0C2581D36650F00A5BE93 /* AppDelegate.swift in Sources */,
 				F317B9AA1D392DD200927ACD /* TipCollectionViewCell.swift in Sources */,
 				F32724711D3E58A600ACADEA /* ProgramViewController.swift in Sources */,
@@ -385,6 +416,7 @@
 				F33BCE911D40F3EF00CD232C /* LiveCollectionViewCell.swift in Sources */,
 				F33BCE8F1D40EF9000CD232C /* LiveViewController.swift in Sources */,
 				F317B9A81D39291D00927ACD /* HomeViewController.swift in Sources */,
+				F309EAB41D47BC38003B46A1 /* ProgramRootTableViewCell.swift in Sources */,
 				F3FD00731D3FFC7900034A76 /* ToProgramButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

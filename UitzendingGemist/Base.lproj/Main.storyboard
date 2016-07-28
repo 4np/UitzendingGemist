@@ -175,7 +175,6 @@
                                         <connections>
                                             <outlet property="programImageView" destination="b0R-gt-Exb" id="EbA-O9-YRK"/>
                                             <outlet property="programNameLabel" destination="qB1-cu-ew1" id="nVc-9k-YGG"/>
-                                            <segue destination="uXX-3a-y3X" kind="show" identifier="ProgramToProgramDetailsSegue" id="1h1-D9-eTI"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -235,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9G-Jj-qIa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2870" y="1201"/>
+            <point key="canvasLocation" x="734" y="5058"/>
         </scene>
         <!--Live-->
         <scene sceneID="fx5-Bf-M8M">
@@ -339,7 +338,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FDX-Er-gQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2862" y="2610"/>
+            <point key="canvasLocation" x="2870" y="-1596"/>
         </scene>
         <!--Episode View Controller-->
         <scene sceneID="BdX-1N-9PM">
@@ -653,12 +652,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4do-ai-hcH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5234" y="-219"/>
+            <point key="canvasLocation" x="5186" y="-219"/>
         </scene>
         <!--Program View Controller-->
         <scene sceneID="q8f-Vc-JPV">
             <objects>
-                <viewController id="uXX-3a-y3X" customClass="ProgramViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProgramViewController" id="uXX-3a-y3X" customClass="ProgramViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="U0w-Oa-1Ul"/>
                         <viewControllerLayoutGuide type="bottom" id="I5J-pO-Yf0"/>
@@ -930,7 +929,175 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rcs-VN-UCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5234" y="1241"/>
+            <point key="canvasLocation" x="5186" y="1281"/>
+        </scene>
+        <!--Program Detailed Collection View Controller-->
+        <scene sceneID="ZB4-D2-on1">
+            <objects>
+                <viewController id="SZs-Ju-ec1" customClass="ProgramDetailedCollectionViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qRh-0J-Nmy"/>
+                        <viewControllerLayoutGuide type="bottom" id="gOr-4h-Qd4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XBI-Ul-GbI">
+                        <rect key="frame" x="0.0" y="0.0" width="1285" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="D0P-q4-MEt">
+                                <rect key="frame" x="0.0" y="0.0" width="1285" height="1080"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="100" minimumInteritemSpacing="80" id="UHj-uT-eaB">
+                                    <size key="itemSize" width="375" height="300"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="90" minY="100" maxX="90" maxY="100"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="programDetailedCollectionViewCell" reuseIdentifier="programDetailedCollectionViewCell" id="Hpb-S8-0xb" customClass="ProgramDetailedCollectionViewCell" customModule="UitzendingGemist" customModuleProvider="target">
+                                        <rect key="frame" x="90" y="100" width="375" height="300"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Dg-8O-RMt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="4Dg-8O-RMt" secondAttribute="height" multiplier="1920:1080" id="EeI-xV-bib"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zo-uM-hhB">
+                                                    <rect key="frame" x="0.0" y="265" width="375" height="35"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="1" height="1"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="4Dg-8O-RMt" secondAttribute="trailing" constant="-8" id="8fi-uQ-GNB"/>
+                                            <constraint firstItem="4Dg-8O-RMt" firstAttribute="top" secondItem="Hpb-S8-0xb" secondAttribute="topMargin" constant="-8" id="Ctv-yM-KZn"/>
+                                            <constraint firstItem="4Dg-8O-RMt" firstAttribute="leading" secondItem="Hpb-S8-0xb" secondAttribute="leadingMargin" constant="-8" id="LJT-b0-iDa"/>
+                                            <constraint firstItem="8Zo-uM-hhB" firstAttribute="leading" secondItem="Hpb-S8-0xb" secondAttribute="leadingMargin" constant="-8" id="U9Y-gq-D9e"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="8Zo-uM-hhB" secondAttribute="bottom" constant="-8" id="iQS-U8-4hs"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="8Zo-uM-hhB" secondAttribute="trailing" constant="-8" id="meZ-41-tDM"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="programImageView" destination="4Dg-8O-RMt" id="ruO-Qh-uCZ"/>
+                                            <outlet property="programNameLabel" destination="8Zo-uM-hhB" id="V7y-Ht-xNh"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="SZs-Ju-ec1" id="myv-8r-1k1"/>
+                                    <outlet property="delegate" destination="SZs-Ju-ec1" id="azm-hO-uUX"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="D0P-q4-MEt" firstAttribute="top" secondItem="qRh-0J-Nmy" secondAttribute="bottom" id="3Xl-5W-ndA"/>
+                            <constraint firstItem="gOr-4h-Qd4" firstAttribute="top" secondItem="D0P-q4-MEt" secondAttribute="bottom" id="AAt-Eb-3qW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="D0P-q4-MEt" secondAttribute="trailing" constant="-20" id="VIn-O1-vTG"/>
+                            <constraint firstItem="D0P-q4-MEt" firstAttribute="leading" secondItem="XBI-Ul-GbI" secondAttribute="leadingMargin" constant="-20" id="rX9-fB-Oy0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="programCollectionView" destination="D0P-q4-MEt" id="0hd-xw-bgr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P7L-V0-Ttv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4849.5" y="3698"/>
+        </scene>
+        <!--Programma's-->
+        <scene sceneID="yzz-lw-HAF">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="AJ0-ZK-uij" customClass="ProgramRootTableViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="40" sectionFooterHeight="40" id="RPs-Mn-xur">
+                        <rect key="frame" x="0.0" y="0.0" width="634" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="programRootTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="programRootTableViewCell" id="Ore-n4-9hh" customClass="ProgramRootTableViewCell" customModule="UitzendingGemist" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="199" width="634" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ore-n4-9hh" id="yyK-OM-oOM">
+                                    <rect key="frame" x="0.0" y="0.0" width="618" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktn-cW-Des">
+                                            <rect key="frame" x="8" y="15" width="544" height="35"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9eh-0j-abM">
+                                            <rect key="frame" x="560" y="15" width="18" height="35"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ktn-cW-Des" firstAttribute="leading" secondItem="yyK-OM-oOM" secondAttribute="leadingMargin" id="0NE-ak-tBi"/>
+                                        <constraint firstItem="9eh-0j-abM" firstAttribute="leading" secondItem="ktn-cW-Des" secondAttribute="trailing" constant="8" id="HuF-Em-Nzr"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="9eh-0j-abM" secondAttribute="bottom" constant="8" id="KEO-Tz-PiD"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="9eh-0j-abM" secondAttribute="trailing" constant="32" id="OaL-M7-7m2"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ktn-cW-Des" secondAttribute="bottom" constant="8" id="gZR-op-vjf"/>
+                                        <constraint firstItem="ktn-cW-Des" firstAttribute="top" secondItem="yyK-OM-oOM" secondAttribute="topMargin" constant="7" id="lxN-en-5DY"/>
+                                        <constraint firstItem="9eh-0j-abM" firstAttribute="top" secondItem="yyK-OM-oOM" secondAttribute="topMargin" constant="7" id="o3u-SW-yWF"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="countLabel" destination="9eh-0j-abM" id="Oja-p2-4il"/>
+                                    <outlet property="nameLabel" destination="ktn-cW-Des" id="fCd-rc-GmA"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="AJ0-ZK-uij" id="KjW-73-sVW"/>
+                            <outlet property="delegate" destination="AJ0-ZK-uij" id="1Ov-nT-fkg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Programma's" id="6oH-78-aed"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qaD-wa-RQN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5380" y="2562"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="I7N-KK-qeK">
+            <objects>
+                <navigationController id="RrE-fT-1Vq" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0Hc-c0-ini">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="AJ0-ZK-uij" kind="relationship" relationship="rootViewController" id="f64-CH-xnp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rhW-h2-Z3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4524" y="2562"/>
+        </scene>
+        <!--Programma's-->
+        <scene sceneID="mnr-qT-e4e">
+            <objects>
+                <splitViewController id="rMY-zG-loW" customClass="ProgramSplitViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Programma's" id="2LP-ZG-9nr"/>
+                    <connections>
+                        <segue destination="RrE-fT-1Vq" kind="relationship" relationship="masterViewController" id="YyW-QX-pJe"/>
+                        <segue destination="SZs-Ju-ec1" kind="relationship" relationship="detailViewController" id="uFO-g8-0K6"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0h3-bh-wim" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3029" y="3124"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="QEk-9P-JSh">
@@ -943,8 +1110,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="Sb9-j2-V3Q" kind="relationship" relationship="viewControllers" id="Dxb-7v-CQU"/>
-                        <segue destination="aSd-1z-Npz" kind="relationship" relationship="viewControllers" id="BHg-AM-xiv"/>
-                        <segue destination="GCj-uU-Sjj" kind="relationship" relationship="viewControllers" id="rxs-Ii-9sJ"/>
+                        <segue destination="rMY-zG-loW" kind="relationship" relationship="viewControllers" id="V0U-d0-7ts"/>
+                        <segue destination="GCj-uU-Sjj" kind="relationship" relationship="viewControllers" id="7mw-UA-inN"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uCC-mY-OcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -953,7 +1120,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pBE-AU-mLm"/>
         <segue reference="bIJ-g7-Lhb"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,10 +14,19 @@ enum CollectionViewCells: String {
     case Program = "programCollectionViewCell"
     case Episode = "episodeCollectionViewCell"
     case Live = "liveCollectionViewCell"
+    case ProgramDetail = "programDetailedCollectionViewCell"
+}
+
+enum TableViewCells: String {
+    case ProgramGroup = "programRootTableViewCell"
 }
 
 enum CollectionViewHeaders: String {
     case Program = "programCollectionViewHeader"
+}
+
+enum ViewControllers: String {
+    case ProgramViewController = "ProgramViewController"
 }
 
 enum Segues: String {
