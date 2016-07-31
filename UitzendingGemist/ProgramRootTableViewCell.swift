@@ -10,10 +10,10 @@
 import Foundation
 import UIKit
 import NPOKit
+import CocoaLumberjack
 
 class ProgramRootTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var countLabel: UILabel!
     
     //MARK: Lifecycle
     
@@ -21,13 +21,17 @@ class ProgramRootTableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         self.nameLabel.text = nil
-        self.countLabel.text = nil
+    }
+    
+    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
+        
+        nameLabel.textColor = focused ? UIColor.blackColor() : UIColor.whiteColor()
     }
     
     //MARK: Configuration
     
     internal func configure(withName name: String, andCount count: Int) {
         self.nameLabel.text = name.capitalizedString
-        self.countLabel.text = "(\(count))"
     }
 }

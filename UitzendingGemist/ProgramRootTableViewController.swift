@@ -34,6 +34,8 @@ class ProgramRootTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loaded = false
+        
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 100))
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -113,7 +115,7 @@ class ProgramRootTableViewController: UITableViewController {
         
         if row == 0 {
             let programCount = self.programs.filter({ $0.favorite }).count ?? 0
-            cell.configure(withName: UitzendingGemistConstants.favoriteText, andCount: programCount)
+            cell.configure(withName: "♥︎", andCount: programCount)
         } else {
             let letter = self.uniqueLetters[row - 1]
             let programCount = self.programs.filter({ $0.firstLetter == letter }).count ?? 0
