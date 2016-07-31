@@ -17,8 +17,6 @@
 		F317B9B21D3A7B2400927ACD /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9B11D3A7B2400927ACD /* EpisodeViewController.swift */; };
 		F32724711D3E58A600ACADEA /* ProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32724701D3E58A600ACADEA /* ProgramViewController.swift */; };
 		F32BAAA61D3CCAE40026CAFB /* StillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAA51D3CCAE40026CAFB /* StillCollectionViewCell.swift */; };
-		F32BAAA81D3CDD9E0026CAFB /* ProgramListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAA71D3CDD9E0026CAFB /* ProgramListViewController.swift */; };
-		F32BAAAD1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAAC1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift */; };
 		F33BCE8F1D40EF9000CD232C /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCE8E1D40EF9000CD232C /* LiveViewController.swift */; };
 		F33BCE911D40F3EF00CD232C /* LiveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCE901D40F3EF00CD232C /* LiveCollectionViewCell.swift */; };
 		F343082B1D3B91940070911F /* UitzendingGemistConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343082A1D3B91940070911F /* UitzendingGemistConstants.swift */; };
@@ -30,7 +28,6 @@
 		F3D0C25D1D36650F00A5BE93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D0C25B1D36650F00A5BE93 /* Main.storyboard */; };
 		F3D0C25F1D36650F00A5BE93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D0C25E1D36650F00A5BE93 /* Assets.xcassets */; };
 		F3D71E8E1D3D5C1600B9AEB0 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D71E8D1D3D5C1600B9AEB0 /* UIColor+Colors.swift */; };
-		F3D71E901D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */; };
 		F3FD00731D3FFC7900034A76 /* ToProgramButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD00721D3FFC7900034A76 /* ToProgramButton.swift */; };
 		F3FD00791D400FD800034A76 /* UIView+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD00781D400FD800034A76 /* UIView+Activity.swift */; };
 		F3FD00811D40202100034A76 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD00801D40202100034A76 /* UpdateManager.swift */; };
@@ -50,8 +47,6 @@
 		F317B9B11D3A7B2400927ACD /* EpisodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
 		F32724701D3E58A600ACADEA /* ProgramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramViewController.swift; sourceTree = "<group>"; };
 		F32BAAA51D3CCAE40026CAFB /* StillCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StillCollectionViewCell.swift; sourceTree = "<group>"; };
-		F32BAAA71D3CDD9E0026CAFB /* ProgramListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramListViewController.swift; sourceTree = "<group>"; };
-		F32BAAAC1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramListCollectionViewCell.swift; sourceTree = "<group>"; };
 		F33BCE8E1D40EF9000CD232C /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		F33BCE901D40F3EF00CD232C /* LiveCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCollectionViewCell.swift; sourceTree = "<group>"; };
 		F343082A1D3B91940070911F /* UitzendingGemistConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UitzendingGemistConstants.swift; sourceTree = "<group>"; };
@@ -65,7 +60,6 @@
 		F3D0C25E1D36650F00A5BE93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3D0C2601D36650F00A5BE93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3D71E8D1D3D5C1600B9AEB0 /* UIColor+Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
-		F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramListSectionHeaderView.swift; sourceTree = "<group>"; };
 		F3FD00721D3FFC7900034A76 /* ToProgramButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToProgramButton.swift; sourceTree = "<group>"; };
 		F3FD00781D400FD800034A76 /* UIView+Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Activity.swift"; sourceTree = "<group>"; };
 		F3FD00801D40202100034A76 /* UpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
@@ -189,16 +183,6 @@
 			name = Episode;
 			sourceTree = "<group>";
 		};
-		F32BAAAB1D3CEE010026CAFB /* Program List (Old) */ = {
-			isa = PBXGroup;
-			children = (
-				F32BAAA71D3CDD9E0026CAFB /* ProgramListViewController.swift */,
-				F32BAAAC1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift */,
-				F3D71E8F1D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift */,
-			);
-			name = "Program List (Old)";
-			sourceTree = "<group>";
-		};
 		F33BCE8D1D40EF7500CD232C /* Live */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,7 +220,6 @@
 				F32BAAAA1D3CEDF00026CAFB /* Episode */,
 				F32724721D3E58BB00ACADEA /* Program */,
 				F309EAB01D47B319003B46A1 /* Program List */,
-				F32BAAAB1D3CEE010026CAFB /* Program List (Old) */,
 				F33BCE8D1D40EF7500CD232C /* Live */,
 				F317B9761D37BD9400927ACD /* Resources */,
 			);
@@ -397,10 +380,7 @@
 				F343082B1D3B91940070911F /* UitzendingGemistConstants.swift in Sources */,
 				F3FD00791D400FD800034A76 /* UIView+Activity.swift in Sources */,
 				F3D71E8E1D3D5C1600B9AEB0 /* UIColor+Colors.swift in Sources */,
-				F32BAAAD1D3CEE160026CAFB /* ProgramListCollectionViewCell.swift in Sources */,
-				F32BAAA81D3CDD9E0026CAFB /* ProgramListViewController.swift in Sources */,
 				F309EAAF1D47B316003B46A1 /* ProgramRootTableViewController.swift in Sources */,
-				F3D71E901D3E1B9D00B9AEB0 /* ProgramListSectionHeaderView.swift in Sources */,
 				F3C193E01D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift in Sources */,
 				F3A71A8A1D49FE1000F331F9 /* Array+Random.swift in Sources */,
 				F30FE2361D3F9D0F00ABFAE8 /* AutoScrollView.swift in Sources */,

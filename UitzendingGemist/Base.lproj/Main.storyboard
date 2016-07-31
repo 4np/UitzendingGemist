@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="top" id="HAL-JC-qT1"/>
                         <viewControllerLayoutGuide type="bottom" id="Kxy-ky-PmB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="cog-xu-MS9">
+                    <view key="view" contentMode="scaleToFill" id="cog-xu-MS9">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -101,141 +101,6 @@
             </objects>
             <point key="canvasLocation" x="2870" y="-219"/>
         </scene>
-        <!--Programmas-->
-        <scene sceneID="c8Q-ql-9KL">
-            <objects>
-                <viewController id="aSd-1z-Npz" customClass="ProgramListViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AV7-PU-zfb"/>
-                        <viewControllerLayoutGuide type="bottom" id="UKf-fV-XS5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Uol-Yz-3Zz">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S4I-7U-Oqk">
-                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
-                            </imageView>
-                            <tabBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Kd-xY-trO">
-                                <rect key="frame" x="0.0" y="0.0" width="1920" height="140"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <items>
-                                    <tabBarItem title="Favorieten" id="SxV-e2-i8B"/>
-                                    <tabBarItem tag="1" title="#-E" id="Rff-fg-JYg"/>
-                                    <tabBarItem tag="2" title="F-J" id="dW3-FY-HDL"/>
-                                    <tabBarItem tag="3" title="K-O" id="Ebf-mD-Azh"/>
-                                    <tabBarItem tag="4" title="P-T" id="T2V-95-C1A"/>
-                                    <tabBarItem tag="5" title="U-Z" id="esx-BT-cfD"/>
-                                </items>
-                                <connections>
-                                    <outlet property="delegate" destination="aSd-1z-Npz" id="POv-F3-NBF"/>
-                                </connections>
-                            </tabBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jOn-hQ-a7j">
-                                <rect key="frame" x="0.0" y="140" width="1920" height="940"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="100" minimumInteritemSpacing="80" id="p0u-ef-F01">
-                                    <size key="itemSize" width="375" height="320"/>
-                                    <size key="headerReferenceSize" width="50" height="200"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="90" minY="48" maxX="90" maxY="100"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="programCollectionViewCell" reuseIdentifier="programCollectionViewCell" id="gRm-o2-5fE" customClass="ProgramListCollectionViewCell" customModule="UitzendingGemist" customModuleProvider="target">
-                                        <rect key="frame" x="90" y="248" width="375" height="320"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b0R-gt-Exb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="b0R-gt-Exb" secondAttribute="height" multiplier="25:14" id="m7K-fS-Hew"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Program Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qB1-cu-ew1">
-                                                    <rect key="frame" x="8" y="275" width="359" height="37"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <size key="shadowOffset" width="1" height="2"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="qB1-cu-ew1" firstAttribute="bottom" secondItem="gRm-o2-5fE" secondAttribute="bottomMargin" id="Eii-aM-5VI"/>
-                                            <constraint firstItem="b0R-gt-Exb" firstAttribute="top" secondItem="gRm-o2-5fE" secondAttribute="topMargin" constant="-8" id="Onp-0n-quR"/>
-                                            <constraint firstItem="b0R-gt-Exb" firstAttribute="leading" secondItem="gRm-o2-5fE" secondAttribute="leadingMargin" constant="-8" id="P6c-vm-GDr"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="b0R-gt-Exb" secondAttribute="trailing" constant="-8" id="jZt-eW-Bxz"/>
-                                            <constraint firstItem="qB1-cu-ew1" firstAttribute="trailing" secondItem="gRm-o2-5fE" secondAttribute="trailingMargin" id="uH2-a3-fJj"/>
-                                            <constraint firstItem="qB1-cu-ew1" firstAttribute="leading" secondItem="gRm-o2-5fE" secondAttribute="leadingMargin" id="zmm-2o-Nbz"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="programImageView" destination="b0R-gt-Exb" id="EbA-O9-YRK"/>
-                                            <outlet property="programNameLabel" destination="qB1-cu-ew1" id="nVc-9k-YGG"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="programCollectionViewHeader" reuseIdentifier="programCollectionViewHeader" id="v7f-mL-Imb" customClass="ProgramListSectionHeaderView" customModule="UitzendingGemist" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="1920" height="200"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4z6-b6-4MB">
-                                            <rect key="frame" x="90" y="101" width="1740" height="91"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6t-N1-R51">
-                                                    <rect key="frame" x="749" y="0.0" width="241" height="91"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="P6t-N1-R51" firstAttribute="centerX" secondItem="4z6-b6-4MB" secondAttribute="centerX" id="4KW-Zl-yBQ"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="4z6-b6-4MB" firstAttribute="bottom" secondItem="v7f-mL-Imb" secondAttribute="bottomMargin" id="IG8-Lf-IP6"/>
-                                        <constraint firstItem="4z6-b6-4MB" firstAttribute="leading" secondItem="v7f-mL-Imb" secondAttribute="leadingMargin" constant="82" id="Tdk-Wy-bOV"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="4z6-b6-4MB" secondAttribute="trailing" constant="82" id="kuC-02-NPi"/>
-                                    </constraints>
-                                    <connections>
-                                        <outlet property="headerBackgroundView" destination="4z6-b6-4MB" id="zQl-K2-PGW"/>
-                                        <outlet property="headerLabel" destination="P6t-N1-R51" id="FCG-p8-rD2"/>
-                                    </connections>
-                                </collectionReusableView>
-                                <connections>
-                                    <outlet property="dataSource" destination="aSd-1z-Npz" id="d9K-H0-Kwl"/>
-                                    <outlet property="delegate" destination="aSd-1z-Npz" id="71I-kA-p0a"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="S4I-7U-Oqk" firstAttribute="top" secondItem="AV7-PU-zfb" secondAttribute="bottom" id="5L8-X0-eym"/>
-                            <constraint firstItem="UKf-fV-XS5" firstAttribute="top" secondItem="S4I-7U-Oqk" secondAttribute="bottom" id="Ne8-er-ece"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="jOn-hQ-a7j" secondAttribute="trailing" constant="-20" id="O9X-ij-9Pe"/>
-                            <constraint firstItem="S4I-7U-Oqk" firstAttribute="leading" secondItem="Uol-Yz-3Zz" secondAttribute="leading" id="T4p-BL-Ptd"/>
-                            <constraint firstItem="jOn-hQ-a7j" firstAttribute="leading" secondItem="Uol-Yz-3Zz" secondAttribute="leadingMargin" constant="-20" id="ZME-tY-HvQ"/>
-                            <constraint firstItem="UKf-fV-XS5" firstAttribute="top" secondItem="jOn-hQ-a7j" secondAttribute="bottom" id="lT2-O0-WoX"/>
-                            <constraint firstItem="jOn-hQ-a7j" firstAttribute="top" secondItem="5Kd-xY-trO" secondAttribute="bottom" id="uJp-OZ-v7e"/>
-                            <constraint firstAttribute="trailing" secondItem="S4I-7U-Oqk" secondAttribute="trailing" id="v04-ao-sm1"/>
-                        </constraints>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <tabBarItem key="tabBarItem" tag="1" title="Programmas" id="H7r-W7-fUD"/>
-                    <simulatedTabBarMetrics key="simulatedTopBarMetrics"/>
-                    <connections>
-                        <outlet property="backgroundImageView" destination="S4I-7U-Oqk" id="tR9-FF-2DI"/>
-                        <outlet property="programCollectionView" destination="jOn-hQ-a7j" id="bcd-ws-QSO"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W9G-Jj-qIa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="734" y="5058"/>
-        </scene>
         <!--Live-->
         <scene sceneID="fx5-Bf-M8M">
             <objects>
@@ -244,7 +109,7 @@
                         <viewControllerLayoutGuide type="top" id="rCl-ja-lDA"/>
                         <viewControllerLayoutGuide type="bottom" id="ZbT-Wy-azo"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="ZeN-b7-8z8">
+                    <view key="view" contentMode="scaleToFill" id="ZeN-b7-8z8">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -929,7 +794,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rcs-VN-UCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5186" y="1281"/>
+            <point key="canvasLocation" x="2870" y="1185"/>
         </scene>
         <!--Program Detailed Collection View Controller-->
         <scene sceneID="ZB4-D2-on1">
@@ -1019,7 +884,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="programRootTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="programRootTableViewCell" id="Ore-n4-9hh" customClass="ProgramRootTableViewCell" customModule="UitzendingGemist" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="199" width="634" height="66"/>
+                                <rect key="frame" x="0.0" y="199" width="594" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ore-n4-9hh" id="yyK-OM-oOM">
                                     <rect key="frame" x="0.0" y="0.0" width="618" height="66"/>
@@ -1069,7 +934,7 @@
         <scene sceneID="I7N-KK-qeK">
             <objects>
                 <navigationController id="RrE-fT-1Vq" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0Hc-c0-ini">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Hc-c0-ini">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
