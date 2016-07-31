@@ -27,6 +27,8 @@ class RealmProgram: Object {
         }
     }
     dynamic var favorite: Bool = false
+    dynamic var watched: Int = 0
+    
     let episodes = List<RealmEpisode>() // one to many relationship
     
     override static func indexedProperties() -> [String] {

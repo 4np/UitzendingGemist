@@ -9,6 +9,8 @@
 import Foundation
 import Alamofire
 import AlamofireImage
+import RealmSwift
+import CocoaLumberjack
 
 public enum NPOError: ErrorType {
     case ModelMappingError(String)//, JSON)
@@ -72,6 +74,40 @@ public class NPOManager {
     public static let sharedInstance = NPOManager()
     internal let baseURL = "http://apps-api.uitzendinggemist.nl"
     private let infoDictionary = NSBundle.mainBundle().infoDictionary
+    
+    //MARK: Init
+    
+    init() {
+        upgradeIfNeeded()
+    }
+    
+    private func upgradeIfNeeded() {
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(
+            // Set the new schema version. This must be greater than the previously used
+            // version (if you've never set a schema version before, the version is 0).
+            schemaVersion: 1,
+            
+            // Set the block which will be called automatically when opening a Realm with
+            // a schema version lower than the one set above
+            migrationBlock: { migration, oldSchemaVersion in
+                // We haven’t migrated anything yet, so oldSchemaVersion == 0
+                if oldSchemaVersion < 1 {
+                    DDLogDebug("Performing schema upgrade \(oldSchemaVersion) to 1")
+                    
+                    // migrate NPOProgram object
+                    migration.enumerate(RealmProgram.className()) { oldObject, newObject in
+                        newObject!["watched"] = Watched.Unwatched.rawValue
+                    }
+                }
+        })
+
+        // Realm will automatically perform the migration and opening the Realm will succeed
+        do {
+            let _ = try Realm()
+        } catch let error as NSError {
+            DDLogError("Realm schema upgrade error (\(error.localizedDescription))")
+        }
+    }
     
     //MARK: Get url
     

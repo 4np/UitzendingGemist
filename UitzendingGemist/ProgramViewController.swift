@@ -92,10 +92,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         self.programImageView.image = nil
         
         self.programNameLabel.text = nil
-//        self.episodeNameLabel.text = nil
-        
-//        self.dateLabel.text = nil
-//        self.durationLabel.text = nil
+
         self.descriptionLabel.text = nil
         
         self.genreTitleLabel.text = nil
@@ -106,10 +103,6 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         self.playButton.enabled = true
         self.playLabel.enabled = true
         self.playLabel.text = nil
-        
-//        self.toProgramButton.enabled = true
-//        self.toProgramLabel.enabled = true
-//        self.toProgramLabel.text = nil
         
         self.favoriteButton.enabled = false
         self.favoriteLabel.enabled = false
@@ -147,7 +140,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         // mark that we do not need layout anymore
         self.needLayout = false
         
-        self.programNameLabel.text = program.name
+        self.programNameLabel.text = program.getDisplayNameWithWatchedIndicator()
         self.descriptionLabel.text = program.description
         
         self.genreTitleLabel.text = UitzendingGemistConstants.genreText.uppercaseString

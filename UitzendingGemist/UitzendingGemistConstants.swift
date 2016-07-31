@@ -38,7 +38,14 @@ enum Segues: String {
 }
 
 public class UitzendingGemistConstants {
+    static let watchedSymbol = ""
+    static let unwatchedSymbol = "⚫︎ "
+    static let partiallyWatchedSymbol = "⚫︎ "
+    static let favoriteSymbol = " ♥︎"
+    
     static let unknownText = NSLocalizedString("Onbekend", comment: "Unkown")
+    static let unknownEpisodeName = NSLocalizedString("Naamloze aflevering", comment: "Unkown episode name")
+    static let unknownProgramName = NSLocalizedString("Naamloos programma", comment: "Unkown program name")
     static let genreText = NSLocalizedString("Genre", comment: "Genre")
     static let broadcasterText = NSLocalizedString("Omroep", comment: "Broadcaster")
     

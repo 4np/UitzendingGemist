@@ -40,7 +40,7 @@ class TipCollectionViewCell: UICollectionViewCell {
     
     internal func configure(withTip tip: NPOTip) {
         self.fetchImage(forTip: tip)
-        self.nameLabel.text = tip.name
+        self.nameLabel.text = tip.getDisplayName()
         self.dateLabel.text = tip.publishedDisplayValue
     }
     

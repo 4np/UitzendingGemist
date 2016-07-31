@@ -21,20 +21,14 @@ class ProgramDetailedCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        programImageView.image = nil
+        programImageView.image = nil 
     }
     
     //MARK: Configuration
     
     func configure(withProgram program: NPOProgram) {
-        var name = program.name ?? UitzendingGemistConstants.unknownText
-        
-        if program.favorite {
-            name += " ♥︎"
-        }
-        
-        self.programNameLabel.text = name
-        self.programNameLabel.textColor = program.favorite ? UIColor.waxFlower : UIColor.whiteColor()
+        self.programNameLabel.text = program.getDisplayName()
+        self.programNameLabel.textColor = program.getDisplayColor()
         
         // get image
         imageRequest = program.getImage(ofSize: programImageView.frame.size) { [weak self] image, error, request in

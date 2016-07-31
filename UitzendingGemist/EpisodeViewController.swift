@@ -49,13 +49,13 @@ class EpisodeViewController: UIViewController {
     //MARK: Calculated Properties
     
     private var programName: String? {
-        if let name = self.program?.name where name.characters.count > 0 {
+        if let name = self.program?.name where !name.isEmpty {
             return name
-        } else if let name = self.episode?.program?.name where name.characters.count > 0 {
+        } else if let name = self.episode?.program?.name where !name.isEmpty {
             return name
-        } else if let name = self.tip?.name where name.characters.count > 0 {
+        } else if let name = self.tip?.name where !name.isEmpty {
             return name
-        } else if let name = self.episode?.name where name.characters.count > 0 {
+        } else if let name = self.episode?.name where !name.isEmpty {
             return name
         }
         
@@ -65,12 +65,12 @@ class EpisodeViewController: UIViewController {
     private var episodeName: String? {
         var episodeName = ""
         
-        if let name = self.episode?.name where name.characters.count > 0 {
+        if let name = self.episode?.name where !name.isEmpty {
             episodeName = name
-        } else if let name = self.tip?.name where name.characters.count > 0 {
+        } else if let name = self.tip?.name where !name.isEmpty {
             episodeName = name
         } else {
-            return nil
+            episodeName = UitzendingGemistConstants.unknownEpisodeName
         }
         
         guard let programName = self.programName else {
@@ -91,7 +91,15 @@ class EpisodeViewController: UIViewController {
             episodeName = programName
         }
         
-        return episodeName.capitalizedString
+        // capitalize
+        episodeName = episodeName.capitalizedString
+        
+        // add watched indicator
+        if let watchedIndicator = episode?.watchedIndicator {
+            episodeName = watchedIndicator + episodeName
+        }
+        
+        return episodeName
     }
     
     private var broadcastDisplayValue: String? {
@@ -283,10 +291,8 @@ class EpisodeViewController: UIViewController {
     }
     
     private func updateFavoriteButtonTitleColor() {
-        let isFavorite = self.program?.favorite ?? false
-        let favoriteColor = UIColor.waxFlower
-        let color = isFavorite ? favoriteColor : UIColor.whiteColor()
-        let focusColor = isFavorite ? favoriteColor : UIColor.blackColor()
+        let color = self.program?.getDisplayColor() ?? UIColor.whiteColor()
+        let focusColor = self.program?.getFocusColor() ?? UIColor.blackColor()
         self.favoriteButton.setTitleColor(color, forState: .Normal)
         self.favoriteButton.setTitleColor(focusColor, forState: .Focused)
     }

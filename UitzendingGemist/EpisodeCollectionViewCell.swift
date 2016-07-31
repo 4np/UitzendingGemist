@@ -38,7 +38,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     //MARK: Configuration
     
     func configure(withEpisode episode: NPOEpisode, andProgram program: NPOProgram?) {
-        self.episodeNameLabel.text = episode.name
+        self.episodeNameLabel.text = episode.getDisplayName()
         self.dateLabel.text = episode.broadcastedDisplayValue
         
         // get image

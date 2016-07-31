@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="top" id="HAL-JC-qT1"/>
                         <viewControllerLayoutGuide type="bottom" id="Kxy-ky-PmB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="cog-xu-MS9">
+                    <view key="view" contentMode="scaleToFill" id="cog-xu-MS9">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -109,7 +109,7 @@
                         <viewControllerLayoutGuide type="top" id="rCl-ja-lDA"/>
                         <viewControllerLayoutGuide type="bottom" id="ZbT-Wy-azo"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="ZeN-b7-8z8">
+                    <view key="view" contentMode="scaleToFill" id="ZeN-b7-8z8">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -830,7 +830,7 @@
                                                         <constraint firstAttribute="width" secondItem="4Dg-8O-RMt" secondAttribute="height" multiplier="1920:1080" id="EeI-xV-bib"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zo-uM-hhB">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zo-uM-hhB">
                                                     <rect key="frame" x="0.0" y="265" width="375" height="35"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -924,7 +924,7 @@
         <scene sceneID="I7N-KK-qeK">
             <objects>
                 <navigationController navigationBarHidden="YES" id="RrE-fT-1Vq" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0Hc-c0-ini">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Hc-c0-ini">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
