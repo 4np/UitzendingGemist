@@ -58,9 +58,9 @@ open UitzendingGemist.xcworkspace
 Connect the ```Apple TV 4``` using the USB-C cable to your Mac. 
 
 
-## 5. Set the bundle identifier
+## 5. [Optional] Set the bundle identifier
 
-See the screenshot below and click on **1** and **2** to get to the screen shown below. Set the bundle identifier (**3**) to some name. This should be something in reverse domain format, for example ```com.JohnAppleseed.UitzendingGemist```.
+You should probably leave the bundle identifier as-is, but you can change it if you choose to do so. The bundle identifier is the unique identifier of the app. If you use the same bundle identifier for subsequent builds to your device, the newer version will overwrite the old version. If you change the bundle identifier you can have multiple versions running together on your Apple TV. See the screenshot below and click on **1** and **2** to get to the screen shown below. Set the bundle identifier (**3**) to some name. This should be something in reverse domain format, for example ```com.JohnAppleseed.UitzendingGemist```.
 
 ![Steps](https://cloud.githubusercontent.com/assets/1049693/11406776/6ad1989c-93af-11e5-9bea-0fd4a928623b.png)
 
