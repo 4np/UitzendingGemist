@@ -33,7 +33,6 @@ class EpisodeViewController: UIViewController {
     @IBOutlet weak private var favoriteLabel: UILabel!
     @IBOutlet weak private var stillCollectionView: UICollectionView!
 
-    private var toProgramButtonImageView: UIImageView?
     private var tip: NPOTip?
     private var episode: NPOEpisode?
     private var program: NPOProgram?
@@ -49,13 +48,13 @@ class EpisodeViewController: UIViewController {
     //MARK: Calculated Properties
     
     private var programName: String? {
-        if let name = self.program?.name where !name.isEmpty {
+        if let program = self.program, name = program.name where !name.isEmpty {
             return name
-        } else if let name = self.episode?.program?.name where !name.isEmpty {
+        } else if let program = self.episode?.program, name = program.name where !name.isEmpty {
             return name
         } else if let name = self.tip?.name where !name.isEmpty {
             return name
-        } else if let name = self.episode?.name where !name.isEmpty {
+        } else if let episode = self.episode, name = episode.name where !name.isEmpty {
             return name
         }
         
@@ -65,7 +64,7 @@ class EpisodeViewController: UIViewController {
     private var episodeName: String? {
         var episodeName = ""
         
-        if let name = self.episode?.name where !name.isEmpty {
+        if let episode = self.episode, name = episode.name where !name.isEmpty {
             episodeName = name
         } else if let name = self.tip?.name where !name.isEmpty {
             episodeName = name
@@ -388,7 +387,7 @@ class EpisodeViewController: UIViewController {
         }
         
         // check if this episode has already been watched
-        guard episode.watchDuration > 59 && !episode.watched, let watchDuration = episode.watchDuration else {
+        guard let watchDuration = episode.watchDuration where episode.watched == .Partially else {
             self.play(beginAt: 0)
             return
         }
@@ -440,7 +439,6 @@ class EpisodeViewController: UIViewController {
         playerViewController.player = player
         
         // (re)set play data
-        episode.watched = false
         episode.watchDuration = seconds
         
         // seek to start?

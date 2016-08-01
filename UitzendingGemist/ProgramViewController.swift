@@ -73,7 +73,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     private var unwatchedEpisodes: [NPOEpisode]? {
-        return self.episodes?.filter({ !$0.watched})
+        return self.episodes?.filter({ $0.watched != .Fully })
     }
     
     //MARK: Lifecycle

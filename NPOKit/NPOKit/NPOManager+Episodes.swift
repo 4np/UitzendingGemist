@@ -134,7 +134,7 @@ extension NPOManager {
             var episodes = [NPOEpisode]()
             
             for program in programs {
-                if let programEpisodes = program.episodes, oldestUnwatchedEpisode = programEpisodes.filter({ $0.watched == false }).sort({
+                if let programEpisodes = program.episodes, oldestUnwatchedEpisode = programEpisodes.filter({ $0.watched != .Fully }).sort({
                     guard let firstDate = $0.broadcasted, secondDate = $1.broadcasted else {
                         return false
                     }

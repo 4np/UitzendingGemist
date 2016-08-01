@@ -15,15 +15,15 @@ extension NPOProgram {
         var displayName = ""
         
         switch watched {
-        case .Fully:
-            displayName += UitzendingGemistConstants.watchedSymbol
-            break
-        case .Partially:
-            displayName += UitzendingGemistConstants.partiallyWatchedSymbol
-            break
-        case .Unwatched:
-            displayName += UitzendingGemistConstants.unwatchedSymbol
-            break
+            case .Fully:
+                displayName += UitzendingGemistConstants.watchedSymbol
+                break
+            case .Partially:
+                displayName += UitzendingGemistConstants.unwatchedSymbol //partiallyWatchedSymbol
+                break
+            case .Unwatched:
+                displayName += UitzendingGemistConstants.unwatchedSymbol
+                break
         }
         
         // add the program name

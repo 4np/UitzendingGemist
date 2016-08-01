@@ -12,6 +12,12 @@ import AlamofireImage
 import RealmSwift
 import CocoaLumberjack
 
+public enum Watched: Int {
+    case Unwatched
+    case Partially
+    case Fully
+}
+
 public enum NPOError: ErrorType {
     case ModelMappingError(String)//, JSON)
     case TokenError(String)
@@ -81,6 +87,7 @@ public class NPOManager {
         upgradeIfNeeded()
     }
     
+    //swiftlint:disable force_unwrapping
     private func upgradeIfNeeded() {
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
@@ -98,6 +105,21 @@ public class NPOManager {
                     migration.enumerate(RealmProgram.className()) { oldObject, newObject in
                         newObject!["watched"] = Watched.Unwatched.rawValue
                     }
+                
+                    // migrate NPOEpisode object
+                    migration.enumerate(RealmEpisode.className()) { oldObject, newObject in
+                        if let watched = oldObject!["watched"] as? Bool, watchDuration = oldObject!["watchDuration"] as? Int {
+                            if watched {
+                                newObject!["watched"] = Watched.Fully.rawValue
+                            } else if watchDuration > 59 {
+                                newObject!["watched"] = Watched.Partially.rawValue
+                            } else {
+                                newObject!["watched"] = Watched.Unwatched.rawValue
+                            }
+                        } else {
+                            newObject!["watched"] = Watched.Unwatched.rawValue
+                        }
+                    }
                 }
         })
 
@@ -108,6 +130,7 @@ public class NPOManager {
             DDLogError("Realm schema upgrade error (\(error.localizedDescription))")
         }
     }
+    //swiftlint:enable force_unwrapping
     
     //MARK: Get url
     

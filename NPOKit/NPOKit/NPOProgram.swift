@@ -14,22 +14,12 @@ import ObjectMapper
 import RealmSwift
 import CocoaLumberjack
 
-public enum Watched: Int {
-    case Unwatched
-    case Partially
-    case Fully
-}
-
 public class NPOProgram: NPORestrictedMedia {
     // program specific properties
     // e.g. http://apps-api.uitzendinggemist.nl/episodes/AT_2049573.json
     internal var online: NSDate?
     internal var offline: NSDate?
-    public private(set) var episodes: [NPOEpisode]? {
-        didSet {
-            //updateWatched()
-        }
-    }
+    public private(set) var episodes: [NPOEpisode]?
     public private(set) var nextEpisode: NPOEpisode?
     
     public var firstLetter: String? {
@@ -149,18 +139,13 @@ public class NPOProgram: NPORestrictedMedia {
             return self.realmProgram?.favorite ?? false
         }
         set {
-            let localFavorite = newValue
-            
-            dispatch_async(dispatch_get_main_queue()) { [weak self] in
-                do {
-                    let realm = try Realm()
-                    
-                    realm.beginWrite()
-                    self?.realmProgram?.favorite = localFavorite
-                    try realm.commitWrite()
-                } catch let error as NSError {
-                    DDLogError("Could not write program to realm (\(error.localizedDescription))")
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    self.realmProgram?.favorite = newValue
                 }
+            } catch let error as NSError {
+                DDLogError("Could not write program to realm (\(error.localizedDescription))")
             }
         }
     }
@@ -172,64 +157,121 @@ public class NPOProgram: NPORestrictedMedia {
     //MARK: Watched
     
     //swiftlint:disable force_unwrapping
-    public private(set) var watched: Watched {
+    public var watched: Watched {
         get {
-            guard let episodes = self.episodes else {
-                return Watched(rawValue: realmProgram?.watched ?? 0)!
-            }
-            
-            let episodeCount = episodes.count
-            let watchedEpisodeCount = episodes.filter({ $0.watched }).count
-            let partiallyWatchedEpisodeCount = episodes.filter({ $0.watchDuration > 59 }).count
-            
-            let localWatched: Watched
-            if watchedEpisodeCount == episodeCount {
-                localWatched = .Fully
-            } else if partiallyWatchedEpisodeCount > 0 {
-                localWatched = .Partially
-            } else {
-                localWatched = .Unwatched
-            }
-            
-            self.watched = localWatched
-            return localWatched
-        }
-        set {
-            guard newValue.rawValue != realmProgram?.watched else {
-                return
-            }
-            
-            let localWatched = newValue.rawValue
-            
-//            dispatch_async(dispatch_get_main_queue()) { [weak self] in
-                do {
-                    let realm = try Realm()
-                    
-                    realm.beginWrite()
-                    self.realmProgram?.watched = localWatched
-                    try realm.commitWrite()
-                } catch let error as NSError {
-                    DDLogError("Could not write program to realm (\(error.localizedDescription))")
-                }
-//            }
+            let watchedValue = realmProgram?.watched ?? 0
+            return Watched(rawValue: watchedValue)!
         }
     }
     //swiftlint:enable force_unwrapping
     
     internal func updateWatched() {
-        let episodes = self.episodes ?? []
-        let episodeCount = episodes.count
-        let watchedEpisodeCount = episodes.filter({ $0.watched }).count
-        let partiallyWatchedEpisodeCount = episodes.filter({ $0.watchDuration > 59 }).count
-        
-        if partiallyWatchedEpisodeCount > 0 {
-            watched = .Partially
-        } else if watchedEpisodeCount == episodeCount {
-            watched = .Fully
-        } else {
-            watched = .Unwatched
+        getEpisodes() { [weak self] episodes in
+            let episodeCount = episodes.count
+            let watchedEpisodeCount = episodes.filter({ $0.watched == .Fully }).count
+            let partiallyWatchedEpisodeCount = episodes.filter({ $0.watched == .Partially }).count
+            
+            let watched: Watched
+                if watchedEpisodeCount == episodeCount {
+                    watched = .Fully
+                } else if partiallyWatchedEpisodeCount > 0 {
+                    watched = .Partially
+                } else {
+                    watched = .Unwatched
+            }
+            
+            // update realm
+            dispatch_async(dispatch_get_main_queue()) {
+                do {
+                    let realm = try Realm()
+                    try realm.write {
+                        DDLogDebug("updating program... watched: \(watched.rawValue)")
+                        self?.realmProgram?.watched = watched.rawValue
+                    }
+                } catch let error as NSError {
+                    DDLogError("Could not write program to realm (\(error.localizedDescription))")
+                }
+            }
         }
     }
+    
+    private func getEpisodes(withCompletion completed: (episodes: [NPOEpisode]) -> () = { episodes in }) {
+        // check if we have episodes
+        if let episodes = self.episodes where !episodes.isEmpty {
+            completed(episodes: episodes)
+            return
+        }
+        
+        // fetch the episodes for this program
+        NPOManager.sharedInstance.getEpisodes(forProgram: self) { episodes, error in
+            guard let episodes = episodes else {
+                DDLogError("Could not fetch episodes for program (\(error))")
+                return
+            }
+            
+            completed(episodes: episodes)
+        }
+    }
+    
+//    //swiftlint:disable force_unwrapping
+//    public private(set) var watched: Watched {
+//        get {
+//            guard let episodes = self.episodes else {
+//                return Watched(rawValue: realmProgram?.watched ?? 0)!
+//            }
+//            
+//            let episodeCount = episodes.count
+//            let watchedEpisodeCount = episodes.filter({ $0.watched }).count
+//            let partiallyWatchedEpisodeCount = episodes.filter({ $0.watchDuration > 59 }).count
+//            
+//            let localWatched: Watched
+//            if watchedEpisodeCount == episodeCount {
+//                localWatched = .Fully
+//            } else if partiallyWatchedEpisodeCount > 0 {
+//                localWatched = .Partially
+//            } else {
+//                localWatched = .Unwatched
+//            }
+//            
+//            self.watched = localWatched
+//            return localWatched
+//        }
+//        set {
+//            guard newValue.rawValue != realmProgram?.watched else {
+//                return
+//            }
+//            
+//            let localWatched = newValue.rawValue
+//            
+////            dispatch_async(dispatch_get_main_queue()) { [weak self] in
+//                do {
+//                    let realm = try Realm()
+//                    
+//                    realm.beginWrite()
+//                    self.realmProgram?.watched = localWatched
+//                    try realm.commitWrite()
+//                } catch let error as NSError {
+//                    DDLogError("Could not write program to realm (\(error.localizedDescription))")
+//                }
+////            }
+//        }
+//    }
+//    //swiftlint:enable force_unwrapping
+//    
+//    internal func updateWatched() {
+//        let episodes = self.episodes ?? []
+//        let episodeCount = episodes.count
+//        let watchedEpisodeCount = episodes.filter({ $0.watched }).count
+//        let partiallyWatchedEpisodeCount = episodes.filter({ $0.watchDuration > 59 }).count
+//        
+//        if partiallyWatchedEpisodeCount > 0 {
+//            watched = .Partially
+//        } else if watchedEpisodeCount == episodeCount {
+//            watched = .Fully
+//        } else {
+//            watched = .Unwatched
+//        }
+//    }
     
     //MARK: Image fetching
     

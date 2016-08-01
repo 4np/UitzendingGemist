@@ -38,9 +38,10 @@ enum Segues: String {
 }
 
 public class UitzendingGemistConstants {
+    // some unicode characters to use: ⦁◔◕◖◗◉●●⌾◕◔◖●⊚⊛⌾⍟⃘⃠•๏ං௦
     static let watchedSymbol = ""
-    static let unwatchedSymbol = "⚫︎ "
-    static let partiallyWatchedSymbol = "⚫︎ "
+    static let unwatchedSymbol = "● "
+    static let partiallyWatchedSymbol = "๏ "
     static let favoriteSymbol = " ♥︎"
     
     static let unknownText = NSLocalizedString("Onbekend", comment: "Unkown")

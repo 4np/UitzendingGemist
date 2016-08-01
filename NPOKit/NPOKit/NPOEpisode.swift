@@ -69,7 +69,7 @@ public class NPOEpisode: NPORestrictedMedia {
                 episode.broadcasted = self.broadcasted
                 episode.duration = self.duration
                 episode.watchDuration = 0
-                episode.watched = false
+                episode.watched = Watched.Unwatched.rawValue
                 
                 // add episode to realm
                 try realm.write {
@@ -89,25 +89,29 @@ public class NPOEpisode: NPORestrictedMedia {
     
     //MARK: Watched
     
-    public var watched: Bool {
+    //swiftlint:disable force_unwrapping
+    public var watched: Watched {
         get {
-            return self.realmEpisode?.watched ?? false
+            return Watched(rawValue: self.realmEpisode?.watched ?? 0)!
         }
         set {
             do {
                 let realm = try Realm()
                 
                 try realm.write {
-                    self.realmEpisode?.watched = newValue
+                    self.realmEpisode?.watched = newValue.rawValue
                 }
             } catch let error as NSError {
                 DDLogError("Could not write episode to realm (\(error.localizedDescription))")
             }
         }
     }
+    //swiftlint:enable force_unwrapping
     
     //MARK: Watch duration
     
+    private var updateProgramTimer: NSTimer?
+
     public var watchDuration: Int? {
         get {
             return self.realmEpisode?.watchDuration
@@ -118,20 +122,66 @@ public class NPOEpisode: NPORestrictedMedia {
                 let newWatchDuration = newValue ?? 0
                 
                 try realm.write {
-                    self.realmEpisode?.watchDuration = newWatchDuration
-                    
                     // check if user watched up to the last 2 minutes
-                    if newWatchDuration > (self.duration - 120) {
+                    if newWatchDuration > (duration - 120) {
                         // mark as watched
-                        self.realmEpisode?.watched = true
-                    } else if newWatchDuration == 0 {
-                        self.realmEpisode?.watched = false
+                        self.realmEpisode?.watchDuration = 0
+                        self.realmEpisode?.watched = Watched.Fully.rawValue
+                    } else if newWatchDuration < 60 {
+                        self.realmEpisode?.watchDuration = newWatchDuration
+                        self.realmEpisode?.watched = Watched.Unwatched.rawValue
+                    } else {
+                        self.realmEpisode?.watchDuration = newWatchDuration
+                        self.realmEpisode?.watched = Watched.Partially.rawValue
                     }
                 }
             } catch let error as NSError {
                 DDLogError("Could not write episode to realm (\(error.localizedDescription))")
             }
+
+            // update the program as well
+            updateProgramTimer?.invalidate()
+            updateProgramTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(updateProgram), userInfo: nil, repeats: false)
         }
+    }
+
+//    @objc private func delayedUpdateEpisode(timer: NSTimer) {
+//        guard let duration = timer.userInfo?["duration"] as? Int else {
+//            return
+//        }
+//        
+//        DDLogDebug("delayedUpdateEpisode: \(duration)")
+//        
+//        // update realm
+//        dispatch_async(dispatch_get_main_queue()) { [weak self] in
+//            do {
+//                let realm = try Realm()
+//                
+//                try realm.write {
+//                    self?.realmEpisode?.watchDuration = duration
+//                    
+//                    // check if user watched up to the last 2 minutes
+//                    if duration > (duration - 120) {
+//                        // mark as watched
+//                        self?.realmEpisode?.watched = true
+//                    } else if duration < 60 {
+//                        // mark as unwatched
+//                        self?.realmEpisode?.watched = false
+//                    }
+//                    
+//                    DDLogDebug("episode realm written...")
+//                }
+//            } catch let error as NSError {
+//                DDLogError("Could not write episode to realm (\(error.localizedDescription))")
+//            }
+//
+//            // update program
+//            self?.program?.updateWatched()
+//        }
+//    }
+    
+    @objc private func updateProgram() {
+        self.program?.updateWatched()
     }
     
     //MARK: Image fetching

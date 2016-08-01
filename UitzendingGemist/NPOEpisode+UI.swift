@@ -14,12 +14,13 @@ extension NPOEpisode {
     public var watchedIndicator: String {
         get {
             // add (partically) watched indicator
-            if !watched && watchDuration > 59 {
-                return UitzendingGemistConstants.partiallyWatchedSymbol
-            } else if !watched {
-                return UitzendingGemistConstants.unwatchedSymbol
-            } else {
-                return UitzendingGemistConstants.watchedSymbol
+            switch watched {
+                case .Unwatched:
+                    return UitzendingGemistConstants.unwatchedSymbol
+                case .Partially:
+                    return UitzendingGemistConstants.partiallyWatchedSymbol
+                case .Fully:
+                    return UitzendingGemistConstants.watchedSymbol
             }
         }
     }

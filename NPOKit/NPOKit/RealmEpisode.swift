@@ -17,7 +17,7 @@ class RealmEpisode: Object {
     dynamic var broadcasted: NSDate?
     dynamic var duration: Int = 0
     dynamic var watchDuration: Int = 0
-    dynamic var watched: Bool = false
+    dynamic var watched: Int = 0
     
     override static func indexedProperties() -> [String] {
         return ["mid"]
