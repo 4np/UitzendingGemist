@@ -213,66 +213,6 @@ public class NPOProgram: NPORestrictedMedia {
         }
     }
     
-//    //swiftlint:disable force_unwrapping
-//    public private(set) var watched: Watched {
-//        get {
-//            guard let episodes = self.episodes else {
-//                return Watched(rawValue: realmProgram?.watched ?? 0)!
-//            }
-//            
-//            let episodeCount = episodes.count
-//            let watchedEpisodeCount = episodes.filter({ $0.watched }).count
-//            let partiallyWatchedEpisodeCount = episodes.filter({ $0.watchDuration > 59 }).count
-//            
-//            let localWatched: Watched
-//            if watchedEpisodeCount == episodeCount {
-//                localWatched = .Fully
-//            } else if partiallyWatchedEpisodeCount > 0 {
-//                localWatched = .Partially
-//            } else {
-//                localWatched = .Unwatched
-//            }
-//            
-//            self.watched = localWatched
-//            return localWatched
-//        }
-//        set {
-//            guard newValue.rawValue != realmProgram?.watched else {
-//                return
-//            }
-//            
-//            let localWatched = newValue.rawValue
-//            
-////            dispatch_async(dispatch_get_main_queue()) { [weak self] in
-//                do {
-//                    let realm = try Realm()
-//                    
-//                    realm.beginWrite()
-//                    self.realmProgram?.watched = localWatched
-//                    try realm.commitWrite()
-//                } catch let error as NSError {
-//                    DDLogError("Could not write program to realm (\(error.localizedDescription))")
-//                }
-////            }
-//        }
-//    }
-//    //swiftlint:enable force_unwrapping
-//    
-//    internal func updateWatched() {
-//        let episodes = self.episodes ?? []
-//        let episodeCount = episodes.count
-//        let watchedEpisodeCount = episodes.filter({ $0.watched }).count
-//        let partiallyWatchedEpisodeCount = episodes.filter({ $0.watchDuration > 59 }).count
-//        
-//        if partiallyWatchedEpisodeCount > 0 {
-//            watched = .Partially
-//        } else if watchedEpisodeCount == episodeCount {
-//            watched = .Fully
-//        } else {
-//            watched = .Unwatched
-//        }
-//    }
-    
     //MARK: Image fetching
     
     //swiftlint:disable cyclomatic_complexity
