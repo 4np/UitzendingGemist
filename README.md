@@ -92,19 +92,27 @@ You're done! You can disconnect your Apple TV and start watching! :)
 
 ## Episode Screen
 
-![Episode Screen](https://cloud.githubusercontent.com/assets/1049693/17013452/f20c801c-4f1e-11e6-886d-70396c818f81.png)
-
-## Program Screen
-
-![Program Screen](https://cloud.githubusercontent.com/assets/1049693/17013453/f20ebf1c-4f1e-11e6-9a92-12ded3126241.png)
+![Episode Screen](https://cloud.githubusercontent.com/assets/1049693/17333941/b3440e30-58d4-11e6-8338-1e450b8b29db.png)
 
 ## Continue Watching
 
 ![Continue Watching](https://cloud.githubusercontent.com/assets/1049693/17069835/116a35fe-5059-11e6-8e21-bf75d2209732.png)
 
+## Program Screen
+
+![Program Screen](https://cloud.githubusercontent.com/assets/1049693/17334014/f9e93978-58d4-11e6-8a81-aed35d100ff5.png)
+
+## By Day Screen
+
+![By Day](https://cloud.githubusercontent.com/assets/1049693/17333843/448ba638-58d4-11e6-9934-6c2faa973cbb.png)
+
+## By Program Screen
+
+![By Program](https://cloud.githubusercontent.com/assets/1049693/17334126/57f71c38-58d5-11e6-9dfe-d4f1a4ddbb45.png)
+
 ## Live TV Screen
 
-![Live TV](https://cloud.githubusercontent.com/assets/1049693/17069836/116dc34a-5059-11e6-8d2f-bd4cf63eaecc.png)
+![Live TV](https://cloud.githubusercontent.com/assets/1049693/17334055/1d828452-58d5-11e6-8fe9-090618801591.png)
 
 ## Update Screen
 
