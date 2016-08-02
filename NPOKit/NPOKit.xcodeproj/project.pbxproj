@@ -41,6 +41,7 @@
 		F35C03E11D3D143C0025BA4B /* NPORequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35C03E01D3D143C0025BA4B /* NPORequest.swift */; };
 		F36FFCBF1D417C3900FAB6CB /* NPOManager+Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36FFCBE1D417C3900FAB6CB /* NPOManager+Guide.swift */; };
 		F36FFCC11D417D6300FAB6CB /* NPOBroadcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36FFCC01D417D6300FAB6CB /* NPOBroadcast.swift */; };
+		F3C7E85E1D4FCB0F00AD3809 /* NPOManager+Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7E85D1D4FCB0F00AD3809 /* NPOManager+Days.swift */; };
 		F3C9F3FE1D366E1A007E3B8D /* NPOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C9F3FD1D366E1A007E3B8D /* NPOManager.swift */; };
 		F3FD007D1D401B1100034A76 /* NPOManager+GitHubReleases.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD007C1D401B1100034A76 /* NPOManager+GitHubReleases.swift */; };
 		F3FD007F1D401B4100034A76 /* GitHubRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD007E1D401B4100034A76 /* GitHubRelease.swift */; };
@@ -96,6 +97,7 @@
 		F35C03E01D3D143C0025BA4B /* NPORequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPORequest.swift; sourceTree = "<group>"; };
 		F36FFCBE1D417C3900FAB6CB /* NPOManager+Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Guide.swift"; sourceTree = "<group>"; };
 		F36FFCC01D417D6300FAB6CB /* NPOBroadcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOBroadcast.swift; sourceTree = "<group>"; };
+		F3C7E85D1D4FCB0F00AD3809 /* NPOManager+Days.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Days.swift"; sourceTree = "<group>"; };
 		F3C9F3FD1D366E1A007E3B8D /* NPOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOManager.swift; sourceTree = "<group>"; };
 		F3FD007C1D401B1100034A76 /* NPOManager+GitHubReleases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+GitHubReleases.swift"; sourceTree = "<group>"; };
 		F3FD007E1D401B4100034A76 /* GitHubRelease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubRelease.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				F317B97A1D37BEEA00927ACD /* NPOManager+Token.swift */,
 				F317B9AB1D393DB900927ACD /* NPOManager+Stream.swift */,
+				F3C7E85D1D4FCB0F00AD3809 /* NPOManager+Days.swift */,
 				F317B9831D37E54E00927ACD /* NPOManager+Generics.swift */,
 				F317B9911D38E0FF00927ACD /* NPOManager+Image.swift */,
 				F317B9871D37E96A00927ACD /* NPOManager+Tips.swift */,
@@ -457,6 +460,7 @@
 				F317B9A31D38F85E00927ACD /* NPOManager+Episodes.swift in Sources */,
 				F317B98C1D37EC8B00927ACD /* Mappable+CustomDebugStringConvertible.swift in Sources */,
 				F317B9861D37E8F400927ACD /* NPOTip.swift in Sources */,
+				F3C7E85E1D4FCB0F00AD3809 /* NPOManager+Days.swift in Sources */,
 				F317B99A1D38EB3C00927ACD /* NPOFragment.swift in Sources */,
 				F317B9921D38E0FF00927ACD /* NPOManager+Image.swift in Sources */,
 				F32BAA9B1D3C8CC60026CAFB /* RealmProgram.swift in Sources */,

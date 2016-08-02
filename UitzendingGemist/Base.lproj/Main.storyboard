@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="top" id="HAL-JC-qT1"/>
                         <viewControllerLayoutGuide type="bottom" id="Kxy-ky-PmB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cog-xu-MS9">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="cog-xu-MS9">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -109,7 +109,7 @@
                         <viewControllerLayoutGuide type="top" id="rCl-ja-lDA"/>
                         <viewControllerLayoutGuide type="bottom" id="ZbT-Wy-azo"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZeN-b7-8z8">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="ZeN-b7-8z8">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -208,7 +208,7 @@
         <!--Episode View Controller-->
         <scene sceneID="BdX-1N-9PM">
             <objects>
-                <viewController id="nup-1z-UxQ" customClass="EpisodeViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EpisodeViewController" id="nup-1z-UxQ" customClass="EpisodeViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="G4i-cd-1XV"/>
                         <viewControllerLayoutGuide type="bottom" id="GHm-or-RDG"/>
@@ -794,7 +794,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rcs-VN-UCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2870" y="1185"/>
+            <point key="canvasLocation" x="7430" y="-1472"/>
         </scene>
         <!--Program Detailed Collection View Controller-->
         <scene sceneID="ZB4-D2-on1">
@@ -829,6 +829,9 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="4Dg-8O-RMt" secondAttribute="height" multiplier="1920:1080" id="EeI-xV-bib"/>
                                                     </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ao-cf-hOy">
+                                                    <rect key="frame" x="10" y="10" width="240" height="128"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zo-uM-hhB">
                                                     <rect key="frame" x="0.0" y="265" width="375" height="35"/>
@@ -873,7 +876,171 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P7L-V0-Ttv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4849.5" y="3698"/>
+            <point key="canvasLocation" x="4889.5" y="2114"/>
+        </scene>
+        <!--By Day Detailed Collection View Controller-->
+        <scene sceneID="QPa-ZK-6tv">
+            <objects>
+                <viewController id="vax-k9-Taf" customClass="ByDayDetailedCollectionViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hI0-cl-mcU"/>
+                        <viewControllerLayoutGuide type="bottom" id="J41-Mz-uOt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gTq-vr-dHR">
+                        <rect key="frame" x="0.0" y="0.0" width="1285" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VZv-cm-KtX">
+                                <rect key="frame" x="0.0" y="0.0" width="1285" height="1080"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="100" minimumInteritemSpacing="70" id="X2a-J4-dM3">
+                                    <size key="itemSize" width="375" height="300"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="90" minY="100" maxX="90" maxY="100"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="byDayDetailCollectionViewCell" reuseIdentifier="byDayDetailCollectionViewCell" id="u0Q-SF-Q9K" customClass="ByDayDetailedCollectionViewCell" customModule="UitzendingGemist" customModuleProvider="target">
+                                        <rect key="frame" x="90" y="100" width="375" height="300"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0yM-pA-Nxy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="0yM-pA-Nxy" secondAttribute="height" multiplier="1920:1080" id="kg4-ei-1aM"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIJ-Oa-uKg">
+                                                    <rect key="frame" x="0.0" y="235" width="375" height="35"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clF-r1-ZX5">
+                                                    <rect key="frame" x="0.0" y="278" width="375" height="28"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="fIJ-Oa-uKg" secondAttribute="trailing" constant="-8" id="1T2-oz-QiK"/>
+                                            <constraint firstItem="clF-r1-ZX5" firstAttribute="top" secondItem="fIJ-Oa-uKg" secondAttribute="bottom" constant="8" id="PVh-Js-CAC"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="clF-r1-ZX5" secondAttribute="trailing" constant="-8" id="Y4A-fV-ro6"/>
+                                            <constraint firstItem="clF-r1-ZX5" firstAttribute="leading" secondItem="u0Q-SF-Q9K" secondAttribute="leadingMargin" constant="-8" id="eHK-jk-aqA"/>
+                                            <constraint firstItem="fIJ-Oa-uKg" firstAttribute="leading" secondItem="u0Q-SF-Q9K" secondAttribute="leadingMargin" constant="-8" id="gvk-dC-6PV"/>
+                                            <constraint firstItem="0yM-pA-Nxy" firstAttribute="leading" secondItem="u0Q-SF-Q9K" secondAttribute="leadingMargin" constant="-8" id="hBk-Tn-7Uj"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="0yM-pA-Nxy" secondAttribute="trailing" constant="-8" id="xTe-Mi-jdv"/>
+                                            <constraint firstItem="fIJ-Oa-uKg" firstAttribute="top" secondItem="0yM-pA-Nxy" secondAttribute="bottom" constant="24" id="xVr-VQ-7X8"/>
+                                            <constraint firstItem="0yM-pA-Nxy" firstAttribute="top" secondItem="u0Q-SF-Q9K" secondAttribute="topMargin" constant="-8" id="yki-ik-Pyh"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="episodeImageView" destination="0yM-pA-Nxy" id="80u-a7-sFF"/>
+                                            <outlet property="episodeNameAndTimeLabel" destination="clF-r1-ZX5" id="IhC-NV-tgJ"/>
+                                            <outlet property="programNameLabel" destination="fIJ-Oa-uKg" id="SOe-q8-vqN"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="vax-k9-Taf" id="AYT-vA-wt7"/>
+                                    <outlet property="delegate" destination="vax-k9-Taf" id="Mb9-Eo-TQl"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="VZv-cm-KtX" firstAttribute="leading" secondItem="gTq-vr-dHR" secondAttribute="leadingMargin" constant="-20" id="VCN-PD-S3F"/>
+                            <constraint firstItem="VZv-cm-KtX" firstAttribute="top" secondItem="hI0-cl-mcU" secondAttribute="bottom" id="bDI-eo-nTf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VZv-cm-KtX" secondAttribute="trailing" constant="-20" id="erO-jT-TtE"/>
+                            <constraint firstItem="J41-Mz-uOt" firstAttribute="top" secondItem="VZv-cm-KtX" secondAttribute="bottom" id="gcD-wg-gen"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="episodeCollectionView" destination="VZv-cm-KtX" id="yoB-CP-tJY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aOy-lS-tyy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4902.5" y="4551"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="doW-Rk-Z0y">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="fKA-gs-rHZ" customClass="ByDayRootTableViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="40" sectionFooterHeight="40" id="wOE-3z-lDa">
+                        <rect key="frame" x="0.0" y="0.0" width="634" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="byDayRootTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="byDayRootTableViewCell" id="VBA-FM-GA9" customClass="ByDayRootTableViewCell" customModule="UitzendingGemist" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="54" width="634" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VBA-FM-GA9" id="Yff-wK-hjp">
+                                    <rect key="frame" x="0.0" y="0.0" width="618" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="005-z7-chg">
+                                            <rect key="frame" x="8" y="15" width="602" height="35"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="005-z7-chg" secondAttribute="bottom" constant="8" id="Qyt-lB-vae"/>
+                                        <constraint firstItem="005-z7-chg" firstAttribute="top" secondItem="Yff-wK-hjp" secondAttribute="topMargin" constant="7" id="Xze-fQ-I9O"/>
+                                        <constraint firstItem="005-z7-chg" firstAttribute="trailing" secondItem="Yff-wK-hjp" secondAttribute="trailingMargin" id="ghz-5p-PRq"/>
+                                        <constraint firstItem="005-z7-chg" firstAttribute="leading" secondItem="Yff-wK-hjp" secondAttribute="leadingMargin" id="hLL-p1-8WE"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="005-z7-chg" id="8Ix-VF-1qD"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fKA-gs-rHZ" id="vJ6-Ox-VMJ"/>
+                            <outlet property="delegate" destination="fKA-gs-rHZ" id="Ug8-fi-QVY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="0pu-Yg-fdZ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xgl-6F-wIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5433" y="3415"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Xbg-kt-GpO">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="pBj-Y2-QWj" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UJj-gb-Bar">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="fKA-gs-rHZ" kind="relationship" relationship="rootViewController" id="2Rv-uk-7kq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gKk-fV-E2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4577" y="3415"/>
+        </scene>
+        <!--Per Dag-->
+        <scene sceneID="xRB-Ne-ryR">
+            <objects>
+                <splitViewController id="2Dm-TO-xWb" customClass="ByDaySplitViewController" customModule="UitzendingGemist" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <tabBarItem key="tabBarItem" title="Per Dag" id="4rx-yb-LaB"/>
+                    <connections>
+                        <segue destination="pBj-Y2-QWj" kind="relationship" relationship="masterViewController" id="O5d-Kk-WK6"/>
+                        <segue destination="vax-k9-Taf" kind="relationship" relationship="detailViewController" id="sgw-nr-SOn"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e1h-Ik-xku" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2870" y="3983"/>
         </scene>
         <!-- Programma's-->
         <scene sceneID="yzz-lw-HAF">
@@ -918,13 +1085,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qaD-wa-RQN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5380" y="2562"/>
+            <point key="canvasLocation" x="5420" y="978"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I7N-KK-qeK">
             <objects>
                 <navigationController navigationBarHidden="YES" id="RrE-fT-1Vq" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Hc-c0-ini">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0Hc-c0-ini">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -941,7 +1108,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rhW-h2-Z3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4524" y="2562"/>
+            <point key="canvasLocation" x="4564" y="978"/>
         </scene>
         <!--Programma's-->
         <scene sceneID="mnr-qT-e4e">
@@ -956,7 +1123,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0h3-bh-wim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3029" y="3124"/>
+            <point key="canvasLocation" x="2870" y="1498"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="QEk-9P-JSh">
@@ -969,13 +1136,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="Sb9-j2-V3Q" kind="relationship" relationship="viewControllers" id="Dxb-7v-CQU"/>
-                        <segue destination="rMY-zG-loW" kind="relationship" relationship="viewControllers" id="V0U-d0-7ts"/>
-                        <segue destination="GCj-uU-Sjj" kind="relationship" relationship="viewControllers" id="7mw-UA-inN"/>
+                        <segue destination="2Dm-TO-xWb" kind="relationship" relationship="viewControllers" id="jAh-wG-SIs"/>
+                        <segue destination="rMY-zG-loW" kind="relationship" relationship="viewControllers" id="Lqs-c0-Qxh"/>
+                        <segue destination="GCj-uU-Sjj" kind="relationship" relationship="viewControllers" id="T2H-P7-AbN"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uCC-mY-OcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="634" y="541"/>
+            <point key="canvasLocation" x="563" y="598"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

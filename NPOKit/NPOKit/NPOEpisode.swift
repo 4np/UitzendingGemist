@@ -144,41 +144,6 @@ public class NPOEpisode: NPORestrictedMedia {
             updateProgramTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(updateProgram), userInfo: nil, repeats: false)
         }
     }
-
-//    @objc private func delayedUpdateEpisode(timer: NSTimer) {
-//        guard let duration = timer.userInfo?["duration"] as? Int else {
-//            return
-//        }
-//        
-//        DDLogDebug("delayedUpdateEpisode: \(duration)")
-//        
-//        // update realm
-//        dispatch_async(dispatch_get_main_queue()) { [weak self] in
-//            do {
-//                let realm = try Realm()
-//                
-//                try realm.write {
-//                    self?.realmEpisode?.watchDuration = duration
-//                    
-//                    // check if user watched up to the last 2 minutes
-//                    if duration > (duration - 120) {
-//                        // mark as watched
-//                        self?.realmEpisode?.watched = true
-//                    } else if duration < 60 {
-//                        // mark as unwatched
-//                        self?.realmEpisode?.watched = false
-//                    }
-//                    
-//                    DDLogDebug("episode realm written...")
-//                }
-//            } catch let error as NSError {
-//                DDLogError("Could not write episode to realm (\(error.localizedDescription))")
-//            }
-//
-//            // update program
-//            self?.program?.updateWatched()
-//        }
-//    }
     
     @objc private func updateProgram() {
         self.program?.updateWatched()

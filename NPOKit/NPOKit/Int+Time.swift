@@ -41,9 +41,9 @@ extension Int {
             components.append(minutes)
         }
         
-        if let seconds = self.getTimeDisplayValue(forValue: time.seconds, withFormat: NPOConstants.durationInSecondsText) {
-            components.append(seconds)
-        }
+//        if let seconds = self.getTimeDisplayValue(forValue: time.seconds, withFormat: NPOConstants.durationInSecondsText) {
+//            components.append(seconds)
+//        }
         
         return components.joinWithSeparator(", ")
     }

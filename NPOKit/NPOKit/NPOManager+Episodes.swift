@@ -75,7 +75,7 @@ extension NPOManager {
     //MARK: By Date
 
     // http://apps-api.uitzendinggemist.nl/broadcasts/2016-07-15.json
-    public func getEpisodes(forDate date: NSDate, withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) -> Request? {
+    public func getEpisodes(forDate date: NSDate, filterReruns filter: Bool, withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) -> Request? {
         // format date
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -83,7 +83,43 @@ extension NPOManager {
         
         // fetch episodes
         let path = "broadcasts/\(formattedDate).json"
-        return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withKeyPath: "episode", withCompletion: completed)
+        return self.fetchModels(ofType: NPOBroadcast.self, fromPath: path) { broadcasts, error in
+            guard let broadcasts = broadcasts else {
+                completed(episodes: nil, error: error)
+                return
+            }
+        
+            var mids = [String]()
+            var episodes = [NPOEpisode]()
+            
+            // sort broadcasts in reverse order (e.g. old -> new)
+            let sortedBroadcasts = broadcasts.sort {
+                guard let firstDate = $0.starts, secondDate = $1.starts else {
+                    return false
+                }
+                
+                return firstDate.lies(before: secondDate)
+            }
+            
+            for broadcast in sortedBroadcasts {
+                guard let episode = broadcast.episode, mid = episode.mid, startsAt = broadcast.starts else {
+                    continue
+                }
+                
+                if !filter || !mids.contains(mid) {
+                    mids.append(mid)
+                    
+                    // As the broadcast date of an episode might be different of the
+                    // broadcast date of a 'broadcast' (even for broadcasts that are
+                    // not marked as being a rerun) here we update the broadcast date
+                    // for the episode to match that of the actual broadcast.
+                    episode.broadcasted = startsAt
+                    episodes.append(episode)
+                }
+            }
+            
+            completed(episodes: episodes.reverse(), error: error)
+        }
     }
     
     //MARK: By Program

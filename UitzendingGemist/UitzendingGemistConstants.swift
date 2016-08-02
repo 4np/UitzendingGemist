@@ -15,10 +15,12 @@ enum CollectionViewCells: String {
     case Episode = "episodeCollectionViewCell"
     case Live = "liveCollectionViewCell"
     case ProgramDetail = "programDetailedCollectionViewCell"
+    case DayDetail = "byDayDetailCollectionViewCell"
 }
 
 enum TableViewCells: String {
     case ProgramGroup = "programRootTableViewCell"
+    case Day = "byDayRootTableViewCell"
 }
 
 enum CollectionViewHeaders: String {
@@ -27,6 +29,7 @@ enum CollectionViewHeaders: String {
 
 enum ViewControllers: String {
     case ProgramViewController = "ProgramViewController"
+    case EpisodeViewController = "EpisodeViewController"
 }
 
 enum Segues: String {
@@ -43,6 +46,8 @@ public class UitzendingGemistConstants {
     static let unwatchedSymbol = "● "
     static let partiallyWatchedSymbol = "๏ "
     static let favoriteSymbol = " ♥︎"
+    
+    static let separator = " · "
     
     static let unknownText = NSLocalizedString("Onbekend", comment: "Unkown")
     static let unknownEpisodeName = NSLocalizedString("Naamloze aflevering", comment: "Unkown episode name")

@@ -11,9 +11,9 @@ import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
 import RealmSwift
+import CocoaLumberjack
 
 extension NPOManager {
-    
     // MARK: Fetch Generic Models
     
     //internal func fetchModels<T: Object where T: Mappable, T: NPOResource>
@@ -27,6 +27,7 @@ extension NPOManager {
     }
     
     internal func fetchModels<T: Mappable>(ofType type: T.Type, fromURL url: String, withKeyPath keyPath: String?, withCompletion completed: (elements: [T]?, error: NPOError?) -> () = { elements, error in }) -> Request? {
+        //DDLogDebug("fetch models of type \(type): \(url)")
         return Alamofire.request(.GET, url, headers: self.getHeaders())
             .responseArray(keyPath: keyPath) { (response: Response<[T], NSError>) in
                 switch response.result {
@@ -56,6 +57,7 @@ extension NPOManager {
     }
     
     internal func fetchModel<T: Mappable>(ofType type: T.Type, fromURL url: String, withKeyPath keyPath: String?, withCompletion completed: (element: T?, error: NPOError?) -> () = { element, error in }) -> Request? {
+        //DDLogDebug("fetch model of type \(type): \(url)")
         return Alamofire.request(.GET, url, headers: self.getHeaders())
             .responseObject(keyPath: keyPath) { (response: Response<T, NSError>) in
                 switch response.result {

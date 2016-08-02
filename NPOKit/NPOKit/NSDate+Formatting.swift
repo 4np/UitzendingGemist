@@ -64,6 +64,71 @@ extension NSDate {
         return yesterday
     }
     
+    public var isEarlierThanSixAM: Bool {
+        // start of this date (e.g. 00:00)
+        let startOfDate = NSCalendar.currentCalendar().startOfDayForDate(self)
+        
+        // add six hours to get to 06:00 am in the morning
+        let components = NSDateComponents()
+        components.hour = 6
+        let sixAM = NSCalendar.currentCalendar().dateByAddingComponents(components, toDate: startOfDate, options: NSCalendarOptions())
+        
+        // check if the current date is earlier than 06:00 am in the morning...
+        guard let earlyInTheMorning = sixAM where self.compare(earlyInTheMorning) == .OrderedAscending else {
+            // no, leave the date as is
+            return false
+        }
+        
+        return true
+    }
+    
+    public func date(byAddingNumberOfDays days: Int) -> NSDate? {
+        let components = NSDateComponents()
+        components.day = days
+        return NSCalendar.currentCalendar().dateByAddingComponents(components, toDate: self, options: NSCalendarOptions())
+    }
+    
+    //swiftlint:disable force_unwrapping
+    public func startAndEndOfDate() -> (from: NSDate, to: NSDate) {
+        var from: NSDate?
+        var to: NSDate?
+        
+        if self.isEarlierThanSixAM {
+            from = self.date(byAddingNumberOfDays: -1)?.sixAM
+            to = self.fiveFiftyNineAM
+        } else {
+            from = self.sixAM
+            to = self.date(byAddingNumberOfDays: 1)?.fiveFiftyNineAM
+        }
+        
+        return (from: from!, to: to!)
+    }
+    //swiftlint:enable force_unwrapping
+    
+    // return 05:59:59 for this date
+    public var fiveFiftyNineAM: NSDate? {
+        // start of this date (e.g. 00:00)
+        let startOfDate = NSCalendar.currentCalendar().startOfDayForDate(self)
+        
+        // add six hours to get to 06:00 am in the morning
+        let components = NSDateComponents()
+        components.hour = 5
+        components.minute = 59
+        components.second = 59
+        return NSCalendar.currentCalendar().dateByAddingComponents(components, toDate: startOfDate, options: NSCalendarOptions())
+    }
+    
+    // return 06:00 for this date
+    public var sixAM: NSDate? {
+        // start of this date (e.g. 00:00)
+        let startOfDate = NSCalendar.currentCalendar().startOfDayForDate(self)
+        
+        // add six hours to get to 06:00 am in the morning
+        let components = NSDateComponents()
+        components.hour = 6
+        return NSCalendar.currentCalendar().dateByAddingComponents(components, toDate: startOfDate, options: NSCalendarOptions())
+    }
+    
     public var formattedNPODate: String {
         // format the NPO date
         let dateFormatter = NSDateFormatter()

@@ -27,8 +27,8 @@ class ProgramDetailedCollectionViewCell: UICollectionViewCell {
     //MARK: Configuration
     
     func configure(withProgram program: NPOProgram) {
-        self.programNameLabel.text = program.getDisplayName()
-        self.programNameLabel.textColor = program.getDisplayColor()
+        programNameLabel.text = program.getDisplayName()
+        programNameLabel.textColor = program.getDisplayColor()
         
         // get image
         imageRequest = program.getImage(ofSize: programImageView.frame.size) { [weak self] image, error, request in
@@ -43,6 +43,6 @@ class ProgramDetailedCollectionViewCell: UICollectionViewCell {
     //MARK: Focus engine
     
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        self.programImageView.adjustsImageWhenAncestorFocused = self.focused
+        programImageView.adjustsImageWhenAncestorFocused = self.focused
     }
 }

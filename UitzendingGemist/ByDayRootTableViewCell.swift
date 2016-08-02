@@ -1,8 +1,8 @@
 //
-//  ProgramRootTableViewCell.swift
+//  ByDayRootTableViewCell.swift
 //  UitzendingGemist
 //
-//  Created by Jeroen Wesbeek on 26/07/16.
+//  Created by Jeroen Wesbeek on 01/08/16.
 //  Copyright © 2016 Jeroen Wesbeek. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import UIKit
 import NPOKit
 import CocoaLumberjack
 
-class ProgramRootTableViewCell: UITableViewCell {
+class ByDayRootTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
     //MARK: Lifecycle
@@ -30,7 +30,7 @@ class ProgramRootTableViewCell: UITableViewCell {
     
     //MARK: Configuration
     
-    internal func configure(withName name: String, andCount count: Int) {
+    internal func configure(withName name: String) {
         self.nameLabel.text = name.capitalizedString
     }
 }
