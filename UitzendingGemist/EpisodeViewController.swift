@@ -29,6 +29,8 @@ class EpisodeViewController: UIViewController {
     @IBOutlet weak private var playLabel: UILabel!
     @IBOutlet weak private var toProgramButton: UIButton!
     @IBOutlet weak private var toProgramLabel: UILabel!
+    @IBOutlet weak private var markAsWatchedButton: UIButton!
+    @IBOutlet weak private var markAsWatchedLabel: UILabel!
     @IBOutlet weak private var favoriteButton: UIButton!
     @IBOutlet weak private var favoriteLabel: UILabel!
     @IBOutlet weak private var stillCollectionView: UICollectionView!
@@ -40,7 +42,7 @@ class EpisodeViewController: UIViewController {
     private var needLayout = false {
         didSet {
             if needLayout {
-                self.layout()
+                layout()
             }
         }
     }
@@ -50,9 +52,9 @@ class EpisodeViewController: UIViewController {
     private var programName: String? {
         if let program = self.program, name = program.name where !name.isEmpty {
             return name
-        } else if let program = self.episode?.program, name = program.name where !name.isEmpty {
+        } else if let program = episode?.program, name = program.name where !name.isEmpty {
             return name
-        } else if let name = self.tip?.name where !name.isEmpty {
+        } else if let name = tip?.name where !name.isEmpty {
             return name
         } else if let episode = self.episode, name = episode.name where !name.isEmpty {
             return name
@@ -66,7 +68,7 @@ class EpisodeViewController: UIViewController {
         
         if let episode = self.episode, name = episode.name where !name.isEmpty {
             episodeName = name
-        } else if let name = self.tip?.name where !name.isEmpty {
+        } else if let name = tip?.name where !name.isEmpty {
             episodeName = name
         } else {
             episodeName = UitzendingGemistConstants.unknownEpisodeName
@@ -102,9 +104,9 @@ class EpisodeViewController: UIViewController {
     }
     
     private var broadcastDisplayValue: String? {
-        if let value = self.episode?.broadcastedDisplayValue {
+        if let value = episode?.broadcastedDisplayValue {
             return value
-        } else if let value = self.tip?.publishedDisplayValue {
+        } else if let value = tip?.publishedDisplayValue {
             return value
         }
         
@@ -112,9 +114,9 @@ class EpisodeViewController: UIViewController {
     }
     
     private var episodeDescription: String? {
-        if let description = self.tip?.description {
+        if let description = tip?.description {
             return description
-        } else if let description = self.episode?.description {
+        } else if let description = episode?.description {
             return description
         }
         
@@ -122,7 +124,7 @@ class EpisodeViewController: UIViewController {
     }
     
     private var genres: String? {
-        guard let genres = self.episode?.genres where genres.count > 0 else {
+        guard let genres = episode?.genres where genres.count > 0 else {
             return nil
         }
         
@@ -130,7 +132,7 @@ class EpisodeViewController: UIViewController {
     }
     
     private var broadcasters: String? {
-        guard let broadcasters = self.episode?.broadcasters where broadcasters.count > 0 else {
+        guard let broadcasters = episode?.broadcasters where broadcasters.count > 0 else {
             return nil
         }
 
@@ -149,59 +151,63 @@ class EpisodeViewController: UIViewController {
         // add blur effect to background image
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         visualEffectView.frame = backgroundImageView.bounds
-        self.backgroundImageView.addSubview(visualEffectView)
+        backgroundImageView.addSubview(visualEffectView)
         
         // clear out values
-        self.backgroundImageView.image = nil
+        backgroundImageView.image = nil
         
-        self.episodeImageView.image = nil
+        episodeImageView.image = nil
         
-        self.programNameLabel.text = nil
-        self.episodeNameLabel.text = nil
+        programNameLabel.text = nil
+        episodeNameLabel.text = nil
         
-        self.dateLabel.text = nil
-        self.durationLabel.text = nil
-        self.descriptionLabel.text = nil
+        dateLabel.text = nil
+        durationLabel.text = nil
+        descriptionLabel.text = nil
 
-        self.genreTitleLabel.text = nil
-        self.genreLabel.text = nil
-        self.broadcasterTitleLabel.text = nil
-        self.broadcasterLabel.text = nil
+        genreTitleLabel.text = nil
+        genreLabel.text = nil
+        broadcasterTitleLabel.text = nil
+        broadcasterLabel.text = nil
         
-        self.playButton.enabled = true
-        self.playLabel.enabled = true
-        self.playLabel.text = nil
+        playButton.enabled = true
+        playLabel.enabled = true
+        playLabel.text = nil
         
-        self.toProgramButton.enabled = true
-        self.toProgramLabel.enabled = true
-        self.toProgramLabel.text = nil
+        toProgramButton.enabled = true
+        toProgramLabel.enabled = true
+        toProgramLabel.text = nil
         
-        self.favoriteButton.enabled = false
-        self.favoriteLabel.enabled = false
-        self.favoriteLabel.text = nil
+        markAsWatchedButton.enabled = true
+        markAsWatchedLabel.enabled = true
+        markAsWatchedLabel.text = nil
+        
+        favoriteButton.enabled = false
+        favoriteLabel.enabled = false
+        favoriteLabel.text = nil
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         // layout view
-        self.layout()
+        layout()
     }
     
     //MARK: Configuration
     
     func configure(withTip tip: NPOTip) {
         self.tip = tip
-        self.configure(withEpisode: tip.episode)
+        configure(withEpisode: tip.episode)
     }
     
     func configure(withEpisode episode: NPOEpisode?) {
         self.episode = episode
-        self.getDetails(forEpisode: episode)
+        getDetails(forEpisode: episode)
     }
     
     func configureAndPlay(withEpisode episode: NPOEpisode?) {
-        self.getDetails(forEpisode: episode) { [weak self] in
+        getDetails(forEpisode: episode) { [weak self] in
             self?.play()
         }
     }
@@ -250,61 +256,79 @@ class EpisodeViewController: UIViewController {
     //MARK: Update UI
     
     private func layout() {
-        guard self.needLayout else {
+        guard needLayout else {
             return
         }
         
         // mark that we do not need layout anymore
-        self.needLayout = false
+        needLayout = false
         
         // layout images
-        self.layoutImages()
+        layoutImages()
         
         // layout labels
-        self.programNameLabel.text = self.programName
-        self.episodeNameLabel.text = self.episodeName
+        programNameLabel.text = programName
+        episodeNameLabel.text = episodeName
         
-        self.dateLabel.text = self.broadcastDisplayValue?.capitalizedString
-        self.durationLabel.text = self.episode?.duration.timeDisplayValue
-        self.descriptionLabel.text = self.episodeDescription?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        dateLabel.text = broadcastDisplayValue?.capitalizedString
+        durationLabel.text = episode?.duration.timeDisplayValue
+        descriptionLabel.text = episodeDescription?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
-        self.genreTitleLabel.text = UitzendingGemistConstants.genreText.uppercaseString
-        self.genreLabel.text = self.genres ?? UitzendingGemistConstants.unknownText
-        self.broadcasterTitleLabel.text = UitzendingGemistConstants.broadcasterText.uppercaseString
-        self.broadcasterLabel.text = self.broadcasters ?? UitzendingGemistConstants.unknownText
+        genreTitleLabel.text = UitzendingGemistConstants.genreText.uppercaseString
+        genreLabel.text = genres ?? UitzendingGemistConstants.unknownText
+        broadcasterTitleLabel.text = UitzendingGemistConstants.broadcasterText.uppercaseString
+        broadcasterLabel.text = broadcasters ?? UitzendingGemistConstants.unknownText
         
-        self.playButton.enabled = true
-        self.playLabel.enabled = true
-        self.playLabel.text = UitzendingGemistConstants.playText
+        playButton.enabled = true
+        playLabel.enabled = true
+        playLabel.text = UitzendingGemistConstants.playText
         
-        self.toProgramButton.enabled = (self.program != nil)
-        self.toProgramLabel.enabled = (self.program != nil)
-        self.toProgramLabel.text = UitzendingGemistConstants.toProgramText
+        toProgramButton.enabled = (program != nil)
+        toProgramLabel.enabled = (program != nil)
+        toProgramLabel.text = UitzendingGemistConstants.toProgramText
         
-        self.favoriteButton.enabled = (self.program != nil)
-        self.favoriteLabel.enabled = (self.program != nil)
-        self.favoriteLabel.text = UitzendingGemistConstants.favoriteText
-        self.updateFavoriteButtonTitleColor()
+        markAsWatchedButton.enabled = true
+        markAsWatchedLabel.enabled = true
+        updateWatchedButtonAndLabel()
         
-        self.stillCollectionView.reloadData()
+        favoriteButton.enabled = (program != nil)
+        favoriteLabel.enabled = (program != nil)
+        favoriteLabel.text = UitzendingGemistConstants.favoriteText
+        updateFavoriteButtonTitleColor()
+        
+        stillCollectionView.reloadData()
     }
     
     private func updateFavoriteButtonTitleColor() {
-        let color = self.program?.getUnfocusedColor() ?? UIColor.whiteColor()
-        let focusColor = self.program?.getFocusedColor() ?? UIColor.blackColor()
-        self.favoriteButton.setTitleColor(color, forState: .Normal)
-        self.favoriteButton.setTitleColor(focusColor, forState: .Focused)
+        let color = program?.getUnfocusedColor() ?? UIColor.whiteColor()
+        let focusColor = program?.getFocusedColor() ?? UIColor.blackColor()
+        favoriteButton.setTitleColor(color, forState: .Normal)
+        favoriteButton.setTitleColor(focusColor, forState: .Focused)
+    }
+    
+    private func updateWatchedButtonAndLabel() {
+        guard let episode = self.episode else {
+            return
+        }
+        
+        if episode.watched == .Unwatched || episode.watched == .Partially {
+            markAsWatchedLabel.text = UitzendingGemistConstants.markAsWatchedText
+        } else {
+            markAsWatchedLabel.text = UitzendingGemistConstants.markAsUnwatchedText
+        }
+        
+        episodeNameLabel.text = episodeName
     }
     
     //MARK: Images
     
     private func layoutImages() {
         if let tip = self.tip {
-            self.getImage(forTip: tip, andImageView: self.backgroundImageView)
-            self.getImage(forTip: tip, andImageView: self.episodeImageView)
+            getImage(forTip: tip, andImageView: backgroundImageView)
+            getImage(forTip: tip, andImageView: episodeImageView)
         } else if let episode = self.episode {
-            self.getImage(forEpisode: episode, andImageView: self.backgroundImageView)
-            self.getImage(forEpisode: episode, andImageView: self.episodeImageView)
+            getImage(forEpisode: episode, andImageView: backgroundImageView)
+            getImage(forEpisode: episode, andImageView: episodeImageView)
         }
     }
     
@@ -358,13 +382,13 @@ class EpisodeViewController: UIViewController {
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.episode?.stills?.count ?? 0
+        return episode?.stills?.count ?? 0
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Still.rawValue, forIndexPath: indexPath)
         
-        guard let stillCell = cell as? StillCollectionViewCell, stills = self.episode?.stills where indexPath.row >= 0 && indexPath.row < stills.count else {
+        guard let stillCell = cell as? StillCollectionViewCell, stills = episode?.stills where indexPath.row >= 0 && indexPath.row < stills.count else {
             return cell
         }
         
@@ -375,7 +399,7 @@ class EpisodeViewController: UIViewController {
     //MARK: Play
     
     @IBAction private func didPressPlayButton(sender: UIButton) {
-        self.play()
+        play()
     }
     
     //MARK: Player
@@ -388,7 +412,7 @@ class EpisodeViewController: UIViewController {
         
         // check if this episode has already been watched
         guard let watchDuration = episode.watchDuration where episode.watched == .Partially else {
-            self.play(beginAt: 0)
+            play(beginAt: 0)
             return
         }
         
@@ -407,7 +431,7 @@ class EpisodeViewController: UIViewController {
             alertController.dismissViewControllerAnimated(true, completion: nil)
         }
         alertController.addAction(cancelAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     private func play(beginAt begin: Int) {
@@ -417,7 +441,7 @@ class EpisodeViewController: UIViewController {
         }
         
         // show progress hud
-        self.view.startLoading()
+        view.startLoading()
     
         // play video stream
         episode.getVideoStream() { [weak self] url, error in
@@ -467,7 +491,7 @@ class EpisodeViewController: UIViewController {
         }
         
         // present player
-        self.presentViewController(playerViewController, animated: true) {
+        presentViewController(playerViewController, animated: true) {
             playerViewController.player?.play()
         }
     }
@@ -475,8 +499,15 @@ class EpisodeViewController: UIViewController {
     //MARK: Favorite
     
     @IBAction private func didPressFavoriteButton(sender: UIButton) {
-        self.program?.toggleFavorite()
-        self.updateFavoriteButtonTitleColor()
+        program?.toggleFavorite()
+        updateFavoriteButtonTitleColor()
+    }
+    
+    //MARK: Mark as watched
+    
+    @IBAction func didPressMarkAsWatchedButton(sender: UIButton) {
+        episode?.toggleWatched()
+        updateWatchedButtonAndLabel()
     }
     
     //MARK: Segues

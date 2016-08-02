@@ -301,6 +301,13 @@
                                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CXL-fC-mfs" userLabel="Meta Data View">
                                                 <rect key="frame" x="380" y="238" width="1450" height="372"/>
                                                 <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xDT-ap-hET">
+                                                        <rect key="frame" x="1060" y="0.0" width="390" height="219"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="390" id="2U6-vg-Y6T"/>
+                                                            <constraint firstAttribute="width" secondItem="xDT-ap-hET" secondAttribute="height" multiplier="130:73" id="MSO-ER-IXH"/>
+                                                        </constraints>
+                                                    </imageView>
                                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cEN-mO-kAA" userLabel="Data View">
                                                         <rect key="frame" x="0.0" y="0.0" width="960" height="372"/>
                                                         <subviews>
@@ -358,14 +365,31 @@
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhi-va-6Np">
                                                                         <rect key="frame" x="400" y="21" width="150" height="86"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="150" id="X18-Ya-m8S"/>
+                                                                        </constraints>
+                                                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                                        <state key="normal" title="⦿"/>
+                                                                        <connections>
+                                                                            <action selector="didPressMarkAsWatchedButton:" destination="nup-1z-UxQ" eventType="primaryActionTriggered" id="L5Q-K0-Reb"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Gezien" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbq-yX-kac">
+                                                                        <rect key="frame" x="400" y="130" width="150" height="28"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPZ-c8-Omx">
+                                                                        <rect key="frame" x="600" y="21" width="150" height="86"/>
                                                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                                                         <state key="normal" title="♥︎"/>
                                                                         <connections>
-                                                                            <action selector="didPressFavoriteButton:" destination="nup-1z-UxQ" eventType="primaryActionTriggered" id="riw-lp-lHh"/>
+                                                                            <action selector="didPressFavoriteButton:" destination="nup-1z-UxQ" eventType="primaryActionTriggered" id="OE3-14-zw4"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Favoriet" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbq-yX-kac">
-                                                                        <rect key="frame" x="400" y="130" width="150" height="28"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Favoriet" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="diu-rM-AvT">
+                                                                        <rect key="frame" x="600" y="130" width="150" height="28"/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -373,6 +397,7 @@
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstItem="2Ha-Qb-eYp" firstAttribute="centerX" secondItem="Gh1-Q7-fYK" secondAttribute="centerX" id="4xZ-fo-ZJe"/>
+                                                                    <constraint firstItem="diu-rM-AvT" firstAttribute="centerX" secondItem="fPZ-c8-Omx" secondAttribute="centerX" id="9EB-nI-v9w"/>
                                                                     <constraint firstItem="rts-xq-taD" firstAttribute="leading" secondItem="Gh1-Q7-fYK" secondAttribute="trailing" constant="50" id="9EW-0G-Lkv"/>
                                                                     <constraint firstItem="2Ha-Qb-eYp" firstAttribute="top" secondItem="Gh1-Q7-fYK" secondAttribute="bottom" constant="23" id="9a4-YA-lli"/>
                                                                     <constraint firstItem="rts-xq-taD" firstAttribute="top" secondItem="P7G-nz-6RD" secondAttribute="top" constant="21" id="BcC-Xx-N14"/>
@@ -386,6 +411,10 @@
                                                                     <constraint firstAttribute="bottom" secondItem="Gh1-Q7-fYK" secondAttribute="bottom" constant="75" id="eVQ-OP-fc0"/>
                                                                     <constraint firstItem="Xbq-yX-kac" firstAttribute="top" secondItem="qhi-va-6Np" secondAttribute="bottom" constant="23" id="ew9-Mm-WW6"/>
                                                                     <constraint firstItem="Xbq-yX-kac" firstAttribute="width" secondItem="qhi-va-6Np" secondAttribute="width" id="iBf-69-AVF"/>
+                                                                    <constraint firstItem="fPZ-c8-Omx" firstAttribute="leading" secondItem="qhi-va-6Np" secondAttribute="trailing" constant="50" id="kBa-4X-UQT"/>
+                                                                    <constraint firstItem="fPZ-c8-Omx" firstAttribute="top" secondItem="P7G-nz-6RD" secondAttribute="top" constant="21" id="kgr-Le-B6z"/>
+                                                                    <constraint firstItem="diu-rM-AvT" firstAttribute="top" secondItem="fPZ-c8-Omx" secondAttribute="bottom" constant="23" id="ogA-gy-25b"/>
+                                                                    <constraint firstItem="diu-rM-AvT" firstAttribute="width" secondItem="fPZ-c8-Omx" secondAttribute="width" id="wiU-ao-28F"/>
                                                                     <constraint firstItem="qhi-va-6Np" firstAttribute="leading" secondItem="rts-xq-taD" secondAttribute="trailing" constant="50" id="xeN-kI-GZI"/>
                                                                     <constraint firstItem="4g8-hb-1Ce" firstAttribute="centerX" secondItem="rts-xq-taD" secondAttribute="centerX" id="ysa-45-DDz"/>
                                                                 </constraints>
@@ -405,13 +434,6 @@
                                                             <constraint firstItem="P7G-nz-6RD" firstAttribute="leading" secondItem="cEN-mO-kAA" secondAttribute="leading" id="yjn-7P-iuB"/>
                                                         </constraints>
                                                     </view>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xDT-ap-hET">
-                                                        <rect key="frame" x="1060" y="0.0" width="390" height="219"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="390" id="2U6-vg-Y6T"/>
-                                                            <constraint firstAttribute="width" secondItem="xDT-ap-hET" secondAttribute="height" multiplier="130:73" id="MSO-ER-IXH"/>
-                                                        </constraints>
-                                                    </imageView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="xDT-ap-hET" firstAttribute="leading" secondItem="cEN-mO-kAA" secondAttribute="trailing" constant="100" id="AKD-z7-Jza"/>
@@ -504,10 +526,12 @@
                         <outlet property="durationLabel" destination="vad-M4-Aez" id="E09-EX-9CE"/>
                         <outlet property="episodeImageView" destination="xDT-ap-hET" id="YKh-zq-m84"/>
                         <outlet property="episodeNameLabel" destination="G2i-0g-QFG" id="qEQ-ex-cDs"/>
-                        <outlet property="favoriteButton" destination="qhi-va-6Np" id="PA5-gZ-JSb"/>
-                        <outlet property="favoriteLabel" destination="Xbq-yX-kac" id="rWa-9U-hht"/>
+                        <outlet property="favoriteButton" destination="fPZ-c8-Omx" id="bwF-ER-T6T"/>
+                        <outlet property="favoriteLabel" destination="diu-rM-AvT" id="0oB-Vm-aKY"/>
                         <outlet property="genreLabel" destination="pak-i8-Tn1" id="qPp-ql-Plk"/>
                         <outlet property="genreTitleLabel" destination="be2-Su-XIB" id="5UM-Dw-rae"/>
+                        <outlet property="markAsWatchedButton" destination="qhi-va-6Np" id="z7l-VL-rOT"/>
+                        <outlet property="markAsWatchedLabel" destination="Xbq-yX-kac" id="JiT-fM-aFL"/>
                         <outlet property="playButton" destination="Gh1-Q7-fYK" id="03v-X1-u5g"/>
                         <outlet property="playLabel" destination="2Ha-Qb-eYp" id="fcL-aH-cKe"/>
                         <outlet property="programNameLabel" destination="z7c-Am-1Jy" id="Dic-fV-s5g"/>

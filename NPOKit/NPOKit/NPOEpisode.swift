@@ -149,6 +149,16 @@ public class NPOEpisode: NPORestrictedMedia {
         self.program?.updateWatched()
     }
     
+    public func toggleWatched() {
+        if watched == .Partially || watched == .Unwatched {
+            watched = .Fully
+        } else if watchDuration > 59 {
+            watched = .Partially
+        } else {
+            watched = .Unwatched
+        }
+    }
+    
     //MARK: Image fetching
     
     internal override func getImageURLs(withCompletion completed: (urls: [NSURL]) -> ()) -> Request? {
