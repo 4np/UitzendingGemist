@@ -26,6 +26,8 @@ class ByDayRootTableViewCell: UITableViewCell {
         super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
         
         nameLabel.textColor = focused ? UIColor.blackColor() : UIColor.whiteColor()
+        nameLabel.shadowColor = focused ? UIColor.lightShadow : UIColor.blackColor()
+        nameLabel.shadowOffset = focused ? CGSize(width: 2, height: 1) : CGSize(width: 1, height: 1)
     }
     
     //MARK: Configuration

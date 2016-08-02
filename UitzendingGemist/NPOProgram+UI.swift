@@ -44,10 +44,14 @@ extension NPOProgram {
     }
     
     func getDisplayColor() -> UIColor {
+        return favorite ? UIColor.waxFlower : UIColor.orangeColor()
+    }
+    
+    func getUnfocusedColor() -> UIColor {
         return favorite ? UIColor.waxFlower : UIColor.whiteColor()
     }
     
-    func getFocusColor() -> UIColor {
+    func getFocusedColor() -> UIColor {
         return favorite ? UIColor.waxFlower : UIColor.blackColor()
     }
 }

@@ -290,8 +290,8 @@ class EpisodeViewController: UIViewController {
     }
     
     private func updateFavoriteButtonTitleColor() {
-        let color = self.program?.getDisplayColor() ?? UIColor.whiteColor()
-        let focusColor = self.program?.getFocusColor() ?? UIColor.blackColor()
+        let color = self.program?.getUnfocusedColor() ?? UIColor.whiteColor()
+        let focusColor = self.program?.getFocusedColor() ?? UIColor.blackColor()
         self.favoriteButton.setTitleColor(color, forState: .Normal)
         self.favoriteButton.setTitleColor(focusColor, forState: .Focused)
     }

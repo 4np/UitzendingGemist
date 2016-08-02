@@ -17,4 +17,10 @@ extension UIColor {
             return UIColor(rgba: "#F1A9A0")
         }
     }
+    
+    static var lightShadow: UIColor {
+        get {
+            return UIColor(rgba: "#dfdfdf")
+        }
+    }
 }
