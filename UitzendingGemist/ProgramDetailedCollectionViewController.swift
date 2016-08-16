@@ -14,16 +14,13 @@ import CocoaLumberjack
 class ProgramDetailedCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var programCollectionView: UICollectionView!
     
-    private var programs = [NPOProgram]() {
-        didSet {
-            programCollectionView.reloadData()
-        }
-    }
+    private var programs = [NPOProgram]()
     
     //MARK: Configuration
     
     func configure(withPrograms programs: [NPOProgram]) {
         self.programs = programs
+        programCollectionView.reloadData()
     }
     
     //MARK: 

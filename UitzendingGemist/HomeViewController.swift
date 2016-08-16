@@ -113,7 +113,21 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
+    //swiftlint:disable force_cast
     private func refresh() {
+        // refresh tip cell
+        if let indexPath = tipsCollectionView.indexPathsForSelectedItems()?.first {
+            let cell = tipsCollectionView.cellForItemAtIndexPath(indexPath) as! TipCollectionViewCell
+            cell.configure(withTip: tips[indexPath.row])
+        }
+
+        // refresh on deck cell
+        if let indexPath = onDeckCollectionView.indexPathsForSelectedItems()?.first {
+            let cell = onDeckCollectionView.cellForItemAtIndexPath(indexPath) as! OnDeckCollectionViewCell
+            cell.configure(withProgram: onDeckPrograms[indexPath.row].program, unWachtedEpisodeCount: onDeckPrograms[indexPath.row].unwatchedEpisodeCount, andEpisode: onDeck[indexPath.row])
+        }
+
+        // get data
         getData() { [weak self] tips, onDeck, errors in
             guard let strongSelf = self else {
                 return
@@ -134,6 +148,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             strongSelf.onDeckCollectionView.update(usingEpisodes: &strongSelf.onDeck, withNewEpisodes: onDeck.map { $0.mostRecentUnwatchedEpisode })
         }
     }
+    //swiftlint:enable force_cast
     
     //MARK: UICollectionViewDataSource
     

@@ -14,23 +14,19 @@ import CocoaLumberjack
 class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var episodeCollectionView: UICollectionView!
     
-    private var episodes = [NPOEpisode]() {
-        didSet {
-            episodeCollectionView.reloadData()
-        }
-    }
+    private var episodes = [NPOEpisode]()
     
     //MARK: Configuration
     
     //swiftlint:disable force_cast
     func configure(withDate date: NSDate) {
         NPOManager.sharedInstance.getEpisodes(forDate: date, filterReruns: true) { [weak self] episodes, error in
-            guard let episodes = episodes else {
+            guard let episodes = episodes, strongSelf = self else {
                 DDLogError("Could not fetch episodes for \(date) (\(error))")
                 return
             }
             
-            self?.episodes = episodes
+            strongSelf.episodeCollectionView.update(usingEpisodes: &strongSelf.episodes, withNewEpisodes: episodes)
             
             // initial configuration
             let vc = self?.splitViewController as! ByDaySplitViewController
