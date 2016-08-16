@@ -11,13 +11,10 @@ using a web app hosted on a remote server.
 
 - Fast *_native_* app for Apple TV
 - Easy to use interface for browsing Programs and Episodes
-- Favoriting programs
+- The possibility to (un)favorite programs
 - Remembers watched episodes and will allow you to resume watching
-- Live TV (and NPO1, NPO2 and NPO3 in high quality)
-
-# NOTE
-
-This is a complete rewrite of the previous version. While the app works and provides the above features, functionallity wise it is still work in progress (you can leave your comments, suggestions or bug reports [here](https://github.com/4np/UitzendingGemist/issues)) so be sure to come back for updated versions. If you want to install the _previous_ (e.g. _legacy_) version of the app, you can find it in the [Legacy Branch](https://github.com/4np/UitzendingGemist/tree/legacy).
+- Will show you new unwatched episodes of favorite programs
+- Live TV (and NPO1, NPO2 and NPO3 in high quality) and themed channels
 
 # Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
 
@@ -89,6 +86,10 @@ You're done! You can disconnect your Apple TV and start watching! :)
 ## Application screen with Application Icon and Top Shelf image
 
 ![Main Screen](https://cloud.githubusercontent.com/assets/1049693/11430705/e585f7aa-948a-11e5-8b4d-a35dc1ab617a.png)
+
+## Tip Screen
+
+![Tip Screen](https://cloud.githubusercontent.com/assets/1049693/17718550/e641069e-6414-11e6-9258-8901ed2d2214.png)
 
 ## Episode Screen
 
