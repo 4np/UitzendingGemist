@@ -24,6 +24,8 @@
 		F3A71A881D4936CE00F331F9 /* ProgramSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A71A871D4936CE00F331F9 /* ProgramSplitViewController.swift */; };
 		F3A71A8A1D49FE1000F331F9 /* Array+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A71A891D49FE1000F331F9 /* Array+Random.swift */; };
 		F3C193E01D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C193DF1D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift */; };
+		F3C234451D633DDD0040E875 /* UICollectionView+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C234441D633DDD0040E875 /* UICollectionView+UI.swift */; };
+		F3C234471D6360DE0040E875 /* OnDeckCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C234461D6360DE0040E875 /* OnDeckCollectionViewCell.swift */; };
 		F3C7E85C1D4FC91300AD3809 /* ByDayRootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7E85B1D4FC91300AD3809 /* ByDayRootTableViewController.swift */; };
 		F3C7E8601D4FD52E00AD3809 /* ByDayRootTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7E85F1D4FD52E00AD3809 /* ByDayRootTableViewCell.swift */; };
 		F3C7E8621D508CE800AD3809 /* ByDayDetailedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7E8611D508CE800AD3809 /* ByDayDetailedCollectionViewController.swift */; };
@@ -62,6 +64,8 @@
 		F3A71A871D4936CE00F331F9 /* ProgramSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramSplitViewController.swift; sourceTree = "<group>"; };
 		F3A71A891D49FE1000F331F9 /* Array+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Random.swift"; sourceTree = "<group>"; };
 		F3C193DF1D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDetailedCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3C234441D633DDD0040E875 /* UICollectionView+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+UI.swift"; sourceTree = "<group>"; };
+		F3C234461D6360DE0040E875 /* OnDeckCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnDeckCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3C7E85B1D4FC91300AD3809 /* ByDayRootTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByDayRootTableViewController.swift; sourceTree = "<group>"; };
 		F3C7E85F1D4FD52E00AD3809 /* ByDayRootTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByDayRootTableViewCell.swift; sourceTree = "<group>"; };
 		F3C7E8611D508CE800AD3809 /* ByDayDetailedCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByDayDetailedCollectionViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 				F3F034711D4E05A600A80682 /* NPOEpisode+UI.swift */,
 				F3F034731D4E073100A80682 /* NPOProgram+UI.swift */,
 				F3F034751D4E10C100A80682 /* NPOTip+UI.swift */,
+				F3C234441D633DDD0040E875 /* UICollectionView+UI.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 			children = (
 				F317B9A71D39291D00927ACD /* HomeViewController.swift */,
 				F317B9A91D392DD200927ACD /* TipCollectionViewCell.swift */,
+				F3C234461D6360DE0040E875 /* OnDeckCollectionViewCell.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -414,6 +420,7 @@
 				F3D71E8E1D3D5C1600B9AEB0 /* UIColor+Colors.swift in Sources */,
 				F309EAAF1D47B316003B46A1 /* ProgramRootTableViewController.swift in Sources */,
 				F3C7E8641D508D0000AD3809 /* ByDayDetailedCollectionViewCell.swift in Sources */,
+				F3C234471D6360DE0040E875 /* OnDeckCollectionViewCell.swift in Sources */,
 				F3C193E01D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift in Sources */,
 				F3A71A8A1D49FE1000F331F9 /* Array+Random.swift in Sources */,
 				F30FE2361D3F9D0F00ABFAE8 /* AutoScrollView.swift in Sources */,
@@ -429,6 +436,7 @@
 				F3F034761D4E10C100A80682 /* NPOTip+UI.swift in Sources */,
 				F317B9AA1D392DD200927ACD /* TipCollectionViewCell.swift in Sources */,
 				F32724711D3E58A600ACADEA /* ProgramViewController.swift in Sources */,
+				F3C234451D633DDD0040E875 /* UICollectionView+UI.swift in Sources */,
 				F3FD00811D40202100034A76 /* UpdateManager.swift in Sources */,
 				F317B9B21D3A7B2400927ACD /* EpisodeViewController.swift in Sources */,
 				F3C7E8601D4FD52E00AD3809 /* ByDayRootTableViewCell.swift in Sources */,

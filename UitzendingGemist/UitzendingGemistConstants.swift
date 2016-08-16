@@ -10,6 +10,7 @@ import Foundation
 
 enum CollectionViewCells: String {
     case Tip = "tipCollectionViewCell"
+    case OnDeck = "onDeckCollectionViewCell"
     case Still = "stillCollectionViewCell"
     case Program = "programCollectionViewCell"
     case Episode = "episodeCollectionViewCell"
@@ -23,9 +24,10 @@ enum TableViewCells: String {
     case Day = "byDayRootTableViewCell"
 }
 
-enum CollectionViewHeaders: String {
-    case Program = "programCollectionViewHeader"
-}
+//enum CollectionViewHeaders: String {
+//    case Episode = "episodeCollectionViewHeader"
+//    case Program = "programCollectionViewHeader"
+//}
 
 enum ViewControllers: String {
     case ProgramViewController = "ProgramViewController"
@@ -33,7 +35,7 @@ enum ViewControllers: String {
 }
 
 enum Segues: String {
-    case TipToEpisodeDetails = "TipToEpisodeDetailsSegue"
+    case HomeToEpisodeDetails = "HomeToEpisodeDetailsSegue"
     case EpisodeToProgramDetails = "EpisodeToProgramDetailsSegue"
     case ProgramToDetails = "ProgramToProgramDetailsSegue"
     case ProgramToEpisode = "ProgramToEpisodeSegue"

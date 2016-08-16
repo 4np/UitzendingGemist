@@ -13,24 +13,36 @@ import CocoaLumberjack
 import AVKit
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    @IBOutlet weak private var backgroundImageView: UIImageView!
     @IBOutlet weak private var tipsCollectionView: UICollectionView!
+    @IBOutlet weak private var onDeckCollectionView: UICollectionView!
     
     private var tips = [NPOTip]()
+    private var onDeck = [NPOEpisode]()
+    private var onDeckPrograms: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)] = []
     
     //MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // add blur effect to background image
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        visualEffectView.frame = backgroundImageView.bounds
+        backgroundImageView.addSubview(visualEffectView)
+
+        // update collection views
+        tipsCollectionView.reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // refresh tips
-        self.getTips()
+        // refresh collections
+        refresh()
         
         // check for version update
-        self.checkForUpdate()
+        checkForUpdate()
     }
     
     //MARK: Version check
@@ -54,48 +66,73 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     //MARK: Networking
     
-    private func getTips() {
+    private func getData(withCompletion completed: (tips: [NPOTip], onDeck: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)], errors: [NPOError]) -> ()) {
+        var tips = [NPOTip]()
+        var onDeck: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)] = []
+        var errors = [NPOError]()
+        
+        // create dispatch group
+        let group = dispatch_group_create()
+        
         // get tips
-        NPOManager.sharedInstance.getTips() { [weak self] tips, error in
-            guard let tips = tips else {
-                DDLogError("Error fetching tips (\(error))")
+        dispatch_group_enter(group)
+        NPOManager.sharedInstance.getTips() { items, error in
+            defer { dispatch_group_leave(group) }
+            
+            if let items = items {
+                tips = items
+            } else if let error = error {
+                errors.append(error)
+            }
+        }
+        
+        // get the most recent unwatched episodes of favorite programs
+        dispatch_group_enter(group)
+        NPOManager.sharedInstance.getDetailedFavoritePrograms() { programs, error in
+            defer { dispatch_group_leave(group) }
+            
+            guard let programs = programs else {
                 return
             }
             
-            // set tips
-            guard self?.tips.count > 0 else {
-                self?.tips = tips
-                self?.tipsCollectionView.reloadData()
-                return
-            }
+            let sortedPrograms = programs.sort { $0.numberOfWatchedEpisodes > $1.numberOfWatchedEpisodes }
             
-            // update collection view
-            self?.tipsCollectionView.performBatchUpdates({ 
-                self?.updateCollectionView(withTips: tips)
-            }, completion: { success in
-                //DDLogDebug("finished updating tip collection: \(success)")
-            })
+            // iterate over programs
+            for program in sortedPrograms {
+                let unwatchedEpisodes = program.episodes?.filter({ $0.watched != .Fully })
+                if let mostRecentUnwatchedEpisode = unwatchedEpisodes?.first {
+                    let tuple = (program: program, mostRecentUnwatchedEpisode: mostRecentUnwatchedEpisode, unwatchedEpisodeCount: unwatchedEpisodes?.count ?? 0)
+                    onDeck.append(tuple)
+                }
+            }
+        }
+        
+        // done
+        dispatch_group_notify(group, dispatch_get_main_queue()) {
+            completed(tips: tips, onDeck: onDeck, errors: errors)
         }
     }
     
-    private func updateCollectionView(withTips tips: [NPOTip]) {
-        // insert new tips
-        let newTips = tips.filter({ !self.tips.contains($0) })
-        let newIndexPaths = newTips.enumerate().map { NSIndexPath(forRow: $0.index, inSection: 0) }
-        self.tips = newTips + self.tips
-        self.tipsCollectionView.insertItemsAtIndexPaths(newIndexPaths)
-        
-        // remove old tips (in reverse order)
-        let oldTips = self.tips.enumerate().filter({ !tips.contains($0.element) }).reverse()
-        let oldIndexPaths = oldTips.map { NSIndexPath(forRow: $0.index, inSection: 0) }
-        for oldTip in oldTips {
-            guard oldTip.index >= 0 && oldTip.index < self.tips.count else {
-                continue
+    private func refresh() {
+        getData() { [weak self] tips, onDeck, errors in
+            guard let strongSelf = self else {
+                return
             }
             
-            self.tips.removeAtIndex(oldTip.index)
+            // set initial background image?
+            if strongSelf.backgroundImageView.image == nil, let firstTip = tips.first {
+                firstTip.getImage(ofSize: strongSelf.backgroundImageView.frame.size) { image, _, _ in
+                    strongSelf.backgroundImageView.image = image
+                }
+            }
+        
+            // store on deck programs
+            strongSelf.onDeckPrograms = onDeck
+            
+            // update collection views
+            strongSelf.tipsCollectionView.update(usingTips: &strongSelf.tips, withNewTips: tips)
+            strongSelf.onDeckCollectionView.update(usingEpisodes: &strongSelf.onDeck, withNewEpisodes: onDeck.map { $0.mostRecentUnwatchedEpisode })
         }
-        self.tipsCollectionView.deleteItemsAtIndexPaths(oldIndexPaths)
     }
     
     //MARK: UICollectionViewDataSource
@@ -105,42 +142,102 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.tips.count
+        switch collectionView {
+            case tipsCollectionView:
+                return tips.count
+            case onDeckCollectionView:
+                return onDeck.count
+            default:
+                return 0
+        }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Tip.rawValue, forIndexPath: indexPath)
+        let cell: UICollectionViewCell
         
-        guard let tipCell = cell as? TipCollectionViewCell else {
-            return cell
+        switch collectionView {
+            case tipsCollectionView:
+                cell = dequeueTipCell(forCollectionView: collectionView, andIndexPath: indexPath)
+            case onDeckCollectionView:
+                cell = dequeueOnDeckCell(forCollectionView: collectionView, andIndexPath: indexPath)
+            default:
+                cell = UICollectionViewCell()
         }
         
-        tipCell.configure(withTip: self.tips[indexPath.row])
-        return tipCell
+        return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier(Segues.HomeToEpisodeDetails.rawValue, sender: collectionView)
+    }
+    
+    // swiftlint:disable force_cast
+    func collectionView(collectionView: UICollectionView, didUpdateFocusInContext context: UICollectionViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+        guard let indexPath = context.nextFocusedIndexPath else {
+            return
+        }
+        
+        let image: NPOImage?
+        switch collectionView {
+            case tipsCollectionView:
+                image = tips[indexPath.row]
+                break
+            case onDeckCollectionView:
+                image = onDeck[indexPath.row]
+                break
+            default:
+                image = nil
+                break
+        }
+        
+        image?.getImage(ofSize: self.backgroundImageView.frame.size) { [weak self] image, _, _ in
+            self?.backgroundImageView.image = image
+        }
+    }
+    // swiftlint:enable force_cast
+    
+    //MARK: Tips
+    
+    //swiftlint:disable force_cast
+    private func dequeueTipCell(forCollectionView collectionView: UICollectionView, andIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Tip.rawValue, forIndexPath: indexPath) as! TipCollectionViewCell
+        cell.configure(withTip: self.tips[indexPath.row])
+        return cell
+    }
+    //swiftlint:enable force_cast
+    
+    //MARK: On Deck
+    
+    //swiftlint:disable force_cast
+    private func dequeueOnDeckCell(forCollectionView collectionView: UICollectionView, andIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.OnDeck.rawValue, forIndexPath: indexPath) as! OnDeckCollectionViewCell
+        let row = indexPath.row
+        
+        if row >= 0 && row < onDeck.count {
+            let episode = onDeck[row]
+            let program = onDeckPrograms[row].program
+            let count = onDeckPrograms[row].unwatchedEpisodeCount
+            
+            cell.configure(withProgram: program, unWachtedEpisodeCount: count, andEpisode: episode)
+        }
+        
+        return cell
+    }
+    //swiftlint:enable force_cast
 
     //MARK: Segues
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let segueIdentifier = segue.identifier else {
+        guard segue.identifier == Segues.HomeToEpisodeDetails.rawValue, let collectionView = sender as? UICollectionView, indexPath = collectionView.indexPathsForSelectedItems()?.first, vc = segue.destinationViewController as? EpisodeViewController else {
             return
         }
         
-        switch segueIdentifier {
-            case Segues.TipToEpisodeDetails.rawValue:
-                prepareForSegueToEpisodeView(segue, sender: sender)
-                break
-            default:
-                DDLogError("Unhandled segue with identifier '\(segueIdentifier)' in Home view")
-                break
+        if collectionView == tipsCollectionView {
+            let tip = tips[indexPath.row]
+            vc.configure(withTip: tip)
+        } else if collectionView == onDeckCollectionView {
+            let episode = onDeck[indexPath.row]
+            vc.configure(withEpisode: episode)
         }
-    }
-    
-    private func prepareForSegueToEpisodeView(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let vc = segue.destinationViewController as? EpisodeViewController, cell = sender as? TipCollectionViewCell, indexPath = self.tipsCollectionView.indexPathForCell(cell) where indexPath.row >= 0 && indexPath.row < self.tips.count else {
-            return
-        }
-        
-        vc.configure(withTip: self.tips[indexPath.row])
     }
 }

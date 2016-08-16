@@ -31,6 +31,17 @@ extension NPOProgram {
         
         return displayName
     }
+    
+    func getDisplayNameWithFavoriteIndicator() -> String {
+        var displayName = name ?? ""
+        
+        // add favorite icon
+        if favorite {
+            displayName += UitzendingGemistConstants.favoriteSymbol
+        }
+        
+        return displayName
+    }
 
     func getDisplayName() -> String {
         var displayName = getDisplayNameWithWatchedIndicator()

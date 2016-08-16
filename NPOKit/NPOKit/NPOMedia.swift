@@ -12,7 +12,14 @@ import AlamofireObjectMapper
 import AlamofireImage
 import ObjectMapper
 
-public class NPOMedia: NPOImage {
+// Equatable
+// swiftlint:disable operator_whitespace
+public func ==(lhs: NPOMedia, rhs: NPOMedia) -> Bool {
+    return lhs.mid == rhs.mid
+}
+// swiftlint:enable operator_whitespace
+
+public class NPOMedia: NPOImage, Equatable {
     public internal(set) var mid: String?
     //internal var neboID: String?
     public internal(set) var name: String?

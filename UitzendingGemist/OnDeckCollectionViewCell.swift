@@ -1,8 +1,8 @@
 //
-//  TipCollectionViewCell.swift
+//  OnDeckCollectionViewCell.swift
 //  UitzendingGemist
 //
-//  Created by Jeroen Wesbeek on 15/07/16.
+//  Created by Jeroen Wesbeek on 16/08/16.
 //  Copyright © 2016 Jeroen Wesbeek. All rights reserved.
 //
 
@@ -11,9 +11,10 @@ import UIKit
 import NPOKit
 import CocoaLumberjack
 
-class TipCollectionViewCell: UICollectionViewCell {
+class OnDeckCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak private var imageView: UIImageView!
-    @IBOutlet weak private var nameLabel: UILabel!
+    @IBOutlet weak private var programNameLabel: UILabel!
+    @IBOutlet weak private var episodeNameLabel: UILabel!
     @IBOutlet weak private var dateLabel: UILabel!
     
     //MARK: Lifecycle
@@ -26,7 +27,8 @@ class TipCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         
         self.imageView.image = nil
-        self.nameLabel.text = nil
+        self.programNameLabel.text = nil
+        self.episodeNameLabel.text = nil
         self.dateLabel.text = nil
     }
     
@@ -38,23 +40,13 @@ class TipCollectionViewCell: UICollectionViewCell {
     
     //MARK: Configuration
     
-    internal func configure(withTip tip: NPOTip) {
-        self.fetchImage(forTip: tip)
-        self.nameLabel.text = tip.getDisplayName()
-        self.dateLabel.text = tip.publishedDisplayValue
-    }
-    
-    //MARK: Networking
-    
-    internal func fetchImage(forTip tip: NPOTip) {
-        let size = self.imageView.frame.size
+    internal func configure(withProgram program: NPOProgram, unWachtedEpisodeCount unwatchedCount: Int, andEpisode episode: NPOEpisode) {
+        self.programNameLabel.text = program.getDisplayNameWithFavoriteIndicator()
+        self.programNameLabel.textColor = program.getDisplayColor()
+        self.episodeNameLabel.text = episode.getDisplayName()
+        self.dateLabel.text = episode.broadcastedDisplayValue
         
-        tip.getImage(ofSize: size) { [weak self] image, error, _ in
-            guard let image = image else {
-                DDLogError("Could not fetch image for tip (\(error))")
-                return
-            }
-
+        episode.getImage(ofSize: imageView.frame.size) { [weak self] image, _, _ in
             self?.imageView.image = image
         }
     }

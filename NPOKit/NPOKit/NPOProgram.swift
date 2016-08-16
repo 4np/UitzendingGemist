@@ -33,6 +33,10 @@ public class NPOProgram: NPORestrictedMedia {
         }
     }
     
+    public var numberOfWatchedEpisodes: Int {
+        return episodes?.filter({ $0.watched == .Fully }).count ?? 0
+    }
+    
     //MARK: Lifecycle
     
     required convenience public init?(_ map: Map) {
