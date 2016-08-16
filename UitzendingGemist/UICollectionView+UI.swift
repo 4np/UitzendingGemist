@@ -34,17 +34,26 @@ extension UICollectionView {
         }
         insertItemsAtIndexPaths(newIndexPaths)
         
-        // and re-order what needs to be
-        let reverseEpisodes = newEpisodes.enumerate().reverse()
-        for newEpisode in reverseEpisodes {
-            guard let index = episodes.indexOf(newEpisode.element) where index != newEpisode.index else {
-                continue
+        // re-order cells (if needed)
+        var done = false
+        while !done {
+            for newEpisode in newEpisodes.enumerate() {
+                guard let index = episodes.indexOf(newEpisode.element) where index != newEpisode.index else {
+                    done = true
+                    continue
+                }
+                
+                // move cell
+                let from = NSIndexPath(forRow: index, inSection: 0)
+                let to = NSIndexPath(forRow: newEpisode.index, inSection: 0)
+                moveItemAtIndexPath(from, toIndexPath: to)
+                
+                // move array element
+                episodes.removeAtIndex(index)
+                episodes.insert(newEpisode.element, atIndex: newEpisode.index)
+                done = false
+                break
             }
-            
-            let from = NSIndexPath(forRow: index, inSection: 0)
-            let to = NSIndexPath(forRow: newEpisode.index, inSection: 0)
-            moveItemAtIndexPath(from, toIndexPath: to)
-            //DDLogDebug("\(newEpisode.element.name ?? "?"): \(index) -> \(newEpisode.index)")
         }
     }
     
@@ -79,6 +88,28 @@ extension UICollectionView {
             let from = NSIndexPath(forRow: index, inSection: 0)
             let to = NSIndexPath(forRow: newTip.index, inSection: 0)
             moveItemAtIndexPath(from, toIndexPath: to)
+        }
+        
+        // re-order cells (if needed)
+        var done = false
+        while !done {
+            for newTip in newTips.enumerate() {
+                guard let index = tips.indexOf(newTip.element) where index != newTip.index else {
+                    done = true
+                    continue
+                }
+                
+                // move cell
+                let from = NSIndexPath(forRow: index, inSection: 0)
+                let to = NSIndexPath(forRow: newTip.index, inSection: 0)
+                moveItemAtIndexPath(from, toIndexPath: to)
+                
+                // move array element
+                tips.removeAtIndex(index)
+                tips.insert(newTip.element, atIndex: newTip.index)
+                done = false
+                break
+            }
         }
     }
 }
