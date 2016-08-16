@@ -107,12 +107,44 @@ The completion closure returns an optional program (e.g. ```NPOProgram?```):
 NPOManager.sharedInstance.getDetails(forProgram: NPOProgram) { program, error in ... }
 ```
 
+### Fetch favorite programs
+
+The completion closure returns an optional array of programs (e.g. ```[NPOProgram]?```):
+
+```
+NPOManager.sharedInstance.getFavoritePrograms() { programs, error in ... }
+```
+
+### Fetch detailed favorite programs
+
+Same as above, but now the details for every one of these programs is fetched.
+
+```
+NPOManager.sharedInstance.getDetailedFavoritePrograms() { programs, error in ... }
+```
+
+### Fetch recent episodes for favorite programs
+
+Fetch the recent episodes for the favorite programs.
+
+```
+NPOManager.sharedInstance.getRecentEpisodesForFavoritePrograms() { episodes, error in ... }
+```
+
 ### Fetch popular episodes
 
 The completion closure returns an optional array of episodes (e.g. ```[NPOEpisode]?```):
 
 ```
 NPOManager.sharedInstance.getPopularEpisodes() { episodes, error in ... }
+```
+
+### Fetch trending episodes
+
+The completion closure returns an optional array of episodes (e.g. ```[NPOEpisode]?```):
+
+```
+NPOManager.sharedInstance.getTrendingEpisodes() { episodes, error in ... }
 ```
 
 ### Fetch recent episodes
@@ -267,9 +299,26 @@ episode.getVideoStream() { url, error in ... }
 The function taked an argument of enum ```NPOLive``` and the completion closure returns an optional url (e.g. ```NSURL?```) which can be used to feed into a video player (for example into ```AVPlayer```):
 
 ```
-NPOManager.sharedManager.getVideoStream(forLiveChannel channel: NPOLive.NPO_1) { url, error in 
+NPOManager.sharedInstance.getVideoStream(forLiveChannel channel: NPOLive.NPO_1) { url, error in 
 	...
 }
+```
+
+### Get the guide for a Live TV or themed channel
+
+The function takes an argument of an array or ```NPOLive``` enums and a particular date and the completion closure returns and optional array of guides per channel (e.g. ```[NPOLive: [NPOBroadcast]]?```) and/or errors per channel (e.g. ```[NPOLive: NPOError]?```):
+
+```
+NPOManager.sharedInstance.getGuides(forChannels channels: [NPOLive], onDate date: NSDate) { guides, errors in ... }
+```
+
+## Convenience API
+
+### Get the number of days since now
+
+
+```
+NPOManager.sharedInstance.getDaysSinceNow(numberOfDays total: Int) -> [(from: NSDate, to: NSDate, label: String, name: String)]
 ```
 
 ## Special API
