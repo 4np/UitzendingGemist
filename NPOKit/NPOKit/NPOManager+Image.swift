@@ -11,35 +11,37 @@ import Alamofire
 import AlamofireImage
 
 extension NPOManager {
-    internal func getImage(forURL url: NSURL?, withCompletion completed: (image: UIImage?, error: NPOError?) -> () = { image, error in }) -> Request? {
+    internal func getImage(forURL url: URL?, withCompletion completed: @escaping (_ image: UIImage?, _ error: NPOError?) -> () = { image, error in }) -> Request? {
         guard let url = url else {
-            completed(image: nil, error: .NoImageError)
+            completed(nil, .noImageError)
             return nil
         }
+        
+        let urlString = url.absoluteString
 
-        return Alamofire.request(.GET, url, headers: self.getHeaders())
+        return Alamofire.request(urlString, headers: self.getHeaders())
             .responseImage { response in
                 switch response.result {
-                    case .Success(let image):
-                        completed(image: image, error: nil)
+                    case .success(let image):
+                        completed(image, nil)
                         break
-                    case .Failure(let error):
-                        completed(image: nil, error: .NetworkError(error.localizedDescription))
+                    case .failure(let error):
+                        completed(nil, .networkError(error.localizedDescription))
                         break
                 }
         }
     }
     
-    internal func getImage(forURL url: NSURL?, ofSize size: CGSize, withCompletion completed: (image: UIImage?, error: NPOError?) -> () = { image, error in }) -> Request? {
+    internal func getImage(forURL url: URL?, ofSize size: CGSize, withCompletion completed: @escaping (_ image: UIImage?, _ error: NPOError?) -> () = { image, error in }) -> Request? {
         return self.getImage(forURL: url) { image, error in
             guard let image = image else {
-                completed(image: nil, error: error)
+                completed(nil, error)
                 return
             }
             
             // scale image
             let imageFilter = AspectScaledToFillSizeFilter(size: size)
-            completed(image: imageFilter.filter(image), error: nil)
+            completed(imageFilter.filter(image), nil)
         }
     }
 }

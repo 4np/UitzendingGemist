@@ -13,12 +13,12 @@ import ObjectMapper
 
 import CocoaLumberjack
 
-public class NPORestriction: Mappable, CustomDebugStringConvertible {
-    public internal(set) var age = false
-    public internal(set) var location = false
+open class NPORestriction: Mappable, CustomDebugStringConvertible {
+    open internal(set) var age = false
+    open internal(set) var location = false
     internal var time: NPOTimeRestriction?
     
-    public var available: Bool {
+    open var available: Bool {
         get {
             let available = self.time?.available ?? true
             return available && self.geoAllowed()
@@ -27,13 +27,13 @@ public class NPORestriction: Mappable, CustomDebugStringConvertible {
     
     //MARK: Lifecycle
     
-    required convenience public init?(_ map: Map) {
+    required convenience public init?(map: Map) {
         self.init()
     }
     
     //MARK: Mapping
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         age <- map["age_restriction"]
         location <- map["geoIP_restriction"]
         time <- map["time_restriction"]

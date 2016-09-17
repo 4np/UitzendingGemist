@@ -25,20 +25,19 @@ public enum NPOStreamURLType: String {
     static let all = [Standard, Medium, Small]
 }
 
-public class NPOStream: Mappable, CustomDebugStringConvertible {
-    private var success = false
-    private var urls = [String]()
-    private var family: String?
+open class NPOStream: Mappable, CustomDebugStringConvertible {
+    fileprivate var success = false
+    fileprivate var urls = [String]()
+    fileprivate var family: String?
     
     //MARK: Lifecycle
     
-    required convenience public init?(_ map: Map) {
-        self.init()
+    required public init?(map: Map) {
     }
     
     //MARK: Mapping
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         success <- map["succes"]
         urls <- map["streams"]
         family <- map["family"]
@@ -46,17 +45,17 @@ public class NPOStream: Mappable, CustomDebugStringConvertible {
     
     //MARK: Accessors
     
-    public func getStreamURL(forType type: NPOStreamURLType) -> NSURL? {
-        guard let jsonpURL = self.urls.filter({ $0.rangeOfString(type.rawValue) != nil }).first, jsonpComponents = NSURLComponents(string: jsonpURL) else {
+    open func getStreamURL(forType type: NPOStreamURLType) -> URL? {
+        guard let jsonpURL = self.urls.filter({ $0.range(of: type.rawValue) != nil }).first, let jsonpComponents = URLComponents(string: jsonpURL) else {
             return nil
         }
         
         // get rid of the jsonp part
-        let components = NSURLComponents()
+        var components = URLComponents()
         components.scheme = jsonpComponents.scheme
         components.host = jsonpComponents.host
         components.path = jsonpComponents.path
         
-        return components.URL
+        return components.url
     }
 }

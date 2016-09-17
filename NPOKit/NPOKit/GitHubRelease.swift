@@ -14,31 +14,31 @@ import ObjectMapper
 import CocoaLumberjack
 
 // Not really NPO, but usefull nonetheless...
-public class GitHubRelease: Mappable, CustomDebugStringConvertible {
-    public internal(set) var tag: String?
-    public internal(set) var url: NSURL?
-    public internal(set) var zipball: NSURL?
-    public internal(set) var tarball: NSURL?
-    public internal(set) var prerelease: Bool = false
-    public internal(set) var draft: Bool = false
-    public internal(set) var details: String?
+open class GitHubRelease: Mappable, CustomDebugStringConvertible {
+    open internal(set) var tag: String?
+    open internal(set) var url: URL?
+    open internal(set) var zipball: URL?
+    open internal(set) var tarball: URL?
+    open internal(set) var prerelease: Bool = false
+    open internal(set) var draft: Bool = false
+    open internal(set) var details: String?
     
-    public var version: String? {
+    open var version: String? {
         get {
             guard let tag = self.tag else {
                 return nil
             }
             
             do {
-                let regex = try NSRegularExpression(pattern: "([0-9.]+)", options: NSRegularExpressionOptions.CaseInsensitive)
-                let matches = regex.matchesInString(tag, options: [], range: NSRange(location: 0, length: tag.characters.count))
+                let regex = try NSRegularExpression(pattern: "([0-9.]+)", options: NSRegularExpression.Options.caseInsensitive)
+                let matches = regex.matches(in: tag, options: [], range: NSRange(location: 0, length: tag.characters.count))
                 
-                guard let range = matches.first?.rangeAtIndex(1) else {
+                guard let range = matches.first?.rangeAt(1) else {
                     return nil
                 }
                 
-                let swiftRange = tag.startIndex.advancedBy(range.location) ..< tag.startIndex.advancedBy(range.location + range.length)
-                return tag.substringWithRange(swiftRange)
+                let swiftRange = tag.characters.index(tag.startIndex, offsetBy: range.location) ..< tag.characters.index(tag.startIndex, offsetBy: range.location + range.length)
+                return tag.substring(with: swiftRange)
             } catch let error as NSError {
                 DDLogError("Could not extract version from GitHub tag '\(tag)' (\(error))")
                 return nil
@@ -46,7 +46,7 @@ public class GitHubRelease: Mappable, CustomDebugStringConvertible {
         }
     }
     
-    public var active: Bool {
+    open var active: Bool {
         get {
             return !draft && !prerelease
         }
@@ -54,13 +54,13 @@ public class GitHubRelease: Mappable, CustomDebugStringConvertible {
     
     //MARK: Lifecycle
     
-    required convenience public init?(_ map: Map) {
+    required convenience public init?(map: Map) {
         self.init()
     }
     
     //MARK: Mapping
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         tag <- map["tag_name"]
         url <- (map["html_url"], URLTransform())
         zipball <- (map["zipball_url"], URLTransform())

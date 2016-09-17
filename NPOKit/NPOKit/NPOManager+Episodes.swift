@@ -13,7 +13,7 @@ extension NPOManager {
     //MARK: Trending Episodes
     
     // http://apps-api.uitzendinggemist.nl/episodes/trending.json
-    public func getTrendingEpisodes(withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) -> Request? {
+    public func getTrendingEpisodes(withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
         let path = "episodes/trending.json"
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
     }
@@ -21,7 +21,7 @@ extension NPOManager {
     //MARK: Popular Episodes
     
     // http://apps-api.uitzendinggemist.nl/episodes/popular.json
-    public func getPopularEpisodes(withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) -> Request? {
+    public func getPopularEpisodes(withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
         let path = "episodes/popular.json"
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
     }
@@ -29,7 +29,7 @@ extension NPOManager {
     //MARK: Recent Episodes
     
     // http://apps-api.uitzendinggemist.nl/broadcasts/recent.json
-    public func getRecentEpisodes(withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) -> Request? {
+    public func getRecentEpisodes(withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
         let path = "broadcasts/recent.json"
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withKeyPath: "episode", withCompletion: completed)
     }
@@ -37,9 +37,9 @@ extension NPOManager {
     //MARK: Details
 
     // http://apps-api.uitzendinggemist.nl/episodes/POW_02989402.json
-    public func getDetails(forEpisode episode: NPOEpisode, withCompletion completed: (episode: NPOEpisode?, error: NPOError?) -> () = { episode, error in }) -> Request? {
+    public func getDetails(forEpisode episode: NPOEpisode, withCompletion completed: @escaping (_ episode: NPOEpisode?, _ error: NPOError?) -> () = { episode, error in }) -> Request? {
         guard let mid = episode.mid else {
-            completed(episode: nil, error: .NoMIDError)
+            completed(nil, .noMIDError)
             return nil
         }
         
@@ -50,7 +50,7 @@ extension NPOManager {
     //MARK: By Genre
     
     // http://apps-api.uitzendinggemist.nl/episodes/genre/Documentaire.json
-    public func getEpisodes(byGenre genre: NPOGenre, withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) -> Request? {
+    public func getEpisodes(byGenre genre: NPOGenre, withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
         let path = "episodes/genre/\(genre.rawValue).json"
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
     }
@@ -58,7 +58,7 @@ extension NPOManager {
     //MARK: By broadcaster
 
     // http://apps-api.uitzendinggemist.nl/episodes/broadcaster/NOS.json
-    public func getEpisodes(byBroadcaster broadcaster: NPOBroadcaster, withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) -> Request? {
+    public func getEpisodes(byBroadcaster broadcaster: NPOBroadcaster, withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
         let path = "episodes/broadcaster/\(broadcaster.rawValue).json"
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
     }
@@ -66,8 +66,8 @@ extension NPOManager {
     //MARK: Searching
     
     // http://apps-api.uitzendinggemist.nl/episodes/search/reizen.json
-    public func getEpisodes(bySearchTerm term: String, withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) -> Request? {
-        let encodedTerm = term.stringByAddingPercentEncodingWithAllowedCharacters(.URLPathAllowedCharacterSet())
+    public func getEpisodes(bySearchTerm term: String, withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
+        let encodedTerm = term.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
         let path = "episodes/search/\(encodedTerm).json"
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
     }
@@ -75,17 +75,17 @@ extension NPOManager {
     //MARK: By Date
 
     // http://apps-api.uitzendinggemist.nl/broadcasts/2016-07-15.json
-    public func getEpisodes(forDate date: NSDate, filterReruns filter: Bool, withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) -> Request? {
+    public func getEpisodes(forDate date: NSDate, filterReruns filter: Bool, withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
         // format date
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let formattedDate = dateFormatter.stringFromDate(date)
+        let formattedDate = dateFormatter.string(from: date as Date)
         
         // fetch episodes
         let path = "broadcasts/\(formattedDate).json"
         return self.fetchModels(ofType: NPOBroadcast.self, fromPath: path) { broadcasts, error in
             guard let broadcasts = broadcasts else {
-                completed(episodes: nil, error: error)
+                completed(nil, error)
                 return
             }
         
@@ -93,8 +93,8 @@ extension NPOManager {
             var episodes = [NPOEpisode]()
             
             // sort broadcasts in reverse order (e.g. old -> new)
-            let sortedBroadcasts = broadcasts.sort {
-                guard let firstDate = $0.starts, secondDate = $1.starts else {
+            let sortedBroadcasts = broadcasts.sorted {
+                guard let firstDate = $0.starts, let secondDate = $1.starts else {
                     return false
                 }
                 
@@ -102,7 +102,7 @@ extension NPOManager {
             }
             
             for broadcast in sortedBroadcasts {
-                guard let episode = broadcast.episode, mid = episode.mid, startsAt = broadcast.starts else {
+                guard let episode = broadcast.episode, let mid = episode.mid, let startsAt = broadcast.starts else {
                     continue
                 }
                 
@@ -118,16 +118,16 @@ extension NPOManager {
                 }
             }
             
-            completed(episodes: episodes.reverse(), error: error)
+            completed(episodes.reversed(), error)
         }
     }
     
     //MARK: By Program
     
     // http://apps-api.uitzendinggemist.nl/episodes/series/POMS_S_VPRO_472240/latest.json
-    public func getLatestEpisode(forProgram program: NPOProgram, withCompletion completed: (episode: NPOEpisode?, error: NPOError?) -> () = { episode, error in }) -> Request? {
+    public func getLatestEpisode(forProgram program: NPOProgram, withCompletion completed: @escaping (_ episode: NPOEpisode?, _ error: NPOError?) -> () = { episode, error in }) -> Request? {
         guard let mid = program.mid else {
-            completed(episode: nil, error: .NoMIDError)
+            completed(nil, .noMIDError)
             return nil
         }
         
@@ -136,9 +136,9 @@ extension NPOManager {
     }
     
     // http://apps-api.uitzendinggemist.nl/series/POMS_S_VPRO_472240.json
-    public func getEpisodes(forProgram program: NPOProgram, withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) -> Request? {
+    public func getEpisodes(forProgram program: NPOProgram, withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
         guard let mid = program.mid else {
-            completed(episodes: nil, error: .NoMIDError)
+            completed(nil, .noMIDError)
             return nil
         }
         
@@ -147,9 +147,9 @@ extension NPOManager {
     }
     
     // http://apps-api.uitzendinggemist.nl/series/POMS_S_VPRO_472240.json
-    public func getNextEpisode(forProgram program: NPOProgram, withCompletion completed: (episode: NPOEpisode?, error: NPOError?) -> () = { episode, error in }) -> Request? {
+    public func getNextEpisode(forProgram program: NPOProgram, withCompletion completed: @escaping (_ episode: NPOEpisode?, _ error: NPOError?) -> () = { episode, error in }) -> Request? {
         guard let mid = program.mid else {
-            completed(episode: nil, error: .NoMIDError)
+            completed(nil, .noMIDError)
             return nil
         }
         
@@ -159,19 +159,19 @@ extension NPOManager {
     
     //MARK: By Favorite Programs
     
-    public func getRecentEpisodesForFavoritePrograms(withCompletion completed: (episodes: [NPOEpisode]?, error: NPOError?) -> () = { episodes, error in }) {
+    public func getRecentEpisodesForFavoritePrograms(withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) {
         // get favorite programs
         self.getDetailedFavoritePrograms() { programs, errors in
             guard let programs = programs else {
-                completed(episodes: nil, error: .NoEpisodeError)
+                completed(nil, .noEpisodeError)
                 return
             }
             
             var episodes = [NPOEpisode]()
             
             for program in programs {
-                if let programEpisodes = program.episodes, oldestUnwatchedEpisode = programEpisodes.filter({ $0.watched != .Fully }).sort({
-                    guard let firstDate = $0.broadcasted, secondDate = $1.broadcasted else {
+                if let programEpisodes = program.episodes, let oldestUnwatchedEpisode = programEpisodes.filter({ $0.watched != .fully }).sorted(by: {
+                    guard let firstDate = $0.broadcasted, let secondDate = $1.broadcasted else {
                         return false
                     }
                     
@@ -181,7 +181,7 @@ extension NPOManager {
                 }
             }
             
-            completed(episodes: episodes, error: nil)
+            completed(episodes, nil)
         }
     }
 }

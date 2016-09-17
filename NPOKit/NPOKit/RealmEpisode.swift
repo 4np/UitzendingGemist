@@ -14,7 +14,7 @@ class RealmEpisode: Object {
     dynamic var name: String?
     dynamic var info: String?           // description is a reserved word
     dynamic var program: RealmProgram?  // to-one relationship
-    dynamic var broadcasted: NSDate?
+    dynamic var broadcasted: Date?
     dynamic var duration: Int = 0
     dynamic var watchDuration: Int = 0
     dynamic var watched: Int = 0

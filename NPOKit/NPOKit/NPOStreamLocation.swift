@@ -12,25 +12,24 @@ import AlamofireObjectMapper
 import AlamofireImage
 import ObjectMapper
 
-public class NPOStreamLocation: Mappable, CustomDebugStringConvertible {
-    private var errorcode: Int?
-    private var family: String?
-    private var path: String?
-    private var scheme: String?
-    private var host: String?
-    private var wait: Int?
-    private var query: String?
-    public internal(set) var url: NSURL?
+open class NPOStreamLocation: Mappable, CustomDebugStringConvertible {
+    fileprivate var errorcode: Int?
+    fileprivate var family: String?
+    fileprivate var path: String?
+    fileprivate var scheme: String?
+    fileprivate var host: String?
+    fileprivate var wait: Int?
+    fileprivate var query: String?
+    open internal(set) var url: URL?
     
     //MARK: Lifecycle
     
-    required convenience public init?(_ map: Map) {
-        self.init()
+    required public init?(map: Map) {
     }
     
     //MARK: Mapping
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         errorcode <- map["errorcode"]
         family <- map["family"]
         path <- map["path"]

@@ -11,34 +11,34 @@ import RealmSwift
 import AlamofireObjectMapper
 import ObjectMapper
 
-public class NPORestrictedMedia: NPOMedia {
-    public internal(set) var description: String?
-    public internal(set) var broadcasters = [NPOBroadcaster]()
-    public internal(set) var genres = [NPOGenre]()
+open class NPORestrictedMedia: NPOMedia {
+    open internal(set) var description: String?
+    open internal(set) var broadcasters = [NPOBroadcaster]()
+    open internal(set) var genres = [NPOGenre]()
     internal var revoked = false
     internal var active = true
-    public internal(set) var restriction: NPORestriction?
-    public internal(set) var views = 0
-    public internal(set) var stills: [NPOStill]?
-    public internal(set) var fragments: [NPOFragment]?
+    open internal(set) var restriction: NPORestriction?
+    open internal(set) var views = 0
+    open internal(set) var stills: [NPOStill]?
+    open internal(set) var fragments: [NPOFragment]?
     
-    public var available: Bool {
+    open var available: Bool {
         get {
             let restrictionOkay = restriction?.available ?? true
             return !self.revoked && self.active && restrictionOkay
         }
     }
     
-    //MARK: Lifecycle
+    //MARK: Lifecycle  
     
-    required convenience public init?(_ map: Map) {
-        self.init()
+    required public init?(map: Map) {
+        super.init(map: map)
     }
     
     //MARK: Mapping
     
-    public override func mapping(map: Map) {
-        super.mapping(map)
+    open override func mapping(map: Map) {
+        super.mapping(map: map)
         
         description <- map["description"]
         broadcasters <- (map["broadcasters"], EnumTransform<NPOBroadcaster>())

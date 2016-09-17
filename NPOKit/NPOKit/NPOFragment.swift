@@ -11,23 +11,23 @@ import RealmSwift
 import AlamofireObjectMapper
 import ObjectMapper
 
-public class NPOFragment: NPOMedia {
-    public internal(set) var description: String?
-    public internal(set) var startsAt = 0
-    public internal(set) var endsAt = 0
-    public internal(set) var duration = 0
-    public internal(set) var stills = [NPOStill]()
+open class NPOFragment: NPOMedia {
+    open internal(set) var description: String?
+    open internal(set) var startsAt = 0
+    open internal(set) var endsAt = 0
+    open internal(set) var duration = 0
+    open internal(set) var stills = [NPOStill]()
     
     //MARK: Lifecycle
     
-    required convenience public init?(_ map: Map) {
-        self.init()
+    required public init?(map: Map) {
+        super.init(map: map)
     }
     
     //MARK: Mapping
     
-    public override func mapping(map: Map) {
-        super.mapping(map)
+    open override func mapping(map: Map) {
+        super.mapping(map: map)
         
         description <- map["description"]
         startsAt <- map["starts_at"]

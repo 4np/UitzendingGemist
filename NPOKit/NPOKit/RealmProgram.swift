@@ -15,15 +15,15 @@ class RealmProgram: Object {
     dynamic var firstLetter: String? {
         didSet {
             // check if all is well
-            let trimmedValue = (firstLetter ?? "").stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let trimmedValue = (firstLetter ?? "").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             
             // make sure we have a first letter
-            guard let name = name where trimmedValue.characters.count != 1 else {
+            guard let name = name , trimmedValue.characters.count != 1 else {
                 return
             }
             
             // use the first letter of the name instead
-            firstLetter = String(name[name.startIndex]).lowercaseString
+            firstLetter = String(name[name.startIndex]).lowercased()
         }
     }
     dynamic var favorite: Bool = false

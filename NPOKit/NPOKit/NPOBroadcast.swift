@@ -11,23 +11,23 @@ import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
 
-public class NPOBroadcast: Mappable, CustomDebugStringConvertible {
-    public internal(set) var rerun: Bool = false
-    public internal(set) var starts: NSDate?
-    public internal(set) var ends: NSDate?
-    public internal(set) var duration: Int = 0
-    public internal(set) var channel: String?
-    public internal(set) var episode: NPOEpisode?
+open class NPOBroadcast: Mappable, CustomDebugStringConvertible {
+    open internal(set) var rerun: Bool = false
+    open internal(set) var starts: Date?
+    open internal(set) var ends: Date?
+    open internal(set) var duration: Int = 0
+    open internal(set) var channel: String?
+    open internal(set) var episode: NPOEpisode?
     
     //MARK: Lifecycle
     
-    required convenience public init?(_ map: Map) {
+    required convenience public init?(map: Map) {
         self.init()
     }
     
     //MARK: Mapping
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         rerun <- map["rerun"]
         starts <- (map["starts_at"], DateTransform())
         ends <- (map["ends_at"], DateTransform())

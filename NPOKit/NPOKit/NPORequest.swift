@@ -16,12 +16,12 @@ public func ==(lhs: NPORequest, rhs: NPORequest) -> Bool {
 }
 // swiftlint:enable operator_whitespace
 
-public class NPORequest: Equatable {
-    private let uuid = NSUUID()
-    private var cancelled = false
-    private var requests = [Request]()
+open class NPORequest: Equatable {
+    fileprivate let uuid = UUID()
+    fileprivate var cancelled = false
+    fileprivate var requests = [Request]()
     
-    internal func append(request: Request?) {
+    internal func append(_ request: Request?) {
         guard let request = request else {
             return
         }
@@ -37,7 +37,7 @@ public class NPORequest: Equatable {
     final public func cancel() {
         self.cancelled = true
         
-        for request in self.requests.enumerate() {
+        for request in self.requests.enumerated() {
             request.element.cancel()
         }
         

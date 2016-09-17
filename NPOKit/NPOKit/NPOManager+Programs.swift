@@ -10,19 +10,30 @@ import Foundation
 import Alamofire
 import RealmSwift
 
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 extension NPOManager {
     // http://apps-api.uitzendinggemist.nl/series.json
-    public func getPrograms(withCompletion completed: (programs: [NPOProgram]?, error: NPOError?) -> () = { programs, error in }) -> Request? {
+    public func getPrograms(withCompletion completed: @escaping (_ programs: [NPOProgram]?, _ error: NPOError?) -> () = { programs, error in }) -> Request? {
         return self.fetchModels(ofType: NPOProgram.self, fromPath: "series.json") { programs, error in
             // filter programs based on whether or not they are available
             let availablePrograms = programs?.filter { $0.available == true }
-            completed(programs: availablePrograms, error: error)
+            completed(availablePrograms, error)
         }
     }
     
-    public func getDetails(forProgram program: NPOProgram, withCompletion completed: (program: NPOProgram?, error: NPOError?) -> () = { program, error in }) -> Request? {
+    public func getDetails(forProgram program: NPOProgram, withCompletion completed: @escaping (_ program: NPOProgram?, _ error: NPOError?) -> () = { program, error in }) -> Request? {
         guard let mid = program.mid else {
-            completed(program: nil, error: .NoMIDError)
+            completed(nil, .noMIDError)
             return nil
         }
         
@@ -30,24 +41,24 @@ extension NPOManager {
     }
     
     // http://apps-api.uitzendinggemist.nl/series/AT_2051232.json
-    private func getDetails(forProgramWithMID mid: String, withCompletion completed: (program: NPOProgram?, error: NPOError?) -> () = { program, error in }) -> Request? {
+    fileprivate func getDetails(forProgramWithMID mid: String, withCompletion completed: @escaping (_ program: NPOProgram?, _ error: NPOError?) -> () = { program, error in }) -> Request? {
         let path = "series/\(mid).json"
         return self.fetchModel(ofType: NPOProgram.self, fromPath: path, withCompletion: completed)
     }
     
-    public func getFavoritePrograms(withCompletion completed: (programs: [NPOProgram]?, error: NPOError?) -> () = { programs, error in }) {
+    public func getFavoritePrograms(withCompletion completed: @escaping (_ programs: [NPOProgram]?, _ error: NPOError?) -> () = { programs, error in }) {
         self.getPrograms() { programs, error in
             guard let programs = programs else {
-                completed(programs: nil, error: error)
+                completed(nil, error)
                 return
             }
             
             let favoritePrograms = programs.filter { $0.favorite }
-            completed(programs: favoritePrograms, error: nil)
+            completed(favoritePrograms, nil)
         }
     }
     
-    public func getDetailedFavoritePrograms(withCompletion completed: (programs: [NPOProgram]?, errors: [NPOError]?) -> () = { programs, error in }) {
+    public func getDetailedFavoritePrograms(withCompletion completed: @escaping (_ programs: [NPOProgram]?, _ errors: [NPOError]?) -> () = { programs, error in }) {
         do {
             // get favorite programs from realm
             let realm = try Realm()
@@ -58,7 +69,7 @@ extension NPOManager {
             var errors = [NPOError]()
             
             // create a dispatch group
-            let group = dispatch_group_create()
+            let group = DispatchGroup()
             
             // iterate over favorite programs
             for favoriteProgram in favoritePrograms {
@@ -67,7 +78,7 @@ extension NPOManager {
                     continue
                 }
                 
-                dispatch_group_enter(group)
+                group.enter()
 
                 self.getDetails(forProgramWithMID: mid) { program, error in
                     if let program = program {
@@ -76,17 +87,17 @@ extension NPOManager {
                         errors.append(error)
                     }
                     
-                    dispatch_group_leave(group)
+                    group.leave()
                 }
             }
             
             // done
-            dispatch_group_notify(group, dispatch_get_main_queue()) {
-                let sortedPrograms = programs.sort { $0.name < $1.name }
-                completed(programs: sortedPrograms.count > 0 ? sortedPrograms : nil, errors: errors.count > 0 ? errors : nil)
+            group.notify(queue: DispatchQueue.main) {
+                let sortedPrograms = programs.sorted { $0.name < $1.name }
+                completed(sortedPrograms.count > 0 ? sortedPrograms : nil, errors.count > 0 ? errors : nil)
             }
         } catch let error as NSError {
-            completed(programs: nil, errors: [NPOError.ModelMappingError(error.localizedDescription)])
+            completed(nil, [NPOError.modelMappingError(error.localizedDescription)])
         }
     }
 }

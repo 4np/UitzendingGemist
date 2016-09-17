@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 extension NPOManager {
-    public func getDaysSinceNow(numberOfDays total: Int) -> [(from: NSDate, to: NSDate, label: String, name: String)] {
+    public func getDaysSinceNow(numberOfDays total: Int) -> [(from: Date, to: Date, label: String, name: String)] {
         guard total >= 0 else {
             return []
         }
         
-        var days = [(from: NSDate, to: NSDate, label: String, name: String)]()
-        let now = NSDate()
-        let formatter = NSDateFormatter()
+        var days = [(from: Date, to: Date, label: String, name: String)]()
+        let now = Date()
+        let formatter = DateFormatter()
         formatter.dateFormat = "E d MMM"
         
         for daysAgo in 0..<total {
@@ -26,7 +26,7 @@ extension NPOManager {
             }
             
             let startAndEnd = day.startAndEndOfDate()
-            let dayInfo = (from: startAndEnd.from, to: startAndEnd.to, label: day.daysAgoDisplayValue, name: formatter.stringFromDate(day))
+            let dayInfo = (from: startAndEnd.from, to: startAndEnd.to, label: day.daysAgoDisplayValue, name: formatter.string(from: day))
             days.append(dayInfo)
         }
         

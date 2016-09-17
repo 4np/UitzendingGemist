@@ -15,7 +15,7 @@ import ObjectMapper
 // Equatable
 // swiftlint:disable operator_whitespace
 public func ==(lhs: NPOTip, rhs: NPOTip) -> Bool {
-    guard let le = lhs.episode, re = rhs.episode where le == re else {
+    guard let le = lhs.episode, let re = rhs.episode , le == re else {
         return false
     }
     
@@ -24,20 +24,20 @@ public func ==(lhs: NPOTip, rhs: NPOTip) -> Bool {
 // swiftlint:enable operator_whitespace
 
 extension Array where Element: NPOTip {
-    func contains(tip: NPOTip) -> Bool {
-        return self.indexOf({ $0 == tip }) != nil
+    func contains(_ tip: NPOTip) -> Bool {
+        return self.index(where: { $0 == tip }) != nil
     }
 }
 
-public class NPOTip: NPOImage, Equatable {
+open class NPOTip: NPOImage, Equatable {
     // http://apps-api.uitzendinggemist.nl/tips.json
-    public private(set) var name: String?
-    public private(set) var description: String?
-    public private(set) var episode: NPOEpisode?
-    public private(set) var published: NSDate?
-    public private(set) var position: Int?
+    open fileprivate(set) var name: String?
+    open fileprivate(set) var description: String?
+    open fileprivate(set) var episode: NPOEpisode?
+    open fileprivate(set) var published: Date?
+    open fileprivate(set) var position: Int?
     
-    public var publishedDisplayValue: String {
+    open var publishedDisplayValue: String {
         get {
             guard let published = self.published else {
                 return NPOConstants.unknownText
@@ -49,14 +49,14 @@ public class NPOTip: NPOImage, Equatable {
     
     //MARK: Lifecycle
     
-    required convenience public init?(_ map: Map) {
-        self.init()
+    required public init?(map: Map) {
+        super.init(map: map)
     }
     
     //MARK: Mapping
     
-    public override func mapping(map: Map) {
-        super.mapping(map)
+    open override func mapping(map: Map) {
+        super.mapping(map: map)
         
         name <- map["name"]
         description <- map["description"]
@@ -67,9 +67,9 @@ public class NPOTip: NPOImage, Equatable {
     
     //MARK: Video Stream
     
-    public func getVideoStream(withCompletion completed: (url: NSURL?, error: NPOError?) -> () = { url, error in }) {
+    open func getVideoStream(withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) {
         guard let episode = self.episode else {
-            completed(url: nil, error: .NoEpisodeError)
+            completed(nil, .noEpisodeError)
             return
         }
         
@@ -77,26 +77,26 @@ public class NPOTip: NPOImage, Equatable {
     }
     
     //MARK: Image fetching
-    
-    internal override func getImageURLs(withCompletion completed: (urls: [NSURL]) -> () = { urls in }) -> Request? {
-        var urls = [NSURL]()
+
+    internal override func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> () = { urls in }) -> Request? {
+        var urls = [URL]()
         
         // tip image
         if let url = self.imageURL {
-            urls.append(url)
+            urls.append(url as URL)
         }
         
         // episode image
         if let url = self.episode?.imageURL {
-            urls.append(url)
+            urls.append(url as URL)
         }
         
         // program image
         if let url = self.episode?.program?.imageURL {
-            urls.append(url)
+            urls.append(url as URL)
         }
         
-        completed(urls: urls)
+        completed(urls)
         return nil
     }
 }

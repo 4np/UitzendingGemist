@@ -13,18 +13,18 @@ import RealmSwift
 import CocoaLumberjack
 
 public enum Watched: Int {
-    case Unwatched
-    case Partially
-    case Fully
+    case unwatched
+    case partially
+    case fully
 }
 
-public enum NPOError: ErrorType {
-    case ModelMappingError(String)//, JSON)
-    case TokenError(String)
-    case NetworkError(String)
-    case NoImageError
-    case NoMIDError
-    case NoEpisodeError
+public enum NPOError {
+    case modelMappingError(String)//, JSON)
+    case tokenError(String)
+    case networkError(String)
+    case noImageError
+    case noMIDError
+    case noEpisodeError
 }
 
 public enum NPOGenre: String {
@@ -76,10 +76,10 @@ public enum NPOBroadcaster: String {
     static let all = [VARA, NOS, KRO, NCRV, KRONCRV, AVRO, TROS, AVROTROS, BNN, EO, HUMAN, IKON, MAX, NTR, NPS, OHM, VPRO, WNL, PowNed, BOS, JoodseOmroep, ZAPP, ZAPPELIN]
 }
 
-public class NPOManager {
-    public static let sharedInstance = NPOManager()
+open class NPOManager {
+    open static let sharedInstance = NPOManager()
     internal let baseURL = "http://apps-api.uitzendinggemist.nl"
-    private let infoDictionary = NSBundle.mainBundle().infoDictionary
+    fileprivate let infoDictionary = Bundle.main.infoDictionary
     
     //MARK: Init
     
@@ -88,7 +88,7 @@ public class NPOManager {
     }
     
     //swiftlint:disable force_unwrapping
-    private func upgradeIfNeeded() {
+    fileprivate func upgradeIfNeeded() {
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
             // version (if you've never set a schema version before, the version is 0).
@@ -102,22 +102,22 @@ public class NPOManager {
                     DDLogDebug("Performing schema upgrade \(oldSchemaVersion) to 1")
                     
                     // migrate NPOProgram object
-                    migration.enumerate(RealmProgram.className()) { oldObject, newObject in
-                        newObject!["watched"] = Watched.Unwatched.rawValue
+                    migration.enumerateObjects(ofType: RealmProgram.className()) { oldObject, newObject in
+                        newObject!["watched"] = Watched.unwatched.rawValue
                     }
                 
                     // migrate NPOEpisode object
-                    migration.enumerate(RealmEpisode.className()) { oldObject, newObject in
-                        if let watched = oldObject!["watched"] as? Bool, watchDuration = oldObject!["watchDuration"] as? Int {
+                    migration.enumerateObjects(ofType: RealmEpisode.className()) { oldObject, newObject in
+                        if let watched = oldObject!["watched"] as? Bool, let watchDuration = oldObject!["watchDuration"] as? Int {
                             if watched {
-                                newObject!["watched"] = Watched.Fully.rawValue
+                                newObject!["watched"] = Watched.fully.rawValue
                             } else if watchDuration > 59 {
-                                newObject!["watched"] = Watched.Partially.rawValue
+                                newObject!["watched"] = Watched.partially.rawValue
                             } else {
-                                newObject!["watched"] = Watched.Unwatched.rawValue
+                                newObject!["watched"] = Watched.unwatched.rawValue
                             }
                         } else {
-                            newObject!["watched"] = Watched.Unwatched.rawValue
+                            newObject!["watched"] = Watched.unwatched.rawValue
                         }
                     }
                 }

@@ -31,23 +31,23 @@ public enum NPOLive: String {
     
     internal var configuration: (name: String, shortName: String, type: NPOLiveType, audioQuality: Int, audioStream: String, videoQuality: Int) {
         switch self {
-            case NPO_1:
+            case .NPO_1:
                 return (name: "ned1", shortName: "ned1", type: .TV, audioQuality: 128000, audioStream: "", videoQuality: 1400000)
-            case NPO_2:
+            case .NPO_2:
                 return (name: "ned2", shortName: "ned2", type: .TV, audioQuality: 128000, audioStream: "_1", videoQuality: 1400000)
-            case NPO_3:
+            case .NPO_3:
                 return (name: "ned3", shortName: "ned3", type: .TV, audioQuality: 128000, audioStream: "", videoQuality: 1400000)
-            case NPO_ZAPP_XTRA:
+            case .NPO_ZAPP_XTRA:
                 return (name: "zappelin24", shortName: "opvo", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
-            case NPO_101:
+            case .NPO_101:
                 return (name: "101tv", shortName: "_101_", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
-            case NPO_NIEUWS:
+            case .NPO_NIEUWS:
                 return (name: "journaal24", shortName: "nosj", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
-            case NPO_POLITIEK:
+            case .NPO_POLITIEK:
                 return (name: "politiek24", shortName: "po24", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
-            case NPO_BEST:
+            case .NPO_BEST:
                 return (name: "best24", shortName: "hilv", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
-            case NPO_CULTURA:
+            case .NPO_CULTURA:
                 return (name: "cultura24", shortName: "cult", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
 //            case NPO_ZAPP_XTRA:
 //                return (name: "zapp", shortName: "ned1", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
@@ -56,15 +56,15 @@ public enum NPOLive: String {
 }
 
 extension NPOManager {
-    internal func getVideoStream(forMID mid: String?, withCompletion completed: (url: NSURL?, error: NPOError?) -> () = { url, error in }) {
+    internal func getVideoStream(forMID mid: String?, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) {
         guard let mid = mid else {
-            completed(url: nil, error: .NoMIDError)
+            completed(nil, .noMIDError)
             return
         }
         
         self.getToken() { [weak self] token, error in
             guard let token = token else {
-                completed(url: nil, error: error)
+                completed(nil, error)
                 return
             }
             
@@ -72,7 +72,7 @@ extension NPOManager {
             
             self?.fetchModel(ofType: NPOStream.self, fromURL: url) { url, error in
                 guard let url = url?.getStreamURL(forType: NPOStreamURLType.best) else {
-                    completed(url: nil, error: error)
+                    completed(nil, error)
                     return
                 }
                 
@@ -81,16 +81,16 @@ extension NPOManager {
         }
     }
     
-    private func getVideoStreamLocation(forURL url: NSURL, withCompletion completed: (url: NSURL?, error: NPOError?) -> () = { url, error in }) -> Request? {
+    fileprivate func getVideoStreamLocation(forURL url: URL, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) -> Request? {
         return self.fetchModel(ofType: NPOStreamLocation.self, fromURL: url.absoluteString) { streamLocation, error in
-            completed(url: streamLocation?.url, error: error)
+            completed(streamLocation?.url, error)
         }
     }
     
-    public func getVideoStream(forLiveChannel channel: NPOLive, withCompletion completed: (url: NSURL?, error: NPOError?) -> () = { url, error in }) {
+    public func getVideoStream(forLiveChannel channel: NPOLive, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) {
         self.getToken() { [weak self] token, error in
             guard let token = token else {
-                completed(url: nil, error: error)
+                completed(nil, error)
                 return
             }
             
@@ -98,12 +98,12 @@ extension NPOManager {
             let url = "http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/\(configuration.type.rawValue)/\(configuration.name)/\(configuration.name).isml/\(configuration.name)-audio\(configuration.audioStream)=\(configuration.audioQuality)-video=\(configuration.videoQuality).m3u8&token=\(token)"
             
             self?.fetchModel(ofType: NPOLiveStream.self, fromURL: url) { liveStream, error in
-                guard let url = liveStream?.url where liveStream?.success == true else {
-                    completed(url: nil, error: error)
+                guard let url = liveStream?.url , liveStream?.success == true else {
+                    completed(nil, error)
                     return
                 }
                 
-                completed(url: url, error: nil)
+                completed(url as URL, nil)
             }
         }
     }

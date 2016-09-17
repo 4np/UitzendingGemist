@@ -14,7 +14,7 @@ extension Mappable where Self: CustomStringConvertible {
     
     public var description: String {
         get {
-            return String(self.dynamicType)
+            return String(describing: type(of: self))
         }
     }
 }

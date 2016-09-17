@@ -11,11 +11,11 @@ import RealmSwift
 import AlamofireObjectMapper
 import ObjectMapper
 
-public class NPOTimeRestriction: Mappable, CustomDebugStringConvertible {
-    internal(set) var online: NSDate?
-    internal(set) var offline: NSDate?
+open class NPOTimeRestriction: Mappable, CustomDebugStringConvertible {
+    internal(set) var online: Date?
+    internal(set) var offline: Date?
     
-    public var available: Bool {
+    open var available: Bool {
         get {
             return self.isOnline()
         }
@@ -23,13 +23,13 @@ public class NPOTimeRestriction: Mappable, CustomDebugStringConvertible {
     
     //MARK: Lifecycle
     
-    required convenience public init?(_ map: Map) {
+    required convenience public init?(map: Map) {
         self.init()
     }
     
     //MARK: Mapping
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         online <- (map["online_at"], DateTransform())
         offline <- (map["offline_at"], DateTransform())
     }
@@ -37,14 +37,14 @@ public class NPOTimeRestriction: Mappable, CustomDebugStringConvertible {
     //MARK: Date checking
     
     internal func isOnline() -> Bool {
-        return self.isOnline(atDate: NSDate())
+        return self.isOnline(atDate: Date())
     }
     
-    internal func isOnline(atDate date: NSDate) -> Bool {
-        guard let online = self.online, offline = self.offline else {
+    internal func isOnline(atDate date: Date) -> Bool {
+        guard let online = self.online, let offline = self.offline else {
             return true
         }
         
-        return (date.compare(online) == .OrderedDescending && date.compare(offline) == .OrderedAscending)
+        return (date.compare(online) == .orderedDescending && date.compare(offline) == .orderedAscending)
     }
 }

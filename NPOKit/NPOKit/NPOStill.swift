@@ -11,18 +11,18 @@ import RealmSwift
 import AlamofireObjectMapper
 import ObjectMapper
 
-public class NPOStill: NPOImage {
-    public private(set) var position: Int?
+open class NPOStill: NPOImage {
+    open fileprivate(set) var position: Int?
     
     //MARK: Lifecycle
     
-    required convenience public init?(_ map: Map) {
-        self.init()
+    required public init?(map: Map) {
+        super.init(map: map)
     }
     
     //MARK: Mapping
     
-    public override func mapping(map: Map) {
+    open override func mapping(map: Map) {
         imageURL <- (map["url"], URLTransform())
         position <- map["offset"]
     }

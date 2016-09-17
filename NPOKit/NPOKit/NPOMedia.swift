@@ -19,21 +19,21 @@ public func ==(lhs: NPOMedia, rhs: NPOMedia) -> Bool {
 }
 // swiftlint:enable operator_whitespace
 
-public class NPOMedia: NPOImage, Equatable {
-    public internal(set) var mid: String?
+open class NPOMedia: NPOImage, Equatable {
+    open internal(set) var mid: String?
     //internal var neboID: String?
-    public internal(set) var name: String?
+    open internal(set) var name: String?
     
     //MARK: Lifecycle
-    
-    required convenience public init?(_ map: Map) {
-        self.init()
+
+    required public init?(map: Map) {
+        super.init(map: map)
     }
     
     //MARK: Mapping
     
-    public override func mapping(map: Map) {
-        super.mapping(map)
+    open override func mapping(map: Map) {
+        super.mapping(map: map)
         
         mid <- map["mid"]
         //neboID <- map["nebo_id"]
@@ -58,7 +58,7 @@ public class NPOMedia: NPOImage, Equatable {
     
     //MARK: Video Stream
     
-    public func getVideoStream(withCompletion completed: (url: NSURL?, error: NPOError?) -> () = { url, error in }) {
+    open func getVideoStream(withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) {
         NPOManager.sharedInstance.getVideoStream(forMID: mid, withCompletion: completed)
     }
 }

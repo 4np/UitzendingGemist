@@ -14,19 +14,39 @@ import ObjectMapper
 import RealmSwift
 import CocoaLumberjack
 
-public class NPOEpisode: NPORestrictedMedia {
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+open class NPOEpisode: NPORestrictedMedia {
     // Episode specific properties
     // http://apps-api.uitzendinggemist.nl/episodes/AT_2049573.json
     // http://apps-api.uitzendinggemist.nl/tips.json
     // http://apps-api.uitzendinggemist.nl/episodes/popular.json
     
-    public internal(set) var duration: Int = 0
-    public internal(set) var advisories = [String]()
-    public internal(set) var broadcasted: NSDate?
-    public internal(set) var broadcastChannel: String?
-    public internal(set) var program: NPOProgram?
+    open internal(set) var duration: Int = 0
+    open internal(set) var advisories = [String]()
+    open internal(set) var broadcasted: Date?
+    open internal(set) var broadcastChannel: String?
+    open internal(set) var program: NPOProgram?
     
-    public var broadcastedDisplayValue: String {
+    open var broadcastedDisplayValue: String {
         guard let broadcasted = self.broadcasted else {
             return NPOConstants.unknownText
         }
@@ -36,14 +56,14 @@ public class NPOEpisode: NPORestrictedMedia {
     
     //MARK: Lifecycle
     
-    required convenience public init?(_ map: Map) {
-        self.init()
+    required public init?(map: Map) {
+        super.init(map: map)
     }
     
     //MARK: Mapping
     
-    public override func mapping(map: Map) {
-        super.mapping(map)
+    open override func mapping(map: Map) {
+        super.mapping(map: map)
         
         duration <- map["duration"]
         advisories <- map["advisories"]
@@ -59,7 +79,7 @@ public class NPOEpisode: NPORestrictedMedia {
             let realm = try Realm()
             
             // get first instance by mid
-            guard let mid = self.mid, episode = realm.objects(RealmEpisode).filter("mid = '\(mid)'").first else {
+            guard let mid = self.mid, let episode = realm.objects(RealmEpisode.self).filter("mid = '\(mid)'").first else {
                 // create a new instance
                 let episode = RealmEpisode()
                 episode.mid = self.mid
@@ -69,7 +89,7 @@ public class NPOEpisode: NPORestrictedMedia {
                 episode.broadcasted = self.broadcasted
                 episode.duration = self.duration
                 episode.watchDuration = 0
-                episode.watched = Watched.Unwatched.rawValue
+                episode.watched = Watched.unwatched.rawValue
                 
                 // add episode to realm
                 try realm.write {
@@ -90,7 +110,7 @@ public class NPOEpisode: NPORestrictedMedia {
     //MARK: Watched
     
     //swiftlint:disable force_unwrapping
-    public var watched: Watched {
+    open var watched: Watched {
         get {
             return Watched(rawValue: self.realmEpisode?.watched ?? 0)!
         }
@@ -110,9 +130,9 @@ public class NPOEpisode: NPORestrictedMedia {
     
     //MARK: Watch duration
     
-    private var updateProgramTimer: NSTimer?
+    fileprivate var updateProgramTimer: Timer?
 
-    public var watchDuration: Int? {
+    open var watchDuration: Int? {
         get {
             return self.realmEpisode?.watchDuration
         }
@@ -126,13 +146,13 @@ public class NPOEpisode: NPORestrictedMedia {
                     if newWatchDuration > (duration - 120) {
                         // mark as watched
                         self.realmEpisode?.watchDuration = 0
-                        self.realmEpisode?.watched = Watched.Fully.rawValue
+                        self.realmEpisode?.watched = Watched.fully.rawValue
                     } else if newWatchDuration < 60 {
                         self.realmEpisode?.watchDuration = newWatchDuration
-                        self.realmEpisode?.watched = Watched.Unwatched.rawValue
+                        self.realmEpisode?.watched = Watched.unwatched.rawValue
                     } else {
                         self.realmEpisode?.watchDuration = newWatchDuration
-                        self.realmEpisode?.watched = Watched.Partially.rawValue
+                        self.realmEpisode?.watched = Watched.partially.rawValue
                     }
                 }
             } catch let error as NSError {
@@ -141,57 +161,57 @@ public class NPOEpisode: NPORestrictedMedia {
 
             // update the program as well
             updateProgramTimer?.invalidate()
-            updateProgramTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: #selector(updateProgram), userInfo: nil, repeats: false)
+            updateProgramTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(updateProgram), userInfo: nil, repeats: false)
         }
     }
     
-    @objc private func updateProgram() {
+    @objc fileprivate func updateProgram() {
         self.program?.updateWatched()
     }
     
-    public func toggleWatched() {
-        if watched == .Partially || watched == .Unwatched {
-            watched = .Fully
+    open func toggleWatched() {
+        if watched == .partially || watched == .unwatched {
+            watched = .fully
         } else if watchDuration > 59 {
-            watched = .Partially
+            watched = .partially
         } else {
-            watched = .Unwatched
+            watched = .unwatched
         }
     }
     
     //MARK: Image fetching
     
-    internal override func getImageURLs(withCompletion completed: (urls: [NSURL]) -> ()) -> Request? {
-        var urls = [NSURL]()
+    internal override func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> () = { urls in }) -> Request? {
+        var urls = [URL]()
         
         // add program image
         if let url = self.imageURL {
-            urls.append(url)
+            urls.append(url as URL)
         }
         
         // add still image urls
         for still in self.stills ?? [] {
             if let url = still.imageURL {
-                urls.append(url)
+                urls.append(url as URL)
             }
         }
         
         // add fragment stills
         for fragment in self.fragments ?? [] {
-            for still in fragment.stills ?? [] {
+            for still in fragment.stills {
                 if let url = still.imageURL {
-                    urls.append(url)
+                    urls.append(url as URL)
                 }
             }
         }
         
         // got a program url?
         if let url = self.program?.imageURL {
-            urls.append(url)
+            urls.append(url as URL)
         }
     
         // done
-        completed(urls: urls)
+        completed(urls)
         
         return nil
     }

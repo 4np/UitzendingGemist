@@ -12,19 +12,18 @@ import AlamofireObjectMapper
 import AlamofireImage
 import ObjectMapper
 
-public class NPOLiveStream: Mappable, CustomDebugStringConvertible {
-    public private(set) var success = false
-    public private(set) var url: NSURL?
+open class NPOLiveStream: Mappable, CustomDebugStringConvertible {
+    open fileprivate(set) var success = false
+    open fileprivate(set) var url: URL?
     
     //MARK: Lifecycle
     
-    required convenience public init?(_ map: Map) {
-        self.init()
+    required public init?(map: Map) {
     }
     
     //MARK: Mapping
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         success <- map["success"]
         url <- (map["stream"], URLTransform())
     }

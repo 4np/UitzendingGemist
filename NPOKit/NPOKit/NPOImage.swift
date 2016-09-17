@@ -13,19 +13,18 @@ import AlamofireObjectMapper
 import AlamofireImage
 import ObjectMapper
 
-public class NPOImage: Mappable, CustomDebugStringConvertible {
-    private var completionDelay = Int64(0.001)
-    internal var imageURL: NSURL?
+open class NPOImage: Mappable, CustomDebugStringConvertible {
+    fileprivate var completionDelay = Int64(0.001)
+    internal var imageURL: URL?
 
     //MARK: Lifecycle
     
-    required convenience public init?(_ map: Map) {
-        self.init()
+    required public init?(map: Map) {
     }
     
     //MARK: Mapping
     
-    public func mapping(map: Map) {
+    open func mapping(map: Map) {
         imageURL <- (map["image"], URLTransform())
     }
     
@@ -40,13 +39,13 @@ public class NPOImage: Mappable, CustomDebugStringConvertible {
             return nil
         }
         
-        let components = url.componentsSeparatedByString("/")
+        let components = url.components(separatedBy: "/")
         
         guard components.count > 3 else {
             return nil
         }
         
-        var identifier = components[components.count - 3 ..< components.count].joinWithSeparator("-").stringByReplacingOccurrencesOfString(".jpg", withString: "")
+        var identifier = components[components.count - 3 ..< components.count].joined(separator: "-").replacingOccurrences(of: ".jpg", with: "")
         
         if let size = size {
             identifier += "_\(size.width)-\(size.height)"
@@ -57,17 +56,17 @@ public class NPOImage: Mappable, CustomDebugStringConvertible {
     
     //MARK: Image fetching
     
-    final public func getImage(withCompletion completed: (image: UIImage?, error: NPOError?, request: NPORequest) -> () = { image, error, request in }) -> NPORequest {
+    final public func getImage(withCompletion completed: @escaping (_ image: UIImage?, _ error: NPOError?, _ request: NPORequest) -> () = { image, error, request in }) -> NPORequest {
         let npoRequest = NPORequest()
         let identifier = self.getImageIdentifier()
 
         // caching
-        if let identifier = identifier, cachedImage = NPOManager.sharedInstance.imageCache.imageWithIdentifier(identifier) {
+        if let identifier = identifier, let cachedImage = NPOManager.sharedInstance.imageCache.image(withIdentifier: identifier) {
             //DDLogDebug("use image from cache with identifier '\(identifier)' (\(cachedImage))")
             
             // delayed completion as we need the request to return first
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, self.completionDelay), dispatch_get_main_queue()) {
-                completed(image: cachedImage, error: nil, request: npoRequest)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(self.completionDelay) / Double(NSEC_PER_SEC)) {
+                completed(cachedImage, nil, npoRequest)
             }
             
             return npoRequest
@@ -75,18 +74,18 @@ public class NPOImage: Mappable, CustomDebugStringConvertible {
         
         let urlRequest = self.getImageURLs() { urls in
             guard let url = urls.first else {
-                completed(image: nil, error: .NoImageError, request: npoRequest)
+                completed(nil, .noImageError, npoRequest)
                 return
             }
 
             let imageRequest = NPOManager.sharedInstance.getImage(forURL: url) { image, error in
                 // cache image
-                if let image = image, identifier = identifier {
+                if let image = image, let identifier = identifier {
                     //DDLogDebug("cache image with identifier '\(identifier)'")
-                    NPOManager.sharedInstance.imageCache.addImage(image, withIdentifier: identifier)
+                    NPOManager.sharedInstance.imageCache.add(image, withIdentifier: identifier)
                 }
                 
-                completed(image: image, error: error, request: npoRequest)
+                completed(image, error, npoRequest)
             }
             
             npoRequest.append(imageRequest)
@@ -96,17 +95,17 @@ public class NPOImage: Mappable, CustomDebugStringConvertible {
         return npoRequest
     }
     
-    final public func getImage(ofSize size: CGSize, withCompletion completed: (image: UIImage?, error: NPOError?, request: NPORequest) -> () = { image, error, request in }) -> NPORequest {
+    final public func getImage(ofSize size: CGSize, withCompletion completed: @escaping (_ image: UIImage?, _ error: NPOError?, _ request: NPORequest) -> () = { image, error, request in }) -> NPORequest {
         let npoRequest = NPORequest()
         let identifier = self.getImageIdentifier(forSize: size)
         
         // caching
-        if let identifier = identifier, cachedImage = NPOManager.sharedInstance.imageCache.imageWithIdentifier(identifier) {
+        if let identifier = identifier, let cachedImage = NPOManager.sharedInstance.imageCache.image(withIdentifier: identifier) {
             //DDLogDebug("use image from cache with identifier '\(identifier)' (\(cachedImage))")
             
             // delayed completion as we need the request to return first
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, self.completionDelay), dispatch_get_main_queue()) {
-                completed(image: cachedImage, error: nil, request: npoRequest)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(self.completionDelay) / Double(NSEC_PER_SEC)) {
+                completed(cachedImage, nil, npoRequest)
             }
             
             return npoRequest
@@ -114,18 +113,18 @@ public class NPOImage: Mappable, CustomDebugStringConvertible {
         
         let urlRequest = self.getImageURLs() { urls in
             guard let url = urls.first else {
-                completed(image: nil, error: .NoImageError, request: npoRequest)
+                completed(nil, .noImageError, npoRequest)
                 return
             }
             
             let imageRequest = NPOManager.sharedInstance.getImage(forURL: url, ofSize: size) { image, error in
                 // cache image
-                if let image = image, identifier = identifier {
+                if let image = image, let identifier = identifier {
                     //DDLogDebug("cache image with identifier '\(identifier)'")
-                    NPOManager.sharedInstance.imageCache.addImage(image, withIdentifier: identifier)
+                    NPOManager.sharedInstance.imageCache.add(image, withIdentifier: identifier)
                 }
                 
-                completed(image: image, error: error, request: npoRequest)
+                completed(image, error, npoRequest)
             }
             
             npoRequest.append(imageRequest)
@@ -135,14 +134,14 @@ public class NPOImage: Mappable, CustomDebugStringConvertible {
         return npoRequest
     }
     
-    internal func getImageURLs(withCompletion completed: (urls: [NSURL]) -> () = { urls in }) -> Request? {
-        var urls = [NSURL]()
+    internal func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> () = { urls in }) -> Request? {
+        var urls = [URL]()
         
         if let url = self.imageURL {
             urls.append(url)
         }
         
-        completed(urls: urls)
+        completed(urls)
         return nil
     }
 }

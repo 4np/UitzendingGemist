@@ -45,10 +45,10 @@ extension Int {
 //            components.append(seconds)
 //        }
         
-        return components.joinWithSeparator(", ")
+        return components.joined(separator: ", ")
     }
     
-    private func getTimeDisplayValue(forValue value: Int, withFormat format: String) -> String? {
+    fileprivate func getTimeDisplayValue(forValue value: Int, withFormat format: String) -> String? {
         guard value > 0 else {
             return nil
         }

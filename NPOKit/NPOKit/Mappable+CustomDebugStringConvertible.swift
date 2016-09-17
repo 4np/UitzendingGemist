@@ -14,7 +14,7 @@ extension Mappable where Self: CustomDebugStringConvertible {
     
     public var debugDescription: String {
         get {
-            let className = String(self.dynamicType)
+            let className = String(describing: type(of: self))
             
             guard let json = Mapper().toJSONString(self, prettyPrint: true) else {
                 return className

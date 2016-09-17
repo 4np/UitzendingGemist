@@ -12,7 +12,7 @@ import Alamofire
 
 extension NPOManager {
     // http://apps-api.uitzendinggemist.nl/guide/2016-07-21.json
-    public func getGuides(forChannels channels: [NPOLive], onDate date: NSDate, withCompletion completed: (guides: [NPOLive: [NPOBroadcast]]?, errors: [NPOLive: NPOError]?) -> () = { guides, errors in }) {
+    public func getGuides(forChannels channels: [NPOLive], onDate date: Date, withCompletion completed: @escaping (_ guides: [NPOLive: [NPOBroadcast]]?, _ errors: [NPOLive: NPOError]?) -> () = { guides, errors in }) {
         var guides = [NPOLive: [NPOBroadcast]]()
         var errors = [NPOLive: NPOError]()
 
@@ -21,15 +21,15 @@ extension NPOManager {
         let formattedDate = date.formattedNPODate
         
         // create a dispatch group
-        let group = dispatch_group_create()
+        let group = DispatchGroup()
         
         // iterate over channels
         for channel in channels {
-            dispatch_group_enter(group)
+            group.enter()
             
             let path = channel.configuration.type == .TV ? "guide/\(formattedDate).json" : "guide/thema/\(formattedDate).json"
             let keypath = channel.configuration.shortName
-            
+
             self.fetchModels(ofType: NPOBroadcast.self, fromPath: path, withKeyPath: keypath) { broadcasts, error in
                 if let broadcasts = broadcasts {
                     guides[channel] = broadcasts
@@ -37,13 +37,13 @@ extension NPOManager {
                     errors[channel] = error
                 }
                 
-                dispatch_group_leave(group)
+                group.leave()
             }
         }
         
         // done
-        dispatch_group_notify(group, dispatch_get_main_queue()) {
-            completed(guides: guides.count > 0 ? guides : nil, errors: errors.count > 0 ? errors : nil)
+        group.notify(queue: DispatchQueue.main) {
+            completed(guides.count > 0 ? guides : nil, errors.count > 0 ? errors : nil)
         }
     }
 }
