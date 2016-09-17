@@ -29,9 +29,9 @@ extension NPOEpisode {
         var displayName = watchedIndicator
         
         // add the episode name
-        if let name = self.name , !name.isEmpty {
+        if let name = self.name, !name.isEmpty {
             displayName += name
-        } else if let name = self.program?.name , !name.isEmpty {
+        } else if let name = self.program?.name, !name.isEmpty {
             displayName += name
         } else {
             displayName += UitzendingGemistConstants.unknownEpisodeName
@@ -54,7 +54,7 @@ extension NPOEpisode {
         // define the program name
         var programName = watchedIndicator
         
-        if let name = self.program?.name , !name.isEmpty {
+        if let name = self.program?.name, !name.isEmpty {
             programName += name
         } else {
             programName += UitzendingGemistConstants.unknownProgramName
@@ -64,7 +64,7 @@ extension NPOEpisode {
         var elements = [String]()
         
         // add episode name
-        if let name = self.name , !name.isEmpty {
+        if let name = self.name, !name.isEmpty {
             if let tempProgramName = program?.name {
                 var tempName = name
                 

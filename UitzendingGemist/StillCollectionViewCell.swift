@@ -28,7 +28,7 @@ class StillCollectionViewCell: UICollectionViewCell {
     
     //MARK: Focus engine
     
-    override var canBecomeFocused : Bool {
+    override var canBecomeFocused: Bool {
         return false
     }
     

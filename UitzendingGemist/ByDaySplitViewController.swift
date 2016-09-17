@@ -64,7 +64,7 @@ class ByDaySplitViewController: UISplitViewController {
     //MARK: Configuration
     
     internal func initialConfigure(withEpisode episode: NPOEpisode?) {
-        guard let episode = episode , backgroundImageView.image == nil else {
+        guard let episode = episode, backgroundImageView.image == nil else {
             return
         }
         
@@ -73,7 +73,7 @@ class ByDaySplitViewController: UISplitViewController {
     
     internal func configure(withEpisode episode: NPOEpisode) {
         self.imageRequest = episode.getImage(ofSize: backgroundImageView.frame.size) { [weak self] image, error, request in
-            guard let imageRequest = self?.imageRequest , request == imageRequest else {
+            guard let imageRequest = self?.imageRequest, request == imageRequest else {
                 return
             }
             

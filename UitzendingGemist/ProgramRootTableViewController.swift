@@ -105,7 +105,7 @@ class ProgramRootTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.uniqueLetters.count ?? 0) + 1
+        return self.uniqueLetters.count + 1
     }
     
     // swiftlint:disable force_cast
@@ -114,11 +114,11 @@ class ProgramRootTableViewController: UITableViewController {
         let row = (indexPath as NSIndexPath).row
         
         if row == 0 {
-            let programCount = self.programs.filter({ $0.favorite }).count ?? 0
+            let programCount = self.programs.filter({ $0.favorite }).count
             cell.configure(withName: "♥︎", andCount: programCount)
         } else {
             let letter = self.uniqueLetters[row - 1]
-            let programCount = self.programs.filter({ $0.firstLetter == letter }).count ?? 0
+            let programCount = self.programs.filter({ $0.firstLetter == letter }).count 
             cell.configure(withName: letter, andCount: programCount)
         }
         
@@ -140,7 +140,7 @@ class ProgramRootTableViewController: UITableViewController {
             programs = self.programs.filter({ $0.firstLetter == letter })
         }
         
-        guard let vcs = self.splitViewController?.viewControllers , vcs.count > 1, let vc = vcs[1] as? ProgramDetailedCollectionViewController else {
+        guard let vcs = self.splitViewController?.viewControllers, vcs.count > 1, let vc = vcs[1] as? ProgramDetailedCollectionViewController else {
             return
         }
         

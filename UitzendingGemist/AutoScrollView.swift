@@ -34,7 +34,7 @@ class AutoScrollView: UIScrollView {
     @objc fileprivate func scroll() {
         let height = self.frame.height
         
-        guard let contentHeight = self.subviews.first?.intrinsicContentSize.height , contentHeight > height else {
+        guard let contentHeight = self.subviews.first?.intrinsicContentSize.height, contentHeight > height else {
             return
         }
 

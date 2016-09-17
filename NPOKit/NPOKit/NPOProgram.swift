@@ -201,7 +201,7 @@ open class NPOProgram: NPORestrictedMedia {
     
     fileprivate func getEpisodes(withCompletion completed: @escaping (_ episodes: [NPOEpisode]) -> () = { episodes in }) {
         // check if we have episodes
-        if let episodes = self.episodes , !episodes.isEmpty {
+        if let episodes = self.episodes, !episodes.isEmpty {
             completed(episodes)
             return
         }

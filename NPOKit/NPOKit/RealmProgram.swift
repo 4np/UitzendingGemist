@@ -18,7 +18,7 @@ class RealmProgram: Object {
             let trimmedValue = (firstLetter ?? "").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             
             // make sure we have a first letter
-            guard let name = name , trimmedValue.characters.count != 1 else {
+            guard let name = name, trimmedValue.characters.count != 1 else {
                 return
             }
             

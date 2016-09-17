@@ -15,7 +15,7 @@ import ObjectMapper
 // Equatable
 // swiftlint:disable operator_whitespace
 public func ==(lhs: NPOTip, rhs: NPOTip) -> Bool {
-    guard let le = lhs.episode, let re = rhs.episode , le == re else {
+    guard let le = lhs.episode, let re = rhs.episode, le == re else {
         return false
     }
     

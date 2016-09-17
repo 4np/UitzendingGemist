@@ -46,7 +46,7 @@ extension Date {
         let sixAM = (Calendar.current as NSCalendar).date(byAdding: components, to: startOfDate, options: NSCalendar.Options())
         
         // check if the current date is earlier than 06:00 am in the morning...
-        guard let earlyInTheMorning = sixAM , self.compare(earlyInTheMorning) == .orderedAscending else {
+        guard let earlyInTheMorning = sixAM, self.compare(earlyInTheMorning) == .orderedAscending else {
             // no, leave the date as is
             return self
         }
@@ -74,7 +74,7 @@ extension Date {
         let sixAM = (Calendar.current as NSCalendar).date(byAdding: components, to: startOfDate, options: NSCalendar.Options())
         
         // check if the current date is earlier than 06:00 am in the morning...
-        guard let earlyInTheMorning = sixAM , self.compare(earlyInTheMorning) == .orderedAscending else {
+        guard let earlyInTheMorning = sixAM, self.compare(earlyInTheMorning) == .orderedAscending else {
             // no, leave the date as is
             return false
         }

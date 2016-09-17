@@ -85,7 +85,7 @@ class ByDayRootTableViewController: UITableViewController {
     fileprivate func updateDetailedView(forRow row: Int) {
         let day = days[row]
         
-        guard let vcs = splitViewController?.viewControllers , vcs.count > 1, let vc = vcs[1] as? ByDayDetailedCollectionViewController else {
+        guard let vcs = splitViewController?.viewControllers, vcs.count > 1, let vc = vcs[1] as? ByDayDetailedCollectionViewController else {
             return
         }
         

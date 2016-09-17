@@ -24,7 +24,7 @@ class ToProgramButton: UIButton {
 //        self.televisionImageView = televisionImageView
     }
     
-    override var canBecomeFocused : Bool {
+    override var canBecomeFocused: Bool {
         return true
     }
     

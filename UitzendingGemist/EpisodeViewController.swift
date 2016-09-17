@@ -50,13 +50,13 @@ class EpisodeViewController: UIViewController {
     //MARK: Calculated Properties
     
     fileprivate var programName: String? {
-        if let program = self.program, let name = program.name , !name.isEmpty {
+        if let program = self.program, let name = program.name, !name.isEmpty {
             return name
-        } else if let program = episode?.program, let name = program.name , !name.isEmpty {
+        } else if let program = episode?.program, let name = program.name, !name.isEmpty {
             return name
-        } else if let name = tip?.name , !name.isEmpty {
+        } else if let name = tip?.name, !name.isEmpty {
             return name
-        } else if let episode = self.episode, let name = episode.name , !name.isEmpty {
+        } else if let episode = self.episode, let name = episode.name, !name.isEmpty {
             return name
         }
         
@@ -66,9 +66,9 @@ class EpisodeViewController: UIViewController {
     fileprivate var episodeName: String? {
         var episodeName = ""
         
-        if let episode = self.episode, let name = episode.name , !name.isEmpty {
+        if let episode = self.episode, let name = episode.name, !name.isEmpty {
             episodeName = name
-        } else if let name = tip?.name , !name.isEmpty {
+        } else if let name = tip?.name, !name.isEmpty {
             episodeName = name
         } else {
             episodeName = UitzendingGemistConstants.unknownEpisodeName
@@ -124,7 +124,7 @@ class EpisodeViewController: UIViewController {
     }
     
     fileprivate var genres: String? {
-        guard let genres = episode?.genres , genres.count > 0 else {
+        guard let genres = episode?.genres, genres.count > 0 else {
             return nil
         }
         
@@ -132,7 +132,7 @@ class EpisodeViewController: UIViewController {
     }
     
     fileprivate var broadcasters: String? {
-        guard let broadcasters = episode?.broadcasters , broadcasters.count > 0 else {
+        guard let broadcasters = episode?.broadcasters, broadcasters.count > 0 else {
             return nil
         }
 
@@ -388,7 +388,7 @@ class EpisodeViewController: UIViewController {
     func collectionView(_ collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.Still.rawValue, for: indexPath)
         
-        guard let stillCell = cell as? StillCollectionViewCell, let stills = episode?.stills , indexPath.row >= 0 && indexPath.row < stills.count else {
+        guard let stillCell = cell as? StillCollectionViewCell, let stills = episode?.stills, indexPath.row >= 0 && indexPath.row < stills.count else {
             return cell
         }
         

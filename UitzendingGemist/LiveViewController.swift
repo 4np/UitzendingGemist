@@ -17,7 +17,7 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     fileprivate var guides: [NPOLive: [NPOBroadcast]]? {
         didSet {
-            guard let guides = guides, let oldValue = oldValue , oldValue.count > 0 else {
+            guard let guides = guides, let oldValue = oldValue, oldValue.count > 0 else {
                 self.liveCollectionView.reloadData()
                 return
             }
@@ -69,7 +69,7 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.Live.rawValue, for: indexPath)
         
-        guard let liveCell = cell as? LiveCollectionViewCell , indexPath.row >= 0 && indexPath.row < NPOLive.all.count else {
+        guard let liveCell = cell as? LiveCollectionViewCell, indexPath.row >= 0 && indexPath.row < NPOLive.all.count else {
             return cell
         }
         

@@ -98,7 +98,7 @@ extension NPOManager {
             let url = "http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/\(configuration.type.rawValue)/\(configuration.name)/\(configuration.name).isml/\(configuration.name)-audio\(configuration.audioStream)=\(configuration.audioQuality)-video=\(configuration.videoQuality).m3u8&token=\(token)"
             
             self?.fetchModel(ofType: NPOLiveStream.self, fromURL: url) { liveStream, error in
-                guard let url = liveStream?.url , liveStream?.success == true else {
+                guard let url = liveStream?.url, liveStream?.success == true else {
                     completed(nil, error)
                     return
                 }
