@@ -30,13 +30,13 @@ class LiveCollectionViewCell: UICollectionViewCell {
     
     //MARK: Focus engine
     
-    override func canBecomeFocused() -> Bool {
+    override var canBecomeFocused : Bool {
         return true
     }
     
-    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        self.channelImageView.adjustsImageWhenAncestorFocused = self.focused
-        self.channelLogoImageView.adjustsImageWhenAncestorFocused = self.focused
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        self.channelImageView.adjustsImageWhenAncestorFocused = self.isFocused
+        self.channelLogoImageView.adjustsImageWhenAncestorFocused = self.isFocused
     }
     
     //MARK: Configuration
@@ -69,39 +69,39 @@ class LiveCollectionViewCell: UICollectionViewCell {
     
     //MARK: Broadcast texts
     
-    private func getCurrentText(forBroadcast broadcast: NPOBroadcast) -> String {
+    fileprivate func getCurrentText(forBroadcast broadcast: NPOBroadcast) -> String {
         let name = (broadcast.episode?.program?.name ?? broadcast.episode?.name) ?? UitzendingGemistConstants.unknownText
         return String.localizedStringWithFormat(UitzendingGemistConstants.currentBroadcast, name)
     }
     
-    private func getUpcomingText(forBroadcast broadcast: NPOBroadcast) -> String {
+    fileprivate func getUpcomingText(forBroadcast broadcast: NPOBroadcast) -> String {
         let name = (broadcast.episode?.program?.name ?? broadcast.episode?.name) ?? UitzendingGemistConstants.unknownText
         
         guard let starts = broadcast.starts else {
             return String.localizedStringWithFormat(UitzendingGemistConstants.upcomingBroadcast, name)
         }
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        let timeString = dateFormatter.stringFromDate(starts)
+        let timeString = dateFormatter.string(from: starts)
         return String.localizedStringWithFormat(UitzendingGemistConstants.upcomingBroadcastWithTime, timeString, name)
     }
     
     //MARK: Broadcast filtering
     
-    private func getCurrentBroadcast(forGuide broadcasts: [NPOBroadcast]?) -> NPOBroadcast? {
-        let now = NSDate()
+    fileprivate func getCurrentBroadcast(forGuide broadcasts: [NPOBroadcast]?) -> NPOBroadcast? {
+        let now = Date()
         return broadcasts?.filter({ now.liesBetween(startDate: $0.starts, endDate: $0.ends) }).first
     }
     
-    private func getNextBroadcast(forGuide broadcasts: [NPOBroadcast]?) -> NPOBroadcast? {
-        let now = NSDate()
+    fileprivate func getNextBroadcast(forGuide broadcasts: [NPOBroadcast]?) -> NPOBroadcast? {
+        let now = Date()
         return broadcasts?.filter({ now.lies(before: $0.starts) }).first
     }
     
     //MARK: Image fetching
     
-    private func fetchImage(forEpisode episode: NPOEpisode?, withFallbackImage fallbackImage: UIImage?) {
+    fileprivate func fetchImage(forEpisode episode: NPOEpisode?, withFallbackImage fallbackImage: UIImage?) {
         guard let episode = episode else {
             self.channelImageView.image = fallbackImage
             return
@@ -117,7 +117,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func fetchImage(forProgram program: NPOProgram?, withFallbackImage fallbackImage: UIImage?) {
+    fileprivate func fetchImage(forProgram program: NPOProgram?, withFallbackImage fallbackImage: UIImage?) {
         guard let program = program else {
             self.channelImageView.image = fallbackImage
             return

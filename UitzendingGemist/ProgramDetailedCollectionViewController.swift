@@ -14,7 +14,7 @@ import CocoaLumberjack
 class ProgramDetailedCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var programCollectionView: UICollectionView!
     
-    private var programs = [NPOProgram]()
+    fileprivate var programs = [NPOProgram]()
     
     //MARK: Configuration
     
@@ -25,24 +25,24 @@ class ProgramDetailedCollectionViewController: UIViewController, UICollectionVie
     
     //MARK: 
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return programs.count
     }
     
     // swiftlint:disable force_cast
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.ProgramDetail.rawValue, forIndexPath: indexPath) as! ProgramDetailedCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.ProgramDetail.rawValue, for: indexPath) as! ProgramDetailedCollectionViewCell
         cell.configure(withProgram: programs[indexPath.row])
         return cell
     }
     // swiftlint:enable force_cast
     
     // swiftlint:disable force_cast
-    func collectionView(collectionView: UICollectionView, didUpdateFocusInContext context: UICollectionViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+    func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         guard let indexPath = context.nextFocusedIndexPath else {
                 return
         }
@@ -54,7 +54,7 @@ class ProgramDetailedCollectionViewController: UIViewController, UICollectionVie
     // swiftlint:enable force_cast
     
     // swiftlint:disable force_cast
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = self.splitViewController as! ProgramSplitViewController
         vc.didSelect(program: programs[indexPath.row])
     }

@@ -12,9 +12,9 @@ import NPOKit
 import CocoaLumberjack
 
 class TipCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak private var imageView: UIImageView!
-    @IBOutlet weak private var nameLabel: UILabel!
-    @IBOutlet weak private var dateLabel: UILabel!
+    @IBOutlet weak fileprivate var imageView: UIImageView!
+    @IBOutlet weak fileprivate var nameLabel: UILabel!
+    @IBOutlet weak fileprivate var dateLabel: UILabel!
     
     //MARK: Lifecycle
     
@@ -32,8 +32,8 @@ class TipCollectionViewCell: UICollectionViewCell {
     
     //MARK: Focus engine
     
-    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        self.imageView.adjustsImageWhenAncestorFocused = self.focused
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        self.imageView.adjustsImageWhenAncestorFocused = self.isFocused
     }
     
     //MARK: Configuration

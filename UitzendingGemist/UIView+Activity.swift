@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIView {
-    private struct AssociatedKeys {
+    fileprivate struct AssociatedKeys {
         static var overlayView: UIView?
     }
     
@@ -20,10 +20,10 @@ extension UIView {
         startLoading(nil)
     }
     
-    func startLoading(backgroundImage: UIImage?) {
+    func startLoading(_ backgroundImage: UIImage?) {
         if let overlayView = objc_getAssociatedObject(self, &AssociatedKeys.overlayView) as? UIView {
             // show overlay view
-            UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
                 overlayView.alpha = 1.0
             }, completion: { finished in
                     //overlayView.removeFromSuperview()
@@ -31,7 +31,7 @@ extension UIView {
         } else {
             // create new overlay view
             let overlayView = UIView(frame: self.bounds)
-            overlayView.backgroundColor = UIColor.clearColor()
+            overlayView.backgroundColor = UIColor.clear
             
             // add backgroundImage if we have it
             if let image = backgroundImage {
@@ -41,12 +41,12 @@ extension UIView {
             }
             
             // blur effect view
-            let blurEffect = UIBlurEffect(style: .Dark)
+            let blurEffect = UIBlurEffect(style: .dark)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
             blurEffectView.frame = overlayView.bounds
             
             // spinner
-            let activityIndicator = UIActivityIndicatorView.init(activityIndicatorStyle: .WhiteLarge)
+            let activityIndicator = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
             activityIndicator.center = overlayView.center
             activityIndicator.startAnimating()
             
@@ -54,9 +54,9 @@ extension UIView {
             let feedbackY = activityIndicator.center.y + activityIndicator.frame.height
             let feedbackLabel = UILabel(frame: CGRect(x: 0, y: feedbackY, width: bounds.width, height: 100))
             feedbackLabel.text = UitzendingGemistConstants.waitText
-            feedbackLabel.textColor = UIColor.orangeColor()
-            feedbackLabel.textAlignment = .Center
-            feedbackLabel.font = UIFont.systemFontOfSize(42.0)
+            feedbackLabel.textColor = UIColor.orange
+            feedbackLabel.textAlignment = .center
+            feedbackLabel.font = UIFont.systemFont(ofSize: 42.0)
             
             // add views
             blurEffectView.addSubview(activityIndicator)
@@ -71,7 +71,7 @@ extension UIView {
             objc_setAssociatedObject(self, &AssociatedKeys.overlayView, overlayView, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             
             // start animating
-            UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
                 overlayView.alpha = 1.0
             }, completion: { finished in
             })
@@ -81,7 +81,7 @@ extension UIView {
     func stopLoading() {
         if let overlayView = objc_getAssociatedObject(self, &AssociatedKeys.overlayView) as? UIView {
             // hide overlay view
-            UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
                 overlayView.alpha = 0.0
                 }, completion: { finished in
                     //overlayView.removeFromSuperview()

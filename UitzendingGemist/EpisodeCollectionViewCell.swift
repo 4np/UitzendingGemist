@@ -12,7 +12,7 @@ import NPOKit
 import CocoaLumberjack
 
 class EpisodeCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak private var episodeImageView: UIImageView!
+    @IBOutlet weak fileprivate var episodeImageView: UIImageView!
     @IBOutlet weak var episodeNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -31,8 +31,8 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     
     //MARK: Focus engine
     
-    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        self.episodeImageView.adjustsImageWhenAncestorFocused = self.focused
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        self.episodeImageView.adjustsImageWhenAncestorFocused = self.isFocused
     }
     
     //MARK: Configuration
@@ -58,7 +58,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func fetchImage(byProgram program: NPOProgram?) {
+    fileprivate func fetchImage(byProgram program: NPOProgram?) {
         self.programRequest = program?.getImage(ofSize: self.episodeImageView.frame.size) { [weak self] image, _, request in
             guard request == self?.programRequest else {
                 // this is the result of another cell, ignore it

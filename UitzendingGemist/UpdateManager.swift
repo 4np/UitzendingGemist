@@ -14,46 +14,46 @@ import CocoaLumberjack
 class UpdateManager {
     static var sharedInstance = UpdateManager()
     
-    private var githubUsername = "4np"
-    private var githubRepository = "UitzendingGemist"
-    private var checkAfterDays = 1
-    private var lastCheckDate: NSDate?
+    fileprivate var githubUsername = "4np"
+    fileprivate var githubRepository = "UitzendingGemist"
+    fileprivate var checkAfterDays = 1
+    fileprivate var lastCheckDate: Date?
     
-    private func shouldCheckForUpdates() -> Bool {
+    fileprivate func shouldCheckForUpdates() -> Bool {
         guard let lastCheckDate = self.lastCheckDate else {
             return true
         }
         
-        let now = NSDate()
-        let diffDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.Day], fromDate: lastCheckDate, toDate: now, options: NSCalendarOptions.init(rawValue: 0))
-        let days = diffDateComponents.day
+        let now = Date()
+        let diffDateComponents = (Calendar.current as NSCalendar).components([NSCalendar.Unit.day], from: lastCheckDate, to: now, options: NSCalendar.Options.init(rawValue: 0))
+        let days = diffDateComponents.day ?? 0
         
         // check if we should compare versions with the latest GitHub tag
         return days >= self.checkAfterDays
     }
     
-    func updateAvailable(withCompletion completed: (release: GitHubRelease?, currentVersion: String?) -> () = { release in }) {
+    func updateAvailable(withCompletion completed: @escaping (_ release: GitHubRelease?, _ currentVersion: String?) -> () = { release in }) {
         guard self.shouldCheckForUpdates() else {
             return
         }
         
         // get the current version
-        guard let myVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String else {
+        guard let myVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
             return
         }
         
         // get the latest tag
         NPOManager.sharedInstance.getGitHubReleases(forUsername: self.githubUsername, andRepositoryName: self.githubRepository) { [weak self] releases, error in
-            self?.lastCheckDate = NSDate()
+            self?.lastCheckDate = Date()
             
-            guard let releases = releases, latestRelease = releases.filter({ $0.active }).first, latestVersion = latestRelease.version else {
+            guard let releases = releases, let latestRelease = releases.filter({ $0.active }).first, let latestVersion = latestRelease.version else {
                 DDLogError("Could not get latest version information from GitHub (\(error))")
                 return
             }
             
-            if myVersion.compare(latestVersion, options: NSStringCompareOptions.NumericSearch) == .OrderedAscending {
+            if myVersion.compare(latestVersion, options: .numeric) == .orderedAscending {
                 DDLogDebug("Newer version available (current: \(myVersion), latest: \(latestVersion)")
-                completed(release: latestRelease, currentVersion: myVersion)
+                completed(latestRelease, myVersion)
             } else {
                 DDLogDebug("No update available (current: \(myVersion), latest: \(latestVersion))")
             }

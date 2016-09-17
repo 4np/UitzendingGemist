@@ -1,51 +1,65 @@
 PODS:
-  - Alamofire (3.4.1)
-  - AlamofireImage (2.4.1):
-    - Alamofire (~> 3.3)
-  - AlamofireObjectMapper (3.0.2):
-    - Alamofire (~> 3.2)
-    - ObjectMapper (~> 1.0)
-  - CocoaLumberjack/Core (2.3.0)
-  - CocoaLumberjack/Default (2.3.0):
+  - Alamofire (4.0.0)
+  - AlamofireImage (3.0.0):
+    - Alamofire (~> 4.0)
+  - AlamofireObjectMapper (4.0.0):
+    - Alamofire (~> 4.0)
+    - ObjectMapper (~> 2.0)
+  - CocoaLumberjack/Core (3.0.0)
+  - CocoaLumberjack/Default (3.0.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.3.0):
+  - CocoaLumberjack/Extensions (3.0.0):
     - CocoaLumberjack/Default
-  - CocoaLumberjack/Swift (2.3.0):
+  - CocoaLumberjack/Swift (3.0.0):
     - CocoaLumberjack/Extensions
   - NPOKit (1.0.0):
-    - Alamofire (~> 3.4)
-    - AlamofireImage (~> 2.0)
-    - AlamofireObjectMapper (~> 3.0)
+    - Alamofire (~> 4.0)
+    - AlamofireImage (~> 3.0)
+    - AlamofireObjectMapper (~> 4.0)
     - CocoaLumberjack/Swift
     - RealmSwift
-  - ObjectMapper (1.4.0)
-  - Realm (1.0.2):
-    - Realm/Headers (= 1.0.2)
-  - Realm/Headers (1.0.2)
-  - RealmSwift (1.0.2):
-    - Realm (= 1.0.2)
+  - ObjectMapper (2.0.0)
+  - Realm (1.1.0):
+    - Realm/Headers (= 1.1.0)
+  - Realm/Headers (1.1.0)
+  - RealmSwift (1.1.0):
+    - Realm (= 1.1.0)
   - UIColor_Hex_Swift (2.1)
 
 DEPENDENCIES:
-  - CocoaLumberjack/Swift
+  - CocoaLumberjack/Swift (from `https://github.com/ffried/CocoaLumberjack.git`, branch `swift3.0`)
   - NPOKit (from `NPOKit`)
-  - UIColor_Hex_Swift
+  - UIColor_Hex_Swift (from `https://github.com/yeahdongcn/UIColor-Hex-Swift`, branch `Swift-3.0`)
 
 EXTERNAL SOURCES:
+  CocoaLumberjack:
+    :branch: swift3.0
+    :git: https://github.com/ffried/CocoaLumberjack.git
   NPOKit:
     :path: NPOKit
+  UIColor_Hex_Swift:
+    :branch: Swift-3.0
+    :git: https://github.com/yeahdongcn/UIColor-Hex-Swift
+
+CHECKOUT OPTIONS:
+  CocoaLumberjack:
+    :commit: bdfc2151e2468517e613d9e8b87d69dc7c569f97
+    :git: https://github.com/ffried/CocoaLumberjack.git
+  UIColor_Hex_Swift:
+    :commit: 5046698ea64de42588aa7fd14f7060cafc1460a3
+    :git: https://github.com/yeahdongcn/UIColor-Hex-Swift
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  AlamofireImage: 3ccf3347d9ea24580dc11fb892770a0be6a29826
-  AlamofireObjectMapper: 70f97cbf45c01c48d26aa07a1a7059a60ed7411d
-  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
-  NPOKit: d9f827031a7697d3fd0fb647f8b96c9b8c176edc
-  ObjectMapper: a07ad0462c5adf014adc0f89ef04c29b626e855e
-  Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
-  RealmSwift: 82f3ac5e24530143dddfde2033acc0d308f27d96
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
+  AlamofireImage: 6594aa1139a67dcd36cde6da79ea4e5b318e60fb
+  AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
+  CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
+  NPOKit: db2068141ef8814e5badc0e7ad9511a16795bde7
+  ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
+  Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
+  RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
 
-PODFILE CHECKSUM: aa30440eeaac4ff6310e1c8bd94df8d2d3f3c2aa
+PODFILE CHECKSUM: 4fedccecbdf8ac487d563b63a04709307cd5e8c9
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2

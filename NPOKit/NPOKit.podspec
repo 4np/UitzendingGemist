@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
   spec.source = { git: 'https://github.com/4np/NPOKit.git', submodules: true }
   spec.source_files = "NPOKit/**/*.{h,swift}"
 
-  spec.dependency 'CocoaLumberjack/Swift', :git => 'https://github.com/ffried/CocoaLumberjack.git', :branch => 'swift3.0'
+  spec.dependency 'CocoaLumberjack/Swift'
   spec.dependency 'Alamofire', '~> 4.0'
   spec.dependency 'AlamofireObjectMapper', '~> 4.0'
   spec.dependency 'AlamofireImage', '~> 3.0'

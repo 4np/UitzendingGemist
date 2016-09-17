@@ -12,10 +12,10 @@ import NPOKit
 import CocoaLumberjack
 
 class OnDeckCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak private var imageView: UIImageView!
-    @IBOutlet weak private var programNameLabel: UILabel!
-    @IBOutlet weak private var episodeNameLabel: UILabel!
-    @IBOutlet weak private var dateLabel: UILabel!
+    @IBOutlet weak fileprivate var imageView: UIImageView!
+    @IBOutlet weak fileprivate var programNameLabel: UILabel!
+    @IBOutlet weak fileprivate var episodeNameLabel: UILabel!
+    @IBOutlet weak fileprivate var dateLabel: UILabel!
     
     //MARK: Lifecycle
     
@@ -34,8 +34,8 @@ class OnDeckCollectionViewCell: UICollectionViewCell {
     
     //MARK: Focus engine
     
-    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        self.imageView.adjustsImageWhenAncestorFocused = self.focused
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        self.imageView.adjustsImageWhenAncestorFocused = self.isFocused
     }
     
     //MARK: Configuration

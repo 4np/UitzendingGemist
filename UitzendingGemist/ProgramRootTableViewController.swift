@@ -12,8 +12,8 @@ import NPOKit
 import CocoaLumberjack
 
 class ProgramRootTableViewController: UITableViewController {
-    private var loaded = false
-    private var programs = [NPOProgram]() {
+    fileprivate var loaded = false
+    fileprivate var programs = [NPOProgram]() {
         didSet {
             tableView.reloadData()
             setupInitialUI()
@@ -21,10 +21,10 @@ class ProgramRootTableViewController: UITableViewController {
     }
     
     // swiftlint:disable force_unwrapping
-    private var uniqueLetters: [String] {
+    fileprivate var uniqueLetters: [String] {
         get {
             let firstLetters = self.programs.filter({ $0.firstLetter != nil }).map({ $0.firstLetter! })
-            return Array(Set(firstLetters)).sort()
+            return Array(Set(firstLetters)).sorted()
         }
     }
     // swiftlint:enable force_unwrapping
@@ -38,7 +38,7 @@ class ProgramRootTableViewController: UITableViewController {
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 100))
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.fetchPrograms()
         
@@ -48,7 +48,7 @@ class ProgramRootTableViewController: UITableViewController {
         }
         
         // update the current detailed view
-        updateDetailedView(forRow: indexPath.row)
+        updateDetailedView(forRow: (indexPath as NSIndexPath).row)
     }
     
     override func viewDidLayoutSubviews() {
@@ -58,7 +58,7 @@ class ProgramRootTableViewController: UITableViewController {
     
     //MARK: Networking
     
-    private func fetchPrograms() {
+    fileprivate func fetchPrograms() {
         NPOManager.sharedInstance.getPrograms() { [weak self] programs, error in
             guard let programs = programs else {
                 DDLogError("Could not fetch programs (\(error))")
@@ -72,7 +72,7 @@ class ProgramRootTableViewController: UITableViewController {
     //MARK: Initial load
     
     //swiftlint:disable force_cast
-    private func setupInitialUI() {
+    fileprivate func setupInitialUI() {
         guard !loaded && programs.count > 0 else {
             return
         }
@@ -90,28 +90,28 @@ class ProgramRootTableViewController: UITableViewController {
             return
         }
         
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.Middle)
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableViewScrollPosition.middle)
         
         // load the detailed view for the first element
-        updateDetailedView(forRow: indexPath.row)
+        updateDetailedView(forRow: (indexPath as NSIndexPath).row)
     }
     //swiftlint:enable force_cast
     
     //MARK: UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (self.uniqueLetters.count ?? 0) + 1
     }
     
     // swiftlint:disable force_cast
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCells.ProgramGroup.rawValue, forIndexPath: indexPath) as! ProgramRootTableViewCell
-        let row = indexPath.row
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCells.ProgramGroup.rawValue, for: indexPath) as! ProgramRootTableViewCell
+        let row = (indexPath as NSIndexPath).row
         
         if row == 0 {
             let programCount = self.programs.filter({ $0.favorite }).count ?? 0
@@ -126,11 +126,11 @@ class ProgramRootTableViewController: UITableViewController {
     }
     // swiftlint:enable force_cast
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        updateDetailedView(forRow: indexPath.row)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        updateDetailedView(forRow: (indexPath as NSIndexPath).row)
     }
     
-    private func updateDetailedView(forRow row: Int) {
+    fileprivate func updateDetailedView(forRow row: Int) {
         let programs: [NPOProgram]
         
         if row == 0 {
@@ -140,7 +140,7 @@ class ProgramRootTableViewController: UITableViewController {
             programs = self.programs.filter({ $0.firstLetter == letter })
         }
         
-        guard let vcs = self.splitViewController?.viewControllers where vcs.count > 1, let vc = vcs[1] as? ProgramDetailedCollectionViewController else {
+        guard let vcs = self.splitViewController?.viewControllers , vcs.count > 1, let vc = vcs[1] as? ProgramDetailedCollectionViewController else {
             return
         }
         

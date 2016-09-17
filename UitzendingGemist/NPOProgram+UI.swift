@@ -15,13 +15,13 @@ extension NPOProgram {
         var displayName = ""
         
         switch watched {
-            case .Fully:
+            case .fully:
                 displayName += UitzendingGemistConstants.watchedSymbol
                 break
-            case .Partially:
+            case .partially:
                 displayName += UitzendingGemistConstants.unwatchedSymbol //partiallyWatchedSymbol
                 break
-            case .Unwatched:
+            case .unwatched:
                 displayName += UitzendingGemistConstants.unwatchedSymbol
                 break
         }
@@ -55,14 +55,14 @@ extension NPOProgram {
     }
     
     func getDisplayColor() -> UIColor {
-        return favorite ? UIColor.waxFlower : UIColor.orangeColor()
+        return favorite ? UIColor.waxFlower : UIColor.orange
     }
     
     func getUnfocusedColor() -> UIColor {
-        return favorite ? UIColor.waxFlower : UIColor.whiteColor()
+        return favorite ? UIColor.waxFlower : UIColor.white
     }
     
     func getFocusedColor() -> UIColor {
-        return favorite ? UIColor.waxFlower : UIColor.blackColor()
+        return favorite ? UIColor.waxFlower : UIColor.black
     }
 }

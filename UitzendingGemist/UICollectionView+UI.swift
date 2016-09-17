@@ -13,103 +13,105 @@ import CocoaLumberjack
 
 extension UICollectionView {
     
-    public func update(inout usingEpisodes episodes: [NPOEpisode], withNewEpisodes newEpisodes: [NPOEpisode]) {
+    public func update(usingEpisodes episodes: inout [NPOEpisode], withNewEpisodes newEpisodes: [NPOEpisode]) {
         // first determine the old / removed episodes and remove them
-        let old = episodes.enumerate().filter({ !newEpisodes.contains($0.element) }).reverse()
-        let oldIndexPaths = old.map { NSIndexPath(forRow: $0.index, inSection: 0) }
+        let old = episodes.enumerated().filter({ !newEpisodes.contains($0.element) }).reversed()
+        let oldIndexPaths = old.map { IndexPath(row: $0.offset, section: 0) }
         for oldEpisode in old {
-            guard oldEpisode.index >= 0 && oldEpisode.index < episodes.count else {
+            guard oldEpisode.offset >= 0 && oldEpisode.offset < episodes.count else {
                 continue
             }
             
-            episodes.removeAtIndex(oldEpisode.index)
+            episodes.remove(at: oldEpisode.offset)
         }
-        deleteItemsAtIndexPaths(oldIndexPaths)
-        
+        deleteItems(at: oldIndexPaths)
+
         // determine the new / added episodes and insert them
-        let new = newEpisodes.enumerate().filter({ !episodes.contains($0.element) })
-        let newIndexPaths = new.map { NSIndexPath(forRow: $0.index, inSection: 0) }
+        let new = newEpisodes.enumerated().filter({ !episodes.contains($0.element) })
+        let newIndexPaths = new.map { IndexPath(row: $0.offset, section: 0) }
         for newEpisode in new {
-            episodes.insert(newEpisode.element, atIndex: newEpisode.index)
+            debugPrint("offset: \(newEpisode.offset)")
+            episodes.insert(newEpisode.element, at: newEpisode.offset)
         }
-        insertItemsAtIndexPaths(newIndexPaths)
+        insertItems(at: newIndexPaths)
         
-        // re-order cells (if needed)
-        var done = false
-        while !done {
-            for newEpisode in newEpisodes.enumerate() {
-                guard let index = episodes.indexOf(newEpisode.element) where index != newEpisode.index else {
-                    done = true
-                    continue
-                }
-                
-                // move cell
-                let from = NSIndexPath(forRow: index, inSection: 0)
-                let to = NSIndexPath(forRow: newEpisode.index, inSection: 0)
-                moveItemAtIndexPath(from, toIndexPath: to)
-                
-                // move array element
-                episodes.removeAtIndex(index)
-                episodes.insert(newEpisode.element, atIndex: newEpisode.index)
-                done = false
-                break
-            }
-        }
+//        // re-order cells (if needed)
+//        var done = false
+//        while !done {
+//            for newEpisode in newEpisodes.enumerated() {
+//                guard let index = episodes.index(of: newEpisode.element), index != newEpisode.offset else {
+//                    done = true
+//                    continue
+//                }
+//                
+//                // move cell
+//                let from = IndexPath(row: index, section: 0)
+//                let to = IndexPath(row: newEpisode.offset, section: 0)
+//                moveItem(at: from, to: to)
+//                
+//                // move array element
+//                episodes.remove(at: index)
+//                episodes.insert(newEpisode.element, at: newEpisode.offset)
+//                done = false
+//                break
+//            }
+//        }
     }
     
-    public func update(inout usingTips tips: [NPOTip], withNewTips newTips: [NPOTip]) {
-        // first determine the old / removed episodes and remove them
-        let old = tips.enumerate().filter({ !newTips.contains($0.element) }).reverse()
-        let oldIndexPaths = old.map { NSIndexPath(forRow: $0.index, inSection: 0) }
-        for oldEpisode in old {
-            guard oldEpisode.index >= 0 && oldEpisode.index < tips.count else {
+    public func update(usingTips tips: inout [NPOTip], withNewTips newTips: [NPOTip]) {
+        // first determine the old / removed tips and remove them
+        let old = tips.enumerated().filter({ !newTips.contains($0.element) }).reversed()
+        let oldIndexPaths = old.map { IndexPath(row: $0.offset, section: 0) }
+        for oldTip in old {
+            guard oldTip.offset >= 0 && oldTip.offset < tips.count else {
                 continue
             }
             
-            tips.removeAtIndex(oldEpisode.index)
+            tips.remove(at: oldTip.offset)
         }
-        deleteItemsAtIndexPaths(oldIndexPaths)
+        deleteItems(at: oldIndexPaths)
         
         // determine the new / added episodes and insert them
-        let new = newTips.enumerate().filter({ !tips.contains($0.element) })
-        let newIndexPaths = new.map { NSIndexPath(forRow: $0.index, inSection: 0) }
-        for newEpisode in new {
-            tips.insert(newEpisode.element, atIndex: newEpisode.index)
+        let new = newTips.enumerated().filter({ !tips.contains($0.element) })
+        let newIndexPaths = new.map { IndexPath(row: $0.offset, section: 0) }
+        for newTip in new {
+            debugPrint("~~~ offset: \(newTip.offset)")
+            tips.insert(newTip.element, at: newTip.offset)
         }
-        insertItemsAtIndexPaths(newIndexPaths)
+        insertItems(at: newIndexPaths)
+
+//        // and re-order what needs to be
+//        let reverseTips = newTips.enumerated().reversed()
+//        for newTip in reverseTips {
+//            guard let index = tips.index(of: newTip.element), index != newTip.offset else {
+//                continue
+//            }
+//            
+//            let from = IndexPath(row: index, section: 0)
+//            let to = IndexPath(row: newTip.offset, section: 0)
+//            moveItem(at: from, to: to)
+//        }
         
-        // and re-order what needs to be
-        let reverseTips = newTips.enumerate().reverse()
-        for newTip in reverseTips {
-            guard let index = tips.indexOf(newTip.element) where index != newTip.index else {
-                continue
-            }
-            
-            let from = NSIndexPath(forRow: index, inSection: 0)
-            let to = NSIndexPath(forRow: newTip.index, inSection: 0)
-            moveItemAtIndexPath(from, toIndexPath: to)
-        }
-        
-        // re-order cells (if needed)
-        var done = false
-        while !done {
-            for newTip in newTips.enumerate() {
-                guard let index = tips.indexOf(newTip.element) where index != newTip.index else {
-                    done = true
-                    continue
-                }
-                
-                // move cell
-                let from = NSIndexPath(forRow: index, inSection: 0)
-                let to = NSIndexPath(forRow: newTip.index, inSection: 0)
-                moveItemAtIndexPath(from, toIndexPath: to)
-                
-                // move array element
-                tips.removeAtIndex(index)
-                tips.insert(newTip.element, atIndex: newTip.index)
-                done = false
-                break
-            }
-        }
+//        // re-order cells (if needed)
+//        var done = false
+//        while !done {
+//            for newTip in newTips.enumerated() {
+//                guard let index = tips.index(of: newTip.element), index != newTip.offset else {
+//                    done = true
+//                    continue
+//                }
+//                
+//                // move cell
+//                let from = IndexPath(row: index, section: 0)
+//                let to = IndexPath(row: newTip.offset, section: 0)
+//                moveItem(at: from, to: to)
+//                
+//                // move array element
+//                tips.remove(at: index)
+//                tips.insert(newTip.element, at: newTip.offset)
+//                done = false
+//                break
+//            }
+//        }
     }
 }

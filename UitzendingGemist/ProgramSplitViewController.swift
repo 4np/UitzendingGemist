@@ -12,7 +12,7 @@ import NPOKit
 import CocoaLumberjack
 
 class ProgramSplitViewController: UISplitViewController {
-    private lazy var backgroundImageView: UIImageView = {
+    fileprivate lazy var backgroundImageView: UIImageView = {
         // define frame
         let frame = CGRect(x: 0, y: 0, width: 1920, height: 1080)
         
@@ -20,18 +20,18 @@ class ProgramSplitViewController: UISplitViewController {
         let imageView = UIImageView(frame: frame)
         
         // add visual effect view
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         visualEffectView.frame = imageView.frame
         imageView.addSubview(visualEffectView)
         
         // add to image view to view
         self.view.addSubview(imageView)
-        self.view.sendSubviewToBack(imageView)
+        self.view.sendSubview(toBack: imageView)
         
         return imageView
     }()
     
-    private var imageRequest: NPORequest?
+    fileprivate var imageRequest: NPORequest?
     
     //MARK: Lifecycle
     
@@ -65,7 +65,7 @@ class ProgramSplitViewController: UISplitViewController {
     
     internal func configure(withProgram program: NPOProgram) {
         self.imageRequest = program.getImage(ofSize: backgroundImageView.frame.size) { [weak self] image, error, request in
-            guard let imageRequest = self?.imageRequest where request == imageRequest else {
+            guard let imageRequest = self?.imageRequest , request == imageRequest else {
                 return
             }
             
@@ -75,13 +75,13 @@ class ProgramSplitViewController: UISplitViewController {
     
     //MARK: ProgramDetailedCollectionViewControllerDelegate
     
-    internal func didSelect(program program: NPOProgram) {
+    internal func didSelect(program: NPOProgram) {
         // launch the ProgramViewController (unfortunately you cannot segue
         // from a SplitViewController elsewhere so this is a workaround)
-        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate, rvc = appDelegate.window?.rootViewController,
-            storyboard = rvc.storyboard, vc = storyboard.instantiateViewControllerWithIdentifier(ViewControllers.ProgramViewController.rawValue) as? ProgramViewController {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let rvc = appDelegate.window?.rootViewController,
+            let storyboard = rvc.storyboard, let vc = storyboard.instantiateViewController(withIdentifier: ViewControllers.ProgramViewController.rawValue) as? ProgramViewController {
             vc.configure(withProgram: program)
-            tabBarController?.showViewController(vc, sender: nil)
+            tabBarController?.show(vc, sender: nil)
         }
     }
 }

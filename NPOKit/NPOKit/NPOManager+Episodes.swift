@@ -75,11 +75,11 @@ extension NPOManager {
     //MARK: By Date
 
     // http://apps-api.uitzendinggemist.nl/broadcasts/2016-07-15.json
-    public func getEpisodes(forDate date: NSDate, filterReruns filter: Bool, withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
+    public func getEpisodes(forDate date: Date, filterReruns filter: Bool, withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
         // format date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let formattedDate = dateFormatter.string(from: date as Date)
+        let formattedDate = dateFormatter.string(from: date)
         
         // fetch episodes
         let path = "broadcasts/\(formattedDate).json"

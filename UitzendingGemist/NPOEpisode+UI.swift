@@ -15,11 +15,11 @@ extension NPOEpisode {
         get {
             // add (partically) watched indicator
             switch watched {
-                case .Unwatched:
+                case .unwatched:
                     return UitzendingGemistConstants.unwatchedSymbol
-                case .Partially:
+                case .partially:
                     return UitzendingGemistConstants.partiallyWatchedSymbol
-                case .Fully:
+                case .fully:
                     return UitzendingGemistConstants.watchedSymbol
             }
         }
@@ -29,9 +29,9 @@ extension NPOEpisode {
         var displayName = watchedIndicator
         
         // add the episode name
-        if let name = self.name where !name.isEmpty {
+        if let name = self.name , !name.isEmpty {
             displayName += name
-        } else if let name = self.program?.name where !name.isEmpty {
+        } else if let name = self.program?.name , !name.isEmpty {
             displayName += name
         } else {
             displayName += UitzendingGemistConstants.unknownEpisodeName
@@ -45,16 +45,16 @@ extension NPOEpisode {
             return nil
         }
         
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        return formatter.stringFromDate(broadcasted)
+        return formatter.string(from: broadcasted)
     }
     
     func getNames() -> (programName: String, episodeNameAndInfo: String) {
         // define the program name
         var programName = watchedIndicator
         
-        if let name = self.program?.name where !name.isEmpty {
+        if let name = self.program?.name , !name.isEmpty {
             programName += name
         } else {
             programName += UitzendingGemistConstants.unknownProgramName
@@ -64,21 +64,21 @@ extension NPOEpisode {
         var elements = [String]()
         
         // add episode name
-        if let name = self.name where !name.isEmpty {
+        if let name = self.name , !name.isEmpty {
             if let tempProgramName = program?.name {
                 var tempName = name
                 
                 // replace program name
-                tempName = tempName.stringByReplacingOccurrencesOfString(tempProgramName, withString: "", options: .CaseInsensitiveSearch, range: nil)
+                tempName = tempName.replacingOccurrences(of: tempProgramName, with: "", options: .caseInsensitive, range: nil)
                 
                 // remove garbage from beginning of name
-                if let regex = try? NSRegularExpression(pattern: "^([^a-z0-9]+)", options: .CaseInsensitive) {
+                if let regex = try? NSRegularExpression(pattern: "^([^a-z0-9]+)", options: .caseInsensitive) {
                     let range = NSRange(0..<tempName.utf16.count)
-                    tempName = regex.stringByReplacingMatchesInString(tempName, options: .WithTransparentBounds, range: range, withTemplate: "")
+                    tempName = regex.stringByReplacingMatches(in: tempName, options: .withTransparentBounds, range: range, withTemplate: "")
                 }
 
                 // capitalize
-                tempName = tempName.capitalizedString
+                tempName = tempName.capitalized
                 
                 if !tempName.isEmpty {
                     elements.append(tempName)
@@ -96,7 +96,7 @@ extension NPOEpisode {
         // add duration
         elements.append(self.duration.timeDisplayValue)
         
-        let episodeName = elements.joinWithSeparator(UitzendingGemistConstants.separator)
+        let episodeName = elements.joined(separator: UitzendingGemistConstants.separator)
         
         return (programName: programName, episodeNameAndInfo: episodeName)
     }

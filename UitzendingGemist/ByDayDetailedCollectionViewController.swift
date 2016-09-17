@@ -14,14 +14,14 @@ import CocoaLumberjack
 class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var episodeCollectionView: UICollectionView!
     
-    private var episodes = [NPOEpisode]()
+    fileprivate var episodes = [NPOEpisode]()
     
     //MARK: Configuration
     
     //swiftlint:disable force_cast
-    func configure(withDate date: NSDate) {
+    func configure(withDate date: Date) {
         NPOManager.sharedInstance.getEpisodes(forDate: date, filterReruns: true) { [weak self] episodes, error in
-            guard let episodes = episodes, strongSelf = self else {
+            guard let episodes = episodes, let strongSelf = self else {
                 DDLogError("Could not fetch episodes for \(date) (\(error))")
                 return
             }
@@ -37,24 +37,24 @@ class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewD
     
     //MARK:
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return episodes.count
     }
     
     // swiftlint:disable force_cast
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.DayDetail.rawValue, forIndexPath: indexPath) as! ByDayDetailedCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.DayDetail.rawValue, for: indexPath) as! ByDayDetailedCollectionViewCell
         cell.configure(withEpisode: episodes[indexPath.row])
         return cell
     }
     // swiftlint:enable force_cast
     
     // swiftlint:disable force_cast
-    func collectionView(collectionView: UICollectionView, didUpdateFocusInContext context: UICollectionViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+    func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         guard let indexPath = context.nextFocusedIndexPath else {
             return
         }
@@ -66,7 +66,7 @@ class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewD
     // swiftlint:enable force_cast
     
     // swiftlint:disable force_cast
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = self.splitViewController as! ByDaySplitViewController
         vc.didSelect(episode: episodes[indexPath.row])
     }

@@ -13,13 +13,13 @@ import CocoaLumberjack
 import AVKit
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    @IBOutlet weak private var backgroundImageView: UIImageView!
-    @IBOutlet weak private var tipsCollectionView: UICollectionView!
-    @IBOutlet weak private var onDeckCollectionView: UICollectionView!
+    @IBOutlet weak fileprivate var backgroundImageView: UIImageView!
+    @IBOutlet weak fileprivate var tipsCollectionView: UICollectionView!
+    @IBOutlet weak fileprivate var onDeckCollectionView: UICollectionView!
     
-    private var tips = [NPOTip]()
-    private var onDeck = [NPOEpisode]()
-    private var onDeckPrograms: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)] = []
+    fileprivate var tips = [NPOTip]()
+    fileprivate var onDeck = [NPOEpisode]()
+    fileprivate var onDeckPrograms: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)] = []
     
     //MARK: Lifecycle
     
@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewDidLoad()
         
         // add blur effect to background image
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         visualEffectView.frame = backgroundImageView.bounds
         backgroundImageView.addSubview(visualEffectView)
 
@@ -35,7 +35,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         tipsCollectionView.reloadData()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // refresh collections
@@ -47,37 +47,38 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     //MARK: Version check
     
-    private func checkForUpdate() {
+    fileprivate func checkForUpdate() {
         // update check
         UpdateManager.sharedInstance.updateAvailable() { [weak self] latestRelease, currentVersion in
             // update available, show an alert
             let latestVersion = latestRelease?.version ?? UitzendingGemistConstants.unknownText
-            let downloadURL = latestRelease?.url ?? UitzendingGemistConstants.unknownText
+            let downloadURL = latestRelease?.url
             let thisVersion = currentVersion ?? UitzendingGemistConstants.unknownText
-            let alertText = String.localizedStringWithFormat(UitzendingGemistConstants.updateAvailableText, latestVersion, downloadURL, thisVersion)
-            let alertController = UIAlertController(title: UitzendingGemistConstants.updateAvailableTitle, message: alertText, preferredStyle: .ActionSheet)
-            let cancelAction = UIAlertAction(title: UitzendingGemistConstants.okayButtonText, style: .Cancel) { _ in
-                alertController.dismissViewControllerAnimated(true, completion: nil)
+            let downloadURLString = downloadURL?.absoluteString ?? UitzendingGemistConstants.unknownText
+            let alertText = String.localizedStringWithFormat(UitzendingGemistConstants.updateAvailableText, latestVersion, downloadURLString, thisVersion)
+            let alertController = UIAlertController(title: UitzendingGemistConstants.updateAvailableTitle, message: alertText, preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: UitzendingGemistConstants.okayButtonText, style: .cancel) { _ in
+                alertController.dismiss(animated: true, completion: nil)
             }
             alertController.addAction(cancelAction)
-            self?.presentViewController(alertController, animated: true, completion: nil)
+            self?.present(alertController, animated: true, completion: nil)
         }
     }
 
     //MARK: Networking
     
-    private func getData(withCompletion completed: (tips: [NPOTip], onDeck: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)], errors: [NPOError]) -> ()) {
+    fileprivate func getData(withCompletion completed: @escaping (_ tips: [NPOTip], _ onDeck: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)], _ errors: [NPOError]) -> ()) {
         var tips = [NPOTip]()
         var onDeck: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)] = []
         var errors = [NPOError]()
         
         // create dispatch group
-        let group = dispatch_group_create()
+        let group = DispatchGroup()
         
         // get tips
-        dispatch_group_enter(group)
+        group.enter()
         NPOManager.sharedInstance.getTips() { items, error in
-            defer { dispatch_group_leave(group) }
+            defer { group.leave() }
             
             if let items = items {
                 tips = items
@@ -87,19 +88,19 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         // get the most recent unwatched episodes of favorite programs
-        dispatch_group_enter(group)
+        group.enter()
         NPOManager.sharedInstance.getDetailedFavoritePrograms() { programs, error in
-            defer { dispatch_group_leave(group) }
+            defer { group.leave() }
             
             guard let programs = programs else {
                 return
             }
             
-            let sortedPrograms = programs.sort { $0.numberOfWatchedEpisodes > $1.numberOfWatchedEpisodes }
+            let sortedPrograms = programs.sorted { $0.numberOfWatchedEpisodes > $1.numberOfWatchedEpisodes }
             
             // iterate over programs
             for program in sortedPrograms {
-                let unwatchedEpisodes = program.episodes?.filter({ $0.watched != .Fully })
+                let unwatchedEpisodes = program.episodes?.filter({ $0.watched != .fully })
                 if let mostRecentUnwatchedEpisode = unwatchedEpisodes?.first {
                     let tuple = (program: program, mostRecentUnwatchedEpisode: mostRecentUnwatchedEpisode, unwatchedEpisodeCount: unwatchedEpisodes?.count ?? 0)
                     onDeck.append(tuple)
@@ -108,22 +109,22 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         // done
-        dispatch_group_notify(group, dispatch_get_main_queue()) {
-            completed(tips: tips, onDeck: onDeck, errors: errors)
+        group.notify(queue: DispatchQueue.main) {
+            completed(tips, onDeck, errors)
         }
     }
     
     //swiftlint:disable force_cast
-    private func refresh() {
+    fileprivate func refresh() {
         // refresh tip cell
-        if let indexPath = tipsCollectionView.indexPathsForSelectedItems()?.first {
-            let cell = tipsCollectionView.cellForItemAtIndexPath(indexPath) as! TipCollectionViewCell
+        if let indexPath = tipsCollectionView.indexPathsForSelectedItems?.first {
+            let cell = tipsCollectionView.cellForItem(at: indexPath) as! TipCollectionViewCell
             cell.configure(withTip: tips[indexPath.row])
         }
 
         // refresh on deck cell
-        if let indexPath = onDeckCollectionView.indexPathsForSelectedItems()?.first {
-            let cell = onDeckCollectionView.cellForItemAtIndexPath(indexPath) as! OnDeckCollectionViewCell
+        if let indexPath = onDeckCollectionView.indexPathsForSelectedItems?.first {
+            let cell = onDeckCollectionView.cellForItem(at: indexPath) as! OnDeckCollectionViewCell
             cell.configure(withProgram: onDeckPrograms[indexPath.row].program, unWachtedEpisodeCount: onDeckPrograms[indexPath.row].unwatchedEpisodeCount, andEpisode: onDeck[indexPath.row])
         }
 
@@ -152,11 +153,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     //MARK: UICollectionViewDataSource
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
             case tipsCollectionView:
                 return tips.count
@@ -167,7 +168,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: UICollectionViewCell
         
         switch collectionView {
@@ -182,12 +183,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier(Segues.HomeToEpisodeDetails.rawValue, sender: collectionView)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Segues.HomeToEpisodeDetails.rawValue, sender: collectionView)
     }
     
     // swiftlint:disable force_cast
-    func collectionView(collectionView: UICollectionView, didUpdateFocusInContext context: UICollectionViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+    func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         guard let indexPath = context.nextFocusedIndexPath else {
             return
         }
@@ -214,8 +215,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     //MARK: Tips
     
     //swiftlint:disable force_cast
-    private func dequeueTipCell(forCollectionView collectionView: UICollectionView, andIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Tip.rawValue, forIndexPath: indexPath) as! TipCollectionViewCell
+    fileprivate func dequeueTipCell(forCollectionView collectionView: UICollectionView, andIndexPath indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.Tip.rawValue, for: indexPath) as! TipCollectionViewCell
         cell.configure(withTip: self.tips[indexPath.row])
         return cell
     }
@@ -224,9 +225,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     //MARK: On Deck
     
     //swiftlint:disable force_cast
-    private func dequeueOnDeckCell(forCollectionView collectionView: UICollectionView, andIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.OnDeck.rawValue, forIndexPath: indexPath) as! OnDeckCollectionViewCell
-        let row = indexPath.row
+    fileprivate func dequeueOnDeckCell(forCollectionView collectionView: UICollectionView, andIndexPath indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.OnDeck.rawValue, for: indexPath) as! OnDeckCollectionViewCell
+        let row = (indexPath as NSIndexPath).row
         
         if row >= 0 && row < onDeck.count {
             let episode = onDeck[row]
@@ -242,8 +243,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     //MARK: Segues
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard segue.identifier == Segues.HomeToEpisodeDetails.rawValue, let collectionView = sender as? UICollectionView, indexPath = collectionView.indexPathsForSelectedItems()?.first, vc = segue.destinationViewController as? EpisodeViewController else {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == Segues.HomeToEpisodeDetails.rawValue, let collectionView = sender as? UICollectionView, let indexPath = collectionView.indexPathsForSelectedItems?.first, let vc = segue.destination as? EpisodeViewController else {
             return
         }
         

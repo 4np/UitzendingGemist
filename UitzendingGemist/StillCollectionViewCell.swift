@@ -12,7 +12,7 @@ import NPOKit
 import CocoaLumberjack
 
 class StillCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak private var stillImageView: UIImageView!
+    @IBOutlet weak fileprivate var stillImageView: UIImageView!
     
     //MARK: Lifecycle
     
@@ -28,7 +28,7 @@ class StillCollectionViewCell: UICollectionViewCell {
     
     //MARK: Focus engine
     
-    override func canBecomeFocused() -> Bool {
+    override var canBecomeFocused : Bool {
         return false
     }
     

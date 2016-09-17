@@ -15,17 +15,17 @@ import CocoaLumberjack
 class LiveViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var liveCollectionView: UICollectionView!
     
-    private var guides: [NPOLive: [NPOBroadcast]]? {
+    fileprivate var guides: [NPOLive: [NPOBroadcast]]? {
         didSet {
-            guard let guides = guides, oldValue = oldValue where oldValue.count > 0 else {
+            guard let guides = guides, let oldValue = oldValue , oldValue.count > 0 else {
                 self.liveCollectionView.reloadData()
                 return
             }
             
             // refresh cells rather than reloading to make the UI behave better
-            for (index, channel) in NPOLive.all.enumerate() {
-                let path = NSIndexPath(forRow: index, inSection: 0)
-                if let cell = self.liveCollectionView.cellForItemAtIndexPath(path) as? LiveCollectionViewCell {
+            for (index, channel) in NPOLive.all.enumerated() {
+                let path = IndexPath(row: index, section: 0)
+                if let cell = self.liveCollectionView.cellForItem(at: path) as? LiveCollectionViewCell {
                     cell.configure(withLiveChannel: channel, andGuide: guides[channel])
                 }
             }
@@ -38,15 +38,15 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.fetchGuides()
     }
     
     //MARK: Networking
     
-    private func fetchGuides() {
-        NPOManager.sharedInstance.getGuides(forChannels: NPOLive.all, onDate: NSDate()) { [weak self] guides, errors in
+    fileprivate func fetchGuides() {
+        NPOManager.sharedInstance.getGuides(forChannels: NPOLive.all, onDate: Date()) { [weak self] guides, errors in
             // log errors if we have any
             for (channel, error) in errors ?? [NPOLive: NPOError]() {
                 DDLogError("Could not get guide for '\(channel)' (\(error))")
@@ -58,18 +58,18 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     //MARK: UICollectionViewDataSource
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return NPOLive.all.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Live.rawValue, forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.Live.rawValue, for: indexPath)
         
-        guard let liveCell = cell as? LiveCollectionViewCell where indexPath.row >= 0 && indexPath.row < NPOLive.all.count else {
+        guard let liveCell = cell as? LiveCollectionViewCell , indexPath.row >= 0 && indexPath.row < NPOLive.all.count else {
             return cell
         }
         
@@ -78,7 +78,7 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
         return liveCell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.row >= 0 && indexPath.row < NPOLive.all.count else {
             return
         }
@@ -89,7 +89,7 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     //MARK: Playing
     
-    private func play(liveChannel channel: NPOLive) {
+    fileprivate func play(liveChannel channel: NPOLive) {
         // show progress hud
         self.view.startLoading()
         
@@ -103,12 +103,12 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
             }
             
             // set up player
-            let player = AVPlayer(URL: url)
+            let player = AVPlayer(url: url)
             let playerViewController = AVPlayerViewController()
             playerViewController.player = player
             
             // present player
-            self?.presentViewController(playerViewController, animated: true) {
+            self?.present(playerViewController, animated: true) {
                 playerViewController.player?.play()
             }
         }

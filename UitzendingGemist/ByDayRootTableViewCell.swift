@@ -22,17 +22,17 @@ class ByDayRootTableViewCell: UITableViewCell {
         self.nameLabel.text = nil
     }
     
-    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
         
-        nameLabel.textColor = focused ? UIColor.blackColor() : UIColor.whiteColor()
-        nameLabel.shadowColor = focused ? UIColor.lightShadow : UIColor.blackColor()
-        nameLabel.shadowOffset = focused ? CGSize(width: 2, height: 1) : CGSize(width: 1, height: 1)
+        nameLabel.textColor = isFocused ? UIColor.black : UIColor.white
+        nameLabel.shadowColor = isFocused ? UIColor.lightShadow : UIColor.black
+        nameLabel.shadowOffset = isFocused ? CGSize(width: 2, height: 1) : CGSize(width: 1, height: 1)
     }
     
     //MARK: Configuration
     
     internal func configure(withName name: String) {
-        self.nameLabel.text = name.capitalizedString
+        self.nameLabel.text = name.capitalized
     }
 }

@@ -15,7 +15,7 @@ class ByDayDetailedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var programNameLabel: UILabel!
     @IBOutlet weak var episodeNameAndTimeLabel: UILabel!
 
-    private var imageRequest: NPORequest?
+    fileprivate var imageRequest: NPORequest?
     
     //MARK: Lifecycle
     
@@ -36,7 +36,7 @@ class ByDayDetailedCollectionViewCell: UICollectionViewCell {
         
         // get image
         imageRequest = episode.getImage(ofSize: episodeImageView.frame.size) { [weak self] image, error, request in
-            guard let imageRequest = self?.imageRequest where request == imageRequest else {
+            guard let imageRequest = self?.imageRequest , request == imageRequest else {
                 return
             }
             
@@ -46,7 +46,7 @@ class ByDayDetailedCollectionViewCell: UICollectionViewCell {
     
     //MARK: Focus engine
     
-    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        episodeImageView.adjustsImageWhenAncestorFocused = self.focused
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        episodeImageView.adjustsImageWhenAncestorFocused = self.isFocused
     }
 }

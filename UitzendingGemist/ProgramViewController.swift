@@ -32,9 +32,9 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     
     @IBOutlet weak var episodeCollectionView: UICollectionView!
     
-    private var program: NPOProgram?
+    fileprivate var program: NPOProgram?
     
-    private var needLayout = false {
+    fileprivate var needLayout = false {
         didSet {
             if needLayout {
                 self.layout()
@@ -42,29 +42,29 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
     
-    private var genres: String? {
-        guard let genres = self.program?.genres where genres.count > 0 else {
+    fileprivate var genres: String? {
+        guard let genres = self.program?.genres, genres.count > 0 else {
             return nil
         }
         
-        return genres.map({ $0.rawValue }).joinWithSeparator("\n")
+        return genres.map({ $0.rawValue }).joined(separator: "\n")
     }
     
-    private var broadcasters: String? {
-        guard let broadcasters = self.program?.broadcasters where broadcasters.count > 0 else {
+    fileprivate var broadcasters: String? {
+        guard let broadcasters = self.program?.broadcasters, broadcasters.count > 0 else {
             return nil
         }
         
-        return broadcasters.map({ $0.rawValue }).joinWithSeparator("\n")
+        return broadcasters.map({ $0.rawValue }).joined(separator: "\n")
     }
     
-    private var episodes: [NPOEpisode]? {
+    fileprivate var episodes: [NPOEpisode]? {
         guard let episodes = self.program?.episodes else {
             return nil
         }
         
-        return episodes.sort {
-            if let date0 = $0.broadcasted, date1 = $1.broadcasted where date0.compare(date1) == .OrderedDescending {
+        return episodes.sorted {
+            if let date0 = $0.broadcasted, let date1 = $1.broadcasted, date0.compare(date1) == .orderedDescending {
                 return true
             } else {
                 return false
@@ -72,8 +72,8 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
     
-    private var unwatchedEpisodes: [NPOEpisode]? {
-        return self.episodes?.filter({ $0.watched != .Fully })
+    fileprivate var unwatchedEpisodes: [NPOEpisode]? {
+        return self.episodes?.filter({ $0.watched != .fully })
     }
     
     //MARK: Lifecycle
@@ -82,7 +82,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         super.viewDidLoad()
         
         // add blur effect to background image
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         visualEffectView.frame = backgroundImageView.bounds
         self.backgroundImageView.addSubview(visualEffectView)
         
@@ -100,12 +100,12 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         self.broadcasterTitleLabel.text = nil
         self.broadcasterLabel.text = nil
         
-        self.playButton.enabled = true
-        self.playLabel.enabled = true
+        self.playButton.isEnabled = true
+        self.playLabel.isEnabled = true
         self.playLabel.text = nil
         
-        self.favoriteButton.enabled = false
-        self.favoriteLabel.enabled = false
+        self.favoriteButton.isEnabled = false
+        self.favoriteLabel.isEnabled = false
         self.favoriteLabel.text = nil
     }
     
@@ -132,8 +132,8 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     
     //MARK: Layout
     
-    private func layout() {
-        guard let program = self.program where self.needLayout else {
+    fileprivate func layout() {
+        guard let program = self.program, self.needLayout else {
             return
         }
         
@@ -143,17 +143,18 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         self.programNameLabel.text = program.getDisplayNameWithWatchedIndicator()
         self.descriptionLabel.text = program.description
         
-        self.genreTitleLabel.text = UitzendingGemistConstants.genreText.uppercaseString
+        self.genreTitleLabel.text = UitzendingGemistConstants.genreText.uppercased()
         self.genreLabel.text = self.genres ?? UitzendingGemistConstants.unknownText
-        self.broadcasterTitleLabel.text = UitzendingGemistConstants.broadcasterText.uppercaseString
+        self.broadcasterTitleLabel.text = UitzendingGemistConstants.broadcasterText.uppercased()
         self.broadcasterLabel.text = self.broadcasters ?? UitzendingGemistConstants.unknownText
         
-        self.playButton.enabled = (self.unwatchedEpisodes?.count > 0)
-        self.playLabel.enabled = (self.unwatchedEpisodes?.count > 0)
+        let unwatchedEpisodesCount = self.unwatchedEpisodes?.count ?? 0
+        self.playButton.isEnabled = (unwatchedEpisodesCount > 0)
+        self.playLabel.isEnabled = (unwatchedEpisodesCount > 0)
         self.playLabel.text = UitzendingGemistConstants.playText
         
-        self.favoriteButton.enabled = (self.program != nil)
-        self.favoriteLabel.enabled = (self.program != nil)
+        self.favoriteButton.isEnabled = (self.program != nil)
+        self.favoriteLabel.isEnabled = (self.program != nil)
         self.favoriteLabel.text = UitzendingGemistConstants.favoriteText
         self.updateFavoriteButtonTitleColor()
         
@@ -164,16 +165,16 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         self.episodeCollectionView.reloadData()
     }
     
-    private func updateFavoriteButtonTitleColor() {
+    fileprivate func updateFavoriteButtonTitleColor() {
         let isFavorite = self.program?.favorite ?? false
         let favoriteColor = UIColor.waxFlower
-        let color = isFavorite ? favoriteColor : UIColor.whiteColor()
-        let focusColor = isFavorite ? favoriteColor : UIColor.blackColor()
-        self.favoriteButton.setTitleColor(color, forState: .Normal)
-        self.favoriteButton.setTitleColor(focusColor, forState: .Focused)
+        let color = isFavorite ? favoriteColor : UIColor.white
+        let focusColor = isFavorite ? favoriteColor : UIColor.black
+        self.favoriteButton.setTitleColor(color, for: .normal)
+        self.favoriteButton.setTitleColor(focusColor, for: .focused)
     }
     
-    private func layoutImages(forProgram program: NPOProgram) {
+    fileprivate func layoutImages(forProgram program: NPOProgram) {
         // background image
         program.getImage(ofSize: self.backgroundImageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
@@ -197,25 +198,25 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     
     //MARK: Favorite
     
-    @IBAction private func didPressFavoriteButton(sender: UIButton) {
+    @IBAction fileprivate func didPressFavoriteButton(_ sender: UIButton) {
         self.program?.toggleFavorite()
         self.updateFavoriteButtonTitleColor()
     }
     
     //MARK: UICollectionViewDataSource
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.episodes?.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CollectionViewCells.Episode.rawValue, forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.Episode.rawValue, for: indexPath)
         
-        guard let episodeCell = cell as? EpisodeCollectionViewCell, episodes = self.episodes where indexPath.row >= 0 && indexPath.row < episodes.count else {
+        guard let episodeCell = cell as? EpisodeCollectionViewCell, let episodes = self.episodes, indexPath.row >= 0 && indexPath.row < episodes.count else {
             return cell
         }
         
@@ -225,17 +226,17 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     
     //MARK: Segues
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueIdentifier = segue.identifier else {
             return
         }
         
         switch segueIdentifier {
             case Segues.ProgramToEpisode.rawValue:
-                prepareForSegueToEpisodeView(segue, sender: sender)
+                prepareForSegueToEpisodeView(segue, sender: sender as AnyObject?)
                 break
             case Segues.ProgramToPlayEpisode.rawValue:
-                prepareForSegueToPlayEpisodeView(segue, sender: sender)
+                prepareForSegueToPlayEpisodeView(segue, sender: sender as AnyObject?)
                 break
             default:
                 DDLogError("Unhandled segue with identifier '\(segueIdentifier)' in Home view")
@@ -243,8 +244,8 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
     
-    private func prepareForSegueToEpisodeView(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let vc = segue.destinationViewController as? EpisodeViewController, cell = sender as? EpisodeCollectionViewCell, indexPath = self.episodeCollectionView.indexPathForCell(cell), episodes = self.episodes where indexPath.row >= 0 && indexPath.row < episodes.count else {
+    fileprivate func prepareForSegueToEpisodeView(_ segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let vc = segue.destination as? EpisodeViewController, let cell = sender as? EpisodeCollectionViewCell, let indexPath = self.episodeCollectionView.indexPath(for: cell), let episodes = self.episodes, indexPath.row >= 0 && indexPath.row < episodes.count else {
             return
         }
         
@@ -252,8 +253,8 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         vc.configure(withEpisode: episode)
     }
 
-    private func prepareForSegueToPlayEpisodeView(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let vc = segue.destinationViewController as? EpisodeViewController, episode = self.unwatchedEpisodes?.first else {
+    fileprivate func prepareForSegueToPlayEpisodeView(_ segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let vc = segue.destination as? EpisodeViewController, let episode = self.unwatchedEpisodes?.first else {
             return
         }
         

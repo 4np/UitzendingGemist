@@ -132,14 +132,14 @@ open class NPOEpisode: NPORestrictedMedia {
     
     fileprivate var updateProgramTimer: Timer?
 
-    open var watchDuration: Int? {
+    open var watchDuration: Int {
         get {
-            return self.realmEpisode?.watchDuration
+            return self.realmEpisode?.watchDuration ?? 0
         }
         set {
             do {
                 let realm = try Realm()
-                let newWatchDuration = newValue ?? 0
+                let newWatchDuration = newValue 
                 
                 try realm.write {
                     // check if user watched up to the last 2 minutes

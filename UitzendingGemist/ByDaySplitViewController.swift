@@ -12,7 +12,7 @@ import NPOKit
 import CocoaLumberjack
 
 class ByDaySplitViewController: UISplitViewController {
-    private lazy var backgroundImageView: UIImageView = {
+    fileprivate lazy var backgroundImageView: UIImageView = {
         // define frame
         let frame = CGRect(x: 0, y: 0, width: 1920, height: 1080)
         
@@ -20,18 +20,18 @@ class ByDaySplitViewController: UISplitViewController {
         let imageView = UIImageView(frame: frame)
         
         // add visual effect view
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         visualEffectView.frame = imageView.frame
         imageView.addSubview(visualEffectView)
         
         // add to image view to view
         self.view.addSubview(imageView)
-        self.view.sendSubviewToBack(imageView)
+        self.view.sendSubview(toBack: imageView)
         
         return imageView
     }()
     
-    private var imageRequest: NPORequest?
+    fileprivate var imageRequest: NPORequest?
     
     //MARK: Lifecycle
     
@@ -64,7 +64,7 @@ class ByDaySplitViewController: UISplitViewController {
     //MARK: Configuration
     
     internal func initialConfigure(withEpisode episode: NPOEpisode?) {
-        guard let episode = episode where backgroundImageView.image == nil else {
+        guard let episode = episode , backgroundImageView.image == nil else {
             return
         }
         
@@ -73,7 +73,7 @@ class ByDaySplitViewController: UISplitViewController {
     
     internal func configure(withEpisode episode: NPOEpisode) {
         self.imageRequest = episode.getImage(ofSize: backgroundImageView.frame.size) { [weak self] image, error, request in
-            guard let imageRequest = self?.imageRequest where request == imageRequest else {
+            guard let imageRequest = self?.imageRequest , request == imageRequest else {
                 return
             }
             
@@ -81,13 +81,13 @@ class ByDaySplitViewController: UISplitViewController {
         }
     }
     
-    internal func didSelect(episode episode: NPOEpisode) {
+    internal func didSelect(episode: NPOEpisode) {
         // launch the EpisodeViewController (unfortunately you cannot segue
         // from a SplitViewController elsewhere so this is a workaround)
-        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate, rvc = appDelegate.window?.rootViewController,
-            storyboard = rvc.storyboard, vc = storyboard.instantiateViewControllerWithIdentifier(ViewControllers.EpisodeViewController.rawValue) as? EpisodeViewController {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let rvc = appDelegate.window?.rootViewController,
+            let storyboard = rvc.storyboard, let vc = storyboard.instantiateViewController(withIdentifier: ViewControllers.EpisodeViewController.rawValue) as? EpisodeViewController {
             vc.configure(withEpisode: episode)
-            tabBarController?.showViewController(vc, sender: nil)
+            tabBarController?.show(vc, sender: nil)
         }
     }
 }

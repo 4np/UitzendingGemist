@@ -14,7 +14,7 @@ class ProgramDetailedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var programImageView: UIImageView!
     @IBOutlet weak var programNameLabel: UILabel!
     
-    private var imageRequest: NPORequest?
+    fileprivate var imageRequest: NPORequest?
     
     //MARK: Lifecycle
     
@@ -32,7 +32,7 @@ class ProgramDetailedCollectionViewCell: UICollectionViewCell {
         
         // get image
         imageRequest = program.getImage(ofSize: programImageView.frame.size) { [weak self] image, error, request in
-            guard let imageRequest = self?.imageRequest where request == imageRequest else {
+            guard let imageRequest = self?.imageRequest , request == imageRequest else {
                 return
             }
             
@@ -42,7 +42,7 @@ class ProgramDetailedCollectionViewCell: UICollectionViewCell {
     
     //MARK: Focus engine
     
-    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        programImageView.adjustsImageWhenAncestorFocused = self.focused
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        programImageView.adjustsImageWhenAncestorFocused = self.isFocused
     }
 }

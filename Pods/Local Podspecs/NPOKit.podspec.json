@@ -12,7 +12,7 @@
   },
   "documentation_url": "https://github.com/4np/NPOKit/blob/master/README.md",
   "platforms": {
-    "tvos": "9.0"
+    "tvos": "10.0"
   },
   "requires_arc": true,
   "source": {
@@ -25,13 +25,13 @@
 
     ],
     "Alamofire": [
-      "~> 3.4"
+      "~> 4.0"
     ],
     "AlamofireObjectMapper": [
-      "~> 3.0"
+      "~> 4.0"
     ],
     "AlamofireImage": [
-      "~> 2.0"
+      "~> 3.0"
     ],
     "RealmSwift": [
 

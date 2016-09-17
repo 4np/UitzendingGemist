@@ -12,8 +12,8 @@ import NPOKit
 import CocoaLumberjack
 
 class ByDayRootTableViewController: UITableViewController {
-    private var loaded = false
-    private var days = [(from: NSDate, to: NSDate, label: String, name: String)]() {
+    fileprivate var loaded = false
+    fileprivate var days = [(from: Date, to: Date, label: String, name: String)]() {
         didSet {
             tableView.reloadData()
         }
@@ -27,7 +27,7 @@ class ByDayRootTableViewController: UITableViewController {
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 100))
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         // construct days
@@ -41,7 +41,7 @@ class ByDayRootTableViewController: UITableViewController {
     
     //MARK: Initial load
     
-    private func setupInitialUI() {
+    fileprivate func setupInitialUI() {
         guard days.count > 0 && tableView.indexPathsForSelectedRows == nil else {
             return
         }
@@ -50,26 +50,26 @@ class ByDayRootTableViewController: UITableViewController {
         loaded = true
         
         // get a random episode and use it to set the background
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.Middle)
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableViewScrollPosition.middle)
         updateDetailedView(forRow: 0)
     }
     
     //MARK: UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return days.count
     }
     
     // swiftlint:disable force_cast
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCells.Day.rawValue, forIndexPath: indexPath) as! ByDayRootTableViewCell
-        let day = days[indexPath.row]
-        if indexPath.row > 2 {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCells.Day.rawValue, for: indexPath) as! ByDayRootTableViewCell
+        let day = days[(indexPath as NSIndexPath).row]
+        if (indexPath as NSIndexPath).row > 2 {
             cell.configure(withName: day.name)
         } else {
             cell.configure(withName: day.label)
@@ -78,14 +78,14 @@ class ByDayRootTableViewController: UITableViewController {
     }
     // swiftlint:enable force_cast
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        updateDetailedView(forRow: indexPath.row)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        updateDetailedView(forRow: (indexPath as NSIndexPath).row)
     }
     
-    private func updateDetailedView(forRow row: Int) {
+    fileprivate func updateDetailedView(forRow row: Int) {
         let day = days[row]
         
-        guard let vcs = splitViewController?.viewControllers where vcs.count > 1, let vc = vcs[1] as? ByDayDetailedCollectionViewController else {
+        guard let vcs = splitViewController?.viewControllers , vcs.count > 1, let vc = vcs[1] as? ByDayDetailedCollectionViewController else {
             return
         }
         

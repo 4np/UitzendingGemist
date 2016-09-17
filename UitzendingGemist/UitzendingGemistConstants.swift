@@ -42,7 +42,7 @@ enum Segues: String {
     case ProgramToPlayEpisode = "ProgramToPlayEpisodeSegue"
 }
 
-public class UitzendingGemistConstants {
+open class UitzendingGemistConstants {
     // some unicode characters to use: ⦁◔◕◖◗◉●●⌾◕◔◖●⊚⊛⌾⍟⃘⃠•๏ං௦
     static let watchedSymbol = ""
     static let unwatchedSymbol = "● "

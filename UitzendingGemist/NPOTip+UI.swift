@@ -14,9 +14,9 @@ extension NPOTip {
     func getDisplayName() -> String {
         var displayName = episode?.watchedIndicator ?? ""
         
-        if let name = self.name where !name.isEmpty {
+        if let name = self.name , !name.isEmpty {
             displayName += name
-        } else if let name = episode?.name where !name.isEmpty {
+        } else if let name = episode?.name , !name.isEmpty {
             displayName += name
         } else {
             displayName += UitzendingGemistConstants.unknownText
