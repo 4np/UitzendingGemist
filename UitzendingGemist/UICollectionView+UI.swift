@@ -30,7 +30,6 @@ extension UICollectionView {
         let new = newEpisodes.enumerated().filter({ !episodes.contains($0.element) })
         let newIndexPaths = new.map { IndexPath(row: $0.offset, section: 0) }
         for newEpisode in new {
-            debugPrint("offset: \(newEpisode.offset)")
             episodes.insert(newEpisode.element, at: newEpisode.offset)
         }
         insertItems(at: newIndexPaths)
@@ -75,7 +74,6 @@ extension UICollectionView {
         let new = newTips.enumerated().filter({ !tips.contains($0.element) })
         let newIndexPaths = new.map { IndexPath(row: $0.offset, section: 0) }
         for newTip in new {
-            debugPrint("~~~ offset: \(newTip.offset)")
             tips.insert(newTip.element, at: newTip.offset)
         }
         insertItems(at: newIndexPaths)
