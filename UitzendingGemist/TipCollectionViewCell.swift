@@ -16,7 +16,7 @@ class TipCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak fileprivate var nameLabel: UILabel!
     @IBOutlet weak fileprivate var dateLabel: UILabel!
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -30,13 +30,13 @@ class TipCollectionViewCell: UICollectionViewCell {
         self.dateLabel.text = nil
     }
     
-    //MARK: Focus engine
+    // MARK: Focus engine
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         self.imageView.adjustsImageWhenAncestorFocused = self.isFocused
     }
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     internal func configure(withTip tip: NPOTip) {
         self.fetchImage(forTip: tip)
@@ -44,7 +44,7 @@ class TipCollectionViewCell: UICollectionViewCell {
         self.dateLabel.text = tip.publishedDisplayValue
     }
     
-    //MARK: Networking
+    // MARK: Networking
     
     internal func fetchImage(forTip tip: NPOTip) {
         let size = self.imageView.frame.size

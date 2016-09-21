@@ -17,7 +17,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var currentLabel: UILabel!
     @IBOutlet weak var upcommingLabel: UILabel!
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -28,7 +28,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
         self.upcommingLabel.text = nil
     }
     
-    //MARK: Focus engine
+    // MARK: Focus engine
     
     override var canBecomeFocused: Bool {
         return true
@@ -39,7 +39,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
         self.channelLogoImageView.adjustsImageWhenAncestorFocused = self.isFocused
     }
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     internal func configure(withLiveChannel channel: NPOLive, andGuide broadcasts: [NPOBroadcast]?) {
         // set the logo image
@@ -67,7 +67,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    //MARK: Broadcast texts
+    // MARK: Broadcast texts
     
     fileprivate func getCurrentText(forBroadcast broadcast: NPOBroadcast) -> String {
         let name = (broadcast.episode?.program?.name ?? broadcast.episode?.name) ?? UitzendingGemistConstants.unknownText
@@ -87,7 +87,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
         return String.localizedStringWithFormat(UitzendingGemistConstants.upcomingBroadcastWithTime, timeString, name)
     }
     
-    //MARK: Broadcast filtering
+    // MARK: Broadcast filtering
     
     fileprivate func getCurrentBroadcast(forGuide broadcasts: [NPOBroadcast]?) -> NPOBroadcast? {
         let now = Date()
@@ -99,7 +99,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
         return broadcasts?.filter({ now.lies(before: $0.starts) }).first
     }
     
-    //MARK: Image fetching
+    // MARK: Image fetching
     
     fileprivate func fetchImage(forEpisode episode: NPOEpisode?, withFallbackImage fallbackImage: UIImage?) {
         guard let episode = episode else {

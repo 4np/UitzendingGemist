@@ -47,7 +47,7 @@ class EpisodeViewController: UIViewController {
         }
     }
 
-    //MARK: Calculated Properties
+    // MARK: Calculated Properties
     
     fileprivate var programName: String? {
         if let program = self.program, let name = program.name, !name.isEmpty {
@@ -139,7 +139,7 @@ class EpisodeViewController: UIViewController {
         return broadcasters.map({ $0.rawValue }).joined(separator: "\n")
     }
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -194,7 +194,7 @@ class EpisodeViewController: UIViewController {
         layout()
     }
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     func configure(withTip tip: NPOTip) {
         self.tip = tip
@@ -212,7 +212,7 @@ class EpisodeViewController: UIViewController {
         }
     }
     
-    //MARK: Networking
+    // MARK: Networking
     
     fileprivate func getDetails(forEpisode episode: NPOEpisode?, withCompletion completed: @escaping () -> () = {}) {
         guard let episode = episode else {
@@ -253,7 +253,7 @@ class EpisodeViewController: UIViewController {
         }
     }
     
-    //MARK: Update UI
+    // MARK: Update UI
     
     fileprivate func layout() {
         guard needLayout else {
@@ -320,7 +320,7 @@ class EpisodeViewController: UIViewController {
         episodeNameLabel.text = episodeName
     }
     
-    //MARK: Images
+    // MARK: Images
     
     fileprivate func layoutImages() {
         if let tip = self.tip {
@@ -375,7 +375,7 @@ class EpisodeViewController: UIViewController {
         }
     }
     
-    //MARK: UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource
     
     func numberOfSectionsInCollectionView(_ collectionView: UICollectionView) -> Int {
         return 1
@@ -396,13 +396,13 @@ class EpisodeViewController: UIViewController {
         return stillCell
     }
     
-    //MARK: Play
+    // MARK: Play
     
     @IBAction fileprivate func didPressPlayButton(_ sender: UIButton) {
         play()
     }
     
-    //MARK: Player
+    // MARK: Player
     
     fileprivate func play() {
         guard let episode = self.episode else {
@@ -496,21 +496,21 @@ class EpisodeViewController: UIViewController {
         }
     }
     
-    //MARK: Favorite
+    // MARK: Favorite
     
     @IBAction fileprivate func didPressFavoriteButton(_ sender: UIButton) {
         program?.toggleFavorite()
         updateFavoriteButtonTitleColor()
     }
     
-    //MARK: Mark as watched
+    // MARK: Mark as watched
     
     @IBAction func didPressMarkAsWatchedButton(_ sender: UIButton) {
         episode?.toggleWatched()
         updateWatchedButtonAndLabel()
     }
     
-    //MARK: Segues
+    // MARK: Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueIdentifier = segue.identifier else {

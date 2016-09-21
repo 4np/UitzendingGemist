@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 extension Mappable where Self: CustomStringConvertible {
-    //MARK: CustomDebugStringConvertible
+    // MARK: CustomDebugStringConvertible
     
     public var description: String {
         get {

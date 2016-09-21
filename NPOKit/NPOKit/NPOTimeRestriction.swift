@@ -21,20 +21,20 @@ open class NPOTimeRestriction: Mappable, CustomDebugStringConvertible {
         }
     }
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required convenience public init?(map: Map) {
         self.init()
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open func mapping(map: Map) {
         online <- (map["online_at"], DateTransform())
         offline <- (map["offline_at"], DateTransform())
     }
     
-    //MARK: Date checking
+    // MARK: Date checking
     
     internal func isOnline() -> Bool {
         return self.isOnline(atDate: Date())

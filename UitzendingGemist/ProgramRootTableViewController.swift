@@ -29,7 +29,7 @@ class ProgramRootTableViewController: UITableViewController {
     }
     // swiftlint:enable force_unwrapping
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +56,7 @@ class ProgramRootTableViewController: UITableViewController {
         setupInitialUI()
     }
     
-    //MARK: Networking
+    // MARK: Networking
     
     fileprivate func fetchPrograms() {
         NPOManager.sharedInstance.getPrograms() { [weak self] programs, error in
@@ -69,7 +69,7 @@ class ProgramRootTableViewController: UITableViewController {
         }
     }
     
-    //MARK: Initial load
+    // MARK: Initial load
     
     //swiftlint:disable force_cast
     fileprivate func setupInitialUI() {
@@ -98,7 +98,7 @@ class ProgramRootTableViewController: UITableViewController {
     }
     //swiftlint:enable force_cast
     
-    //MARK: UITableViewDataSource
+    // MARK: UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

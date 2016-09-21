@@ -47,13 +47,13 @@ open class NPOTip: NPOImage, Equatable {
         }
     }
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required public init?(map: Map) {
         super.init(map: map)
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open override func mapping(map: Map) {
         super.mapping(map: map)
@@ -65,7 +65,7 @@ open class NPOTip: NPOImage, Equatable {
         position <- map["position"]
     }
     
-    //MARK: Video Stream
+    // MARK: Video Stream
     
     open func getVideoStream(withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) {
         guard let episode = self.episode else {
@@ -76,7 +76,7 @@ open class NPOTip: NPOImage, Equatable {
         episode.getVideoStream(withCompletion: completed)
     }
     
-    //MARK: Image fetching
+    // MARK: Image fetching
 
     internal override func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> () = { urls in }) -> Request? {
         var urls = [URL]()

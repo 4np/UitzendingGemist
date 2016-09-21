@@ -16,7 +16,7 @@ class ProgramDetailedCollectionViewCell: UICollectionViewCell {
     
     fileprivate var imageRequest: NPORequest?
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -24,7 +24,7 @@ class ProgramDetailedCollectionViewCell: UICollectionViewCell {
         programImageView.image = nil 
     }
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     func configure(withProgram program: NPOProgram) {
         programNameLabel.text = program.getDisplayName()
@@ -40,7 +40,7 @@ class ProgramDetailedCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    //MARK: Focus engine
+    // MARK: Focus engine
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         programImageView.adjustsImageWhenAncestorFocused = self.isFocused

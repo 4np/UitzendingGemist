@@ -25,13 +25,13 @@ open class NPORestriction: Mappable, CustomDebugStringConvertible {
         }
     }
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required convenience public init?(map: Map) {
         self.init()
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open func mapping(map: Map) {
         age <- map["age_restriction"]
@@ -39,7 +39,7 @@ open class NPORestriction: Mappable, CustomDebugStringConvertible {
         time <- map["time_restriction"]
     }
     
-    //MARK: Geo check
+    // MARK: Geo check
     
     internal func geoAllowed() -> Bool {
         guard location else {

@@ -16,14 +16,14 @@ class ProgramDetailedCollectionViewController: UIViewController, UICollectionVie
     
     fileprivate var programs = [NPOProgram]()
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     func configure(withPrograms programs: [NPOProgram]) {
         self.programs = programs
         programCollectionView.reloadData()
     }
     
-    //MARK: 
+    // MARK: UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

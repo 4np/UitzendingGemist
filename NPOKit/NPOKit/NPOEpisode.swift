@@ -54,13 +54,13 @@ open class NPOEpisode: NPORestrictedMedia {
         return broadcasted.daysAgoDisplayValue
     }
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required public init?(map: Map) {
         super.init(map: map)
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open override func mapping(map: Map) {
         super.mapping(map: map)
@@ -72,7 +72,7 @@ open class NPOEpisode: NPORestrictedMedia {
         program <- map["series"]
     }
     
-    //MARK: Realm
+    // MARK: Realm
     
     lazy internal var realmEpisode: RealmEpisode? = {
         do {
@@ -107,7 +107,7 @@ open class NPOEpisode: NPORestrictedMedia {
     }()
     
     
-    //MARK: Watched
+    // MARK: Watched
     
     //swiftlint:disable force_unwrapping
     open var watched: Watched {
@@ -128,7 +128,7 @@ open class NPOEpisode: NPORestrictedMedia {
     }
     //swiftlint:enable force_unwrapping
     
-    //MARK: Watch duration
+    // MARK: Watch duration
     
     fileprivate var updateProgramTimer: Timer?
 
@@ -179,7 +179,7 @@ open class NPOEpisode: NPORestrictedMedia {
         }
     }
     
-    //MARK: Image fetching
+    // MARK: Image fetching
     
     internal override func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> () = { urls in }) -> Request? {
         var urls = [URL]()

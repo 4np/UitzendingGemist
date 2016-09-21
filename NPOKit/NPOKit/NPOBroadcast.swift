@@ -19,13 +19,13 @@ open class NPOBroadcast: Mappable, CustomDebugStringConvertible {
     open internal(set) var channel: String?
     open internal(set) var episode: NPOEpisode?
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required convenience public init?(map: Map) {
         self.init()
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open func mapping(map: Map) {
         rerun <- map["rerun"]

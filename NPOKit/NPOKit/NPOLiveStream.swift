@@ -16,12 +16,12 @@ open class NPOLiveStream: Mappable, CustomDebugStringConvertible {
     open fileprivate(set) var success = false
     open fileprivate(set) var url: URL?
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required public init?(map: Map) {
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open func mapping(map: Map) {
         success <- map["success"]

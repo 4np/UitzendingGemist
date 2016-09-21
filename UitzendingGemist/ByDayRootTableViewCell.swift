@@ -14,7 +14,7 @@ import CocoaLumberjack
 class ByDayRootTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -30,7 +30,7 @@ class ByDayRootTableViewCell: UITableViewCell {
         nameLabel.shadowOffset = isFocused ? CGSize(width: 2, height: 1) : CGSize(width: 1, height: 1)
     }
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     internal func configure(withName name: String) {
         self.nameLabel.text = name.capitalized

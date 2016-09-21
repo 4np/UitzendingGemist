@@ -17,7 +17,7 @@ class OnDeckCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak fileprivate var episodeNameLabel: UILabel!
     @IBOutlet weak fileprivate var dateLabel: UILabel!
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -32,13 +32,13 @@ class OnDeckCollectionViewCell: UICollectionViewCell {
         self.dateLabel.text = nil
     }
     
-    //MARK: Focus engine
+    // MARK: Focus engine
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         self.imageView.adjustsImageWhenAncestorFocused = self.isFocused
     }
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     internal func configure(withProgram program: NPOProgram, unWachtedEpisodeCount unwatchedCount: Int, andEpisode episode: NPOEpisode) {
         self.programNameLabel.text = program.getDisplayNameWithFavoriteIndicator()

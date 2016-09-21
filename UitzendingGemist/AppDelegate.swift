@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-    //MARK: Logging
+    // MARK: Logging
 
     fileprivate func setupLoggers() {
         // see https://gist.github.com/erica/d20639b409fe1b318c0e

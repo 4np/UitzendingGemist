@@ -81,7 +81,7 @@ open class NPOManager {
     internal let baseURL = "http://apps-api.uitzendinggemist.nl"
     fileprivate let infoDictionary = Bundle.main.infoDictionary
     
-    //MARK: Init
+    // MARK: Init
     
     init() {
         upgradeIfNeeded()
@@ -132,13 +132,13 @@ open class NPOManager {
     }
     //swiftlint:enable force_unwrapping
     
-    //MARK: Get url
+    // MARK: Get url
     
     internal func getURL(forPath path: String) -> String {
         return "\(self.baseURL)/\(path)"
     }
     
-    //MARK: Request headers
+    // MARK: Request headers
     
     internal func getHeaders() -> [String:String] {
         return [
@@ -153,7 +153,7 @@ open class NPOManager {
         ]
     }
 
-    //MARK: Image caching
+    // MARK: Image caching
     
     lazy internal var imageCache: AutoPurgingImageCache = {
         let imageCache = AutoPurgingImageCache(

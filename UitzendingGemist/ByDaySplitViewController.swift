@@ -33,7 +33,7 @@ class ByDaySplitViewController: UISplitViewController {
     
     fileprivate var imageRequest: NPORequest?
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,7 @@ class ByDaySplitViewController: UISplitViewController {
     }
     //swiftlint:enable force_cast
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     internal func initialConfigure(withEpisode episode: NPOEpisode?) {
         guard let episode = episode, backgroundImageView.image == nil else {

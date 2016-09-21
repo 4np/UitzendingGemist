@@ -29,13 +29,13 @@ open class NPORestrictedMedia: NPOMedia {
         }
     }
     
-    //MARK: Lifecycle  
+    // MARK: Lifecycle
     
     required public init?(map: Map) {
         super.init(map: map)
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open override func mapping(map: Map) {
         super.mapping(map: map)

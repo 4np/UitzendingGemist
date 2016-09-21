@@ -18,13 +18,13 @@ open class NPOFragment: NPOMedia {
     open internal(set) var duration = 0
     open internal(set) var stills = [NPOStill]()
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required public init?(map: Map) {
         super.init(map: map)
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open override func mapping(map: Map) {
         super.mapping(map: map)

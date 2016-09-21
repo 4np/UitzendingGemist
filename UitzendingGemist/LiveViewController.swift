@@ -32,7 +32,7 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,7 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.fetchGuides()
     }
     
-    //MARK: Networking
+    // MARK: Networking
     
     fileprivate func fetchGuides() {
         NPOManager.sharedInstance.getGuides(forChannels: NPOLive.all, onDate: Date()) { [weak self] guides, errors in
@@ -56,7 +56,7 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
-    //MARK: UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -87,7 +87,7 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.play(liveChannel: channel)
     }
     
-    //MARK: Playing
+    // MARK: Playing
     
     fileprivate func play(liveChannel channel: NPOLive) {
         // show progress hud

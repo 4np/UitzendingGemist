@@ -21,7 +21,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     fileprivate var onDeck = [NPOEpisode]()
     fileprivate var onDeckPrograms: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)] = []
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         checkForUpdate()
     }
     
-    //MARK: Version check
+    // MARK: Version check
     
     fileprivate func checkForUpdate() {
         // update check
@@ -65,7 +65,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
 
-    //MARK: Networking
+    // MARK: Networking
     
     fileprivate func getData(withCompletion completed: @escaping (_ tips: [NPOTip], _ onDeck: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)], _ errors: [NPOError]) -> ()) {
         var tips = [NPOTip]()
@@ -151,7 +151,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     //swiftlint:enable force_cast
     
-    //MARK: UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -212,7 +212,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     // swiftlint:enable force_cast
     
-    //MARK: Tips
+    // MARK: Tips
     
     //swiftlint:disable force_cast
     fileprivate func dequeueTipCell(forCollectionView collectionView: UICollectionView, andIndexPath indexPath: IndexPath) -> UICollectionViewCell {
@@ -222,7 +222,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     //swiftlint:enable force_cast
     
-    //MARK: On Deck
+    // MARK: On Deck
     
     //swiftlint:disable force_cast
     fileprivate func dequeueOnDeckCell(forCollectionView collectionView: UICollectionView, andIndexPath indexPath: IndexPath) -> UICollectionViewCell {
@@ -241,7 +241,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     //swiftlint:enable force_cast
 
-    //MARK: Segues
+    // MARK: Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == Segues.HomeToEpisodeDetails.rawValue, let collectionView = sender as? UICollectionView, let indexPath = collectionView.indexPathsForSelectedItems?.first, let vc = segue.destination as? EpisodeViewController else {

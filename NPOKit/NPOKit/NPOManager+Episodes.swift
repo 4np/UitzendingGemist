@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 extension NPOManager {
-    //MARK: Trending Episodes
+    // MARK: Trending Episodes
     
     // http://apps-api.uitzendinggemist.nl/episodes/trending.json
     public func getTrendingEpisodes(withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
@@ -18,7 +18,7 @@ extension NPOManager {
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
     }
     
-    //MARK: Popular Episodes
+    // MARK: Popular Episodes
     
     // http://apps-api.uitzendinggemist.nl/episodes/popular.json
     public func getPopularEpisodes(withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
@@ -26,7 +26,7 @@ extension NPOManager {
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
     }
     
-    //MARK: Recent Episodes
+    // MARK: Recent Episodes
     
     // http://apps-api.uitzendinggemist.nl/broadcasts/recent.json
     public func getRecentEpisodes(withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
@@ -34,7 +34,7 @@ extension NPOManager {
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withKeyPath: "episode", withCompletion: completed)
     }
     
-    //MARK: Details
+    // MARK: Details
 
     // http://apps-api.uitzendinggemist.nl/episodes/POW_02989402.json
     public func getDetails(forEpisode episode: NPOEpisode, withCompletion completed: @escaping (_ episode: NPOEpisode?, _ error: NPOError?) -> () = { episode, error in }) -> Request? {
@@ -47,7 +47,7 @@ extension NPOManager {
         return self.fetchModel(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
     }
     
-    //MARK: By Genre
+    // MARK: By Genre
     
     // http://apps-api.uitzendinggemist.nl/episodes/genre/Documentaire.json
     public func getEpisodes(byGenre genre: NPOGenre, withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
@@ -55,7 +55,7 @@ extension NPOManager {
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
     }
     
-    //MARK: By broadcaster
+    // MARK: By broadcaster
 
     // http://apps-api.uitzendinggemist.nl/episodes/broadcaster/NOS.json
     public func getEpisodes(byBroadcaster broadcaster: NPOBroadcaster, withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
@@ -63,7 +63,7 @@ extension NPOManager {
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
     }
     
-    //MARK: Searching
+    // MARK: Searching
     
     // http://apps-api.uitzendinggemist.nl/episodes/search/reizen.json
     public func getEpisodes(bySearchTerm term: String, withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
@@ -72,7 +72,7 @@ extension NPOManager {
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
     }
     
-    //MARK: By Date
+    // MARK: By Date
 
     // http://apps-api.uitzendinggemist.nl/broadcasts/2016-07-15.json
     public func getEpisodes(forDate date: Date, filterReruns filter: Bool, withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) -> Request? {
@@ -122,7 +122,7 @@ extension NPOManager {
         }
     }
     
-    //MARK: By Program
+    // MARK: By Program
     
     // http://apps-api.uitzendinggemist.nl/episodes/series/POMS_S_VPRO_472240/latest.json
     public func getLatestEpisode(forProgram program: NPOProgram, withCompletion completed: @escaping (_ episode: NPOEpisode?, _ error: NPOError?) -> () = { episode, error in }) -> Request? {
@@ -157,7 +157,7 @@ extension NPOManager {
         return self.fetchModel(ofType: NPOEpisode.self, fromPath: path, withKeyPath: "next_episode", withCompletion: completed)
     }
     
-    //MARK: By Favorite Programs
+    // MARK: By Favorite Programs
     
     public func getRecentEpisodesForFavoritePrograms(withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> () = { episodes, error in }) {
         // get favorite programs

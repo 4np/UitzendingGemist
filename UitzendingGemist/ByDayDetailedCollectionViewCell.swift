@@ -17,7 +17,7 @@ class ByDayDetailedCollectionViewCell: UICollectionViewCell {
 
     fileprivate var imageRequest: NPORequest?
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -27,7 +27,7 @@ class ByDayDetailedCollectionViewCell: UICollectionViewCell {
         episodeNameAndTimeLabel.text = nil
     }
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     func configure(withEpisode episode: NPOEpisode) {
         let names = episode.getNames()
@@ -44,7 +44,7 @@ class ByDayDetailedCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    //MARK: Focus engine
+    // MARK: Focus engine
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         episodeImageView.adjustsImageWhenAncestorFocused = self.isFocused

@@ -33,7 +33,7 @@ class ProgramSplitViewController: UISplitViewController {
     
     fileprivate var imageRequest: NPORequest?
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,7 @@ class ProgramSplitViewController: UISplitViewController {
     }
     //swiftlint:enable force_cast
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     internal func configure(withProgram program: NPOProgram) {
         self.imageRequest = program.getImage(ofSize: backgroundImageView.frame.size) { [weak self] image, error, request in
@@ -73,7 +73,7 @@ class ProgramSplitViewController: UISplitViewController {
         }
     }
     
-    //MARK: ProgramDetailedCollectionViewControllerDelegate
+    // MARK: ProgramDetailedCollectionViewControllerDelegate
     
     internal func didSelect(program: NPOProgram) {
         // launch the ProgramViewController (unfortunately you cannot segue

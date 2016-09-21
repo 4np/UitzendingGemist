@@ -76,7 +76,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         return self.episodes?.filter({ $0.watched != .fully })
     }
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +116,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         self.layout()
     }
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     func configure(withProgram program: NPOProgram) {
         NPOManager.sharedInstance.getDetails(forProgram: program) { [weak self] program, error in
@@ -130,7 +130,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
     
-    //MARK: Layout
+    // MARK: Layout
     
     fileprivate func layout() {
         guard let program = self.program, self.needLayout else {
@@ -196,14 +196,14 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
     
-    //MARK: Favorite
+    // MARK: Favorite
     
     @IBAction fileprivate func didPressFavoriteButton(_ sender: UIButton) {
         self.program?.toggleFavorite()
         self.updateFavoriteButtonTitleColor()
     }
     
-    //MARK: UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -224,7 +224,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         return episodeCell
     }
     
-    //MARK: Segues
+    // MARK: Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let segueIdentifier = segue.identifier else {

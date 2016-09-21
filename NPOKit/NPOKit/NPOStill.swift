@@ -14,13 +14,13 @@ import ObjectMapper
 open class NPOStill: NPOImage {
     open fileprivate(set) var position: Int?
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required public init?(map: Map) {
         super.init(map: map)
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open override func mapping(map: Map) {
         imageURL <- (map["url"], URLTransform())

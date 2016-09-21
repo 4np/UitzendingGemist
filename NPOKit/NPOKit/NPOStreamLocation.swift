@@ -22,12 +22,12 @@ open class NPOStreamLocation: Mappable, CustomDebugStringConvertible {
     fileprivate var query: String?
     open internal(set) var url: URL?
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required public init?(map: Map) {
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open func mapping(map: Map) {
         errorcode <- map["errorcode"]

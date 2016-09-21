@@ -24,13 +24,13 @@ open class NPOMedia: NPOImage, Equatable {
     //internal var neboID: String?
     open internal(set) var name: String?
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
 
     required public init?(map: Map) {
         super.init(map: map)
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open override func mapping(map: Map) {
         super.mapping(map: map)
@@ -40,7 +40,7 @@ open class NPOMedia: NPOImage, Equatable {
         name <- map["name"]
     }
     
-    //MARK: Image cache identifier
+    // MARK: Image cache identifier
     
     override func getImageIdentifier(forSize size: CGSize?) -> String? {
         guard let mid = self.mid else {
@@ -56,7 +56,7 @@ open class NPOMedia: NPOImage, Equatable {
         return identifier
     }
     
-    //MARK: Video Stream
+    // MARK: Video Stream
     
     open func getVideoStream(withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) {
         NPOManager.sharedInstance.getVideoStream(forMID: mid, withCompletion: completed)

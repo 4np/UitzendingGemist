@@ -564,6 +564,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = eu.osx.UitzendingGemist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -579,6 +580,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = eu.osx.UitzendingGemist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};

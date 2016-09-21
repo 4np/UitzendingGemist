@@ -41,7 +41,7 @@ extension NPOManager {
         }
     }
     
-    //MARK: Fetch Single Model
+    // MARK: Fetch Single Model
     
     internal func fetchModel<T: Mappable>(ofType type: T.Type, fromURL url: String, withCompletion completed: @escaping (_ element: T?, _ error: NPOError?) -> () = { element, error in }) -> Request? {
         return self.fetchModel(ofType: type, fromURL: url, withKeyPath: nil, withCompletion: completed)

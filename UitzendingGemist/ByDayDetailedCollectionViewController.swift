@@ -16,7 +16,7 @@ class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewD
     
     fileprivate var episodes = [NPOEpisode]()
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     //swiftlint:disable force_cast
     func configure(withDate date: Date) {
@@ -35,7 +35,7 @@ class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewD
     }
     //swiftlint:enable force_cast
     
-    //MARK:
+    // MARK: UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

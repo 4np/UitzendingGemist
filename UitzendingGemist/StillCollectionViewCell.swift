@@ -14,7 +14,7 @@ import CocoaLumberjack
 class StillCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak fileprivate var stillImageView: UIImageView!
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -26,13 +26,13 @@ class StillCollectionViewCell: UICollectionViewCell {
         self.stillImageView.image = nil
     }
     
-    //MARK: Focus engine
+    // MARK: Focus engine
     
     override var canBecomeFocused: Bool {
         return false
     }
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     func configure(withStill still: NPOStill) {
         still.getImage(ofSize: self.stillImageView.frame.size) { [weak self] image, error, _ in

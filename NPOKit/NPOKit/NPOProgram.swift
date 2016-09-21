@@ -37,13 +37,13 @@ open class NPOProgram: NPORestrictedMedia {
         return episodes?.filter({ $0.watched == .fully }).count ?? 0
     }
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required public init?(map: Map) {
         super.init(map: map)
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open override func mapping(map: Map) {
         super.mapping(map: map)
@@ -54,7 +54,7 @@ open class NPOProgram: NPORestrictedMedia {
         nextEpisode <- map["next_episode"]
     }
     
-    //MARK: Date checking
+    // MARK: Date checking
     
     internal func isOnline() -> Bool {
         return self.isOnline(atDate: Date())
@@ -68,7 +68,7 @@ open class NPOProgram: NPORestrictedMedia {
         return (date.compare(online) == .orderedDescending && date.compare(offline) == .orderedAscending)
     }
     
-    //MARK: Realm
+    // MARK: Realm
     
     lazy internal var realmProgram: RealmProgram? = {
         do {
@@ -99,7 +99,7 @@ open class NPOProgram: NPORestrictedMedia {
         }
     }()
     
-    //MARK: Get first letter
+    // MARK: Get first letter
     
     fileprivate func getFirstLetter() -> String? {
         guard let trimmedName = self.name?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) else {
@@ -136,7 +136,7 @@ open class NPOProgram: NPORestrictedMedia {
         return nil
     }
     
-    //MARK: Favoriting
+    // MARK: Favoriting
     
     open var favorite: Bool {
         get {
@@ -158,7 +158,7 @@ open class NPOProgram: NPORestrictedMedia {
         favorite = !favorite
     }
     
-    //MARK: Watched
+    // MARK: Watched
     
     //swiftlint:disable force_unwrapping
     open var watched: Watched {
@@ -217,7 +217,7 @@ open class NPOProgram: NPORestrictedMedia {
         }
     }
     
-    //MARK: Image fetching
+    // MARK: Image fetching
     
     //swiftlint:disable cyclomatic_complexity
     internal override func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> () = { urls in }) -> Request? {

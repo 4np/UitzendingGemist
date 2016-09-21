@@ -19,7 +19,7 @@ class ByDayRootTableViewController: UITableViewController {
         }
     }
 
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class ByDayRootTableViewController: UITableViewController {
         super.viewDidLayoutSubviews()
     }
     
-    //MARK: Initial load
+    // MARK: Initial load
     
     fileprivate func setupInitialUI() {
         guard days.count > 0 && tableView.indexPathsForSelectedRows == nil else {
@@ -55,7 +55,7 @@ class ByDayRootTableViewController: UITableViewController {
         updateDetailedView(forRow: 0)
     }
     
-    //MARK: UITableViewDataSource
+    // MARK: UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

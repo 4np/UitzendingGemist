@@ -14,7 +14,7 @@ extension UIView {
         static var overlayView: UIView?
     }
     
-    //MARK: Loading
+    // MARK: Loading
     
     func startLoading() {
         startLoading(nil)

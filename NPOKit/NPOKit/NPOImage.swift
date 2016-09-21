@@ -17,18 +17,18 @@ open class NPOImage: Mappable, CustomDebugStringConvertible {
     fileprivate var completionDelay = Int64(0.001)
     internal var imageURL: URL?
 
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required public init?(map: Map) {
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open func mapping(map: Map) {
         imageURL <- (map["image"], URLTransform())
     }
     
-    //MARK: Image cache identifier
+    // MARK: Image cache identifier
     
     final internal func getImageIdentifier() -> String? {
         return self.getImageIdentifier(forSize: nil)
@@ -54,7 +54,7 @@ open class NPOImage: Mappable, CustomDebugStringConvertible {
         return identifier
     }
     
-    //MARK: Image fetching
+    // MARK: Image fetching
     
     final public func getImage(withCompletion completed: @escaping (_ image: UIImage?, _ error: NPOError?, _ request: NPORequest) -> () = { image, error, request in }) -> NPORequest {
         let npoRequest = NPORequest()

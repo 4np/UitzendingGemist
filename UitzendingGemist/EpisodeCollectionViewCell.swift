@@ -19,7 +19,7 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     weak var episodeRequest: NPORequest?
     weak var programRequest: NPORequest?
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -29,13 +29,13 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         self.dateLabel.text = nil
     }
     
-    //MARK: Focus engine
+    // MARK: Focus engine
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         self.episodeImageView.adjustsImageWhenAncestorFocused = self.isFocused
     }
     
-    //MARK: Configuration
+    // MARK: Configuration
     
     func configure(withEpisode episode: NPOEpisode, andProgram program: NPOProgram?) {
         self.episodeNameLabel.text = episode.getDisplayName()

@@ -30,12 +30,12 @@ open class NPOStream: Mappable, CustomDebugStringConvertible {
     fileprivate var urls = [String]()
     fileprivate var family: String?
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required public init?(map: Map) {
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open func mapping(map: Map) {
         success <- map["succes"]
@@ -43,7 +43,7 @@ open class NPOStream: Mappable, CustomDebugStringConvertible {
         family <- map["family"]
     }
     
-    //MARK: Accessors
+    // MARK: Accessors
     
     open func getStreamURL(forType type: NPOStreamURLType) -> URL? {
         guard let jsonpURL = self.urls.filter({ $0.range(of: type.rawValue) != nil }).first, let jsonpComponents = URLComponents(string: jsonpURL) else {

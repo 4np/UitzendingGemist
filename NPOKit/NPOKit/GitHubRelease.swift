@@ -52,13 +52,13 @@ open class GitHubRelease: Mappable, CustomDebugStringConvertible {
         }
     }
     
-    //MARK: Lifecycle
+    // MARK: Lifecycle
     
     required convenience public init?(map: Map) {
         self.init()
     }
     
-    //MARK: Mapping
+    // MARK: Mapping
     
     open func mapping(map: Map) {
         tag <- map["tag_name"]
