@@ -41,6 +41,8 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         self.episodeNameLabel.text = episode.getDisplayName()
         self.dateLabel.text = episode.broadcastedDisplayValue
         
+        //TODO: make sure the images are sized properly
+        
         // get image
         self.episodeRequest = episode.getImage(ofSize: self.episodeImageView.frame.size) { [weak self] image, _, request in
             guard let image = image else {
@@ -59,6 +61,8 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     }
     
     fileprivate func fetchImage(byProgram program: NPOProgram?) {
+        //TODO: make sure the images are sized properly
+        
         self.programRequest = program?.getImage(ofSize: self.episodeImageView.frame.size) { [weak self] image, _, request in
             guard request == self?.programRequest else {
                 // this is the result of another cell, ignore it

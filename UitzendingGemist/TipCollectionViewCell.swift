@@ -38,6 +38,7 @@ class TipCollectionViewCell: UICollectionViewCell {
     
     // MARK: Configuration
     
+    
     internal func configure(withTip tip: NPOTip) {
         self.fetchImage(forTip: tip)
         self.nameLabel.text = tip.getDisplayName()
@@ -47,7 +48,11 @@ class TipCollectionViewCell: UICollectionViewCell {
     // MARK: Networking
     
     internal func fetchImage(forTip tip: NPOTip) {
-        let size = self.imageView.frame.size
+        // Somehow in tvOS 10 / Xcode 8 / Swift 3 the frame will initially be 1000x1000
+        // causing the images to look compressed so hardcode the dimensions for now...
+        // TODO: check if this is solved in later releases...
+        //let size = self.imageView.frame.size
+        let size = CGSize(width: 548, height: 320)
         
         let _ = tip.getImage(ofSize: size) { [weak self] image, error, _ in
             guard let image = image else {

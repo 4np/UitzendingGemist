@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import NPOKit
+import CocoaLumberjack
 
 class ProgramDetailedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var programImageView: UIImageView!
@@ -30,8 +31,14 @@ class ProgramDetailedCollectionViewCell: UICollectionViewCell {
         programNameLabel.text = program.getDisplayName()
         programNameLabel.textColor = program.getDisplayColor()
         
+        // Somehow in tvOS 10 / Xcode 8 / Swift 3 the frame will initially be 1000x1000
+        // causing the images to look compressed so hardcode the dimensions for now...
+        // TODO: check if this is solved in later releases...
+        //let size = programImageView.frame.size
+        let size = CGSize(width: 375, height: 211)
+        
         // get image
-        imageRequest = program.getImage(ofSize: programImageView.frame.size) { [weak self] image, error, request in
+        imageRequest = program.getImage(ofSize: size) { [weak self] image, error, request in
             guard let imageRequest = self?.imageRequest, request == imageRequest else {
                 return
             }

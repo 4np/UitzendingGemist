@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import NPOKit
+import CocoaLumberjack
 
 class ByDayDetailedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var episodeImageView: UIImageView!
@@ -34,8 +35,14 @@ class ByDayDetailedCollectionViewCell: UICollectionViewCell {
         programNameLabel.text = names.programName
         episodeNameAndTimeLabel.text = names.episodeNameAndInfo
         
+        // Somehow in tvOS 10 / Xcode 8 / Swift 3 the frame will initially be 1000x1000
+        // causing the images to look compressed so hardcode the dimensions for now...
+        // TODO: check if this is solved in later releases...
+        //let size = episodeImageView.frame.size
+        let size = CGSize(width: 375, height: 211)
+        
         // get image
-        imageRequest = episode.getImage(ofSize: episodeImageView.frame.size) { [weak self] image, error, request in
+        imageRequest = episode.getImage(ofSize: size) { [weak self] image, error, request in
             guard let imageRequest = self?.imageRequest, request == imageRequest else {
                 return
             }

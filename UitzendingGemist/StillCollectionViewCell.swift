@@ -35,6 +35,8 @@ class StillCollectionViewCell: UICollectionViewCell {
     // MARK: Configuration
     
     func configure(withStill still: NPOStill) {
+        //TODO: make sure the images are sized properly
+        
         let _ = still.getImage(ofSize: self.stillImageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not fetch still image (\(error))")
