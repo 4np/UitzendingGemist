@@ -30,7 +30,7 @@ extension NPOManager {
             let path = channel.configuration.type == .TV ? "guide/\(formattedDate).json" : "guide/thema/\(formattedDate).json"
             let keypath = channel.configuration.shortName
 
-            self.fetchModels(ofType: NPOBroadcast.self, fromPath: path, withKeyPath: keypath) { broadcasts, error in
+            let _ = self.fetchModels(ofType: NPOBroadcast.self, fromPath: path, withKeyPath: keypath) { broadcasts, error in
                 if let broadcasts = broadcasts {
                     guides[channel] = broadcasts
                 } else if let error = error {

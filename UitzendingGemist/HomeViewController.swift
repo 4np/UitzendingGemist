@@ -25,11 +25,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // add blur effect to background image
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        visualEffectView.frame = backgroundImageView.bounds
-        backgroundImageView.addSubview(visualEffectView)
 
         // update collection views
         tipsCollectionView.reloadData()
@@ -77,7 +72,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         // get tips
         group.enter()
-        NPOManager.sharedInstance.getTips() { items, error in
+        let _ = NPOManager.sharedInstance.getTips() { items, error in
             defer { group.leave() }
             
             if let items = items {
@@ -136,7 +131,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             // set initial background image?
             if strongSelf.backgroundImageView.image == nil, let firstTip = tips.first {
-                firstTip.getImage(ofSize: strongSelf.backgroundImageView.frame.size) { image, _, _ in
+                let _ = firstTip.getImage(ofSize: strongSelf.backgroundImageView.frame.size) { image, _, _ in
                     strongSelf.backgroundImageView.image = image
                 }
             }
@@ -206,7 +201,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 break
         }
         
-        image?.getImage(ofSize: self.backgroundImageView.frame.size) { [weak self] image, _, _ in
+        let _ = image?.getImage(ofSize: self.backgroundImageView.frame.size) { [weak self] image, _, _ in
             self?.backgroundImageView.image = image
         }
     }

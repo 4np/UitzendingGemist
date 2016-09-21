@@ -13,6 +13,6 @@ extension NPOManager {
     // https://api.github.com/repos/:user/:repo/releases
     public func getGitHubReleases(forUsername username: String, andRepositoryName repository: String, withCompletion completed: @escaping (_ releases: [GitHubRelease]?, _ error: NPOError?) -> () = { releases, error in }) {
         let url = "https://api.github.com/repos/\(username)/\(repository)/releases"
-        self.fetchModels(ofType: GitHubRelease.self, fromURL: url, withKeyPath: nil, withCompletion: completed)
+        let _ = self.fetchModels(ofType: GitHubRelease.self, fromURL: url, withKeyPath: nil, withCompletion: completed)
     }
 }

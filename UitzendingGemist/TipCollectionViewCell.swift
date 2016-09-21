@@ -49,7 +49,7 @@ class TipCollectionViewCell: UICollectionViewCell {
     internal func fetchImage(forTip tip: NPOTip) {
         let size = self.imageView.frame.size
         
-        tip.getImage(ofSize: size) { [weak self] image, error, _ in
+        let _ = tip.getImage(ofSize: size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not fetch image for tip (\(error))")
                 return

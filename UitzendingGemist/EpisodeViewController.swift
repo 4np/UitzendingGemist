@@ -220,7 +220,7 @@ class EpisodeViewController: UIViewController {
         }
         
         // fetch episode details
-        NPOManager.sharedInstance.getDetails(forEpisode: episode) { [weak self] episode, error in
+        let _ = NPOManager.sharedInstance.getDetails(forEpisode: episode) { [weak self] episode, error in
             guard let episode = episode else {
                 DDLogError("Could not fetch episode details (\(error))")
                 self?.needLayout = true
@@ -239,7 +239,7 @@ class EpisodeViewController: UIViewController {
         }
         
         // fetch program details
-        NPOManager.sharedInstance.getDetails(forProgram: program) { [weak self] program, error in
+        let _ = NPOManager.sharedInstance.getDetails(forProgram: program) { [weak self] program, error in
             guard let program = program else {
                 DDLogError("Could not fetch program details (\(error))")
                 self?.needLayout = true
@@ -333,7 +333,7 @@ class EpisodeViewController: UIViewController {
     }
     
     fileprivate func getImage(forTip tip: NPOTip, andImageView imageView: UIImageView) {
-        tip.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
+        let _ = tip.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not get image for tip (\(error))")
                 self?.getImage(forEpisode: tip.episode, andImageView: imageView)
@@ -349,7 +349,7 @@ class EpisodeViewController: UIViewController {
             return
         }
         
-        episode.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
+        let _ = episode.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not get image for episode (\(error))")
                 self?.getImage(forProgram: episode.program, andImageView: imageView)
@@ -365,7 +365,7 @@ class EpisodeViewController: UIViewController {
             return
         }
         
-        program.getImage(ofSize: imageView.frame.size) { image, error, _ in
+        let _ = program.getImage(ofSize: imageView.frame.size) { image, error, _ in
             guard let image = image else {
                 DDLogError("Could not get image for program (\(error))")
                 return

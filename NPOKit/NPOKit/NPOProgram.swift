@@ -207,7 +207,7 @@ open class NPOProgram: NPORestrictedMedia {
         }
         
         // fetch the episodes for this program
-        NPOManager.sharedInstance.getEpisodes(forProgram: self) { episodes, error in
+        let _ = NPOManager.sharedInstance.getEpisodes(forProgram: self) { episodes, error in
             guard let episodes = episodes else {
                 DDLogError("Could not fetch episodes for program (\(error))")
                 return

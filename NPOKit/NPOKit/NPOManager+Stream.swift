@@ -70,13 +70,13 @@ extension NPOManager {
             
             let url = "http://ida.omroep.nl/odi/?prid=\(mid)&puboptions=h264_bb,h264_sb,h264_std&adaptive=no&part=1&token=\(token)"
             
-            self?.fetchModel(ofType: NPOStream.self, fromURL: url) { url, error in
+            let _ = self?.fetchModel(ofType: NPOStream.self, fromURL: url) { url, error in
                 guard let url = url?.getStreamURL(forType: NPOStreamURLType.best) else {
                     completed(nil, error)
                     return
                 }
                 
-                self?.getVideoStreamLocation(forURL: url, withCompletion: completed)
+                let _ = self?.getVideoStreamLocation(forURL: url, withCompletion: completed)
             }
         }
     }
@@ -97,7 +97,7 @@ extension NPOManager {
             let configuration = channel.configuration
             let url = "http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/\(configuration.type.rawValue)/\(configuration.name)/\(configuration.name).isml/\(configuration.name)-audio\(configuration.audioStream)=\(configuration.audioQuality)-video=\(configuration.videoQuality).m3u8&token=\(token)"
             
-            self?.fetchModel(ofType: NPOLiveStream.self, fromURL: url) { liveStream, error in
+            let _ = self?.fetchModel(ofType: NPOLiveStream.self, fromURL: url) { liveStream, error in
                 guard let url = liveStream?.url, liveStream?.success == true else {
                     completed(nil, error)
                     return

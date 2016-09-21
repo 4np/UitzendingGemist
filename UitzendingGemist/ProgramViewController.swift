@@ -119,7 +119,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     // MARK: Configuration
     
     func configure(withProgram program: NPOProgram) {
-        NPOManager.sharedInstance.getDetails(forProgram: program) { [weak self] program, error in
+        let _ = NPOManager.sharedInstance.getDetails(forProgram: program) { [weak self] program, error in
             guard let program = program else {
                 DDLogError("Could not fetch program (\(error))")
                 return
@@ -176,7 +176,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     
     fileprivate func layoutImages(forProgram program: NPOProgram) {
         // background image
-        program.getImage(ofSize: self.backgroundImageView.frame.size) { [weak self] image, error, _ in
+        let _ = program.getImage(ofSize: self.backgroundImageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not fetch image for program (\(error))")
                 return
@@ -186,7 +186,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         
         // program image
-        program.getImage(ofSize: self.programImageView.frame.size) { [weak self] image, error, _ in
+        let _ = program.getImage(ofSize: self.programImageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not fetch image for program (\(error))")
                 return

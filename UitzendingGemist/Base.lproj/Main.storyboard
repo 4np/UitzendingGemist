@@ -16,11 +16,18 @@
                         <viewControllerLayoutGuide type="top" id="HAL-JC-qT1"/>
                         <viewControllerLayoutGuide type="bottom" id="Kxy-ky-PmB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="cog-xu-MS9">
+                    <view key="view" contentMode="scaleToFill" id="cog-xu-MS9">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S1V-dF-pDd"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SRd-ng-ylI">
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="NJk-zS-TJU">
+                                    <frame key="frameInset"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pca-lW-C2t">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="520" id="ng7-Fy-ZeV"/>
@@ -91,8 +98,9 @@
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Xf3-2j-pko">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Xf3-2j-pko">
                                 <frame key="frameInset" minY="450" width="1920" height="550"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="80" minimumInteritemSpacing="80" id="hiS-EE-i8u">
                                     <size key="itemSize" width="375" height="350"/>
@@ -165,19 +173,20 @@
                             </collectionView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="S1V-dF-pDd" firstAttribute="top" secondItem="HAL-JC-qT1" secondAttribute="bottom" id="0W3-44-1qW"/>
-                            <constraint firstItem="pca-lW-C2t" firstAttribute="top" secondItem="HAL-JC-qT1" secondAttribute="bottom" id="BgE-ZM-J7y"/>
-                            <constraint firstItem="Xf3-2j-pko" firstAttribute="leading" secondItem="cog-xu-MS9" secondAttribute="leadingMargin" constant="-20" id="HhF-hg-AWq"/>
-                            <constraint firstItem="pca-lW-C2t" firstAttribute="leading" secondItem="cog-xu-MS9" secondAttribute="leadingMargin" constant="-20" id="NX5-g7-l9A"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Xf3-2j-pko" secondAttribute="trailing" constant="-20" id="U3f-tU-jkW"/>
-                            <constraint firstItem="S1V-dF-pDd" firstAttribute="leading" secondItem="cog-xu-MS9" secondAttribute="leadingMargin" constant="-20" id="bMy-m5-N81"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pca-lW-C2t" secondAttribute="trailing" constant="-20" id="cpc-sp-ngu"/>
-                            <constraint firstItem="Xf3-2j-pko" firstAttribute="top" secondItem="HAL-JC-qT1" secondAttribute="bottom" constant="450" id="gFZ-79-lvu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="S1V-dF-pDd" secondAttribute="trailing" constant="-20" id="lGV-HU-tzf"/>
-                            <constraint firstItem="Kxy-ky-PmB" firstAttribute="top" secondItem="S1V-dF-pDd" secondAttribute="bottom" id="nnQ-Z4-C1o"/>
+                            <constraint firstItem="pca-lW-C2t" firstAttribute="top" secondItem="HAL-JC-qT1" secondAttribute="bottom" id="0oz-Zb-VDd"/>
+                            <constraint firstItem="pca-lW-C2t" firstAttribute="leading" secondItem="cog-xu-MS9" secondAttribute="leading" id="Dt1-Hc-wj7"/>
+                            <constraint firstItem="Kxy-ky-PmB" firstAttribute="top" secondItem="SRd-ng-ylI" secondAttribute="bottom" id="IG1-o5-iuQ"/>
+                            <constraint firstItem="Kxy-ky-PmB" firstAttribute="top" secondItem="S1V-dF-pDd" secondAttribute="bottom" id="PPz-Dl-qKg"/>
+                            <constraint firstAttribute="trailing" secondItem="S1V-dF-pDd" secondAttribute="trailing" id="X2n-gY-zJB"/>
+                            <constraint firstItem="S1V-dF-pDd" firstAttribute="leading" secondItem="cog-xu-MS9" secondAttribute="leading" id="XEc-Eu-LGp"/>
+                            <constraint firstItem="S1V-dF-pDd" firstAttribute="top" secondItem="HAL-JC-qT1" secondAttribute="bottom" id="Z70-B9-dhF"/>
+                            <constraint firstItem="SRd-ng-ylI" firstAttribute="top" secondItem="HAL-JC-qT1" secondAttribute="bottom" id="aEg-nW-owj"/>
+                            <constraint firstAttribute="trailing" secondItem="pca-lW-C2t" secondAttribute="trailing" id="ddi-ZC-bfO"/>
+                            <constraint firstAttribute="trailing" secondItem="SRd-ng-ylI" secondAttribute="trailing" id="yiL-A4-gWF"/>
+                            <constraint firstItem="SRd-ng-ylI" firstAttribute="leading" secondItem="cog-xu-MS9" secondAttribute="leading" id="yw7-Dc-lKN"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="Tips" id="8Zx-oR-qul"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="S1V-dF-pDd" id="b6e-0Q-dea"/>
@@ -623,7 +632,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4do-ai-hcH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6003" y="145"/>
+            <point key="canvasLocation" x="6003" y="269"/>
         </scene>
         <!--Program View Controller-->
         <scene sceneID="q8f-Vc-JPV">
@@ -633,7 +642,7 @@
                         <viewControllerLayoutGuide type="top" id="U0w-Oa-1Ul"/>
                         <viewControllerLayoutGuide type="bottom" id="I5J-pO-Yf0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QeB-Pr-qZE">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="QeB-Pr-qZE">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1265,6 +1274,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="VYS-X1-zub"/>
+        <segue reference="wbf-c7-hXw"/>
     </inferredMetricsTieBreakers>
 </document>

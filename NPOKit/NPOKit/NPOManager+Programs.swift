@@ -47,7 +47,7 @@ extension NPOManager {
     }
     
     public func getFavoritePrograms(withCompletion completed: @escaping (_ programs: [NPOProgram]?, _ error: NPOError?) -> () = { programs, error in }) {
-        self.getPrograms() { programs, error in
+        let _ = self.getPrograms() { programs, error in
             guard let programs = programs else {
                 completed(nil, error)
                 return
@@ -80,7 +80,7 @@ extension NPOManager {
                 
                 group.enter()
 
-                self.getDetails(forProgramWithMID: mid) { program, error in
+                let _ = self.getDetails(forProgramWithMID: mid) { program, error in
                     if let program = program {
                         programs.append(program)
                     } else if let error = error {

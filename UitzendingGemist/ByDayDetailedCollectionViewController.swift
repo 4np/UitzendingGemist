@@ -20,7 +20,7 @@ class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewD
     
     //swiftlint:disable force_cast
     func configure(withDate date: Date) {
-        NPOManager.sharedInstance.getEpisodes(forDate: date, filterReruns: true) { [weak self] episodes, error in
+        let _ = NPOManager.sharedInstance.getEpisodes(forDate: date, filterReruns: true) { [weak self] episodes, error in
             guard let episodes = episodes, let strongSelf = self else {
                 DDLogError("Could not fetch episodes for \(date) (\(error))")
                 return

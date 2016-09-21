@@ -107,7 +107,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
             return
         }
         
-        episode.getImage(ofSize: self.channelImageView.frame.size) { [weak self] image, error, _ in
+        let _ = episode.getImage(ofSize: self.channelImageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 self?.fetchImage(forProgram: episode.program, withFallbackImage: fallbackImage)
                 return
@@ -123,7 +123,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
             return
         }
         
-        program.getImage(ofSize: self.channelImageView.frame.size) { [weak self] image, error, _ in
+        let _ = program.getImage(ofSize: self.channelImageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 self?.channelImageView.image = fallbackImage
                 return

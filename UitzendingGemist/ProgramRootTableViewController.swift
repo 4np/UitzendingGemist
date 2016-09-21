@@ -59,7 +59,7 @@ class ProgramRootTableViewController: UITableViewController {
     // MARK: Networking
     
     fileprivate func fetchPrograms() {
-        NPOManager.sharedInstance.getPrograms() { [weak self] programs, error in
+        let _ = NPOManager.sharedInstance.getPrograms() { [weak self] programs, error in
             guard let programs = programs else {
                 DDLogError("Could not fetch programs (\(error))")
                 return

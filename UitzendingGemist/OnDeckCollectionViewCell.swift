@@ -46,7 +46,7 @@ class OnDeckCollectionViewCell: UICollectionViewCell {
         self.episodeNameLabel.text = episode.getDisplayName()
         self.dateLabel.text = episode.broadcastedDisplayValue
         
-        episode.getImage(ofSize: imageView.frame.size) { [weak self] image, _, _ in
+        let _ = episode.getImage(ofSize: imageView.frame.size) { [weak self] image, _, _ in
             self?.imageView.image = image
         }
     }
