@@ -113,7 +113,7 @@ You're done! You can disconnect your Apple TV and start watching! :)
 
 ## Live TV Screen
 
-![Live TV](https://cloud.githubusercontent.com/assets/1049693/17334055/1d828452-58d5-11e6-8fe9-090618801591.png)
+![Live TV](https://cloud.githubusercontent.com/assets/1049693/18724305/479ddd3e-803c-11e6-912d-674eb207198a.png)
 
 ## Update Screen
 
