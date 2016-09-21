@@ -3,7 +3,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
 abstract_target 'NPOKitAbstract' do
-    pod 'CocoaLumberjack/Swift', :git => 'https://github.com/ffried/CocoaLumberjack.git', :branch => 'swift3.0'
+    pod 'CocoaLumberjack/Swift'
 
     target 'NPOKit' do
         platform :tvos, '10.0'

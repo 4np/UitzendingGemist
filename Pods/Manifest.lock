@@ -16,50 +16,36 @@ PODS:
     - Alamofire (~> 4.0)
     - AlamofireImage (~> 3.0)
     - AlamofireObjectMapper (~> 4.0)
-    - CocoaLumberjack/Swift
-    - RealmSwift
+    - CocoaLumberjack/Swift (~> 3.0)
+    - RealmSwift (~> 1.1)
   - ObjectMapper (2.0.0)
   - Realm (1.1.0):
     - Realm/Headers (= 1.1.0)
   - Realm/Headers (1.1.0)
   - RealmSwift (1.1.0):
     - Realm (= 1.1.0)
-  - UIColor_Hex_Swift (2.1)
+  - UIColor_Hex_Swift (3.0.1)
 
 DEPENDENCIES:
-  - CocoaLumberjack/Swift (from `https://github.com/ffried/CocoaLumberjack.git`, branch `swift3.0`)
+  - CocoaLumberjack/Swift
   - NPOKit (from `NPOKit`)
-  - UIColor_Hex_Swift (from `https://github.com/yeahdongcn/UIColor-Hex-Swift`, branch `Swift-3.0`)
+  - UIColor_Hex_Swift
 
 EXTERNAL SOURCES:
-  CocoaLumberjack:
-    :branch: swift3.0
-    :git: https://github.com/ffried/CocoaLumberjack.git
   NPOKit:
     :path: NPOKit
-  UIColor_Hex_Swift:
-    :branch: Swift-3.0
-    :git: https://github.com/yeahdongcn/UIColor-Hex-Swift
-
-CHECKOUT OPTIONS:
-  CocoaLumberjack:
-    :commit: bdfc2151e2468517e613d9e8b87d69dc7c569f97
-    :git: https://github.com/ffried/CocoaLumberjack.git
-  UIColor_Hex_Swift:
-    :commit: 5046698ea64de42588aa7fd14f7060cafc1460a3
-    :git: https://github.com/yeahdongcn/UIColor-Hex-Swift
 
 SPEC CHECKSUMS:
   Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
   AlamofireImage: 6594aa1139a67dcd36cde6da79ea4e5b318e60fb
   AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
-  NPOKit: db2068141ef8814e5badc0e7ad9511a16795bde7
+  NPOKit: 39d52ebee01c1de966fca7c7a35f8cf6abc3bc9a
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
   Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
   RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
-  UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
+  UIColor_Hex_Swift: e4ba71eed823ac27b14bb5394db990fbc73ff92c
 
-PODFILE CHECKSUM: 4fedccecbdf8ac487d563b63a04709307cd5e8c9
+PODFILE CHECKSUM: c9d1d4c7c73f5be87551ac18d53a4851c5cb1514
 
 COCOAPODS: 1.1.0.rc.2

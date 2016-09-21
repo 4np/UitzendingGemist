@@ -22,7 +22,7 @@
   "source_files": "NPOKit/**/*.{h,swift}",
   "dependencies": {
     "CocoaLumberjack/Swift": [
-
+      "~> 3.0"
     ],
     "Alamofire": [
       "~> 4.0"
@@ -34,7 +34,7 @@
       "~> 3.0"
     ],
     "RealmSwift": [
-
+      "~> 1.1"
     ]
   }
 }

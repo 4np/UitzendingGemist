@@ -113,7 +113,7 @@ extension UIColor {
      
      - parameter rgba: String value.
      */
-    public convenience init(rgba: String, defaultColor: UIColor = UIColor.clear) {
+    public convenience init(_ rgba: String, defaultColor: UIColor = UIColor.clear) {
         guard let color = try? UIColor(rgba_throws: rgba) else {
             self.init(cgColor: defaultColor.cgColor)
             return
@@ -124,9 +124,9 @@ extension UIColor {
     /**
      Hex string of a UIColor instance.
      
-     - parameter rgba: Whether the alpha should be included.
+     - parameter includeAlpha: Whether the alpha should be included.
      */
-    public func hexString(_ includeAlpha: Bool) -> String {
+    public func hexString(_ includeAlpha: Bool = true) -> String {
         var r: CGFloat = 0
         var g: CGFloat = 0
         var b: CGFloat = 0
@@ -138,13 +138,5 @@ extension UIColor {
         } else {
             return String(format: "#%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255))
         }
-    }
-    
-    open override var description: String {
-        return self.hexString(true)
-    }
-    
-    open override var debugDescription: String {
-        return self.hexString(true)
     }
 }

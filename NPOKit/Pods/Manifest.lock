@@ -23,18 +23,8 @@ DEPENDENCIES:
   - Alamofire (~> 4.0)
   - AlamofireImage (~> 3.0)
   - AlamofireObjectMapper (~> 4.0)
-  - CocoaLumberjack/Swift (from `https://github.com/ffried/CocoaLumberjack.git`, branch `swift3.0`)
+  - CocoaLumberjack/Swift
   - RealmSwift
-
-EXTERNAL SOURCES:
-  CocoaLumberjack:
-    :branch: swift3.0
-    :git: https://github.com/ffried/CocoaLumberjack.git
-
-CHECKOUT OPTIONS:
-  CocoaLumberjack:
-    :commit: bdfc2151e2468517e613d9e8b87d69dc7c569f97
-    :git: https://github.com/ffried/CocoaLumberjack.git
 
 SPEC CHECKSUMS:
   Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
@@ -45,6 +35,6 @@ SPEC CHECKSUMS:
   Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
   RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
 
-PODFILE CHECKSUM: 34ef3feca8d2361a3838dfd36cc2ca689649b2d1
+PODFILE CHECKSUM: 4455b802dac975151ef4891495205735efdfb552
 
 COCOAPODS: 1.1.0.rc.2
