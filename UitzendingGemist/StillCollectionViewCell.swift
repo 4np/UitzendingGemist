@@ -35,9 +35,13 @@ class StillCollectionViewCell: UICollectionViewCell {
     // MARK: Configuration
     
     func configure(withStill still: NPOStill) {
-        //TODO: make sure the images are sized properly
+        // Somehow in tvOS 10 / Xcode 8 / Swift 3 the frame will initially be 1000x1000
+        // causing the images to look compressed so hardcode the dimensions for now...
+        // TODO: check if this is solved in later releases...
+        //let size = self.stillImageView.frame.size
+        let size = CGSize(width: 260, height: 146)
         
-        let _ = still.getImage(ofSize: self.stillImageView.frame.size) { [weak self] image, error, _ in
+        let _ = still.getImage(ofSize: size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not fetch still image (\(error))")
                 return

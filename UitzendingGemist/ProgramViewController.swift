@@ -81,11 +81,6 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // add blur effect to background image
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        visualEffectView.frame = backgroundImageView.bounds
-        self.backgroundImageView.addSubview(visualEffectView)
-        
         // clear out values
         self.backgroundImageView.image = nil
         

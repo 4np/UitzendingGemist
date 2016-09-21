@@ -148,11 +148,6 @@ class EpisodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // add blur effect to background image
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        visualEffectView.frame = backgroundImageView.bounds
-        backgroundImageView.addSubview(visualEffectView)
-        
         // clear out values
         backgroundImageView.image = nil
         
@@ -391,7 +386,7 @@ class EpisodeViewController: UIViewController {
         guard let stillCell = cell as? StillCollectionViewCell, let stills = episode?.stills, indexPath.row >= 0 && indexPath.row < stills.count else {
             return cell
         }
-        
+
         stillCell.configure(withStill: stills[indexPath.row])
         return stillCell
     }

@@ -41,10 +41,14 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
         self.episodeNameLabel.text = episode.getDisplayName()
         self.dateLabel.text = episode.broadcastedDisplayValue
         
-        //TODO: make sure the images are sized properly
+        // Somehow in tvOS 10 / Xcode 8 / Swift 3 the frame will initially be 1000x1000
+        // causing the images to look compressed so hardcode the dimensions for now...
+        // TODO: check if this is solved in later releases...
+        //let size = self.episodeImageView.frame.size
+        let size = CGSize(width: 375, height: 211)
         
         // get image
-        self.episodeRequest = episode.getImage(ofSize: self.episodeImageView.frame.size) { [weak self] image, _, request in
+        self.episodeRequest = episode.getImage(ofSize: size) { [weak self] image, _, request in
             guard let image = image else {
                 // fallback to program
                 self?.fetchImage(byProgram: program)
@@ -61,9 +65,13 @@ class EpisodeCollectionViewCell: UICollectionViewCell {
     }
     
     fileprivate func fetchImage(byProgram program: NPOProgram?) {
-        //TODO: make sure the images are sized properly
+        // Somehow in tvOS 10 / Xcode 8 / Swift 3 the frame will initially be 1000x1000
+        // causing the images to look compressed so hardcode the dimensions for now...
+        // TODO: check if this is solved in later releases...
+        //let size = self.episodeImageView.frame.size
+        let size = CGSize(width: 375, height: 211)
         
-        self.programRequest = program?.getImage(ofSize: self.episodeImageView.frame.size) { [weak self] image, _, request in
+        self.programRequest = program?.getImage(ofSize: size) { [weak self] image, _, request in
             guard request == self?.programRequest else {
                 // this is the result of another cell, ignore it
                 return
