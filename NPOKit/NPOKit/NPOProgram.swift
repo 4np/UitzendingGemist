@@ -189,7 +189,6 @@ open class NPOProgram: NPORestrictedMedia {
                 do {
                     let realm = try Realm()
                     try realm.write {
-                        DDLogDebug("updating program... watched: \(watched.rawValue)")
                         self?.realmProgram?.watched = watched.rawValue
                     }
                 } catch let error as NSError {
