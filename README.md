@@ -23,13 +23,13 @@ Unfortunately the app cannot be distributed in the Appstore as the NPO does not 
 **Prerequisites:**
 
 - an [Apple TV](http://www.apple.com/tv/) 4th generation (the one that has an AppStore)
-- a recent Apple Computer running ```macOS 10.11.x El Capitan```
+- a recent Apple Computer running ```macOS 10.11.x El Capitan or higher```
 - a (free) Apple Developer account (signup [here](http://developer.apple.com))
 - a [USB-C cable](http://www.apple.com/nl/shop/product/HHSP2ZM/B/belkin-usb-c-naar-usb-a-oplaadkabel?fnode=85) to connect your Apple TV to your Apple Computer
 
 ## 1. Xcode
 
-The code was developed in [Xcode 7.3.1](https://itunes.apple.com/nl/app/xcode/id497799835?mt=12) ([alternative link](https://developer.apple.com/xcode/download/)) so you need at least to have that version installed. Continue with the following steps when you have finished installing ```Xcode``` as the next steps require a finished installation.
+The code was developed in [Xcode 8.0](https://itunes.apple.com/nl/app/xcode/id497799835?mt=12) ([alternative link](https://developer.apple.com/xcode/download/)) so you need at least to have that version installed. Continue with the following steps when you have finished installing ```Xcode``` as the next steps require a finished installation.
 
 ## 2. Clone the project
 
@@ -89,7 +89,7 @@ You're done! You can disconnect your Apple TV and start watching! :)
 
 ## Tip Screen
 
-![Tip Screen](https://cloud.githubusercontent.com/assets/1049693/17718550/e641069e-6414-11e6-9258-8901ed2d2214.png)
+![Tip Screen](https://cloud.githubusercontent.com/assets/1049693/18724167/ba26d9ba-803b-11e6-9c76-2f44c47d2dee.png)
 
 ## Episode Screen
 
