@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="top" id="HAL-JC-qT1"/>
                         <viewControllerLayoutGuide type="bottom" id="Kxy-ky-PmB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="cog-xu-MS9">
+                    <view key="view" contentMode="scaleToFill" id="cog-xu-MS9">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -217,7 +217,7 @@
                         <viewControllerLayoutGuide type="top" id="rCl-ja-lDA"/>
                         <viewControllerLayoutGuide type="bottom" id="ZbT-Wy-azo"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="ZeN-b7-8z8">
+                    <view key="view" contentMode="scaleToFill" id="ZeN-b7-8z8">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1098,7 +1098,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="634" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" misplaced="YES" restorationIdentifier="byDayRootTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="byDayRootTableViewCell" id="VBA-FM-GA9" customClass="ByDayRootTableViewCell" customModule="UitzendingGemist" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="byDayRootTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="byDayRootTableViewCell" id="VBA-FM-GA9" customClass="ByDayRootTableViewCell" customModule="UitzendingGemist" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="40" width="634" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VBA-FM-GA9" id="Yff-wK-hjp">
@@ -1141,7 +1141,7 @@
         <scene sceneID="Xbg-kt-GpO">
             <objects>
                 <navigationController navigationBarHidden="YES" id="pBj-Y2-QWj" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UJj-gb-Bar">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UJj-gb-Bar">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1176,7 +1176,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="634" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" misplaced="YES" restorationIdentifier="programRootTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="programRootTableViewCell" id="Ore-n4-9hh" customClass="ProgramRootTableViewCell" customModule="UitzendingGemist" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="programRootTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="programRootTableViewCell" id="Ore-n4-9hh" customClass="ProgramRootTableViewCell" customModule="UitzendingGemist" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="40" width="634" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ore-n4-9hh" id="yyK-OM-oOM">
@@ -1219,7 +1219,7 @@
         <scene sceneID="I7N-KK-qeK">
             <objects>
                 <navigationController navigationBarHidden="YES" id="RrE-fT-1Vq" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0Hc-c0-ini">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Hc-c0-ini">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -1278,7 +1278,7 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
-        <simulatedScreenMetrics key="destination" type="appleTV.dark"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="bIJ-g7-Lhb"/>

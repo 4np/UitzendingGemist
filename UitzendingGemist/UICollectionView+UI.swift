@@ -34,27 +34,29 @@ extension UICollectionView {
         }
         insertItems(at: newIndexPaths)
         
-//        // re-order cells (if needed)
-//        var done = false
-//        while !done {
-//            for newEpisode in newEpisodes.enumerated() {
-//                guard let index = episodes.index(of: newEpisode.element), index != newEpisode.offset else {
-//                    done = true
-//                    continue
-//                }
-//                
-//                // move cell
-//                let from = IndexPath(row: index, section: 0)
-//                let to = IndexPath(row: newEpisode.offset, section: 0)
-//                moveItem(at: from, to: to)
-//                
-//                // move array element
-//                episodes.remove(at: index)
-//                episodes.insert(newEpisode.element, at: newEpisode.offset)
-//                done = false
-//                break
-//            }
-//        }
+        // re-order cells (if needed)
+        var done = false
+        while !done {
+            for newEpisode in newEpisodes.enumerated() {
+                guard let offset = episodes.index(of: newEpisode.element), offset != newEpisode.offset else {
+                    done = true
+                    continue
+                }
+                
+                // move cell
+                let from = IndexPath(row: offset, section: 0)
+                let to = IndexPath(row: newEpisode.offset, section: 0)
+                moveItem(at: from, to: to)
+                
+                // move array element
+                episodes.remove(at: offset)
+                episodes.insert(newEpisode.element, at: newEpisode.offset)
+                done = false
+                break
+            }
+            
+            done = true
+        }
     }
     
     public func update(usingTips tips: inout [NPOTip], withNewTips newTips: [NPOTip]) {
@@ -77,39 +79,29 @@ extension UICollectionView {
             tips.insert(newTip.element, at: newTip.offset)
         }
         insertItems(at: newIndexPaths)
-
-//        // and re-order what needs to be
-//        let reverseTips = newTips.enumerated().reversed()
-//        for newTip in reverseTips {
-//            guard let index = tips.index(of: newTip.element), index != newTip.offset else {
-//                continue
-//            }
-//            
-//            let from = IndexPath(row: index, section: 0)
-//            let to = IndexPath(row: newTip.offset, section: 0)
-//            moveItem(at: from, to: to)
-//        }
         
-//        // re-order cells (if needed)
-//        var done = false
-//        while !done {
-//            for newTip in newTips.enumerated() {
-//                guard let index = tips.index(of: newTip.element), index != newTip.offset else {
-//                    done = true
-//                    continue
-//                }
-//                
-//                // move cell
-//                let from = IndexPath(row: index, section: 0)
-//                let to = IndexPath(row: newTip.offset, section: 0)
-//                moveItem(at: from, to: to)
-//                
-//                // move array element
-//                tips.remove(at: index)
-//                tips.insert(newTip.element, at: newTip.offset)
-//                done = false
-//                break
-//            }
-//        }
+        // re-order cells (if needed)
+        var done = false
+        while !done {
+            for newTip in newTips.enumerated() {
+                guard let offset = tips.index(of: newTip.element), offset != newTip.offset else {
+                    done = true
+                    continue
+                }
+                
+                // move cell
+                let from = IndexPath(row: offset, section: 0)
+                let to = IndexPath(row: newTip.offset, section: 0)
+                moveItem(at: from, to: to)
+                
+                // move array element
+                tips.remove(at: offset)
+                tips.insert(newTip.element, at: newTip.offset)
+                done = false
+                break
+            }
+            
+            done = true
+        }
     }
 }
