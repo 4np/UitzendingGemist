@@ -112,8 +112,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     //swiftlint:disable force_cast
     fileprivate func refresh() {
         // refresh tip cell
-        if let indexPath = tipsCollectionView.indexPathsForSelectedItems?.first {
-            let cell = tipsCollectionView.cellForItem(at: indexPath) as! TipCollectionViewCell
+        if let indexPath = tipsCollectionView.indexPathsForSelectedItems?.first, let cell = tipsCollectionView.cellForItem(at: indexPath) as? TipCollectionViewCell {
             cell.configure(withTip: tips[indexPath.row])
         }
 
