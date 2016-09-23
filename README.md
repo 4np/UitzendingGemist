@@ -1,5 +1,11 @@
 # ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png) Uitzending Gemist 
 
+[![Build Status](https://travis-ci.org/4np/UitzendingGemist.svg?branch=master)](https://travis-ci.org/4np/UitzendingGemist)
+[![Release](https://img.shields.io/github/release/4np/UitzendingGemist.svg)](https://github.com/4np/UitzendingGemist/releases/latest)
+![Platform](https://img.shields.io/badge/Platform-tvOS%2010-green.svg)
+[![Open Issues](https://img.shields.io/github/issues/4np/UitzendingGemist.svg?maxAge=2592000)](https://github.com/4np/UitzendingGemist/issues)
+[![Closed Issues](https://img.shields.io/github/issues-closed/4np/UitzendingGemist.svg?maxAge=2592000)](https://github.com/4np/UitzendingGemist/issues?q=is%3Aissue+is%3Aclosed)
+
 ```UitzendingGemist``` is an unofficial native ```Uitzending Gemist``` and ```NPO Live``` application for the Apple TV 4 developed in [Swift](https://developer.apple.com/swift/). It will allow you to browse and watch all video streams of the Nederlandse Publieke Omroep's (e.g. NPO, the Dutch public broadcaster) [Uitzending Gemist](http://www.npo.nl/uitzending-gemist) website on your Apple TV.
 
 ![TopShelf](https://github.com/4np/UitzendingGemist/blob/master/UitzendingGemist/Assets.xcassets/App%20Icon%20&%20Top%20Shelf%20Image.brandassets/Top%20Shelf%20Image.imageset/TopShelf.png?raw=true)
