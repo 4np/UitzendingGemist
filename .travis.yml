@@ -6,5 +6,8 @@ script:
     - set -o pipefail
     - xcodebuild -version
     - xcodebuild -showsdks
+    - xcodebuild -list
+    - xcpretty -v
     - swiftlint
+    - xcodebuild -workspace "UitzendingGemist.xcworkspace" -scheme "UitzendingGemist" clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO|xcpretty -c
     - xcodebuild -workspace UitzendingGemist.xcworkspace -scheme UitzendingGemist -sdk appletvsimulator10.0 -destination "OS=10.0,name=Apple TV 1080p" -configuration Debug clean build ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO|xcpretty -c
