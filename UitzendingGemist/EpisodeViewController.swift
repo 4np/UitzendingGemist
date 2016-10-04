@@ -457,6 +457,9 @@ class EpisodeViewController: UIViewController {
         let playerViewController = AVPlayerViewController()
         playerViewController.player = player
         
+        // when the player reached the end of the video, pause the video
+        player.actionAtItemEnd = .pause
+        
         // (re)set play data
         episode.watchDuration = seconds
         
