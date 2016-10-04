@@ -23,6 +23,8 @@
 
 #include <realm/util/optional.hpp>
 
+#include <realm/sync/client.hpp>
+
 #include <memory>
 #include <thread>
 
@@ -35,6 +37,7 @@ class Realm;
 class Replication;
 class SharedGroup;
 class StringData;
+struct SyncConfig;
 typedef std::shared_ptr<Realm> SharedRealm;
 typedef std::weak_ptr<Realm> WeakRealm;
 
@@ -152,6 +155,9 @@ public:
         // everything can be done deterministically on one thread, and
         // speeds up tests that don't need notifications.
         bool automatic_change_notifications = true;
+
+        /// A data structure storing data used to configure the Realm for sync support.
+        std::shared_ptr<SyncConfig> sync_config;
     };
 
     // Get a cached Realm or create a new one if no cached copies exists

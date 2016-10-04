@@ -55,6 +55,7 @@ void create_metadata_tables(Group& group) {
         table->add_column(type_String, c_primaryKeyObjectClassColumnName);
         table->add_column(type_String, c_primaryKeyPropertyNameColumnName);
     }
+    table->add_search_index(table->get_column_index(c_primaryKeyObjectClassColumnName));
 
     table = group.get_or_add_table(c_metadataTableName);
     if (table->get_column_count() == 0) {
@@ -234,13 +235,17 @@ void ObjectStore::set_primary_key_for_object(Group& group, StringData object_typ
     size_t row = table->find_first_string(c_primaryKeyObjectClassColumnIndex, object_type);
     if (row == not_found && primary_key.size()) {
         row = table->add_empty_row();
+#if REALM_VER_MAJOR >= 2
+        row = table->set_string_unique(c_primaryKeyObjectClassColumnIndex, row, object_type);
+#else
         table->set_string(c_primaryKeyObjectClassColumnIndex, row, object_type);
+#endif
     }
 
     // set if changing, or remove if setting to nil
     if (primary_key.size() == 0) {
         if (row != not_found) {
-            table->remove(row);
+            table->move_last_over(row);
         }
     }
     else {
@@ -457,7 +462,7 @@ static void create_initial_tables(Group& group, std::vector<SchemaChange> const&
         void operator()(RemoveProperty op) { table(op.object).remove_column(op.property->table_column); }
         void operator()(MakePropertyNullable op) { make_property_optional(group, table(op.object), *op.property); }
         void operator()(MakePropertyRequired op) { make_property_required(group, table(op.object), *op.property); }
-        void operator()(ChangePrimaryKey op) { ObjectStore::set_primary_key_for_object(group, op.object->name, op.property->name); }
+        void operator()(ChangePrimaryKey op) { ObjectStore::set_primary_key_for_object(group, op.object->name, op.property ? StringData{op.property->name} : ""); }
         void operator()(AddIndex op) { add_index(table(op.object), op.property->table_column); }
         void operator()(RemoveIndex op) { table(op.object).remove_search_index(op.property->table_column); }
 

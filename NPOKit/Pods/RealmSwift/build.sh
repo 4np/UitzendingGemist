@@ -14,7 +14,11 @@ set -o pipefail
 set -e
 
 # You can override the version of the core library
-: ${REALM_CORE_VERSION:=1.5.0} # set to "current" to always use the current build
+: ${REALM_CORE_VERSION:=$(sed -n 's/^REALM_CORE_VERSION=\(.*\)$/\1/p' dependencies.list)} # set to "current" to always use the current build
+
+: ${REALM_SYNC_VERSION:=$(sed -n 's/^REALM_SYNC_VERSION=\(.*\)$/\1/p' dependencies.list)}
+
+: ${REALM_OBJECT_SERVER_VERSION:=$(sed -n 's/^REALM_OBJECT_SERVER_VERSION=\(.*\)$/\1/p' dependencies.list)}
 
 # You can override the xcmode used
 : ${XCMODE:=xcodebuild} # must be one of: xcodebuild (default), xcpretty, xctool
@@ -38,6 +42,7 @@ Usage: sh $0 command [argument]
 command:
   clean:                clean up/remove all generated files
   download-core:        downloads core library (binary version)
+  download-sync:        downloads sync library (binary version, core+sync)
   build:                builds all iOS  and OS X frameworks
   ios-static:           builds fat iOS static framework
   ios-dynamic:          builds iOS dynamic frameworks
@@ -274,8 +279,19 @@ if [ "$#" -eq 0 -o "$#" -gt 3 ]; then
 fi
 
 ######################################
-# Variables
+# Downloading
 ######################################
+
+download_object_server() {
+    local archive_name="realm-object-server-bundled_node_darwin-$REALM_OBJECT_SERVER_VERSION.tar.gz"
+    /usr/local/bin/s3cmd get --force "s3://realm-ci-artifacts/services-bundle/$REALM_OBJECT_SERVER_VERSION/$archive_name"
+    rm -rf sync
+    mkdir sync
+    tar -C sync -xf $archive_name
+    rm  $archive_name
+    echo "\nenterprise:\n  skip_setup: true" >> "sync/object-server/configuration.yml"
+    touch "sync/object-server/do_not_open_browser"
+}
 
 download_core() {
     echo "Downloading dependency: core ${REALM_CORE_VERSION}"
@@ -308,6 +324,41 @@ download_core() {
     ln -s core-${REALM_CORE_VERSION} core
 }
 
+download_sync() {
+    echo "Downloading dependency: sync ${REALM_SYNC_VERSION}"
+    TMP_DIR="$TMPDIR/sync_bin"
+    mkdir -p "${TMP_DIR}"
+    SYNC_TMP_TAR="${TMP_DIR}/sync-${REALM_SYNC_VERSION}.tar.xz.tmp"
+    SYNC_TAR="${TMP_DIR}/sync-${REALM_SYNC_VERSION}.tar.xz"
+    if [ ! -f "${SYNC_TAR}" ]; then
+        local SYNC_URL="https://static.realm.io/downloads/sync/realm-sync-cocoa-${REALM_SYNC_VERSION}.tar.xz"
+        set +e # temporarily disable immediate exit
+        local ERROR # sweeps the exit code unless declared separately
+        ERROR=$(curl --fail --silent --show-error --location "$SYNC_URL" --output "${SYNC_TMP_TAR}" 2>&1 >/dev/null)
+        if [[ $? -ne 0 ]]; then
+            echo "Downloading sync failed:\n${ERROR}"
+            exit 1
+        fi
+        set -e # re-enable flag
+        mv "${SYNC_TMP_TAR}" "${SYNC_TAR}"
+    fi
+
+    (
+        cd "${TMP_DIR}"
+        rm -rf sync
+        tar xf "${SYNC_TAR}" --xz
+        mv core sync-${REALM_SYNC_VERSION}
+    )
+
+    rm -rf sync-${REALM_SYNC_VERSION} core
+    mv ${TMP_DIR}/sync-${REALM_SYNC_VERSION} .
+    ln -s sync-${REALM_SYNC_VERSION} core
+}
+
+######################################
+# Variables
+######################################
+
 COMMAND="$1"
 
 # Use Debug config if command ends with -debug, otherwise default to Release
@@ -329,6 +380,36 @@ case "$COMMAND" in
     ######################################
     "clean")
         find . -type d -name build -exec rm -r "{}" +\;
+        exit 0
+        ;;
+
+    ######################################
+    # Object Server
+    ######################################
+    "download-object-server")
+        download_object_server
+        exit 0
+        ;;
+
+    "start-object-server")
+        # kill any object servers that are still running
+        (pgrep -f realm-object-server || true) | while read pid; do
+            kill $pid
+        done
+        ./sync/start-object-server.command
+        exit 0
+        ;;
+
+    "reset-object-server")
+        package="$( cd "$( dirname "${BASH_SOURCE[0]}" )/sync" && pwd )"
+        for file in "$package"/realm-object-server-*; do
+            if [ -d "$file" ]; then
+                package="$file"
+                break
+            fi
+        done
+        rm -rf "$package/object-server/root_dir/"
+        rm -rf "$package/object-server/temp_dir/"
         exit 0
         ;;
 
@@ -358,6 +439,28 @@ case "$COMMAND" in
         # appropriate version of core if the already-present version is too new
         elif ! $(grep -m 1 . core/release_notes.txt | grep -i "${REALM_CORE_VERSION} RELEASE NOTES" >/dev/null); then
             download_core
+        else
+            echo "The core library seems to be up to date."
+        fi
+        exit 0
+        ;;
+
+    ######################################
+    # Sync
+    ######################################
+    "download-sync")
+        if [ "$REALM_SYNC_VERSION" = "current" ]; then
+            echo "Using version of core already in core/ directory"
+            exit 0
+        fi
+        if [ -d core -a -d ../realm-core -a -d ../realm-sync -a ! -L core ]; then
+          echo "Using version of core already in core/ directory"
+        elif ! [ -L core ]; then
+            echo "core is not a symlink. Deleting..."
+            rm -rf core
+            download_sync
+        elif [[ "$(cat core/version.txt)" != "$REALM_SYNC_VERSION" ]]; then
+            download_sync
         else
             echo "The core library seems to be up to date."
         fi
@@ -561,6 +664,11 @@ case "$COMMAND" in
         exit 0
         ;;
 
+    "test-osx-object-server")
+        xc "-scheme 'Object Server Tests' -configuration $CONFIGURATION -sdk macosx test"
+        exit 0
+        ;;
+
     ######################################
     # Full verification
     ######################################
@@ -586,6 +694,7 @@ case "$COMMAND" in
         sh build.sh verify-tvos-debug
         sh build.sh verify-tvos-device
         sh build.sh verify-swiftlint
+        sh build.sh verify-osx-object-server
         ;;
 
     "verify-cocoapods")
@@ -696,6 +805,12 @@ case "$COMMAND" in
 
     "verify-swiftlint")
         swiftlint lint --strict
+        exit 0
+        ;;
+
+    "verify-osx-object-server")
+        sh build.sh download-object-server
+        sh build.sh test-osx-object-server
         exit 0
         ;;
 
@@ -841,9 +956,9 @@ case "$COMMAND" in
     ######################################
     "cocoapods-setup")
         if [ ! -d core ]; then
-          sh build.sh download-core
+          sh build.sh download-sync
           rm core
-          mv core-* core
+          mv sync-* core
         fi
 
         if [[ "$2" != "swift" ]]; then
@@ -899,6 +1014,8 @@ EOM
     "ci-pr")
         mkdir -p build/reports
         export REALM_SWIFT_VERSION=$swift_version
+        # FIXME: Re-enable once CI can properly unlock the keychain
+        export REALM_DISABLE_METADATA_ENCRYPTION=1
 
         if [ "$target" = "docs" ]; then
             sh build.sh set-swift-version

@@ -28,6 +28,7 @@ class Replication;
 class Schema;
 class SharedGroup;
 class StringData;
+struct SyncSession;
 
 namespace _impl {
 class CollectionNotifier;
@@ -59,7 +60,7 @@ public:
 
     // Asynchronously call notify() on every Realm instance for this coordinator's
     // path, including those in other processes
-    void send_commit_notifications();
+    void send_commit_notifications(Realm&);
 
     // Clear the weak Realm cache for all paths
     // Should only be called in test code, as continuing to use the previously
@@ -90,6 +91,8 @@ public:
     void advance_to_ready(Realm& realm);
     void process_available_async(Realm& realm);
 
+    void notify_others();
+
 private:
     Realm::Config m_config;
     Schema m_schema;
@@ -116,6 +119,8 @@ private:
 
     std::unique_ptr<_impl::ExternalCommitHelper> m_notifier;
 
+    std::shared_ptr<SyncSession> m_sync_session;
+
     // must be called with m_notifier_mutex locked
     void pin_version(uint_fast64_t version, uint_fast32_t index);
 
@@ -123,6 +128,7 @@ private:
     void open_helper_shared_group();
     void advance_helper_shared_group_to_latest();
     void clean_up_dead_notifiers();
+    std::vector<std::shared_ptr<_impl::CollectionNotifier>> notifiers_to_deliver(Realm&);
 };
 
 } // namespace _impl

@@ -111,6 +111,7 @@ void ResultsNotifier::calculate_changes()
         for (size_t i = 0; i < m_tv.size(); ++i)
             next_rows.push_back(m_tv[i].get_index());
 
+        util::Optional<IndexSet> move_candidates;
         if (changes) {
             auto const& moves = changes->moves;
             for (auto& idx : m_previous_rows) {
@@ -123,11 +124,13 @@ void ResultsNotifier::calculate_changes()
                 else
                     REALM_ASSERT_DEBUG(!changes->insertions.contains(idx));
             }
+            if (m_target_is_in_table_order && !m_sort)
+                move_candidates = changes->insertions;
         }
 
         m_changes = CollectionChangeBuilder::calculate(m_previous_rows, next_rows,
                                                        get_modification_checker(*m_info, *m_query->get_table()),
-                                                       m_target_is_in_table_order && !m_sort);
+                                                       move_candidates);
 
         m_previous_rows = std::move(next_rows);
     }
@@ -172,7 +175,7 @@ void ResultsNotifier::do_prepare_handover(SharedGroup& sg)
     m_tv = {};
 }
 
-bool ResultsNotifier::do_deliver(SharedGroup& sg)
+void ResultsNotifier::deliver(SharedGroup& sg)
 {
     auto lock = lock_target();
 
@@ -180,24 +183,27 @@ bool ResultsNotifier::do_deliver(SharedGroup& sg)
     // were in the process of advancing the Realm version and preparing for
     // delivery, i.e. the results was destroyed from the "wrong" thread
     if (!get_realm()) {
-        return false;
-    }
-
-    // We can get called before the query has actually had the chance to run if
-    // we're added immediately before a different set of async results are
-    // delivered
-    if (!m_initial_run_complete) {
-        return false;
+        return;
     }
 
     REALM_ASSERT(!m_query_handover);
-
-    if (m_tv_handover) {
-        m_tv_handover->version = version();
+    if (m_tv_to_deliver) {
+        m_tv_to_deliver->version = version();
         Results::Internal::set_table_view(*m_target_results,
-                                          std::move(*sg.import_from_handover(std::move(m_tv_handover))));
+                                          std::move(*sg.import_from_handover(std::move(m_tv_to_deliver))));
     }
-    REALM_ASSERT(!m_tv_handover);
+    REALM_ASSERT(!m_tv_to_deliver);
+}
+
+bool ResultsNotifier::prepare_to_deliver()
+{
+    auto lock = lock_target();
+    // We can get called before the query has actually had the chance to run if
+    // we're added immediately before a different set of async results are
+    // delivered
+    if (!get_realm() || !m_initial_run_complete)
+        return false;
+    m_tv_to_deliver = std::move(m_tv_handover);
     return true;
 }
 

@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.0.0)
+  - Alamofire (4.0.1)
   - AlamofireImage (3.0.0):
     - Alamofire (~> 4.0)
   - AlamofireObjectMapper (4.0.0):
@@ -17,14 +17,14 @@ PODS:
     - AlamofireImage (~> 3.0)
     - AlamofireObjectMapper (~> 4.0)
     - CocoaLumberjack/Swift (~> 3.0)
-    - RealmSwift (~> 1.1)
+    - RealmSwift (~> 2.0)
   - ObjectMapper (2.0.0)
-  - Realm (1.1.0):
-    - Realm/Headers (= 1.1.0)
-  - Realm/Headers (1.1.0)
-  - RealmSwift (1.1.0):
-    - Realm (= 1.1.0)
-  - UIColor_Hex_Swift (3.0.1)
+  - Realm (2.0.0):
+    - Realm/Headers (= 2.0.0)
+  - Realm/Headers (2.0.0)
+  - RealmSwift (2.0.0):
+    - Realm (= 2.0.0)
+  - UIColor_Hex_Swift (3.0.2)
 
 DEPENDENCIES:
   - CocoaLumberjack/Swift
@@ -36,15 +36,15 @@ EXTERNAL SOURCES:
     :path: NPOKit
 
 SPEC CHECKSUMS:
-  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   AlamofireImage: 6594aa1139a67dcd36cde6da79ea4e5b318e60fb
   AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
-  NPOKit: 39d52ebee01c1de966fca7c7a35f8cf6abc3bc9a
+  NPOKit: be6d0047456435b9e04c42885e3d09890278b6b1
   ObjectMapper: aed2570edabbd3c9b26c939e1cabdb6558f933e0
-  Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
-  RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
-  UIColor_Hex_Swift: e4ba71eed823ac27b14bb5394db990fbc73ff92c
+  Realm: 6dda421ae4b3e9a09742fc2cf4b876d459cbedcd
+  RealmSwift: 7d015f34a2781a50889be9b5a15c36c08597ea0e
+  UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
 PODFILE CHECKSUM: c9d1d4c7c73f5be87551ac18d53a4851c5cb1514
 
