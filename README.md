@@ -58,28 +58,23 @@ open UitzendingGemist.xcworkspace
 
 ## 4. Connect the Apple TV 4 to your computer
 
-Connect the ```Apple TV 4``` using the USB-C cable to your Mac. 
+Connect the ```Apple TV 4``` using the USB-C cable to your Mac and perform / click through the following steps in Xcode:
 
+![Steps to perform](https://cloud.githubusercontent.com/assets/1049693/19095519/e67d3d88-8a4a-11e6-9689-10054c20c7ef.png)
 
-## 5. [Optional] Set the bundle identifier
-
-You should probably leave the bundle identifier as-is, but you can change it if you choose to do so. The bundle identifier is the unique identifier of the app. If you use the same bundle identifier for subsequent builds to your device, the newer version will overwrite the old version. If you change the bundle identifier you can have multiple versions running together on your Apple TV. See the screenshot below and click on **1** and **2** to get to the screen shown below. Set the bundle identifier (**3**) to some name. This should be something in reverse domain format, for example ```com.JohnAppleseed.UitzendingGemist```.
-
-![Steps](https://cloud.githubusercontent.com/assets/1049693/11406776/6ad1989c-93af-11e5-9bea-0fd4a928623b.png)
-
-## 6. Select the team
+## 5. Select the team
 
 In order to deploy the application to the Apple TV it needs to be signed with your team (see **4** in the screenshot above). If you do not have a team (e.g. ```None```), or you see the message ```No Matching provisioning profiles found``` click the ```Fix Issue``` and login with your Apple ID / Apple Developer Account credentials.
 
-## 7. Select the Build Device
+## 6. Select the Build Device
 
 On the top left in Xcode click on the device the compiled program will be deployed to (see **5** in the screenshot above). If your Apple TV 4 is properly connected you will be able to pick you Apple TV device (otherwise it will run in the Simulator).
 
-## 8. Run the application
+## 7. Run the application
 
 Finally you are able to compile the program and deploy it onto your Apple TV! Click the play icon (see **6** in the screenshot above). The application will be compiled and deployed on your Apple TV 4. After this the application will remain on the Apple TV. 
 
-## 9. Sit back and enjoy :)
+## 8. Sit back and enjoy :)
 
 You're done! You can disconnect your Apple TV and start watching! :)
 
