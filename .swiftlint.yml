@@ -15,5 +15,5 @@ file_length:
     warning: 600
     error: 1200
 type_body_length:
-    warning: 300
+    warning: 350
     error: 500

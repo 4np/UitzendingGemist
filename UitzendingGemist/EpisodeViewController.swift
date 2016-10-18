@@ -139,6 +139,8 @@ class EpisodeViewController: UIViewController {
         return broadcasters.map({ $0.rawValue }).joined(separator: "\n")
     }
     
+    fileprivate var playerViewController: AVPlayerViewController?
+    
     // MARK: Lifecycle
     
     override func awakeFromNib() {
@@ -187,6 +189,12 @@ class EpisodeViewController: UIViewController {
 
         // layout view
         layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        updateWatchedButtonAndLabel()
     }
     
     // MARK: Configuration
@@ -460,6 +468,9 @@ class EpisodeViewController: UIViewController {
         // when the player reached the end of the video, pause the video
         player.actionAtItemEnd = .pause
         
+        // observe when the player is done playing
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+        
         // (re)set play data
         episode.watchDuration = seconds
         
@@ -491,6 +502,19 @@ class EpisodeViewController: UIViewController {
         // present player
         present(playerViewController, animated: true) {
             playerViewController.player?.play()
+        }
+        
+        self.playerViewController = playerViewController
+    }
+    
+    @objc fileprivate func playerDidFinishPlaying(notification: NSNotification) {
+        guard let playerViewController = self.playerViewController else {
+            return
+        }
+        
+        playerViewController.dismiss(animated: true) { [weak self] in
+            DDLogDebug("Finished playing episode, dismissed video player")
+            self?.playerViewController = nil
         }
     }
     
