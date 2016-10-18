@@ -52,7 +52,7 @@ class UpdateManager {
             }
             
             if myVersion.compare(latestVersion, options: .numeric) == .orderedAscending {
-                DDLogDebug("Newer version available (current: \(myVersion), latest: \(latestVersion)")
+                DDLogDebug("Newer version available (current: \(myVersion), latest: \(latestVersion))")
                 completed(latestRelease, myVersion)
             } else {
                 DDLogDebug("No update available (current: \(myVersion), latest: \(latestVersion))")
