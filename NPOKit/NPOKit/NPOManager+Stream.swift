@@ -44,7 +44,7 @@ public enum NPOLive: String {
             case .NPO_NIEUWS:
                 return (name: "journaal24", shortName: "nosj", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
             case .NPO_POLITIEK:
-                return (name: "politiek24", shortName: "po24", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
+                return (name: "politiek24", shortName: "po24", type: .THEMA, audioQuality: 128000, audioStream: "_1", videoQuality: 1000000)
             case .NPO_BEST:
                 return (name: "best24", shortName: "hilv", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
             case .NPO_CULTURA:

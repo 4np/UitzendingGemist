@@ -75,7 +75,7 @@ open class UitzendingGemistConstants {
     static let updateAvailableText = NSLocalizedString("Uitzending Gemist versie '%@' is beschikbaar op %@ . Momenteel maakt u gebruik van Uitzending Gemist versie '%@'.", comment: "A newer version is available for download")
     static let okayButtonText = NSLocalizedString("OK", comment: "OK Button Text")
     
-    static let commercials = NSLocalizedString("Reclame", comment: "Commercial break")
+    static let commercials = NSLocalizedString("Reclame of geen uitzending", comment: "Commercial break or no broadcast")
     static let currentBroadcast = NSLocalizedString("Nu: %@", comment: "Current broadcast")
     static let upcomingBroadcast = NSLocalizedString("Straks: %@", comment: "Upcoming broadcast (without time)")
     static let upcomingBroadcastWithTime = NSLocalizedString("%@: %@", comment: "Upcoming broadcast (with time)")
