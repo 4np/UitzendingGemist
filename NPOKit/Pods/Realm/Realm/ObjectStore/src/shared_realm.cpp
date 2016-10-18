@@ -30,14 +30,12 @@
 
 #include "util/format.hpp"
 
-#if REALM_VER_MAJOR >= 2
 #include <realm/history.hpp>
-#else
-#include <realm/commit_log.hpp>
-#endif
-
-#include <realm/sync/history.hpp>
 #include <realm/util/scope_exit.hpp>
+
+#if REALM_ENABLE_SYNC
+#include <realm/sync/history.hpp>
+#endif
 
 using namespace realm;
 using namespace realm::_impl;
@@ -156,16 +154,16 @@ void Realm::open_with_config(const Config& config,
             // probably has to be transmuted to an NSError.
             bool server_synchronization_mode = bool(config.sync_config);
             if (server_synchronization_mode) {
+#if REALM_ENABLE_SYNC
                 history = realm::sync::make_sync_history(config.path);
-            }
-            else {
-#if REALM_VER_MAJOR >= 2
-                history = realm::make_in_realm_history(config.path);
 #else
-                history = realm::make_client_history(config.path, config.encryption_key.data());
+                REALM_TERMINATE("Realm was not built with sync enabled");
 #endif
             }
-#ifdef REALM_GROUP_SHARED_OPTIONS_HPP
+            else {
+                history = realm::make_in_realm_history(config.path);
+            }
+
             SharedGroupOptions options;
             options.durability = config.in_memory ? SharedGroupOptions::Durability::MemOnly :
                                                     SharedGroupOptions::Durability::Full;
@@ -178,17 +176,6 @@ void Realm::open_with_config(const Config& config,
                 }
             };
             shared_group = std::make_unique<SharedGroup>(*history, options);
-#else
-            SharedGroup::DurabilityLevel durability = config.in_memory ? SharedGroup::durability_MemOnly :
-                                                                           SharedGroup::durability_Full;
-            shared_group = std::make_unique<SharedGroup>(*history, durability, config.encryption_key.data(), !config.disable_format_upgrade,
-                                                         [&](int from_version, int to_version) {
-                if (realm) {
-                    realm->upgrade_initial_version = from_version;
-                    realm->upgrade_final_version = to_version;
-                }
-            });
-#endif
         }
     }
     catch (...) {
@@ -210,6 +197,13 @@ Group& Realm::read_group()
         add_schema_change_handler();
     }
     return *m_group;
+}
+
+void Realm::Internal::begin_read(Realm& realm, VersionID version_id)
+{
+    REALM_ASSERT(!realm.m_group);
+    realm.m_group = &const_cast<Group&>(realm.m_shared_group->begin_read(version_id));
+    realm.add_schema_change_handler();
 }
 
 SharedRealm Realm::get_shared_realm(Config config)

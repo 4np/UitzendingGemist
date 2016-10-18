@@ -54,6 +54,7 @@ public:
 #if !REALM_PLATFORM_APPLE
         m_dogless.mtu(dogless::MTU_Jumbo);
 #endif
+        m_dogless.loop_interval(1);
     }
 
     void increment(const char* key) override

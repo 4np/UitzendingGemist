@@ -74,9 +74,11 @@ namespace sync {
 //     make previous versions incompatible.
 //  14 Further bugfixes related to primary keys and link lists. Add support for
 //     LinkListSwap.
+//  15 Deleting an object with a primary key deletes all objects on other
+//     with the same primary key.
 constexpr int get_current_protocol_version() noexcept
 {
-    return 14;
+    return 15;
 }
 
 // Reserve 0 for compatibility with std::error_condition.

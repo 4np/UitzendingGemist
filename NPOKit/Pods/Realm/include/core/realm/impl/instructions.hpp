@@ -49,7 +49,7 @@ class InputStream;
     X(Remove) \
     X(MoveLastOver) \
     X(Swap) \
-    X(ChangeLinkTargets) \
+    X(MergeRows) \
     X(Set) \
     X(SetDefault) \
     X(SetUnique) \
@@ -150,7 +150,7 @@ template <> struct Instr<InstrType::Swap> {
     size_t row_ndx_2;
 };
 
-template <> struct Instr<InstrType::ChangeLinkTargets> {
+template <> struct Instr<InstrType::MergeRows> {
     size_t row_ndx;
     size_t new_row_ndx;
 };

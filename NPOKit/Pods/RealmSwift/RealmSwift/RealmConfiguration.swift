@@ -57,7 +57,9 @@ extension Realm {
 
          - parameter fileURL:            The local URL to the Realm file.
          - parameter inMemoryIdentifier: A string used to identify a particular in-memory Realm.
-         - parameter syncConfiguration:  A `User` and URL that, together, identify a remote Realm.
+         - parameter syncConfiguration:  A `SyncUser` and URL that, together, identify a remote Realm. Note that the
+                                         URL must be absolute (e.g. `realm://example.com/~/foo`), and cannot end with
+                                         `.realm`, `.realm.lock` or `.realm.management`.
          - parameter encryptionKey:      An optional 64-byte key to use to encrypt the data.
          - parameter readOnly:           Whether the Realm is read-only (must be true for read-only files).
          - parameter schemaVersion:      The current schema version.
@@ -68,7 +70,7 @@ extension Realm {
         */
         public init(fileURL: URL? = URL(fileURLWithPath: RLMRealmPathForFile("default.realm"), isDirectory: false),
             inMemoryIdentifier: String? = nil,
-            syncConfiguration: (user: User, realmURL: URL)? = nil,
+            syncConfiguration: (user: SyncUser, realmURL: URL)? = nil,
             encryptionKey: Data? = nil,
             readOnly: Bool = false,
             schemaVersion: UInt64 = 0,
@@ -92,9 +94,13 @@ extension Realm {
 
         // MARK: Configuration Properties
 
-        /// A tuple used to configure a Realm for synchronization with the Realm Object Server. Mutually exclusive with
-        /// `inMemoryIdentifier` and `fileURL`.
-        public var syncConfiguration: (user: User, realmURL: URL)? {
+        /**
+         A tuple used to configure a Realm for synchronization with the Realm Object Server. Mutually exclusive with
+         `inMemoryIdentifier` and `fileURL`.
+         
+         - warning: The URL cannot end with `.realm`, `.realm.lock` or `.realm.management`.
+         */
+        public var syncConfiguration: (user: SyncUser, realmURL: URL)? {
             set {
                 _path = nil
                 _inMemoryIdentifier = nil
@@ -105,7 +111,7 @@ extension Realm {
             }
         }
 
-        private var _syncConfiguration: (user: User, realmURL: URL)?
+        private var _syncConfiguration: (user: SyncUser, realmURL: URL)?
 
         /// The local URL of the Realm file. Mutually exclusive with `inMemoryIdentifier` and `syncConfiguration`.
         public var fileURL: URL? {
@@ -280,7 +286,9 @@ extension Realm {
 
          - parameter fileURL:            The local URL to the Realm file.
          - parameter inMemoryIdentifier: A string used to identify a particular in-memory Realm.
-         - parameter syncConfiguration:  A `User` and URL that, together, identify a remote Realm.
+         - parameter syncConfiguration:  A `SyncUser` and URL that, together, identify a remote Realm. Note that the
+                                         URL must be absolute (e.g. `realm://example.com/~/foo`), and cannot end with
+                                         `.realm`, `.realm.lock` or `.realm.management`.
          - parameter encryptionKey:      An optional 64-byte key to use to encrypt the data.
          - parameter readOnly:           Whether the Realm is read-only (must be true for read-only files).
          - parameter schemaVersion:      The current schema version.
@@ -291,7 +299,7 @@ extension Realm {
          */
         public init(fileURL: NSURL? = NSURL(fileURLWithPath: RLMRealmPathForFile("default.realm"), isDirectory: false),
             inMemoryIdentifier: String? = nil,
-            syncConfiguration: (user: User, realmURL: NSURL)? = nil,
+            syncConfiguration: (user: SyncUser, realmURL: NSURL)? = nil,
             encryptionKey: NSData? = nil,
             readOnly: Bool = false,
             schemaVersion: UInt64 = 0,
@@ -315,9 +323,13 @@ extension Realm {
 
         // MARK: Configuration Properties
 
-        /// A tuple used to configure a Realm for synchronization with the Realm Object Server. Mutually exclusive with
-        /// `inMemoryIdentifier` and `fileURL`.
-        public var syncConfiguration: (user: User, realmURL: NSURL)? {
+        /**
+         A tuple used to configure a Realm for synchronization with the Realm Object Server. Mutually exclusive with
+         `inMemoryIdentifier` and `fileURL`.
+
+         - warning: The URL cannot end with `.realm`, `.realm.lock` or `.realm.management`.
+         */
+        public var syncConfiguration: (user: SyncUser, realmURL: NSURL)? {
             set {
                 _path = nil
                 _inMemoryIdentifier = nil
@@ -328,7 +340,7 @@ extension Realm {
             }
         }
 
-        private var _syncConfiguration: (user: User, realmURL: NSURL)?
+        private var _syncConfiguration: (user: SyncUser, realmURL: NSURL)?
 
         /// The local URL of the Realm file. Mutually exclusive with `inMemoryIdentifier` and `syncConfiguration`.
         public var fileURL: NSURL? {

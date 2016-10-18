@@ -6,7 +6,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014-2015 Hearst
+//  Copyright (c) 2014-2016 Hearst
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -38,11 +38,11 @@ open class TransformOf<ObjectType, JSONType>: TransformType {
 		self.toJSON = toJSON
 	}
 
-	public func transformFromJSON(_ value: Any?) -> ObjectType? {
+	open func transformFromJSON(_ value: Any?) -> ObjectType? {
 		return fromJSON(value as? JSONType)
 	}
 
-	public func transformToJSON(_ value: ObjectType?) -> JSONType? {
+	open func transformToJSON(_ value: ObjectType?) -> JSONType? {
 		return toJSON(value)
 	}
 }

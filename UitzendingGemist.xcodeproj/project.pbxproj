@@ -556,7 +556,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F91D545EA47AA85066BCC6D2 /* Pods-UitzendingGemistAbstract-UitzendingGemist.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = "";
@@ -573,7 +573,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6436CDABDC0DC5F68784C374 /* Pods-UitzendingGemistAbstract-UitzendingGemist.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = "";

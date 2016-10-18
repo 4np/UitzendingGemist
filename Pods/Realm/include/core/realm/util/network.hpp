@@ -976,7 +976,7 @@ public:
     acceptor(io_service&);
     ~acceptor() noexcept;
 
-    static const int max_connections = SOMAXCONN;
+    static constexpr int max_connections = SOMAXCONN;
 
     void listen(int backlog = max_connections);
     std::error_code listen(int backlog, std::error_code&);

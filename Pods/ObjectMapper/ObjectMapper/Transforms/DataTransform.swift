@@ -6,7 +6,7 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2014-2015 Hearst
+//  Copyright (c) 2014-2016 Hearst
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -34,14 +34,14 @@ open class DataTransform: TransformType {
 	
 	public init() {}
 	
-	public func transformFromJSON(_ value: Any?) -> Data? {
+	open func transformFromJSON(_ value: Any?) -> Data? {
 		guard let string = value as? String else{
 			return nil
 		}
 		return Data(base64Encoded: string)
 	}
 	
-	public func transformToJSON(_ value: Data?) -> String? {
+	open func transformToJSON(_ value: Data?) -> String? {
 		guard let data = value else{
 			return nil
 		}
