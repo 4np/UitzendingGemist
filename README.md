@@ -60,21 +60,27 @@ open UitzendingGemist.xcworkspace
 
 Connect the ```Apple TV 4``` using the USB-C cable to your Mac and perform / click through the following steps in Xcode:
 
-![Steps to perform](https://cloud.githubusercontent.com/assets/1049693/19095519/e67d3d88-8a4a-11e6-9689-10054c20c7ef.png)
+![Steps to perform](https://cloud.githubusercontent.com/assets/1049693/20404995/8b810916-ad07-11e6-8715-87b3732ecf3a.png)
 
-## 5. Select the team
+## 5. Change the Bundle Identifier
 
-In order to deploy the application to the Apple TV it needs to be signed with your team (see **4** in the screenshot above). If you do not have a team (e.g. ```None```), or you see the message ```No Matching provisioning profiles found``` click the ```Fix Issue``` and login with your Apple ID / Apple Developer Account credentials.
+The bundle identifier (see **4** in the screenshot above) uniquely identifies your app. As you cannot reuse mine, you need to set your own bundle identifier in reverse domain format (for example: com.yourname.UitzendingGemist). Make sure you remember the name as you will need to enter the same bundle identifier when you want to update or re-deploy the app to your AppleTV.
 
-## 6. Select the Build Device
+_Note: using a different identifier will make the app deploy next to a previous installation and separate favorites. Keeping the identifier the same will make the favorites continue to work after updates._
 
-On the top left in Xcode click on the device the compiled program will be deployed to (see **5** in the screenshot above). If your Apple TV 4 is properly connected you will be able to pick you Apple TV device (otherwise it will run in the Simulator).
+## 6. Select the team
 
-## 7. Run the application
+In order to deploy the application to the Apple TV it needs to be signed with your team (see **5** in the screenshot above). If you do not have a team (e.g. ```None```), or you see the message ```No Matching provisioning profiles found``` click the ```Fix Issue``` and login with your Apple ID / Apple Developer Account credentials.
 
-Finally you are able to compile the program and deploy it onto your Apple TV! Click the play icon (see **6** in the screenshot above). The application will be compiled and deployed on your Apple TV 4. After this the application will remain on the Apple TV. 
+## 7. Select the Build Device
 
-## 8. Sit back and enjoy :)
+On the top left in Xcode click on the device the compiled program will be deployed to (see **6** in the screenshot above). If your Apple TV 4 is properly connected you will be able to pick you Apple TV device (otherwise it will run in the Simulator).
+
+## 8. Run the application
+
+Finally you are able to compile the program and deploy it onto your Apple TV! Click the play icon (see **7** in the screenshot above). The application will be compiled and deployed on your Apple TV 4. After this the application will remain on the Apple TV. 
+
+## 9. Sit back and enjoy :)
 
 You're done! You can disconnect your Apple TV and start watching! :)
 
