@@ -2,6 +2,7 @@ ObjectMapper
 ============
 [![CocoaPods](https://img.shields.io/cocoapods/v/ObjectMapper.svg)](https://github.com/Hearst-DD/ObjectMapper)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Swift Package Manager](https://rawgit.com/jlyonsmith/artwork/master/SwiftPackageManager/swiftpackagemanager-compatible.svg)](https://swift.org/package-manager/)
 [![Build Status](https://travis-ci.org/Hearst-DD/ObjectMapper.svg?branch=master)](https://travis-ci.org/Hearst-DD/ObjectMapper)
 
 ObjectMapper is a framework written in Swift that makes it easy for you to convert your model objects (classes and structs) to and from JSON. 
@@ -289,6 +290,12 @@ func mapping(map: Map) {
     identifier <- map["app.identifier", nested: false]
 }
 ```
+When you have nested keys which contain `.`, you can pass the custom nested key delimiter as follows ([#629](https://github.com/Hearst-DD/ObjectMapper/pull/629)):
+```swift
+func mapping(map: Map) {
+    appName <- map["com.myapp.info->com.myapp.name", delimiter: "->"]
+}
+```
 
 # Custom Transforms
 ObjectMapper also supports custom transforms that convert values during the mapping process. To use a transform, simply create a tuple with ```map["field_name"]``` and the transform of your choice on the right side of the ```<-``` operator:
@@ -450,17 +457,29 @@ Contributions are very welcome 👍😃.
 Before submitting any pull request, please ensure you have run the included tests and they have passed. If you are including new functionality, please write test cases for it as well.
 
 # Installation
+### Cocoapods
 ObjectMapper can be added to your project using [CocoaPods 0.36 or later](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/) by adding the following line to your `Podfile`:
 
 ```ruby
-pod 'ObjectMapper', '~> 2.1'
+pod 'ObjectMapper', '~> 2.2'
 ```
 
+### Carthage
 If you're using [Carthage](https://github.com/Carthage/Carthage) you can add a dependency on ObjectMapper by adding it to your `Cartfile`:
+
 ```
-github "Hearst-DD/ObjectMapper" ~> 2.1
+github "Hearst-DD/ObjectMapper" ~> 2.2
 ```
 
+### Swift Package Manager
+To add ObjectMapper to a [Swift Package Manager](https://swift.org/package-manager/) based project, add:
+
+```swift
+.Package(url: "https://github.com/Hearst-DD/ObjectMapper.git", majorVersion: 2, minor: 2),
+```
+to your `Package.swift` files `dependencies` array.
+
+### Submodule
 Otherwise, ObjectMapper can be added as a submodule:
 
 1. Add ObjectMapper as a [submodule](http://git-scm.com/docs/git-submodule) by opening the terminal, `cd`-ing into your top-level project directory, and entering the command `git submodule add https://github.com/Hearst-DD/ObjectMapper.git`

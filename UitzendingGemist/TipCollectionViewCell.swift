@@ -38,7 +38,6 @@ class TipCollectionViewCell: UICollectionViewCell {
     
     // MARK: Configuration
     
-    
     internal func configure(withTip tip: NPOTip) {
         self.fetchImage(forTip: tip)
         self.nameLabel.text = tip.getDisplayName()

@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.0.1)
+  - Alamofire (4.1.0)
   - AlamofireImage (3.1.0):
     - Alamofire (~> 4.0)
   - AlamofireObjectMapper (4.0.0):
@@ -12,12 +12,12 @@ PODS:
     - CocoaLumberjack/Default
   - CocoaLumberjack/Swift (3.0.0):
     - CocoaLumberjack/Extensions
-  - ObjectMapper (2.1.0)
-  - Realm (2.0.2):
-    - Realm/Headers (= 2.0.2)
-  - Realm/Headers (2.0.2)
-  - RealmSwift (2.0.2):
-    - Realm (= 2.0.2)
+  - ObjectMapper (2.2.1)
+  - Realm (2.0.4):
+    - Realm/Headers (= 2.0.4)
+  - Realm/Headers (2.0.4)
+  - RealmSwift (2.0.4):
+    - Realm (= 2.0.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
@@ -27,14 +27,14 @@ DEPENDENCIES:
   - RealmSwift
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Alamofire: e266cf991b933498df791e645e0d8ac294492153
   AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
   AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
-  ObjectMapper: e5e0f8aef8590fc2ddcde7f27eddb255863ee6e9
-  Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
-  RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
+  ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
+  Realm: 9da97f48365f8b99dd95c28d45ad8222d62e1775
+  RealmSwift: 01e8db006035f16003e6307ae8eae1adccce68db
 
 PODFILE CHECKSUM: 81ebe4b6a630812d1f77268b7bc168e17d766fca
 
-COCOAPODS: 1.1.0.rc.3
+COCOAPODS: 1.2.0.beta.1

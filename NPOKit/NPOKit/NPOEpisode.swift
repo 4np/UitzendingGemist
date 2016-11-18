@@ -106,7 +106,6 @@ open class NPOEpisode: NPORestrictedMedia {
         }
     }()
     
-    
     // MARK: Watched
     
     //swiftlint:disable force_unwrapping
