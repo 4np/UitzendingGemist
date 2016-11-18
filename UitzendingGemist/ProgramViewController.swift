@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import NPOKit
 import CocoaLumberjack
-import AVKit
 import UIColor_Hex_Swift
 
 class ProgramViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -31,6 +30,8 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var favoriteLabel: UILabel!
     @IBOutlet weak var markAsWatchedButton: UIButton!
     @IBOutlet weak var markAsWatchedLabel: UILabel!
+    @IBOutlet weak var youTubeButton: UIButton!
+    @IBOutlet weak var youTubeLabel: UILabel!
     
     @IBOutlet weak var episodeCollectionView: UICollectionView!
     
@@ -159,6 +160,9 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         markAsWatchedLabel.isEnabled = true
         updateWatchedButtonAndLabel()
         
+        youTubeButton.isHidden = !program.hasExtraResource
+        youTubeLabel.isHidden = !program.hasExtraResource
+        
         // fetch images
         self.layoutImages(forProgram: program)
         
@@ -229,7 +233,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
             self?.updateWatchedButtonAndLabel()
         }
     }
-    
+
     // MARK: UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -265,6 +269,9 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
             case Segues.ProgramToPlayEpisode.rawValue:
                 prepareForSegueToPlayEpisodeView(segue, sender: sender as AnyObject?)
                 break
+            case Segues.ProgramToYouTube.rawValue:
+                prepareForSegueToYouTubeView(segue, sender: sender as AnyObject?)
+                break
             default:
                 DDLogError("Unhandled segue with identifier '\(segueIdentifier)' in Home view")
                 break
@@ -286,5 +293,13 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         
         vc.configureAndPlay(withEpisode: episode)
+    }
+    
+    fileprivate func prepareForSegueToYouTubeView(_ segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let vc = segue.destination as? YouTubeViewController, let program = self.program else {
+            return
+        }
+        
+        vc.configure(withProgram: program)
     }
 }

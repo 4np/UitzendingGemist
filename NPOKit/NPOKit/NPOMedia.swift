@@ -20,7 +20,11 @@ public func ==(lhs: NPOMedia, rhs: NPOMedia) -> Bool {
 // swiftlint:enable operator_whitespace
 
 open class NPOMedia: NPOImage, Equatable {
-    open internal(set) var mid: String?
+    open internal(set) var mid: String? {
+        didSet {
+            midUpdated()
+        }
+    }
     //internal var neboID: String?
     open internal(set) var name: String?
     
@@ -60,5 +64,11 @@ open class NPOMedia: NPOImage, Equatable {
     
     open func getVideoStream(withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) {
         NPOManager.sharedInstance.getVideoStream(forMID: mid, withCompletion: completed)
+    }
+    
+    // MARK: Special methods
+    
+    internal func midUpdated() {
+        // override to implement
     }
 }

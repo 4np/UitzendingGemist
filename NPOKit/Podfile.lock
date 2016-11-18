@@ -12,29 +12,45 @@ PODS:
     - CocoaLumberjack/Default
   - CocoaLumberjack/Swift (3.0.0):
     - CocoaLumberjack/Extensions
+  - GoogleAPIClientForREST/Core (1.1.1):
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAPIClientForREST/YouTube (1.1.1):
+    - GoogleAPIClientForREST/Core
+    - GTMSessionFetcher (>= 1.1.7)
+  - GTMSessionFetcher (1.1.7):
+    - GTMSessionFetcher/Full (= 1.1.7)
+  - GTMSessionFetcher/Core (1.1.7)
+  - GTMSessionFetcher/Full (1.1.7):
+    - GTMSessionFetcher/Core (= 1.1.7)
   - ObjectMapper (2.2.1)
   - Realm (2.0.4):
     - Realm/Headers (= 2.0.4)
   - Realm/Headers (2.0.4)
   - RealmSwift (2.0.4):
     - Realm (= 2.0.4)
+  - XCDYouTubeKit (2.5.3)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - AlamofireImage (~> 3.1)
   - AlamofireObjectMapper (~> 4.0)
   - CocoaLumberjack/Swift
+  - GoogleAPIClientForREST/YouTube
   - RealmSwift
+  - XCDYouTubeKit (~> 2.5)
 
 SPEC CHECKSUMS:
   Alamofire: e266cf991b933498df791e645e0d8ac294492153
   AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
   AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
+  GoogleAPIClientForREST: f272e35f7fe9f80ab232756c798adc32245ece8c
+  GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
   Realm: 9da97f48365f8b99dd95c28d45ad8222d62e1775
   RealmSwift: 01e8db006035f16003e6307ae8eae1adccce68db
+  XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
-PODFILE CHECKSUM: 81ebe4b6a630812d1f77268b7bc168e17d766fca
+PODFILE CHECKSUM: 9c192b62fc31a8abc0815b2edc9ebaf185681b36
 
 COCOAPODS: 1.2.0.beta.1

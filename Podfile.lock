@@ -12,12 +12,24 @@ PODS:
     - CocoaLumberjack/Default
   - CocoaLumberjack/Swift (3.0.0):
     - CocoaLumberjack/Extensions
+  - GoogleAPIClientForREST/Core (1.1.1):
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAPIClientForREST/YouTube (1.1.1):
+    - GoogleAPIClientForREST/Core
+    - GTMSessionFetcher (>= 1.1.7)
+  - GTMSessionFetcher (1.1.7):
+    - GTMSessionFetcher/Full (= 1.1.7)
+  - GTMSessionFetcher/Core (1.1.7)
+  - GTMSessionFetcher/Full (1.1.7):
+    - GTMSessionFetcher/Core (= 1.1.7)
   - NPOKit (1.0.0):
     - Alamofire (~> 4.0)
     - AlamofireImage (~> 3.1)
     - AlamofireObjectMapper (~> 4.0)
     - CocoaLumberjack/Swift (~> 3.0)
+    - GoogleAPIClientForREST/YouTube
     - RealmSwift (~> 2.0)
+    - XCDYouTubeKit (~> 2.5)
   - ObjectMapper (2.2.1)
   - Realm (2.0.4):
     - Realm/Headers (= 2.0.4)
@@ -25,6 +37,7 @@ PODS:
   - RealmSwift (2.0.4):
     - Realm (= 2.0.4)
   - UIColor_Hex_Swift (3.0.2)
+  - XCDYouTubeKit (2.5.3)
 
 DEPENDENCIES:
   - CocoaLumberjack/Swift
@@ -40,11 +53,14 @@ SPEC CHECKSUMS:
   AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
   AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
-  NPOKit: b66f4950e857f8dc6dd5441f3185af0bec0f1214
+  GoogleAPIClientForREST: f272e35f7fe9f80ab232756c798adc32245ece8c
+  GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
+  NPOKit: 68c714e86538f6d78e1c7f3cdf45e9d3ee8a86d3
   ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
   Realm: 9da97f48365f8b99dd95c28d45ad8222d62e1775
   RealmSwift: 01e8db006035f16003e6307ae8eae1adccce68db
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
+  XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
 PODFILE CHECKSUM: c9d1d4c7c73f5be87551ac18d53a4851c5cb1514
 

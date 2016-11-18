@@ -22,6 +22,14 @@ open class NPOProgram: NPORestrictedMedia {
     open fileprivate(set) var episodes: [NPOEpisode]?
     open fileprivate(set) var nextEpisode: NPOEpisode?
     
+    // extra external resources
+    // see NPOManager+ExtraResources & NPOProgramResource
+    internal var extraResource: NPOProgramResource?
+    
+    open var hasExtraResource: Bool {
+        return extraResource != nil
+    }
+    
     open var firstLetter: String? {
         return self.getFirstLetter()
     }
@@ -52,6 +60,13 @@ open class NPOProgram: NPORestrictedMedia {
         offline <- (map["expected_offline_at"], DateTransform())
         episodes <- map["episodes"]
         nextEpisode <- map["next_episode"]
+    }
+    
+    override func midUpdated() {
+        // fetch any additional resources (if needed)
+        NPOManager.sharedInstance.getResources(forProgram: self) { [weak self] resource in
+            self?.extraResource = resource
+        }
     }
     
     // MARK: Date checking

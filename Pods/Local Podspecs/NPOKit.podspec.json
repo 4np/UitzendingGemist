@@ -35,6 +35,12 @@
     ],
     "RealmSwift": [
       "~> 2.0"
+    ],
+    "XCDYouTubeKit": [
+      "~> 2.5"
+    ],
+    "GoogleAPIClientForREST/YouTube": [
+
     ]
   }
 }

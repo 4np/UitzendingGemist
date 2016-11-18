@@ -12,5 +12,7 @@ abstract_target 'NPOKitAbstract' do
         pod 'AlamofireObjectMapper', '~> 4.0'
         pod 'AlamofireImage', '~> 3.1'
         pod 'RealmSwift'
+        pod 'XCDYouTubeKit', '~> 2.5'
+        pod 'GoogleAPIClientForREST/YouTube'
     end
 end

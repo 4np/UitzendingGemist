@@ -17,6 +17,7 @@ enum CollectionViewCells: String {
     case Live = "liveCollectionViewCell"
     case ProgramDetail = "programDetailedCollectionViewCell"
     case DayDetail = "byDayDetailCollectionViewCell"
+    case YouTube = "youTubeCollectionViewCell"
 }
 
 enum TableViewCells: String {
@@ -40,6 +41,7 @@ enum Segues: String {
     case ProgramToDetails = "ProgramToProgramDetailsSegue"
     case ProgramToEpisode = "ProgramToEpisodeSegue"
     case ProgramToPlayEpisode = "ProgramToPlayEpisodeSegue"
+    case ProgramToYouTube = "ProgramToYouTubeSegue"
 }
 
 open class UitzendingGemistConstants {

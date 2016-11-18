@@ -25,6 +25,7 @@ public enum NPOError {
     case noImageError
     case noMIDError
     case noEpisodeError
+    case resourceError(String)
 }
 
 public enum NPOGenre: String {
@@ -80,6 +81,10 @@ open class NPOManager {
     open static let sharedInstance = NPOManager()
     internal let baseURL = "http://apps-api.uitzendinggemist.nl"
     fileprivate let infoDictionary = Bundle.main.infoDictionary
+
+    // see NPOManager+ExtraResources
+    internal var cachedProgramResources: [NPOProgramResource]?
+    internal var cachedProgramResourcesLastUpdated: Date?
     
     // MARK: Init
     
