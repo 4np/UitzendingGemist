@@ -81,5 +81,7 @@ open class UitzendingGemistConstants {
     static let upcomingBroadcastWithTime = NSLocalizedString("%@: %@", comment: "Upcoming broadcast (with time)")
     
     static let markAsWatchedText = NSLocalizedString("Markeer als gezien", comment: "Mark episode as watched")
+    static let markAllAsWatchedText = NSLocalizedString("Markeer alles als gezien", comment: "Mark all episodes as watched")
     static let markAsUnwatchedText = NSLocalizedString("Markeer als ongezien", comment: "Mark episode as unwatched")
+    static let markAllAsUnwatchedText = NSLocalizedString("Markeer alles als ongezien", comment: "Mark all episodes as unwatched")
 }

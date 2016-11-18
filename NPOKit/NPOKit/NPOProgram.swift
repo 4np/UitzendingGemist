@@ -160,6 +160,30 @@ open class NPOProgram: NPORestrictedMedia {
     
     // MARK: Watched
     
+    open func toggleWatched(withCompletion completed: @escaping () -> () = {}) {
+        // determine whether the episodes should be marked as watched or unwatched
+        let newState: Watched
+        if watched == .partially || watched == .unwatched {
+            newState = .fully
+        } else {
+            newState = .unwatched
+        }
+        
+        // get all episodes
+        getEpisodes() { [weak self] episodes in
+            // iterate over episodes
+            for episode in episodes {
+                // update episode watched state (if necessary)
+                if episode.watched != newState {
+                    episode.watched = newState
+                }
+            }
+            
+            // update internal state and pass on the completion handler
+            self?.updateWatched(withCompletion: completed)
+        }
+    }
+    
     //swiftlint:disable force_unwrapping
     open var watched: Watched {
         get {
@@ -169,7 +193,7 @@ open class NPOProgram: NPORestrictedMedia {
     }
     //swiftlint:enable force_unwrapping
     
-    internal func updateWatched() {
+    internal func updateWatched(withCompletion completed: @escaping () -> () = {}) {
         getEpisodes() { [weak self] episodes in
             let episodeCount = episodes.count
             let watchedEpisodeCount = episodes.filter({ $0.watched == .fully }).count
@@ -194,6 +218,9 @@ open class NPOProgram: NPORestrictedMedia {
                 } catch let error as NSError {
                     DDLogError("Could not write program to realm (\(error.localizedDescription))")
                 }
+                
+                // call completion handler
+                completed()
             }
         }
     }

@@ -29,6 +29,8 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var playLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var favoriteLabel: UILabel!
+    @IBOutlet weak var markAsWatchedButton: UIButton!
+    @IBOutlet weak var markAsWatchedLabel: UILabel!
     
     @IBOutlet weak var episodeCollectionView: UICollectionView!
     
@@ -153,6 +155,10 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         self.favoriteLabel.text = UitzendingGemistConstants.favoriteText
         self.updateFavoriteButtonTitleColor()
         
+        markAsWatchedButton.isEnabled = true
+        markAsWatchedLabel.isEnabled = true
+        updateWatchedButtonAndLabel()
+        
         // fetch images
         self.layoutImages(forProgram: program)
         
@@ -196,6 +202,32 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBAction fileprivate func didPressFavoriteButton(_ sender: UIButton) {
         self.program?.toggleFavorite()
         self.updateFavoriteButtonTitleColor()
+    }
+    
+    // MARK: Mark As Watched
+    
+    fileprivate func updateWatchedButtonAndLabel() {
+        guard let program = self.program else {
+            return
+        }
+        
+        if program.watched == .unwatched || program.watched == .partially {
+            markAsWatchedLabel.text = UitzendingGemistConstants.markAllAsWatchedText
+        } else {
+            markAsWatchedLabel.text = UitzendingGemistConstants.markAllAsUnwatchedText
+        }
+        
+        // update the program name with the watched indicator
+        programNameLabel.text = program.getDisplayNameWithWatchedIndicator()
+        
+        // update the episodes collection
+        episodeCollectionView.reloadData()
+    }
+    
+    @IBAction func didPressMarkAsWatchedButton(_ sender: UIButton) {
+        program?.toggleWatched() { [weak self] in
+            self?.updateWatchedButtonAndLabel()
+        }
     }
     
     // MARK: UICollectionViewDataSource
