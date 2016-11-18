@@ -24,7 +24,7 @@ using a web app hosted on a remote server.
 
 # Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
 
-Unfortunately the app cannot be distributed in the Appstore as the NPO does not allow third parties in doing so. However, using a _free_ Apple Developer account you *can* compile it yourself and install it in your own Apple TV 4. 
+Unfortunately the app cannot be distributed in the Appstore as the NPO does not allow third parties in doing so. However, using a _free_ Apple Developer account you *can* compile it yourself and install it in your own Apple TV 4 (_but also read the note below_). 
 
 **Prerequisites:**
 
@@ -33,8 +33,7 @@ Unfortunately the app cannot be distributed in the Appstore as the NPO does not 
 - a (free) Apple Developer account (signup [here](http://developer.apple.com))
 - a [USB-C cable](http://www.apple.com/nl/shop/product/HHSP2ZM/B/belkin-usb-c-naar-usb-a-oplaadkabel?fnode=85) to connect your Apple TV to your Apple Computer
 
-_Note: as of the summer 2016 Apple has reduced the free Developer account provisioning from 90 days to a mere 7 days, which means when you are using a _free_ Apple Developer Account the application [will expire every 7 days](http://mybyways.com/blog/new-limitations-imposed-on-free-apple-developer-account) after which you need to re-deploy the app (make sure to keep your bundle identifier the same for your favorites to stick). The _paid_ Apple Developer Accounts do not have a time based limitation._
-
+_Note: as of summer 2016 Apple has reduced the free Developer account provisioning from 90 days to a mere 7 days, which means when you are using a free Apple Developer Account the application [will expire every 7 days](http://mybyways.com/blog/new-limitations-imposed-on-free-apple-developer-account) after which you need to re-deploy the app (make sure to keep your bundle identifier the same for your favorites to stick). The paid Apple Developer Accounts do not have a time based limitation and deployed apps will continue to work during the lifetime of your subscription._
 
 ## 1. Xcode
 
