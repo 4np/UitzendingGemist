@@ -33,6 +33,9 @@ Unfortunately the app cannot be distributed in the Appstore as the NPO does not 
 - a (free) Apple Developer account (signup [here](http://developer.apple.com))
 - a [USB-C cable](http://www.apple.com/nl/shop/product/HHSP2ZM/B/belkin-usb-c-naar-usb-a-oplaadkabel?fnode=85) to connect your Apple TV to your Apple Computer
 
+_Note: as of the summer 2016 Apple has reduced the free Developer account provisioning from 90 days to a mere 7 days, which means when you are using a _free_ Apple Developer Account the application [will expire every 7 days](http://mybyways.com/blog/new-limitations-imposed-on-free-apple-developer-account) after which you need to re-deploy the app (make sure to keep your bundle identifier the same for your favorites to stick). The _paid_ Apple Developer Accounts do not have a time based limitation._
+
+
 ## 1. Xcode
 
 The code was developed in [Xcode 8.0](https://itunes.apple.com/nl/app/xcode/id497799835?mt=12) ([alternative link](https://developer.apple.com/xcode/download/)) so you need at least to have that version installed. Continue with the following steps when you have finished installing ```Xcode``` as the next steps require a finished installation.
@@ -66,7 +69,7 @@ Connect the ```Apple TV 4``` using the USB-C cable to your Mac and perform / cli
 
 The bundle identifier (see **4** in the screenshot above) uniquely identifies your app. As you cannot reuse mine, you need to set your own bundle identifier in reverse domain format (for example: com.yourname.UitzendingGemist). Make sure you remember the name as you will need to enter the same bundle identifier when you want to update or re-deploy the app to your AppleTV.
 
-_Note: using a different identifier will make the app deploy next to a previous installation and separate favorites. Keeping the identifier the same will make the favorites continue to work after updates._
+_Note: using a different identifier will make the app deploy next to a previous installation and separate favorites. Keeping the identifier the same will make the favorites continue to work after updates. Also *free* Apple Developer Accounts have a limit on the number of different identifiers you can create on a weekly basis (10)._
 
 ## 6. Select the team
 
