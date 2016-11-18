@@ -21,6 +21,7 @@ using a web app hosted on a remote server.
 - Remembers watched episodes and will allow you to resume watching
 - Will show you new unwatched episodes of favorite programs
 - Live TV (and NPO1, NPO2 and NPO3 in high quality) and themed channels
+- Curated list of Channels that have additional [YouTube Channels](https://github.com/4np/NPOKitResources) and YouTube integration
 
 # Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
 
