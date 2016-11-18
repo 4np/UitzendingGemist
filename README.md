@@ -128,6 +128,12 @@ You're done! You can disconnect your Apple TV and start watching! :)
 
 ![Update Screen](https://cloud.githubusercontent.com/assets/1049693/17013518/61df0220-4f1f-11e6-81eb-340f0fe0c452.png)
 
+## Program with a YouTube channel
+
+![YouTube Button](https://cloud.githubusercontent.com/assets/1049693/20447426/08b7e0da-addf-11e6-90a3-fc3a094a8d92.png)
+
+![YouTube Channel](https://cloud.githubusercontent.com/assets/1049693/20447425/08aaed3a-addf-11e6-88f8-346ed87f6ca9.png)
+
 # License
 
 See the accompanying [LICENSE](LICENSE) and [NOTICE](NOTICE) files for more information.
