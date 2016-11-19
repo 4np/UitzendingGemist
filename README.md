@@ -3,8 +3,8 @@
 [![Build Status](https://travis-ci.org/4np/UitzendingGemist.svg?branch=master)](https://travis-ci.org/4np/UitzendingGemist)
 [![Release](https://img.shields.io/github/release/4np/UitzendingGemist.svg)](https://github.com/4np/UitzendingGemist/releases/latest)
 [![Commits Since](https://img.shields.io/github/commits-since/4np/UitzendingGemist/1.1.0.svg?maxAge=3600)](https://github.com/4np/UitzendingGemist/commits/master)
-![Platform](https://img.shields.io/badge/platform-tvOS%2010-green.svg?maxAge=3600)
-![Swift](https://img.shields.io/badge/language-Swift-ed523f.svg?maxAge=3600)
+[![Platform](https://img.shields.io/badge/platform-tvOS%2010-green.svg?maxAge=3600)](https://developer.apple.com/tvos/)
+[![Swift](https://img.shields.io/badge/language-Swift-ed523f.svg?maxAge=3600)](https://swift.org)
 [![Open Issues](https://img.shields.io/github/issues/4np/UitzendingGemist.svg?maxAge=3600)](https://github.com/4np/UitzendingGemist/issues)
 [![Closed Issues](https://img.shields.io/github/issues-closed/4np/UitzendingGemist.svg?maxAge=3600)](https://github.com/4np/UitzendingGemist/issues?q=is%3Aissue+is%3Aclosed)
 
