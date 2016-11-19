@@ -12,4 +12,4 @@ script:
     - xcodebuild -list
     - xcpretty -v
     - swiftlint
-    - travis_wait 30 xcodebuild -workspace "UitzendingGemist.xcworkspace" -scheme "UitzendingGemist" -sdk "appletvsimulator10.0" -destination "platform=tvOS Simulator,OS=10.0,name=Apple TV 1080p" -configuration Release clean build ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO RUN_CLANG_STATIC_ANALYZER=YES|xcpretty -c
+    - xcodebuild -workspace "UitzendingGemist.xcworkspace" -scheme "UitzendingGemist" -sdk "appletvsimulator10.0" -destination "platform=tvOS Simulator,OS=10.0,name=Apple TV 1080p" -configuration Release clean build ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO RUN_CLANG_STATIC_ANALYZER=YES -verbose
