@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'Alamofire', '~> 4.0'
   spec.dependency 'AlamofireObjectMapper', '~> 4.0'
   spec.dependency 'AlamofireImage', '~> 3.1'
-  spec.dependency 'RealmSwift', '~> 2.0'
+  spec.dependency 'RealmSwift', '~> 2.1'
   spec.dependency 'XCDYouTubeKit', '~> 2.5'
   spec.dependency 'GoogleAPIClientForREST/YouTube'
 end
