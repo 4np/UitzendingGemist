@@ -35,7 +35,12 @@ class YouTubeViewController: UIViewController, UICollectionViewDataSource, UICol
     func configure(withProgram program: NPOProgram) {
         self.program = program
         
+        // show progress hud
+        view.startLoading()
+        
         NPOManager.sharedInstance.getYouTubeVideos(forProgram: program) { [weak self] videos, error in
+            self?.view.stopLoading()
+            
             guard let videos = videos else {
                 DDLogError("Could not fetch youtube videos for program \(program.name)")
                 return
@@ -97,50 +102,26 @@ class YouTubeViewController: UIViewController, UICollectionViewDataSource, UICol
     // MARK: Play YouTube video
     
     fileprivate func play(youtubeVideoWithIdentifier videoIdentifier: String) {
-        let alert = getAlertController(show: true)
+        // show progress hud
+        view.startLoading()
         
         // play video
         NPOManager.sharedInstance.getPlayerItem(youtubeVideoIdentifier: videoIdentifier) { [weak self] playerItem, error in
-            // dismiss alert
-            alert.dismiss(animated: false) {
-                // set up player
-                let player = AVPlayer(playerItem: playerItem)
-                let playerViewController = AVPlayerViewController()
-                playerViewController.player = player
-                
-                // when the player reached the end of the video, pause the video
-                player.actionAtItemEnd = .pause
-                
-                // present player
-                self?.present(playerViewController, animated: true) {
-                    playerViewController.player?.play()
-                }
+            // show progress hud
+            self?.view.stopLoading()
+            
+            // set up player
+            let player = AVPlayer(playerItem: playerItem)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            
+            // when the player reached the end of the video, pause the video
+            player.actionAtItemEnd = .pause
+            
+            // present player
+            self?.present(playerViewController, animated: true) {
+                playerViewController.player?.play()
             }
         }
-    }
-    
-    fileprivate func getAlertController(show: Bool) -> UIAlertController {
-        // create alert controller with a spinner on it
-        let alertController = UIAlertController(title: "Een ogenblik geduld a.u.b.", message: "", preferredStyle: .alert)
-        let bounds = alertController.view.bounds
-        
-        // create an activity indicator (spinner)
-        let spinner = UIActivityIndicatorView(frame: bounds)
-        spinner.center = CGPoint(x: bounds.midX, y: bounds.midY + 50.0)
-        spinner.activityIndicatorViewStyle = .whiteLarge
-        spinner.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        spinner.isUserInteractionEnabled = false
-        spinner.startAnimating()
-        
-        // add the activity indicator to the alert controller
-        alertController.view.addSubview(spinner)
-        
-        // show it already?
-        if show {
-            self.present(alertController, animated: true, completion: nil)
-        }
-        
-        // return it so we can dismiss it later
-        return alertController
     }
 }
