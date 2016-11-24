@@ -26,8 +26,8 @@ open class NPOProgram: NPORestrictedMedia {
     // see NPOManager+ExtraResources & NPOProgramResource
     internal var extraResource: NPOProgramResource?
     
-    open var hasExtraResource: Bool {
-        return extraResource != nil
+    open var hasYouTubeResource: Bool {
+        return extraResource?.hasYouTubeResource ?? false
     }
     
     open var firstLetter: String? {

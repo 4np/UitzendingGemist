@@ -18,6 +18,17 @@ open class NPOProgramResource: Mappable, CustomDebugStringConvertible {
     open internal(set) var mid: String?
     open internal(set) var name: String?
     open internal(set) var youTubeChannel: String?
+    open internal(set) var youTubePlaylist: String?
+    
+    internal var hasYouTubeResource: Bool {
+        if let _ = youTubeChannel {
+            return true
+        } else if let _ = youTubePlaylist {
+            return true
+        }
+        
+        return false
+    }
     
     // MARK: Lifecycle
     
@@ -31,5 +42,6 @@ open class NPOProgramResource: Mappable, CustomDebugStringConvertible {
         mid <- map["mid"]
         name <- map["name"]
         youTubeChannel <- map["youtube_channel"]
+        youTubePlaylist <- map["youtube_playlist"]
     }
 }

@@ -92,21 +92,21 @@ class YouTubeViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let videos = self.videos, indexPath.row >= 0 && indexPath.row < videos.count, let videoIdentifier = videos[indexPath.row].identifier?.videoId else {
+        guard let videos = self.videos, indexPath.row >= 0 && indexPath.row < videos.count else {
             return
         }
-        
-        play(youtubeVideoWithIdentifier: videoIdentifier)
+
+        play(youTubeVideo: videos[indexPath.row])
     }
     
     // MARK: Play YouTube video
     
-    fileprivate func play(youtubeVideoWithIdentifier videoIdentifier: String) {
+    fileprivate func play(youTubeVideo video: NPOYouTubeVideo) {
         // show progress hud
         view.startLoading()
         
         // play video
-        NPOManager.sharedInstance.getPlayerItem(youtubeVideoIdentifier: videoIdentifier) { [weak self] playerItem, error in
+        NPOManager.sharedInstance.getPlayerItem(youTubeVideo: video) { [weak self] playerItem, error in
             // show progress hud
             self?.view.stopLoading()
             

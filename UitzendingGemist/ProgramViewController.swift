@@ -160,8 +160,8 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         markAsWatchedLabel.isEnabled = true
         updateWatchedButtonAndLabel()
         
-        youTubeButton.isHidden = !program.hasExtraResource
-        youTubeLabel.isHidden = !program.hasExtraResource
+        youTubeButton.isHidden = !program.hasYouTubeResource
+        youTubeLabel.isHidden = !program.hasYouTubeResource
         
         // fetch images
         self.layoutImages(forProgram: program)
