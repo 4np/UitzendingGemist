@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/4np/UitzendingGemist.svg?branch=master)](https://travis-ci.org/4np/UitzendingGemist)
 [![Release](https://img.shields.io/github/release/4np/UitzendingGemist.svg)](https://github.com/4np/UitzendingGemist/releases/latest)
-[![Commits Since](https://img.shields.io/github/commits-since/4np/UitzendingGemist/1.1.0.svg?maxAge=3600)](https://github.com/4np/UitzendingGemist/commits/master)
+[![Commits Since](https://img.shields.io/github/commits-since/4np/UitzendingGemist/1.1.1.svg?maxAge=3600)](https://github.com/4np/UitzendingGemist/commits/master)
 [![Platform](https://img.shields.io/badge/platform-tvOS%2010-green.svg?maxAge=3600)](https://developer.apple.com/tvos/)
 [![Swift](https://img.shields.io/badge/language-Swift-ed523f.svg?maxAge=3600)](https://swift.org)
 [![Open Issues](https://img.shields.io/github/issues/4np/UitzendingGemist.svg?maxAge=3600)](https://github.com/4np/UitzendingGemist/issues)
@@ -23,7 +23,7 @@ using a web app hosted on a remote server.
 - Remembers watched episodes and will allow you to resume watching
 - Will show you new unwatched episodes of favorite programs
 - Live TV (and NPO1, NPO2 and NPO3 in high quality) and themed channels
-- The ability to watch YouTube videos for Programs that have [YouTube Channels](https://github.com/4np/NPOKitResources)
+- The ability to watch YouTube videos for Programs that have [YouTube Resources](https://github.com/4np/NPOKitResources)
 
 # Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
 
