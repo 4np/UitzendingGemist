@@ -188,6 +188,7 @@ public:
     using version_type = _impl::History::version_type;
     using SyncTransactCallback = void(VersionID old_version, VersionID new_version);
     using ErrorHandler = Client::ErrorHandler;
+    using WaitOperCompletionHandler = std::function<void(std::error_code)>;
 
     /// \brief Start a new session for the specified client-side Realm.
     ///
@@ -271,7 +272,7 @@ public:
     /// that callback function will start to be called as changesets are
     /// downloaded and integrated locally. It is important to understand that
     /// callback functions are executed by the event loop thread (Client::run())
-    /// and the callback function may therfore be called before bind() returns.
+    /// and the callback function may therefore be called before bind() returns.
     ///
     /// Note: It is an error if this function is called more than once per
     /// Session object.
@@ -353,54 +354,103 @@ public:
     /// any thread, and by multiple threads concurrently.
     void nonsync_transact_notify(version_type new_version);
 
-    /// \brief Wait for upload to complete
+    /// @{ \brief Wait for upload, download, or upload+download completion.
     ///
-    /// This function waits for all currently outstanding client-side changesets
-    /// to be uploaded to, and acknowledged by the server. More specifically, it
-    /// waits until all changesets that must be uploaded, and that precede a
-    /// certain client version threshold have been uploaded. The threshold is
-    /// the highest client version passed to nonsync_transact_notify() prior to
-    /// the invocation of wait_for_upload_complete_or_client_stopped().
+    /// async_wait_for_upload_completion() initiates an asynchronous wait for
+    /// upload to complete, async_wait_for_download_completion() initiates an
+    /// asynchronous wait for download to complete, and
+    /// async_wait_for_sync_completion() initiates an asynchronous wait for
+    /// upload and download to complete.
     ///
-    /// If nonsync_transact_notify() is called while
-    /// wait_for_upload_complete_or_client_stopped() executes, and with a
-    /// version that greater than the currently applying threashold, then that
-    /// may, or may not cause the threshold to be pushed forward and the wait to
-    /// be extended.
+    /// Upload is considered complete when all non-empty changesets of local
+    /// origin have been uploaded to the server, and the server has acknowledged
+    /// reception of them. Changesets of local origin introduced after the
+    /// initiation of the session (after bind() is called) will generally not be
+    /// considered for upload unless they are announced to this client through
+    /// nonsync_transact_notify() prior to the initiation of the wait operation,
+    /// i.e., prior to the invocation of async_wait_for_upload_completion() or
+    /// async_wait_for_sync_completion(). Unannounced changesets may get picked
+    /// up, but there is no guarantee that they will be, however, if a certain
+    /// changeset is announced, then all previous changesets are implicitely
+    /// announced. Also all preexisting changesets are implicitely announced
+    /// when the session is initiated.
     ///
-    /// It is an error to call this function before bind() has been called, and
-    /// has returned.
+    /// Download is considered complete when all non-empty changesets of remote
+    /// origin have been downloaded from the server, and integrated into the
+    /// local Realm state. To know what is currently outstanding on the server,
+    /// the client always sends a special "marker" message to the server, and
+    /// waits until it has downloaded all outstanding changesets that were
+    /// present on the server at the time when the server received that marker
+    /// message. Each call to async_wait_for_download_completion() and
+    /// async_wait_for_sync_completion() therefore requires a full client <->
+    /// server round-trip.
     ///
-    /// Note: This function is fully thread-safe. That is, it may be called by
-    /// any thread, and by multiple threads concurrently.
-    void wait_for_upload_complete_or_client_stopped();
+    /// If a new wait operation is initiated while other wait operations are in
+    /// progress, the waiting period of operations in progress may, or may not
+    /// get extended. The client must not assume either. The client may assume,
+    /// however, that async_wait_for_upload_completion() will not affect the
+    /// waiting period of async_wait_for_download_completion(), and vice versa.
+    ///
+    /// It is an error to call these functions before bind() has been called,
+    /// and has returned.
+    ///
+    /// The specified completion handlers will always be executed by the thread
+    /// that executes the event loop (the thread that calls Client::run()). If
+    /// the handler throws an exception, that exception will "travel" out
+    /// through Client::run().
+    ///
+    /// If incomplete wait operations exist when the session is terminated,
+    /// those wait operations will be canceled. Session termination is an event
+    /// that happens in the context of the client's event loop thread shortly
+    /// after the destruction of the session object. The std::error_code
+    /// argument passed to the completion handler of a canceled wait operation
+    /// will be `util::error::operation_aborted`. For uncanceled wait operations
+    /// it will be `std::error_code{}`. Note that as long as the client's event
+    /// loop thread is running, all completion handlers will be called
+    /// regardless of whether the operations get canceled or not.
+    ///
+    /// CAUTION: The specified completion handlers may be called before the
+    /// initiation function returns (e.g. before
+    /// async_wait_for_upload_completion() returns), and it may be called (or
+    /// continue to execute) after the session object is destroyed. The
+    /// application must pass a handler that can be safely called, and can
+    /// safely continue to execute from the point in time where the initiating
+    /// function starts executing, and up until the point in time where the last
+    /// invocation of `clint.run()` returns. Here, `client` refers to the
+    /// associated Client object.
+    ///
+    /// Note: These functions are fully thread-safe. That is, they may be called
+    /// by any thread, and by multiple threads concurrently.
+    void async_wait_for_sync_completion(WaitOperCompletionHandler);
+    void async_wait_for_upload_completion(WaitOperCompletionHandler);
+    void async_wait_for_download_completion(WaitOperCompletionHandler);
+    /// @}
 
-    /// \brief Wait for download to complete
+    /// @{ \brief Synchronous wait for upload or download completion.
     ///
-    /// This function waits for all currently outstanding server-side changesets
-    /// to be downloaded. More specifically, it waits until all changesets that
-    /// must be downloaded, and that precede a certain server version threshold
-    /// have been downloaded (FIXME: Shouldn't it have been downloaded and
-    /// integrated?). The threshold is the currently latest server version at
-    /// the time where wait_for_download_complete_or_client_stopped() is called,
-    /// or shortly thereafter.
+    /// These functions are synchronous equivalents to
+    /// async_wait_for_upload_completion() and
+    /// async_wait_for_download_completion() respectively. This means that they
+    /// block the caller until the completion condition is satisfied, or the
+    /// client event loop is stopped (Client::stop()).
     ///
-    /// If wait_for_download_complete_or_client_stopped() is called by one
-    /// thread while it is being executed by another thread, then the later call
-    /// may, or may not push forward the threshold that applies the the earlier
-    /// call, and cause its wait to be correspondingly extended.
+    /// It is an error to call these functions before bind() has been called,
+    /// and has returned.
     ///
-    /// It is an error to call this function before bind() has been called, and
-    /// has returned.
-    ///
-    /// Note: This function is fully thread-safe. That is, it may be called by
-    /// any thread, and by multiple threads concurrently.
+    /// Note: These functions are fully thread-safe. That is, they may be called
+    /// by any thread, and by multiple threads concurrently.
+    void wait_for_upload_complete_or_client_stopped();
     void wait_for_download_complete_or_client_stopped();
+    /// @}
 
 private:
     class Impl;
     Impl* m_impl;
+
+    void async_wait_for(bool upload_completion, bool download_completion,
+                        WaitOperCompletionHandler);
 };
+
 
 
 
@@ -413,6 +463,24 @@ public:
         return "Bad server URL";
     }
 };
+
+inline void Session::async_wait_for_sync_completion(WaitOperCompletionHandler handler)
+{
+    bool upload_completion = true, download_completion = true;
+    async_wait_for(upload_completion, download_completion, std::move(handler)); // Throws
+}
+
+inline void Session::async_wait_for_upload_completion(WaitOperCompletionHandler handler)
+{
+    bool upload_completion = true, download_completion = false;
+    async_wait_for(upload_completion, download_completion, std::move(handler)); // Throws
+}
+
+inline void Session::async_wait_for_download_completion(WaitOperCompletionHandler handler)
+{
+    bool upload_completion = false, download_completion = true;
+    async_wait_for(upload_completion, download_completion, std::move(handler)); // Throws
+}
 
 } // namespace sync
 } // namespace realm

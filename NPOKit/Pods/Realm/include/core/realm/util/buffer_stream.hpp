@@ -34,7 +34,7 @@ public:
 
     /// Reset current writing position (std::basic_streambuf::pptr()) to the
     /// beginning of the output buffer without reallocating buffer memory.
-    void reset();
+    void reset() noexcept;
 
     /// Get a pointer to the beginning of the output buffer
     /// (std::basic_streambuf::pbase()). Note that this will change as the
@@ -77,7 +77,7 @@ using ResettableExpandableBufferOutputStream = BasicResettableExpandableBufferOu
 // Implementation
 
 template<class C, class T, class A>
-inline void BasicResettableExpandableOutputStreambuf<C,T,A>::reset()
+inline void BasicResettableExpandableOutputStreambuf<C,T,A>::reset() noexcept
 {
     char_type* pbeg = this->pbase();
     char_type* pend = this->epptr();

@@ -109,10 +109,10 @@ static dispatch_once_t s_onceToken;
         // Initialize the sync engine.
         SyncManager::shared().set_logger_factory(s_syncLoggerFactory);
         SyncManager::shared().set_error_handler(errorLambda);
-        bool should_encrypt = !getenv("REALM_DISABLE_METADATA_ENCRYPTION");
+        bool should_encrypt = !getenv("REALM_DISABLE_METADATA_ENCRYPTION") && !RLMIsRunningInPlayground();
         auto mode = should_encrypt ? SyncManager::MetadataMode::Encryption : SyncManager::MetadataMode::NoEncryption;
         rootDirectory = rootDirectory ?: [NSURL fileURLWithPath:RLMDefaultDirectoryForBundleIdentifier(nil)];
-        SyncManager::shared().configure_file_system(rootDirectory.path.UTF8String, mode);
+        SyncManager::shared().configure_file_system(rootDirectory.path.UTF8String, mode, none, true);
         return self;
     }
     return nil;
@@ -192,7 +192,7 @@ static dispatch_once_t s_onceToken;
 
 - (NSArray<RLMSyncUser *> *)_allUsers {
     NSMutableArray<RLMSyncUser *> *buffer = [NSMutableArray array];
-    for (auto user : SyncManager::shared().all_users()) {
+    for (auto user : SyncManager::shared().all_logged_in_users()) {
         [buffer addObject:[[RLMSyncUser alloc] initWithSyncUser:std::move(user)]];
     }
     return buffer;

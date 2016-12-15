@@ -1,9 +1,9 @@
 PODS:
-  - Alamofire (4.1.0)
-  - AlamofireImage (3.1.0):
-    - Alamofire (~> 4.0)
-  - AlamofireObjectMapper (4.0.0):
-    - Alamofire (~> 4.0)
+  - Alamofire (4.2.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
+  - AlamofireObjectMapper (4.0.1):
+    - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
   - CocoaLumberjack/Core (3.0.0)
   - CocoaLumberjack/Default (3.0.0):
@@ -23,19 +23,19 @@ PODS:
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
   - NPOKit (1.0.0):
-    - Alamofire (~> 4.0)
-    - AlamofireImage (~> 3.1)
+    - Alamofire (~> 4.2)
+    - AlamofireImage (~> 3.2)
     - AlamofireObjectMapper (~> 4.0)
     - CocoaLumberjack/Swift (~> 3.0)
     - GoogleAPIClientForREST/YouTube
     - RealmSwift (~> 2.1)
     - XCDYouTubeKit (~> 2.5)
-  - ObjectMapper (2.2.1)
-  - Realm (2.1.0):
-    - Realm/Headers (= 2.1.0)
-  - Realm/Headers (2.1.0)
-  - RealmSwift (2.1.0):
-    - Realm (= 2.1.0)
+  - ObjectMapper (2.2.2)
+  - Realm (2.1.1):
+    - Realm/Headers (= 2.1.1)
+  - Realm/Headers (2.1.1)
+  - RealmSwift (2.1.1):
+    - Realm (= 2.1.1)
   - UIColor_Hex_Swift (3.0.2)
   - XCDYouTubeKit (2.5.3)
 
@@ -49,19 +49,19 @@ EXTERNAL SOURCES:
     :path: NPOKit
 
 SPEC CHECKSUMS:
-  Alamofire: e266cf991b933498df791e645e0d8ac294492153
-  AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
-  AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
   CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
   GoogleAPIClientForREST: f272e35f7fe9f80ab232756c798adc32245ece8c
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
-  NPOKit: 55d9d3f0ea7c14cdbb78604606b8ce9fc651bd11
-  ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
-  Realm: bc829ad0ef3d4eea70c34cfcc3b1704d18d50df1
-  RealmSwift: a4d4abbf0088c337cab5b738054395842e4b3052
+  NPOKit: e44fe02b194e8e851aa080429037d8d989a2707c
+  ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
+  Realm: a55959c0b171a5fe5267406d17f314fec3cefaae
+  RealmSwift: 749fd955bf8d6471c21d218b9389a47aaeccfe3f
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
   XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
-PODFILE CHECKSUM: c9d1d4c7c73f5be87551ac18d53a4851c5cb1514
+PODFILE CHECKSUM: 091a20fb1abcaac3e8b893f740365e6ad25fa8bf
 
 COCOAPODS: 1.2.0.beta.1

@@ -201,7 +201,21 @@ public:
 };
 
 
-std::unique_ptr<SyncHistory> make_sync_history(const std::string& realm_path);
+/// \brief Create a "sync history" implementation of the realm::Replication
+/// interface.
+///
+/// The main function of such an object is as a plugin for new
+/// realm::SharedGroup objects.
+///
+/// \param owner_is_sync_agent Must be set to true if, and only if the created
+/// history object represents (is owned by) the sync agent of the specified
+/// Realm file. At most one such instance is allowed to participate in a Realm
+/// file access session at any point in time. Ordinarily the sync agent is
+/// encapsulated by the sync::Client class, and the history instance
+/// representing the agent is created transparently by sync::Client (one history
+/// instance per sync::Session object).
+std::unique_ptr<SyncHistory> make_sync_history(const std::string& realm_path,
+                                               bool owner_is_sync_agent = false);
 
 
 

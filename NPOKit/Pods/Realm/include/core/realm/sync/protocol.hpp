@@ -20,6 +20,7 @@
 #ifndef REALM_SYNC_PROTOCOL_HPP
 #define REALM_SYNC_PROTOCOL_HPP
 
+#include <system_error>
 
 // NOTE: The protocol specification is in `/doc/protocol.md`
 
@@ -81,12 +82,11 @@ constexpr int get_current_protocol_version() noexcept
     return 15;
 }
 
-// Reserve 0 for compatibility with std::error_condition.
+// Reserve 0 for compatibility with std::error_code.
 //
 // ATTENTION: Please remember to update is_session_level_error() and
 // is_connection_level_error() definitions when adding/removing error codes.
-//
-enum class Error {
+enum class ProtocolError {
     invalid_error                =  99, // Server sent an invalid error code (ERROR)
 
     // Connection level and protocol errors
@@ -118,19 +118,31 @@ enum class Error {
     disabled_session             = 213, // Disabled session
 };
 
-inline constexpr bool is_session_level_error(Error error)
+inline constexpr bool is_session_level_error(ProtocolError error)
 {
     return int(error) >= 200 && int(error) <= 213;
 }
 
-inline constexpr bool is_connection_level_error(Error error)
+inline constexpr bool is_connection_level_error(ProtocolError error)
 {
     return int(error) >= 100 && int(error) <= 109;
 }
 
-const char* get_error_message(Error error_code);
+const char* get_error_message(ProtocolError) noexcept;
+
+const std::error_category& protocol_error_category() noexcept;
+
+std::error_code make_error_code(ProtocolError) noexcept;
 
 } // namespace sync
 } // namespace realm
+
+namespace std {
+
+template<> struct is_error_code_enum<realm::sync::ProtocolError> {
+    static const bool value = true;
+};
+
+} // namespace std
 
 #endif // REALM_SYNC_PROTOCOL_HPP
