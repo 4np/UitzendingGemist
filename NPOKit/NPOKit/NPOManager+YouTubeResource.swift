@@ -64,8 +64,8 @@ extension NPOManager {
         
         // fetch videos for this channel
         youtubeService.executeQuery(query) { ticket, result, error in
-            DDLogDebug("ticket: \(ticket)")
-            DDLogDebug("result: \(result)")
+            //DDLogDebug("ticket: \(ticket)")
+            //DDLogDebug("result: \(result)")
 
             guard let response = result as? GTLRYouTube_SearchListResponse, let videos = response.items else {
                 completed(nil, error)
@@ -103,8 +103,8 @@ extension NPOManager {
         
         // fetch videos for this channel
         youtubeService.executeQuery(query) { ticket, result, error in
-            DDLogDebug("ticket: \(ticket)")
-            DDLogDebug("result: \(result)")
+            //DDLogDebug("ticket: \(ticket)")
+            //DDLogDebug("result: \(result)")
             
             guard let response = result as? GTLRYouTube_PlaylistItemListResponse, let videos = response.items else {
                 completed(nil, error)

@@ -52,4 +52,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DDLog.add(DDTTYLogger.sharedInstance(), with: logLevel)  // TTY = Xcode console
         DDTTYLogger.sharedInstance().colorsEnabled = true        //       use colors
     }
+    
+    // MARK: Memory warning and logging
+    
+    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
+        DDLogError("Did receive memory warning (\(getMegabytesUsed()) MB)")
+    }
+    
+    func mach_task_self() -> task_t {
+        return mach_task_self_
+    }
+    
+    func getMegabytesUsed() -> Float? {
+        var info = mach_task_basic_info()
+        var count = mach_msg_type_number_t(MemoryLayout.size(ofValue: info) / MemoryLayout<integer_t>.size)
+        let kerr = withUnsafeMutablePointer(to: &info) { infoPtr in
+            return infoPtr.withMemoryRebound(to: integer_t.self, capacity: Int(count)) { (machPtr: UnsafeMutablePointer<integer_t>) in
+                return task_info(
+                    mach_task_self(),
+                    task_flavor_t(MACH_TASK_BASIC_INFO),
+                    machPtr,
+                    &count
+                )
+            }
+        }
+        guard kerr == KERN_SUCCESS else {
+            return nil
+        }
+        return Float(info.resident_size) / (1024 * 1024)   
+    }
 }
