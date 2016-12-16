@@ -19,10 +19,8 @@ open class NPORestriction: Mappable, CustomDebugStringConvertible {
     internal var time: NPOTimeRestriction?
     
     open var available: Bool {
-        get {
-            let available = self.time?.available ?? true
-            return available && self.geoAllowed()
-        }
+        let available = self.time?.available ?? true
+        return available && self.geoAllowed()
     }
     
     // MARK: Lifecycle

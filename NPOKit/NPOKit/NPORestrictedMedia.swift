@@ -23,10 +23,8 @@ open class NPORestrictedMedia: NPOMedia {
     open internal(set) var fragments: [NPOFragment]?
     
     open var available: Bool {
-        get {
-            let restrictionOkay = restriction?.available ?? true
-            return !self.revoked && self.active && restrictionOkay
-        }
+        let restrictionOkay = restriction?.available ?? true
+        return !self.revoked && self.active && restrictionOkay
     }
     
     // MARK: Lifecycle

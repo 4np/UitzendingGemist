@@ -13,14 +13,12 @@ extension Mappable where Self: CustomDebugStringConvertible {
     // MARK: CustomDebugStringConvertible
     
     public var debugDescription: String {
-        get {
-            let className = String(describing: type(of: self))
-            
-            guard let json = Mapper().toJSONString(self, prettyPrint: true) else {
-                return className
-            }
-            
-            return "\(className): \(json)"
+        let className = String(describing: type(of: self))
+        
+        guard let json = Mapper().toJSONString(self, prettyPrint: true) else {
+            return className
         }
+        
+        return "\(className): \(json)"
     }
 }

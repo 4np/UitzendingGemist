@@ -16,9 +16,7 @@ open class NPOTimeRestriction: Mappable, CustomDebugStringConvertible {
     internal(set) var offline: Date?
     
     open var available: Bool {
-        get {
-            return self.isOnline()
-        }
+        return self.isOnline()
     }
     
     // MARK: Lifecycle

@@ -38,13 +38,11 @@ open class NPOTip: NPOImage, Equatable {
     open fileprivate(set) var position: Int?
     
     open var publishedDisplayValue: String {
-        get {
-            guard let published = self.published else {
-                return NPOConstants.unknownText
-            }
-            
-            return published.daysAgoDisplayValue
+        guard let published = self.published else {
+            return NPOConstants.unknownText
         }
+        
+        return published.daysAgoDisplayValue
     }
     
     // MARK: Lifecycle

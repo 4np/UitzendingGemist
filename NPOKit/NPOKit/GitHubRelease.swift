@@ -24,32 +24,28 @@ open class GitHubRelease: Mappable, CustomDebugStringConvertible {
     open internal(set) var details: String?
     
     open var version: String? {
-        get {
-            guard let tag = self.tag else {
+        guard let tag = self.tag else {
+            return nil
+        }
+        
+        do {
+            let regex = try NSRegularExpression(pattern: "([0-9.]+)", options: NSRegularExpression.Options.caseInsensitive)
+            let matches = regex.matches(in: tag, options: [], range: NSRange(location: 0, length: tag.characters.count))
+            
+            guard let range = matches.first?.rangeAt(1) else {
                 return nil
             }
             
-            do {
-                let regex = try NSRegularExpression(pattern: "([0-9.]+)", options: NSRegularExpression.Options.caseInsensitive)
-                let matches = regex.matches(in: tag, options: [], range: NSRange(location: 0, length: tag.characters.count))
-                
-                guard let range = matches.first?.rangeAt(1) else {
-                    return nil
-                }
-                
-                let swiftRange = tag.characters.index(tag.startIndex, offsetBy: range.location) ..< tag.characters.index(tag.startIndex, offsetBy: range.location + range.length)
-                return tag.substring(with: swiftRange)
-            } catch let error as NSError {
-                DDLogError("Could not extract version from GitHub tag '\(tag)' (\(error))")
-                return nil
-            }
+            let swiftRange = tag.characters.index(tag.startIndex, offsetBy: range.location) ..< tag.characters.index(tag.startIndex, offsetBy: range.location + range.length)
+            return tag.substring(with: swiftRange)
+        } catch let error as NSError {
+            DDLogError("Could not extract version from GitHub tag '\(tag)' (\(error))")
+            return nil
         }
     }
     
     open var active: Bool {
-        get {
-            return !draft && !prerelease
-        }
+        return !draft && !prerelease
     }
     
     // MARK: Lifecycle

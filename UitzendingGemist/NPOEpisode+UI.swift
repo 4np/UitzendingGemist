@@ -12,16 +12,14 @@ import NPOKit
 
 extension NPOEpisode {
     public var watchedIndicator: String {
-        get {
-            // add (partically) watched indicator
-            switch watched {
-                case .unwatched:
-                    return UitzendingGemistConstants.unwatchedSymbol
-                case .partially:
-                    return UitzendingGemistConstants.partiallyWatchedSymbol
-                case .fully:
-                    return UitzendingGemistConstants.watchedSymbol
-            }
+        // add (partically) watched indicator
+        switch watched {
+            case .unwatched:
+                return UitzendingGemistConstants.unwatchedSymbol
+            case .partially:
+                return UitzendingGemistConstants.partiallyWatchedSymbol
+            case .fully:
+                return UitzendingGemistConstants.watchedSymbol
         }
     }
     

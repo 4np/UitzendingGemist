@@ -11,23 +11,21 @@ import CocoaLumberjack
 
 extension Date {
     public var daysAgoDisplayValue: String {
-        get {
-            let today = Calendar.current.startOfDay(for: Date())
-            let compareDate = Calendar.current.startOfDay(for: self)
-            
-            let diffDateComponents = (Calendar.current as NSCalendar).components([NSCalendar.Unit.day], from: compareDate, to: today, options: NSCalendar.Options.init(rawValue: 0))
-            let days = diffDateComponents.day ?? 0
-            
-            switch days {
-                case 0:
-                    return NPOConstants.todayText
-                case 1:
-                    return NPOConstants.yesterdayText
-                case 2:
-                    return NPOConstants.dayBeforeYesterdayText
-                default:
-                    return String.localizedStringWithFormat(NPOConstants.daysAgoText, days)
-            }
+        let today = Calendar.current.startOfDay(for: Date())
+        let compareDate = Calendar.current.startOfDay(for: self)
+        
+        let diffDateComponents = (Calendar.current as NSCalendar).components([NSCalendar.Unit.day], from: compareDate, to: today, options: NSCalendar.Options.init(rawValue: 0))
+        let days = diffDateComponents.day ?? 0
+        
+        switch days {
+            case 0:
+                return NPOConstants.todayText
+            case 1:
+                return NPOConstants.yesterdayText
+            case 2:
+                return NPOConstants.dayBeforeYesterdayText
+            default:
+                return String.localizedStringWithFormat(NPOConstants.daysAgoText, days)
         }
     }
     

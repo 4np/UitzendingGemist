@@ -10,15 +10,13 @@ import Foundation
 
 extension Int {
     public var time: (weeks: Int, days: Int, hours: Int, minutes: Int, seconds: Int) {
-        get {
-            return (
-                weeks: self / (3600 * 24 * 7),
-                days: self / (3600 * 24),
-                hours: self / 3600,
-                minutes: (self % 3600) / 60,
-                seconds: (self % 3600) % 60
-            )
-        }
+        return (
+            weeks: self / (3600 * 24 * 7),
+            days: self / (3600 * 24),
+            hours: self / 3600,
+            minutes: (self % 3600) / 60,
+            seconds: (self % 3600) % 60
+        )
     }
     
     public var timeDisplayValue: String {

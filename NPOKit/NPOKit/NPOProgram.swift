@@ -35,10 +35,8 @@ open class NPOProgram: NPORestrictedMedia {
     }
     
     override open var available: Bool {
-        get {
-            let restrictionOkay = restriction?.available ?? true
-            return !self.revoked && self.active && self.isOnline() && restrictionOkay
-        }
+        let restrictionOkay = restriction?.available ?? true
+        return !self.revoked && self.active && self.isOnline() && restrictionOkay
     }
     
     open var numberOfWatchedEpisodes: Int {
@@ -201,10 +199,8 @@ open class NPOProgram: NPORestrictedMedia {
     
     //swiftlint:disable force_unwrapping
     open var watched: Watched {
-        get {
-            let watchedValue = realmProgram?.watched ?? 0
-            return Watched(rawValue: watchedValue)!
-        }
+        let watchedValue = realmProgram?.watched ?? 0
+        return Watched(rawValue: watchedValue)!
     }
     //swiftlint:enable force_unwrapping
     

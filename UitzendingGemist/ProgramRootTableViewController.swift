@@ -22,10 +22,8 @@ class ProgramRootTableViewController: UITableViewController {
     
     // swiftlint:disable force_unwrapping
     fileprivate var uniqueLetters: [String] {
-        get {
-            let firstLetters = self.programs.filter({ $0.firstLetter != nil }).map({ $0.firstLetter! })
-            return Array(Set(firstLetters)).sorted()
-        }
+        let firstLetters = self.programs.filter({ $0.firstLetter != nil }).map({ $0.firstLetter! })
+        return Array(Set(firstLetters)).sorted()
     }
     // swiftlint:enable force_unwrapping
     

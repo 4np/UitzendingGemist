@@ -13,8 +13,6 @@ extension Mappable where Self: CustomStringConvertible {
     // MARK: CustomDebugStringConvertible
     
     public var description: String {
-        get {
-            return String(describing: type(of: self))
-        }
+        return String(describing: type(of: self))
     }
 }

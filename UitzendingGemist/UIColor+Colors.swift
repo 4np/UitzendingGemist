@@ -13,14 +13,10 @@ import UIColor_Hex_Swift
 extension UIColor {
     // see http://www.flatuicolorpicker.com/pink
     static var waxFlower: UIColor {
-        get {
-            return UIColor("#F1A9A0")
-        }
+        return UIColor("#F1A9A0")
     }
     
     static var lightShadow: UIColor {
-        get {
-            return UIColor("#dfdfdf")
-        }
+        return UIColor("#dfdfdf")
     }
 }
