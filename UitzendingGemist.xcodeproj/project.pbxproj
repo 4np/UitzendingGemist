@@ -23,6 +23,7 @@
 		F348AC631DDF58C800E9A2BE /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348AC621DDF58C800E9A2BE /* YouTubeViewController.swift */; };
 		F348AC651DDF5A5200E9A2BE /* YouTubeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348AC641DDF5A5200E9A2BE /* YouTubeCollectionViewCell.swift */; };
 		F34A15511D3E7B88000E0D4F /* EpisodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A15501D3E7B88000E0D4F /* EpisodeCollectionViewCell.swift */; };
+		F39AD97C1E0ADCAC00DC9104 /* EpisodePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AD97B1E0ADCAC00DC9104 /* EpisodePlayerViewController.swift */; };
 		F3A71A881D4936CE00F331F9 /* ProgramSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A71A871D4936CE00F331F9 /* ProgramSplitViewController.swift */; };
 		F3A71A8A1D49FE1000F331F9 /* Array+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A71A891D49FE1000F331F9 /* Array+Random.swift */; };
 		F3C193E01D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C193DF1D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift */; };
@@ -65,6 +66,7 @@
 		F348AC621DDF58C800E9A2BE /* YouTubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
 		F348AC641DDF5A5200E9A2BE /* YouTubeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeCollectionViewCell.swift; sourceTree = "<group>"; };
 		F34A15501D3E7B88000E0D4F /* EpisodeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCollectionViewCell.swift; sourceTree = "<group>"; };
+		F39AD97B1E0ADCAC00DC9104 /* EpisodePlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodePlayerViewController.swift; sourceTree = "<group>"; };
 		F3A71A871D4936CE00F331F9 /* ProgramSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramSplitViewController.swift; sourceTree = "<group>"; };
 		F3A71A891D49FE1000F331F9 /* Array+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Random.swift"; sourceTree = "<group>"; };
 		F3C193DF1D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDetailedCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				F317B9B11D3A7B2400927ACD /* EpisodeViewController.swift */,
 				F32BAAA51D3CCAE40026CAFB /* StillCollectionViewCell.swift */,
 				F3FD00721D3FFC7900034A76 /* ToProgramButton.swift */,
+				F39AD97B1E0ADCAC00DC9104 /* EpisodePlayerViewController.swift */,
 			);
 			name = Episode;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				TargetAttributes = {
 					F3D0C2531D36650F00A5BE93 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = USQSAZ85Q4;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -435,6 +439,7 @@
 				F348AC631DDF58C800E9A2BE /* YouTubeViewController.swift in Sources */,
 				F3D71E8E1D3D5C1600B9AEB0 /* UIColor+Colors.swift in Sources */,
 				F309EAAF1D47B316003B46A1 /* ProgramRootTableViewController.swift in Sources */,
+				F39AD97C1E0ADCAC00DC9104 /* EpisodePlayerViewController.swift in Sources */,
 				F3C7E8641D508D0000AD3809 /* ByDayDetailedCollectionViewCell.swift in Sources */,
 				F3C234471D6360DE0040E875 /* OnDeckCollectionViewCell.swift in Sources */,
 				F3C193E01D48ED04007C2296 /* ProgramDetailedCollectionViewCell.swift in Sources */,
@@ -575,7 +580,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = USQSAZ85Q4;
 				INFOPLIST_FILE = UitzendingGemist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = eu.osx.UitzendingGemist;
@@ -592,7 +597,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = USQSAZ85Q4;
 				INFOPLIST_FILE = UitzendingGemist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = eu.osx.UitzendingGemist;

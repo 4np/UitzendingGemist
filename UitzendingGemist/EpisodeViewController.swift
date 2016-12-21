@@ -14,32 +14,32 @@ import AVKit
 import UIColor_Hex_Swift
 
 class EpisodeViewController: UIViewController {
-    @IBOutlet weak fileprivate var backgroundImageView: UIImageView!
-    @IBOutlet weak fileprivate var episodeImageView: UIImageView!
-    @IBOutlet weak fileprivate var programNameLabel: UILabel!
-    @IBOutlet weak fileprivate var episodeNameLabel: UILabel!
-    @IBOutlet weak fileprivate var dateLabel: UILabel!
-    @IBOutlet weak fileprivate var durationLabel: UILabel!
-    @IBOutlet weak fileprivate var descriptionLabel: UILabel!
-    @IBOutlet weak fileprivate var genreTitleLabel: UILabel!
-    @IBOutlet weak fileprivate var genreLabel: UILabel!
-    @IBOutlet weak fileprivate var broadcasterTitleLabel: UILabel!
-    @IBOutlet weak fileprivate var broadcasterLabel: UILabel!
-    @IBOutlet weak fileprivate var playButton: UIButton!
-    @IBOutlet weak fileprivate var playLabel: UILabel!
-    @IBOutlet weak fileprivate var toProgramButton: UIButton!
-    @IBOutlet weak fileprivate var toProgramLabel: UILabel!
-    @IBOutlet weak fileprivate var markAsWatchedButton: UIButton!
-    @IBOutlet weak fileprivate var markAsWatchedLabel: UILabel!
-    @IBOutlet weak fileprivate var favoriteButton: UIButton!
-    @IBOutlet weak fileprivate var favoriteLabel: UILabel!
-    @IBOutlet weak fileprivate var stillCollectionView: UICollectionView!
+    @IBOutlet weak private var backgroundImageView: UIImageView!
+    @IBOutlet weak private var episodeImageView: UIImageView!
+    @IBOutlet weak private var programNameLabel: UILabel!
+    @IBOutlet weak private var episodeNameLabel: UILabel!
+    @IBOutlet weak private var dateLabel: UILabel!
+    @IBOutlet weak private var durationLabel: UILabel!
+    @IBOutlet weak private var descriptionLabel: UILabel!
+    @IBOutlet weak private var genreTitleLabel: UILabel!
+    @IBOutlet weak private var genreLabel: UILabel!
+    @IBOutlet weak private var broadcasterTitleLabel: UILabel!
+    @IBOutlet weak private var broadcasterLabel: UILabel!
+    @IBOutlet weak private var playButton: UIButton!
+    @IBOutlet weak private var playLabel: UILabel!
+    @IBOutlet weak private var toProgramButton: UIButton!
+    @IBOutlet weak private var toProgramLabel: UILabel!
+    @IBOutlet weak private var markAsWatchedButton: UIButton!
+    @IBOutlet weak private var markAsWatchedLabel: UILabel!
+    @IBOutlet weak private var favoriteButton: UIButton!
+    @IBOutlet weak private var favoriteLabel: UILabel!
+    @IBOutlet weak private var stillCollectionView: UICollectionView!
 
-    fileprivate var tip: NPOTip?
-    fileprivate var episode: NPOEpisode?
-    fileprivate var program: NPOProgram?
+    private var tip: NPOTip?
+    private var episode: NPOEpisode?
+    private var program: NPOProgram?
     
-    fileprivate var needLayout = false {
+    private var needLayout = false {
         didSet {
             if needLayout {
                 layout()
@@ -49,7 +49,7 @@ class EpisodeViewController: UIViewController {
 
     // MARK: Calculated Properties
     
-    fileprivate var programName: String? {
+    private var programName: String? {
         if let program = self.program, let name = program.name, !name.isEmpty {
             return name
         } else if let program = episode?.program, let name = program.name, !name.isEmpty {
@@ -63,7 +63,7 @@ class EpisodeViewController: UIViewController {
         return nil
     }
     
-    fileprivate var episodeName: String? {
+    private var episodeName: String? {
         var episodeName = ""
         
         if let episode = self.episode, let name = episode.name, !name.isEmpty {
@@ -103,7 +103,7 @@ class EpisodeViewController: UIViewController {
         return episodeName
     }
     
-    fileprivate var broadcastDisplayValue: String? {
+    private var broadcastDisplayValue: String? {
         if let value = episode?.broadcastedDisplayValue {
             return value
         } else if let value = tip?.publishedDisplayValue {
@@ -113,7 +113,7 @@ class EpisodeViewController: UIViewController {
         return nil
     }
     
-    fileprivate var episodeDescription: String? {
+    private var episodeDescription: String? {
         if let description = tip?.description {
             return description
         } else if let description = episode?.description {
@@ -123,7 +123,7 @@ class EpisodeViewController: UIViewController {
         return nil
     }
     
-    fileprivate var genres: String? {
+    private var genres: String? {
         guard let genres = episode?.genres, genres.count > 0 else {
             return nil
         }
@@ -131,7 +131,7 @@ class EpisodeViewController: UIViewController {
         return genres.map({ $0.rawValue }).joined(separator: "\n")
     }
     
-    fileprivate var broadcasters: String? {
+    private var broadcasters: String? {
         guard let broadcasters = episode?.broadcasters, broadcasters.count > 0 else {
             return nil
         }
@@ -139,7 +139,7 @@ class EpisodeViewController: UIViewController {
         return broadcasters.map({ $0.rawValue }).joined(separator: "\n")
     }
     
-    fileprivate var playerViewController: AVPlayerViewController?
+//    private var playerViewController: EpisodePlayerViewController?
     
     // MARK: Lifecycle
     
@@ -217,7 +217,7 @@ class EpisodeViewController: UIViewController {
     
     // MARK: Networking
     
-    fileprivate func getDetails(forEpisode episode: NPOEpisode?, withCompletion completed: @escaping () -> () = {}) {
+    private func getDetails(forEpisode episode: NPOEpisode?, withCompletion completed: @escaping () -> () = {}) {
         guard let episode = episode else {
             return
         }
@@ -236,7 +236,7 @@ class EpisodeViewController: UIViewController {
         }
     }
     
-    fileprivate func getDetails(forProgram program: NPOProgram?, withCompletion completed: @escaping () -> () = {}) {
+    private func getDetails(forProgram program: NPOProgram?, withCompletion completed: @escaping () -> () = {}) {
         guard let program = program else {
             return
         }
@@ -258,7 +258,7 @@ class EpisodeViewController: UIViewController {
     
     // MARK: Update UI
     
-    fileprivate func layout() {
+    private func layout() {
         guard needLayout else {
             return
         }
@@ -302,14 +302,14 @@ class EpisodeViewController: UIViewController {
         stillCollectionView.reloadData()
     }
     
-    fileprivate func updateFavoriteButtonTitleColor() {
+    private func updateFavoriteButtonTitleColor() {
         let color = program?.getUnfocusedColor() ?? UIColor.white
         let focusColor = program?.getFocusedColor() ?? UIColor.black
         favoriteButton.setTitleColor(color, for: .normal)
         favoriteButton.setTitleColor(focusColor, for: .focused)
     }
     
-    fileprivate func updateWatchedButtonAndLabel() {
+    private func updateWatchedButtonAndLabel() {
         guard let episode = self.episode else {
             return
         }
@@ -325,7 +325,7 @@ class EpisodeViewController: UIViewController {
     
     // MARK: Images
     
-    fileprivate func layoutImages() {
+    private func layoutImages() {
         if let tip = self.tip {
             getImage(forTip: tip, andImageView: backgroundImageView)
             getImage(forTip: tip, andImageView: episodeImageView)
@@ -335,7 +335,7 @@ class EpisodeViewController: UIViewController {
         }
     }
     
-    fileprivate func getImage(forTip tip: NPOTip, andImageView imageView: UIImageView) {
+    private func getImage(forTip tip: NPOTip, andImageView imageView: UIImageView) {
         let _ = tip.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not get image for tip (\(error))")
@@ -347,7 +347,7 @@ class EpisodeViewController: UIViewController {
         }
     }
     
-    fileprivate func getImage(forEpisode episode: NPOEpisode?, andImageView imageView: UIImageView) {
+    private func getImage(forEpisode episode: NPOEpisode?, andImageView imageView: UIImageView) {
         guard let episode = episode else {
             return
         }
@@ -363,7 +363,7 @@ class EpisodeViewController: UIViewController {
         }
     }
     
-    fileprivate func getImage(forProgram program: NPOProgram?, andImageView imageView: UIImageView) {
+    private func getImage(forProgram program: NPOProgram?, andImageView imageView: UIImageView) {
         guard let program = program else {
             return
         }
@@ -401,13 +401,13 @@ class EpisodeViewController: UIViewController {
     
     // MARK: Play
     
-    @IBAction fileprivate func didPressPlayButton(_ sender: UIButton) {
+    @IBAction private func didPressPlayButton(_ sender: UIButton) {
         play()
     }
     
     // MARK: Player
     
-    fileprivate func play() {
+    private func play() {
         guard let episode = self.episode else {
             DDLogError("Could not play episode...")
             return
@@ -437,7 +437,7 @@ class EpisodeViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    fileprivate func play(beginAt begin: Int) {
+    private func play(beginAt begin: Int) {
         guard let episode = self.episode else {
             DDLogError("Could not play episode...")
             return
@@ -459,75 +459,24 @@ class EpisodeViewController: UIViewController {
         }
     }
     
-    fileprivate func play(episode: NPOEpisode, withVideoStream url: URL, beginAt seconds: Int) {
-        // set up player
-        let player = AVPlayer(url: url)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
+    private func play(episode: NPOEpisode, withVideoStream url: URL, beginAt seconds: Int) {
+        let playerViewController = EpisodePlayerViewController()
         
-        // when the player reached the end of the video, pause the video
-        player.actionAtItemEnd = .pause
-        
-        // observe when the player is done playing
-        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
-        
-        // (re)set play data
-        episode.watchDuration = seconds
-        
-        // seek to start?
-        if seconds > 0 {
-            let seekTime = CMTimeMakeWithSeconds(Float64(seconds), 1)
-            player.seek(to: seekTime, toleranceBefore: kCMTimePositiveInfinity, toleranceAfter: kCMTimeZero)
-        }
-        
-        // reset playback time
-        episode.watchDuration = seconds
-        
-        // observe player
-        let interval = CMTimeMakeWithSeconds(1, 1) // 1 second
-        player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { [weak self] time in
-            guard let episode = self?.episode else {
-                return
-            }
-            
-            let seconds = Int(time.seconds)
-            
-            guard seconds > episode.watchDuration else {
-                return
-            }
-            
-            episode.watchDuration = seconds
-        }
-        
-        // present player
         present(playerViewController, animated: true) {
-            playerViewController.player?.play()
-        }
-        
-        self.playerViewController = playerViewController
-    }
-    
-    @objc fileprivate func playerDidFinishPlaying(notification: NSNotification) {
-        guard let playerViewController = self.playerViewController else {
-            return
-        }
-        
-        playerViewController.dismiss(animated: true) { [weak self] in
-            DDLogDebug("Finished playing episode, dismissed video player")
-            self?.playerViewController = nil
+            playerViewController.play(episode: episode, withVideoStream: url, beginAt: seconds)
         }
     }
     
     // MARK: Favorite
     
-    @IBAction fileprivate func didPressFavoriteButton(_ sender: UIButton) {
+    @IBAction private func didPressFavoriteButton(_ sender: UIButton) {
         program?.toggleFavorite()
         updateFavoriteButtonTitleColor()
     }
     
     // MARK: Mark as watched
     
-    @IBAction func didPressMarkAsWatchedButton(_ sender: UIButton) {
+    @IBAction private func didPressMarkAsWatchedButton(_ sender: UIButton) {
         episode?.toggleWatched()
         updateWatchedButtonAndLabel()
     }
@@ -549,7 +498,7 @@ class EpisodeViewController: UIViewController {
         }
     }
     
-    fileprivate func prepareForSegueToProgramView(_ segue: UIStoryboardSegue, sender: AnyObject?) {
+    private func prepareForSegueToProgramView(_ segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let vc = segue.destination as? ProgramViewController, let program = self.program else {
             return
         }
