@@ -25,7 +25,7 @@ extension UIView {
             // show overlay view
             UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
                 overlayView.alpha = 1.0
-            }, completion: { finished in
+            }, completion: { _ in
                     //overlayView.removeFromSuperview()
             })
         } else {
@@ -73,7 +73,7 @@ extension UIView {
             // start animating
             UIView.animate(withDuration: 0.3, delay: 0.0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
                 overlayView.alpha = 1.0
-            }, completion: { finished in
+            }, completion: { _ in
             })
         }
     }
@@ -83,7 +83,7 @@ extension UIView {
             // hide overlay view
             UIView.animate(withDuration: 0.5, delay: 0.0, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
                 overlayView.alpha = 0.0
-                }, completion: { finished in
+                }, completion: { _ in
                     //overlayView.removeFromSuperview()
             })
         }

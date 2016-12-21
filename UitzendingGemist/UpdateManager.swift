@@ -32,7 +32,7 @@ class UpdateManager {
         return days >= self.checkAfterDays
     }
     
-    func updateAvailable(withCompletion completed: @escaping (_ release: GitHubRelease?, _ currentVersion: String?) -> () = { release in }) {
+    func updateAvailable(withCompletion completed: @escaping (_ release: GitHubRelease?, _ currentVersion: String?) -> Void = { release in }) {
         guard self.shouldCheckForUpdates() else {
             return
         }

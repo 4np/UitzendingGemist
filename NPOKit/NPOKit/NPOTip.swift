@@ -65,7 +65,7 @@ open class NPOTip: NPOImage, Equatable {
     
     // MARK: Video Stream
     
-    open func getVideoStream(withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) {
+    open func getVideoStream(withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
         guard let episode = self.episode else {
             completed(nil, .noEpisodeError)
             return
@@ -76,7 +76,7 @@ open class NPOTip: NPOImage, Equatable {
     
     // MARK: Image fetching
 
-    internal override func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> () = { urls in }) -> Request? {
+    internal override func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> Void = { urls in }) -> Request? {
         var urls = [URL]()
         
         // tip image

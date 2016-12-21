@@ -31,8 +31,8 @@ enum TableViewCells: String {
 //}
 
 enum ViewControllers: String {
-    case ProgramViewController = "ProgramViewController"
-    case EpisodeViewController = "EpisodeViewController"
+    case ProgramViewController
+    case EpisodeViewController
 }
 
 enum Segues: String {

@@ -180,7 +180,7 @@ open class NPOEpisode: NPORestrictedMedia {
     
     // MARK: Image fetching
     
-    internal override func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> () = { urls in }) -> Request? {
+    internal override func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> Void = { urls in }) -> Request? {
         var urls = [URL]()
         
         // add program image

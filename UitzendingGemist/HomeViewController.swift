@@ -44,7 +44,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     fileprivate func checkForUpdate() {
         // update check
-        UpdateManager.sharedInstance.updateAvailable() { [weak self] latestRelease, currentVersion in
+        UpdateManager.sharedInstance.updateAvailable { [weak self] latestRelease, currentVersion in
             // update available, show an alert
             let latestVersion = latestRelease?.version ?? UitzendingGemistConstants.unknownText
             let downloadURL = latestRelease?.url
@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
 
     // MARK: Networking
     
-    fileprivate func getData(withCompletion completed: @escaping (_ tips: [NPOTip], _ onDeck: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)], _ errors: [NPOError]) -> ()) {
+    fileprivate func getData(withCompletion completed: @escaping (_ tips: [NPOTip], _ onDeck: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)], _ errors: [NPOError]) -> Void) {
         var tips = [NPOTip]()
         var onDeck: [(program: NPOProgram, mostRecentUnwatchedEpisode: NPOEpisode, unwatchedEpisodeCount: Int)] = []
         var errors = [NPOError]()
@@ -72,7 +72,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         // get tips
         group.enter()
-        let _ = NPOManager.sharedInstance.getTips() { items, error in
+        let _ = NPOManager.sharedInstance.getTips { items, error in
             defer { group.leave() }
             
             if let items = items {
@@ -84,7 +84,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         // get the most recent unwatched episodes of favorite programs
         group.enter()
-        NPOManager.sharedInstance.getDetailedFavoritePrograms() { programs, error in
+        NPOManager.sharedInstance.getDetailedFavoritePrograms { programs, _ in
             defer { group.leave() }
             
             guard let programs = programs else {
@@ -123,7 +123,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
 
         // get data
-        getData() { [weak self] tips, onDeck, errors in
+        getData { [weak self] tips, onDeck, _ in
             guard let strongSelf = self else {
                 return
             }

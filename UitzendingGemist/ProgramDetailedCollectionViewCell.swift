@@ -38,7 +38,7 @@ class ProgramDetailedCollectionViewCell: UICollectionViewCell {
         let size = CGSize(width: 375, height: 211)
         
         // get image
-        imageRequest = program.getImage(ofSize: size) { [weak self] image, error, request in
+        imageRequest = program.getImage(ofSize: size) { [weak self] image, _, request in
             guard let imageRequest = self?.imageRequest, request == imageRequest else {
                 return
             }

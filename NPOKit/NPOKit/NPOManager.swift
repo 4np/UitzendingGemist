@@ -107,7 +107,7 @@ open class NPOManager {
                     DDLogDebug("Performing schema upgrade \(oldSchemaVersion) to 1")
                     
                     // migrate NPOProgram object
-                    migration.enumerateObjects(ofType: RealmProgram.className()) { oldObject, newObject in
+                    migration.enumerateObjects(ofType: RealmProgram.className()) { _, newObject in
                         newObject!["watched"] = Watched.unwatched.rawValue
                     }
                 

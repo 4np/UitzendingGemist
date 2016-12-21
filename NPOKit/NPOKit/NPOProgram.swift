@@ -173,7 +173,7 @@ open class NPOProgram: NPORestrictedMedia {
     
     // MARK: Watched
     
-    open func toggleWatched(withCompletion completed: @escaping () -> () = {}) {
+    open func toggleWatched(withCompletion completed: @escaping () -> Void = {}) {
         // determine whether the episodes should be marked as watched or unwatched
         let newState: Watched
         if watched == .partially || watched == .unwatched {
@@ -183,7 +183,7 @@ open class NPOProgram: NPORestrictedMedia {
         }
         
         // get all episodes
-        getEpisodes() { [weak self] episodes in
+        getEpisodes { [weak self] episodes in
             // iterate over episodes
             for episode in episodes {
                 // update episode watched state (if necessary)
@@ -204,8 +204,8 @@ open class NPOProgram: NPORestrictedMedia {
     }
     //swiftlint:enable force_unwrapping
     
-    internal func updateWatched(withCompletion completed: @escaping () -> () = {}) {
-        getEpisodes() { [weak self] episodes in
+    internal func updateWatched(withCompletion completed: @escaping () -> Void = {}) {
+        getEpisodes { [weak self] episodes in
             let episodeCount = episodes.count
             let watchedEpisodeCount = episodes.filter({ $0.watched == .fully }).count
             let partiallyWatchedEpisodeCount = episodes.filter({ $0.watched == .partially }).count
@@ -236,7 +236,7 @@ open class NPOProgram: NPORestrictedMedia {
         }
     }
     
-    fileprivate func getEpisodes(withCompletion completed: @escaping (_ episodes: [NPOEpisode]) -> () = { episodes in }) {
+    fileprivate func getEpisodes(withCompletion completed: @escaping (_ episodes: [NPOEpisode]) -> Void = { episodes in }) {
         // check if we have episodes
         if let episodes = self.episodes, !episodes.isEmpty {
             completed(episodes)
@@ -257,7 +257,7 @@ open class NPOProgram: NPORestrictedMedia {
     // MARK: Image fetching
     
     //swiftlint:disable cyclomatic_complexity
-    internal override func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> () = { urls in }) -> Request? {
+    internal override func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> Void = { urls in }) -> Request? {
         var urls = [URL]()
         var stills = [URL]()
         
@@ -283,7 +283,7 @@ open class NPOProgram: NPORestrictedMedia {
         }
         
         // fetch episodes
-        return NPOManager.sharedInstance.getEpisodes(forProgram: self) { episodes, error in
+        return NPOManager.sharedInstance.getEpisodes(forProgram: self) { episodes, _ in
             guard let episodes = episodes else {
                 completed(urls)
                 return

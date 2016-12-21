@@ -62,7 +62,7 @@ open class NPOMedia: NPOImage, Equatable {
     
     // MARK: Video Stream
     
-    open func getVideoStream(withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) {
+    open func getVideoStream(withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
         NPOManager.sharedInstance.getVideoStream(forMID: mid, withCompletion: completed)
     }
     

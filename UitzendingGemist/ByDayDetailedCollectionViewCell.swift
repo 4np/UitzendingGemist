@@ -42,7 +42,7 @@ class ByDayDetailedCollectionViewCell: UICollectionViewCell {
         let size = CGSize(width: 375, height: 211)
         
         // get image
-        imageRequest = episode.getImage(ofSize: size) { [weak self] image, error, request in
+        imageRequest = episode.getImage(ofSize: size) { [weak self] image, _, request in
             guard let imageRequest = self?.imageRequest, request == imageRequest else {
                 return
             }

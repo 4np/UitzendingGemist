@@ -11,7 +11,7 @@ import Alamofire
 
 extension NPOManager {
     
-    internal func getToken(withCompletion completed: @escaping (_ token: String?, _ error: NPOError?) -> () = { token, error in }) {
+    internal func getToken(withCompletion completed: @escaping (_ token: String?, _ error: NPOError?) -> Void = { token, error in }) {
         let url = "http://ida.omroep.nl/npoplayer/i.js"
         
         Alamofire.request(url, headers: getHeaders())
@@ -27,7 +27,7 @@ extension NPOManager {
             }
     }
     
-    internal func extractToken(fromJavascript script: String, completed: (_ token: String?, _ error: NPOError?) -> () = { token, error in }) {
+    internal func extractToken(fromJavascript script: String, completed: (_ token: String?, _ error: NPOError?) -> Void = { token, error in }) {
         do {
             let regex = try NSRegularExpression(pattern: "\"(.*)\"", options: NSRegularExpression.Options.caseInsensitive)
             let matches = regex.matches(in: script, options: [], range: NSRange(location: 0, length: script.characters.count))

@@ -23,7 +23,7 @@ fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 extension NPOManager {
     // http://apps-api.uitzendinggemist.nl/series.json
-    public func getPrograms(withCompletion completed: @escaping (_ programs: [NPOProgram]?, _ error: NPOError?) -> () = { programs, error in }) -> Request? {
+    public func getPrograms(withCompletion completed: @escaping (_ programs: [NPOProgram]?, _ error: NPOError?) -> Void = { programs, error in }) -> Request? {
         return self.fetchModels(ofType: NPOProgram.self, fromPath: "series.json") { programs, error in
             // filter programs based on whether or not they are available
             let availablePrograms = programs?.filter { $0.available == true }
@@ -31,7 +31,7 @@ extension NPOManager {
         }
     }
     
-    public func getDetails(forProgram program: NPOProgram, withCompletion completed: @escaping (_ program: NPOProgram?, _ error: NPOError?) -> () = { program, error in }) -> Request? {
+    public func getDetails(forProgram program: NPOProgram, withCompletion completed: @escaping (_ program: NPOProgram?, _ error: NPOError?) -> Void = { program, error in }) -> Request? {
         guard let mid = program.mid else {
             completed(nil, .noMIDError)
             return nil
@@ -41,13 +41,13 @@ extension NPOManager {
     }
     
     // http://apps-api.uitzendinggemist.nl/series/AT_2051232.json
-    fileprivate func getDetails(forProgramWithMID mid: String, withCompletion completed: @escaping (_ program: NPOProgram?, _ error: NPOError?) -> () = { program, error in }) -> Request? {
+    fileprivate func getDetails(forProgramWithMID mid: String, withCompletion completed: @escaping (_ program: NPOProgram?, _ error: NPOError?) -> Void = { program, error in }) -> Request? {
         let path = "series/\(mid).json"
         return self.fetchModel(ofType: NPOProgram.self, fromPath: path, withCompletion: completed)
     }
     
-    public func getFavoritePrograms(withCompletion completed: @escaping (_ programs: [NPOProgram]?, _ error: NPOError?) -> () = { programs, error in }) {
-        let _ = self.getPrograms() { programs, error in
+    public func getFavoritePrograms(withCompletion completed: @escaping (_ programs: [NPOProgram]?, _ error: NPOError?) -> Void = { programs, error in }) {
+        let _ = self.getPrograms { programs, error in
             guard let programs = programs else {
                 completed(nil, error)
                 return
@@ -58,7 +58,7 @@ extension NPOManager {
         }
     }
     
-    public func getDetailedFavoritePrograms(withCompletion completed: @escaping (_ programs: [NPOProgram]?, _ errors: [NPOError]?) -> () = { programs, error in }) {
+    public func getDetailedFavoritePrograms(withCompletion completed: @escaping (_ programs: [NPOProgram]?, _ errors: [NPOError]?) -> Void = { programs, error in }) {
         do {
             // get favorite programs from realm
             let realm = try Realm()

@@ -229,7 +229,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     @IBAction func didPressMarkAsWatchedButton(_ sender: UIButton) {
-        program?.toggleWatched() { [weak self] in
+        program?.toggleWatched { [weak self] in
             self?.updateWatchedButtonAndLabel()
         }
     }

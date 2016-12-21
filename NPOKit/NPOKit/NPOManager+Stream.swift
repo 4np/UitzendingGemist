@@ -16,15 +16,15 @@ public enum NPOLiveType: String {
 }
 
 public enum NPOLive: String {
-    case NPO_1 = "NPO_1"
-    case NPO_2 = "NPO_2"
-    case NPO_3 = "NPO_3"
-    case NPO_ZAPP_XTRA = "NPO_ZAPP_XTRA"
-    case NPO_101 = "NPO_101"
-    case NPO_NIEUWS = "NPO_NIEUWS"
-    case NPO_POLITIEK = "NPO_POLITIEK"
-    case NPO_BEST = "NPO_BEST"
-    case NPO_CULTURA = "NPO_CULTURA"
+    case NPO_1
+    case NPO_2
+    case NPO_3
+    case NPO_ZAPP_XTRA
+    case NPO_101
+    case NPO_NIEUWS
+    case NPO_POLITIEK
+    case NPO_BEST
+    case NPO_CULTURA
 //    case NPO_ZAPP = "NPO_ZAPP"
     
     public static let all = [NPO_1, NPO_2, NPO_3, NPO_ZAPP_XTRA, NPO_101, NPO_NIEUWS, NPO_POLITIEK, NPO_BEST, NPO_CULTURA]
@@ -56,13 +56,13 @@ public enum NPOLive: String {
 }
 
 extension NPOManager {
-    internal func getVideoStream(forMID mid: String?, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) {
+    internal func getVideoStream(forMID mid: String?, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
         guard let mid = mid else {
             completed(nil, .noMIDError)
             return
         }
         
-        self.getToken() { [weak self] token, error in
+        self.getToken { [weak self] token, error in
             guard let token = token else {
                 completed(nil, error)
                 return
@@ -81,14 +81,14 @@ extension NPOManager {
         }
     }
     
-    fileprivate func getVideoStreamLocation(forURL url: URL, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) -> Request? {
+    fileprivate func getVideoStreamLocation(forURL url: URL, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) -> Request? {
         return self.fetchModel(ofType: NPOStreamLocation.self, fromURL: url.absoluteString) { streamLocation, error in
             completed(streamLocation?.url, error)
         }
     }
     
-    public func getVideoStream(forLiveChannel channel: NPOLive, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> () = { url, error in }) {
-        self.getToken() { [weak self] token, error in
+    public func getVideoStream(forLiveChannel channel: NPOLive, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
+        self.getToken { [weak self] token, error in
             guard let token = token else {
                 completed(nil, error)
                 return

@@ -64,7 +64,7 @@ class ProgramSplitViewController: UISplitViewController {
     // MARK: Configuration
     
     internal func configure(withProgram program: NPOProgram) {
-        self.imageRequest = program.getImage(ofSize: backgroundImageView.frame.size) { [weak self] image, error, request in
+        self.imageRequest = program.getImage(ofSize: backgroundImageView.frame.size) { [weak self] image, _, request in
             guard let imageRequest = self?.imageRequest, request == imageRequest else {
                 return
             }

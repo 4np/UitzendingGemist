@@ -29,7 +29,7 @@ extension NPOManager {
     
     // MARK: Networking
 
-    internal func getProgramResources(withCompletion completed: @escaping (_ resources: [NPOProgramResource]?, _ error: NPOError?) -> () = { resources, error in }) {
+    internal func getProgramResources(withCompletion completed: @escaping (_ resources: [NPOProgramResource]?, _ error: NPOError?) -> Void = { resources, error in }) {
         // check if we need to update (once a day)
         guard
             let cachedProgramResources = self.cachedProgramResources,
@@ -54,12 +54,12 @@ extension NPOManager {
         completed(cachedProgramResources, nil)
     }
     
-    internal func getResources(forProgram program: NPOProgram, withCompletion completed: @escaping (_ resource: NPOProgramResource?) -> () = { resource in }) {
+    internal func getResources(forProgram program: NPOProgram, withCompletion completed: @escaping (_ resource: NPOProgramResource?) -> Void = { resource in }) {
         guard let mid = program.mid else {
             return
         }
         
-        getProgramResources() { resources, error in
+        getProgramResources { resources, _ in
             guard let resource = resources?.filter({ $0.mid == mid }).first else {
                 return
             }

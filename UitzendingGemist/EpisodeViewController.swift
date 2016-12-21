@@ -217,7 +217,7 @@ class EpisodeViewController: UIViewController {
     
     // MARK: Networking
     
-    private func getDetails(forEpisode episode: NPOEpisode?, withCompletion completed: @escaping () -> () = {}) {
+    private func getDetails(forEpisode episode: NPOEpisode?, withCompletion completed: @escaping () -> Void = {}) {
         guard let episode = episode else {
             return
         }
@@ -236,7 +236,7 @@ class EpisodeViewController: UIViewController {
         }
     }
     
-    private func getDetails(forProgram program: NPOProgram?, withCompletion completed: @escaping () -> () = {}) {
+    private func getDetails(forProgram program: NPOProgram?, withCompletion completed: @escaping () -> Void = {}) {
         guard let program = program else {
             return
         }
@@ -447,7 +447,7 @@ class EpisodeViewController: UIViewController {
         view.startLoading()
     
         // play video stream
-        episode.getVideoStream() { [weak self] url, error in
+        episode.getVideoStream { [weak self] url, error in
             self?.view.stopLoading()
             
             guard let url = url else {

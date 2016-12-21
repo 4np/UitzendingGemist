@@ -12,7 +12,7 @@ import Alamofire
 
 extension NPOManager {
     // http://apps-api.uitzendinggemist.nl/guide/2016-07-21.json
-    public func getGuides(forChannels channels: [NPOLive], onDate date: Date, withCompletion completed: @escaping (_ guides: [NPOLive: [NPOBroadcast]]?, _ errors: [NPOLive: NPOError]?) -> () = { guides, errors in }) {
+    public func getGuides(forChannels channels: [NPOLive], onDate date: Date, withCompletion completed: @escaping (_ guides: [NPOLive: [NPOBroadcast]]?, _ errors: [NPOLive: NPOError]?) -> Void = { guides, errors in }) {
         var guides = [NPOLive: [NPOBroadcast]]()
         var errors = [NPOLive: NPOError]()
 

@@ -41,7 +41,7 @@ _Note: as of summer 2016 Apple has reduced the free Developer account provisioni
 
 ## 1. Xcode
 
-The code was developed in [Xcode 8.1](https://itunes.apple.com/nl/app/xcode/id497799835?mt=12) ([alternative link](https://developer.apple.com/xcode/download/)) so you need at least to have that version installed. Continue with the following steps when you have finished installing ```Xcode``` as the next steps require a finished installation.
+The code was developed in [Xcode 8.2.1](https://itunes.apple.com/nl/app/xcode/id497799835?mt=12) ([alternative link](https://developer.apple.com/xcode/download/)) so you need at least to have that version installed. Continue with the following steps when you have finished installing ```Xcode``` as the next steps require a finished installation.
 
 ## 2. Clone the project
 

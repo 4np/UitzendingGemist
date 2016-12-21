@@ -56,7 +56,7 @@ open class NPOImage: Mappable, CustomDebugStringConvertible {
     
     // MARK: Image fetching
     
-    final public func getImage(withCompletion completed: @escaping (_ image: UIImage?, _ error: NPOError?, _ request: NPORequest) -> () = { image, error, request in }) -> NPORequest {
+    final public func getImage(withCompletion completed: @escaping (_ image: UIImage?, _ error: NPOError?, _ request: NPORequest) -> Void = { image, error, request in }) -> NPORequest {
         let npoRequest = NPORequest()
         let identifier = self.getImageIdentifier()
 
@@ -72,7 +72,7 @@ open class NPOImage: Mappable, CustomDebugStringConvertible {
             return npoRequest
         }
         
-        let urlRequest = self.getImageURLs() { urls in
+        let urlRequest = self.getImageURLs { urls in
             guard let url = urls.first else {
                 completed(nil, .noImageError, npoRequest)
                 return
@@ -95,7 +95,7 @@ open class NPOImage: Mappable, CustomDebugStringConvertible {
         return npoRequest
     }
     
-    final public func getImage(ofSize size: CGSize, withCompletion completed: @escaping (_ image: UIImage?, _ error: NPOError?, _ request: NPORequest) -> () = { image, error, request in }) -> NPORequest {
+    final public func getImage(ofSize size: CGSize, withCompletion completed: @escaping (_ image: UIImage?, _ error: NPOError?, _ request: NPORequest) -> Void = { image, error, request in }) -> NPORequest {
         let npoRequest = NPORequest()
         let identifier = self.getImageIdentifier(forSize: size)
         
@@ -111,7 +111,7 @@ open class NPOImage: Mappable, CustomDebugStringConvertible {
             return npoRequest
         }
         
-        let urlRequest = self.getImageURLs() { urls in
+        let urlRequest = self.getImageURLs { urls in
             guard let url = urls.first else {
                 completed(nil, .noImageError, npoRequest)
                 return
@@ -134,7 +134,7 @@ open class NPOImage: Mappable, CustomDebugStringConvertible {
         return npoRequest
     }
     
-    internal func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> () = { urls in }) -> Request? {
+    internal func getImageURLs(withCompletion completed: @escaping (_ urls: [URL]) -> Void = { urls in }) -> Request? {
         var urls = [URL]()
         
         if let url = self.imageURL {

@@ -38,7 +38,7 @@ class YouTubeViewController: UIViewController, UICollectionViewDataSource, UICol
         // show progress hud
         view.startLoading()
         
-        NPOManager.sharedInstance.getYouTubeVideos(forProgram: program) { [weak self] videos, error in
+        NPOManager.sharedInstance.getYouTubeVideos(forProgram: program) { [weak self] videos, _ in
             self?.view.stopLoading()
             
             guard let videos = videos else {
@@ -106,7 +106,7 @@ class YouTubeViewController: UIViewController, UICollectionViewDataSource, UICol
         view.startLoading()
         
         // play video
-        NPOManager.sharedInstance.getPlayerItem(youTubeVideo: video) { [weak self] playerItem, error in
+        NPOManager.sharedInstance.getPlayerItem(youTubeVideo: video) { [weak self] playerItem, _ in
             // show progress hud
             self?.view.stopLoading()
             

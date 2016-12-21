@@ -37,7 +37,7 @@ extension NPOManager {
     // MARK: Networking
     
     // https://www.googleapis.com/youtube/v3/search?key=...&channelId=UCdH_8mNJ9vzpHwMNwlz88Zw&part=snippet,id&order=date&maxResults=50
-    final public func getYouTubeVideos(forProgram program: NPOProgram, withCompletion completed: @escaping (_ videos: [NPOYouTubeVideo]?, _ error: Error?) -> () = { videos, error in }) {
+    final public func getYouTubeVideos(forProgram program: NPOProgram, withCompletion completed: @escaping (_ videos: [NPOYouTubeVideo]?, _ error: Error?) -> Void = { videos, error in }) {
         guard program.hasYouTubeResource else {
             DDLogDebug("Trying to fetch YouTube resources for a program without extra resources")
             return
@@ -50,7 +50,7 @@ extension NPOManager {
         }
     }
     
-    fileprivate func getYouTubeVideos(forYouTubeChannel channel: String, withCompletion completed: @escaping (_ videos: [NPOYouTubeVideo]?, _ error: Error?) -> () = { videos, error in }) {
+    fileprivate func getYouTubeVideos(forYouTubeChannel channel: String, withCompletion completed: @escaping (_ videos: [NPOYouTubeVideo]?, _ error: Error?) -> Void = { videos, error in }) {
         DDLogDebug("getYouTubeVideos forYouTubeChannel \(channel)")
         
         let query = GTLRYouTubeQuery_SearchList.query(withPart: "snippet,id")
@@ -63,10 +63,7 @@ extension NPOManager {
         }
         
         // fetch videos for this channel
-        youtubeService.executeQuery(query) { ticket, result, error in
-            //DDLogDebug("ticket: \(ticket)")
-            //DDLogDebug("result: \(result)")
-
+        youtubeService.executeQuery(query) { _, result, error in
             guard let response = result as? GTLRYouTube_SearchListResponse, let videos = response.items else {
                 completed(nil, error)
                 return
@@ -90,7 +87,7 @@ extension NPOManager {
         }
     }
     
-    fileprivate func getYouTubeVideos(forYouTubePlaylist playlist: String, withCompletion completed: @escaping (_ videos: [NPOYouTubeVideo]?, _ error: Error?) -> () = { videos, error in }) {
+    fileprivate func getYouTubeVideos(forYouTubePlaylist playlist: String, withCompletion completed: @escaping (_ videos: [NPOYouTubeVideo]?, _ error: Error?) -> Void = { videos, error in }) {
         DDLogDebug("getYouTubeVideos forYouTubePlaylist \(playlist)")
         
         let query = GTLRYouTubeQuery_PlaylistItemsList.query(withPart: "snippet,id")
@@ -102,7 +99,7 @@ extension NPOManager {
         }
         
         // fetch videos for this channel
-        youtubeService.executeQuery(query) { ticket, result, error in
+        youtubeService.executeQuery(query) { _, result, error in
             //DDLogDebug("ticket: \(ticket)")
             //DDLogDebug("result: \(result)")
             
@@ -131,7 +128,7 @@ extension NPOManager {
     
     // MARK: Player Item
     
-    final public func getPlayerItem(youTubeVideo video: NPOYouTubeVideo, withCompletion completed: @escaping (_ playerItem: AVPlayerItem?, _ error: NPOError?) -> () = { playerItem, error in }) {
+    final public func getPlayerItem(youTubeVideo video: NPOYouTubeVideo, withCompletion completed: @escaping (_ playerItem: AVPlayerItem?, _ error: NPOError?) -> Void = { playerItem, error in }) {
         guard let videoIdentifier = video.videoIdentifier else {
             return
         }
@@ -150,7 +147,7 @@ extension NPOManager {
     
     // MARK: Image
     
-    final public func getImage(forYouTubeVideo video: NPOYouTubeVideo, ofSize size: CGSize, withCompletion completed: @escaping (_ image: UIImage?, _ error: NPOError?) -> () = { image, error in }) -> Request? {
+    final public func getImage(forYouTubeVideo video: NPOYouTubeVideo, ofSize size: CGSize, withCompletion completed: @escaping (_ image: UIImage?, _ error: NPOError?) -> Void = { image, error in }) -> Request? {
         guard let urlString = video.imageURL else {
             return nil
         }
