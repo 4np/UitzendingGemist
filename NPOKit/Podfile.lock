@@ -23,11 +23,11 @@ PODS:
   - GTMSessionFetcher/Full (1.1.7):
     - GTMSessionFetcher/Core (= 1.1.7)
   - ObjectMapper (2.2.2)
-  - Realm (2.1.1):
-    - Realm/Headers (= 2.1.1)
-  - Realm/Headers (2.1.1)
-  - RealmSwift (2.1.1):
-    - Realm (= 2.1.1)
+  - Realm (2.1.2):
+    - Realm/Headers (= 2.1.2)
+  - Realm/Headers (2.1.2)
+  - RealmSwift (2.1.2):
+    - Realm (= 2.1.2)
   - XCDYouTubeKit (2.5.3)
 
 DEPENDENCIES:
@@ -47,8 +47,8 @@ SPEC CHECKSUMS:
   GoogleAPIClientForREST: f272e35f7fe9f80ab232756c798adc32245ece8c
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
-  Realm: a55959c0b171a5fe5267406d17f314fec3cefaae
-  RealmSwift: 749fd955bf8d6471c21d218b9389a47aaeccfe3f
+  Realm: efe855f4d977c8ce5a82d3116d9f1ff155a6550c
+  RealmSwift: 17d6ee30b6f9df86364408c2197492e33bfea567
   XCDYouTubeKit: 90690f9e3523735dc93b8024269d991b0cfffe78
 
 PODFILE CHECKSUM: baa4c2e824699c9e7ea13a7162b21b9c134031ad
