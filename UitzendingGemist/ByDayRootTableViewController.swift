@@ -12,12 +12,13 @@ import NPOKit
 import CocoaLumberjack
 
 class ByDayRootTableViewController: UITableViewController {
-    fileprivate var loaded = false
-    fileprivate var days = [(from: Date, to: Date, label: String, name: String)]() {
+    private var loaded = false
+    private var days = [(from: Date, to: Date, label: String, name: String)]() {
         didSet {
             tableView.reloadData()
         }
     }
+    private var date: Date?
 
     // MARK: Lifecycle
     
@@ -32,16 +33,46 @@ class ByDayRootTableViewController: UITableViewController {
 
         // construct days
         days = NPOManager.sharedInstance.getDaysSinceNow(numberOfDays: 17)
+        date = days.first?.from
+        
+        // setup the ui
         setupInitialUI()
+        
+        // and select the first date
+        updateDetailedView(forRow: 0)
+        
+        // observe when we are foregrounded
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
     
+    @objc private func applicationWillEnterForeground() {
+        guard let date = date else { return }
+        
+        // update days and ui
+        days = NPOManager.sharedInstance.getDaysSinceNow(numberOfDays: 17)
+        setupInitialUI()
+        
+        // find the matching row
+        guard let day = days.enumerated().filter({ (_, element) -> Bool in return element.from == date }).first else {
+            updateDetailedView(forRow: 0)
+            return
+        }
+        
+        // select the specific row
+        let indexPath = IndexPath(row: day.offset, section: 0)
+        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .middle)
+        
+        // update detailed view
+        updateDetailedView(forRow: day.offset)
+    }
+    
     // MARK: Initial load
     
-    fileprivate func setupInitialUI() {
+    private func setupInitialUI() {
         guard days.count > 0 && tableView.indexPathsForSelectedRows == nil else {
             return
         }
@@ -52,7 +83,6 @@ class ByDayRootTableViewController: UITableViewController {
         // get a random episode and use it to set the background
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableViewScrollPosition.middle)
-        updateDetailedView(forRow: 0)
     }
     
     // MARK: UITableViewDataSource
@@ -79,10 +109,12 @@ class ByDayRootTableViewController: UITableViewController {
     // swiftlint:enable force_cast
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        updateDetailedView(forRow: (indexPath as NSIndexPath).row)
+        let row = (indexPath as NSIndexPath).row
+        date = days[row].from
+        updateDetailedView(forRow: row)
     }
     
-    fileprivate func updateDetailedView(forRow row: Int) {
+    private func updateDetailedView(forRow row: Int) {
         let day = days[row]
         
         guard let vcs = splitViewController?.viewControllers, vcs.count > 1, let vc = vcs[1] as? ByDayDetailedCollectionViewController else {
