@@ -25,7 +25,7 @@
       "~> 3.0"
     ],
     "Alamofire": [
-      "~> 4.2"
+      "~> 4.3"
     ],
     "AlamofireObjectMapper": [
       "~> 4.0"
@@ -34,7 +34,7 @@
       "~> 3.2"
     ],
     "RealmSwift": [
-      "~> 2.1"
+      "~> 2.4"
     ],
     "XCDYouTubeKit": [
       "~> 2.5"

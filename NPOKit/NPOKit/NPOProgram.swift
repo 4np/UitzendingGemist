@@ -121,8 +121,8 @@ open class NPOProgram: NPORestrictedMedia {
         
         let words = trimmedName.components(separatedBy: " ")
         let wordMapper = [
-            "'t"    : "het",
-            "t"     : "het"
+            "'t": "het",
+            "t": "het"
         ]
         
         for word in words {

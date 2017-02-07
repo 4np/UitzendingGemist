@@ -8,10 +8,10 @@ abstract_target 'NPOKitAbstract' do
     target 'NPOKit' do
         platform :tvos, '10.0'
 
-        pod 'Alamofire', '~> 4.2'
+        pod 'Alamofire', '~> 4.3'
         pod 'AlamofireObjectMapper', '~> 4.0'
         pod 'AlamofireImage', '~> 3.2'
-        pod 'RealmSwift', '~> 2.1'
+        pod 'RealmSwift', '~> 2.4'
         pod 'XCDYouTubeKit', '~> 2.5'
         pod 'GoogleAPIClientForREST/YouTube'
     end
