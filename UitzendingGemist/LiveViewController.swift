@@ -15,7 +15,7 @@ import CocoaLumberjack
 class LiveViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBOutlet weak var liveCollectionView: UICollectionView!
     
-    fileprivate var guides: [NPOLive: [NPOBroadcast]]? {
+    private var guides: [NPOLive: [NPOBroadcast]]? {
         didSet {
             guard let guides = guides, let oldValue = oldValue, oldValue.count > 0 else {
                 self.liveCollectionView.reloadData()
@@ -40,12 +40,19 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.fetchGuides()
+        fetchGuides()
+        
+        // observe when we are foregrounded
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    @objc private func applicationWillEnterForeground() {
+        fetchGuides()
     }
     
     // MARK: Networking
     
-    fileprivate func fetchGuides() {
+    private func fetchGuides() {
         NPOManager.sharedInstance.getGuides(forChannels: NPOLive.all, onDate: Date()) { [weak self] guides, errors in
             // log errors if we have any
             for (channel, error) in errors ?? [NPOLive: NPOError]() {
