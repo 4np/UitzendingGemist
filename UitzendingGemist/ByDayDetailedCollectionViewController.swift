@@ -26,6 +26,11 @@ class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewD
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc private func applicationWillEnterForeground() {
         guard let date = date else { return }
         configure(withDate: date)

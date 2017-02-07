@@ -34,16 +34,17 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     // MARK: Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchGuides()
         
         // observe when we are foregrounded
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc private func applicationWillEnterForeground() {

@@ -40,6 +40,9 @@ class ProgramRootTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         self.fetchPrograms()
         
+        // observe when we are foregrounded
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+
         // select the first element
         guard let indexPath = tableView.indexPathForSelectedRow else {
             return
@@ -49,9 +52,27 @@ class ProgramRootTableViewController: UITableViewController {
         updateDetailedView(forRow: (indexPath as NSIndexPath).row)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupInitialUI()
+    }
+    
+    @objc private func applicationWillEnterForeground() {
+        self.fetchPrograms()
+        
+        // select the first element
+        guard let indexPath = tableView.indexPathForSelectedRow else {
+            return
+        }
+        
+        // update the current detailed view
+        updateDetailedView(forRow: (indexPath as NSIndexPath).row)
     }
     
     // MARK: Networking
