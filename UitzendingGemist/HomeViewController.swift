@@ -38,6 +38,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         // check for version update
         checkForUpdate()
+        
+        // observe when we are foregrounded
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    @objc private func applicationWillEnterForeground() {
+        refresh()
     }
     
     // MARK: Version check
