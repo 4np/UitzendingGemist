@@ -114,6 +114,24 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         self.layout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // observe when we are foregrounded
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func applicationWillEnterForeground() {
+        // refresh
+        guard let program = program else { return }
+        configure(withProgram: program)
+    }
+    
     // MARK: Configuration
     
     func configure(withProgram program: NPOProgram) {
