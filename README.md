@@ -92,7 +92,7 @@ You're done! You can disconnect your Apple TV and start watching! :)
 
 # Firewalls
 
-If you have set up a firewall to filter outbound network requests, make sure to configure it to allow the following URL patterns you can expect the app to call (also see #18):
+If you have set up a firewall to filter outbound network requests, make sure to configure it to allow the following URL patterns you can expect the app to call (also see [#18](https://github.com/4np/UitzendingGemist/issues/18)):
 
 - apps-api.uitzendinggemist.nl (the API)
 - api.github.com (check for new releases)
