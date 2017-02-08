@@ -90,6 +90,18 @@ Finally you are able to compile the program and deploy it onto your Apple TV! Cl
 
 You're done! You can disconnect your Apple TV and start watching! :)
 
+# Firewalls
+
+If you have set up a firewall to filter outbound network requests, make sure to configure it to allow the following URL patterns you can expect the app to call (also see #18):
+
+- apps-api.uitzendinggemist.nl (the API)
+- api.github.com (check for new releases)
+- *.omroep.nl (images, videos and live streams)
+- googleapis.com (youtube API)
+- youtube.com (youtube videos)
+
+_Note: as the video and image content URLs come from the APIs, although unlikely, these URLs *might* change_
+
 # Screenshots
 
 ## Application Icon
