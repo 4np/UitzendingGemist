@@ -28,7 +28,7 @@ using a web app hosted on a remote server.
 
 # Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
 
-Unfortunately the app cannot be distributed in the Appstore as the NPO does not allow third parties in doing so. However, using a _free_ Apple Developer account you *can* compile it yourself and install it in your own Apple TV 4 (_but also read the note below_). 
+Unfortunately the app cannot be distributed in the Appstore as the NPO does not allow third parties in doing so. However, using a _free_ Apple Developer account you *can* compile it yourself and install it in your own Apple TV 4 (_but also read the note below_). While this may sound scary and difficult to non-technical users, it's really not that hard if you follow these steps :)
 
 **Prerequisites:**
 
@@ -43,9 +43,17 @@ _Note: as of summer 2016 Apple has reduced the free Developer account provisioni
 
 The code was developed in [Xcode 8.2.1](https://itunes.apple.com/nl/app/xcode/id497799835?mt=12) ([alternative link](https://developer.apple.com/xcode/download/)) so you need at least to have that version installed. Continue with the following steps when you have finished installing ```Xcode``` as the next steps require a finished installation.
 
-## 2. Clone the project
+## 2. Download the project
 
-It is advisable to have a ```Developer``` folder on your machine. Execute the following code in ```Terminal``` to create those folders and clone this project:
+You can either download a zipped distribution (novice) or use Git (advanced).
+
+### 2.1 Download the zipfile
+
+For novice users it is probably the easiest route to just download the [latest zipped version](https://github.com/4np/UitzendingGemist/archive/master.zip) and continue with step 3. After installation to your Apple TV you are safe to delete the downloaded project but keep the _Bundle Identifier_ (see step 5) you used in mind as you will need to use it again when you want to redeploy your app to your Apple TV (in the case of software updates or when your free developer limit (7 days) runs out). 
+
+### 2.2 Using Git
+
+While not required, it is advisable to have a ```Developer``` folder on your machine. Execute the following code in ```Terminal``` to create those folders and clone this project:
 
 ```
 mkdir -p ~/Developer/tvOS
@@ -53,6 +61,16 @@ cd ~/Developer/tvOS
 git clone https://github.com/4np/UitzendingGemist.git
 cd UitzendingGemist
 ```
+
+If you are not experienced with Git, you can _pull_ new changes using:
+
+```
+cd ~/Developer/tvOS/UitzendingGemist
+git fetch
+git pull
+```
+
+Instead of using the terminal you can also use a graphical client like [SourceTree](https://www.sourcetreeapp.com) (generic) or [GitHub Desktop](https://desktop.github.com) (GitHub specific).
 
 ## 3. Open the project
 
