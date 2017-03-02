@@ -25,7 +25,7 @@ public enum NPOLive: String {
     case cultura = "LI_NEDERLAND2_221679"
     case npo101 = "LI_NEDERLAND3_221683"
     case politiek = "LI_NEDERLAND1_221675"
-    case best = "best"                      // from 20:00 to 3:59
+    case best = "does-not-exist?"           // from 20:00 to 3:59 (zapp xtra??)
     
     public static let all = [npo1, npo2, npo3, zappxtra, npo101, nieuws, cultura, best, politiek]
     
@@ -50,7 +50,7 @@ public enum NPOLive: String {
         case .politiek:
             return (name: "politiek24", shortName: "po24", type: .thema, audioQuality: 128000, audioChannel: "_1", videoQuality: 1000000, alternativeChannel: nil)
         case .best:
-            return (name: "best24", shortName: "hilv", type: .thema, audioQuality: 64000, audioChannel: "_1", videoQuality: 1000000, alternativeChannel: nil)
+            return (name: "best24", shortName: "hilv", type: .thema, audioQuality: 64000, audioChannel: "_1", videoQuality: 1000000, alternativeChannel: .zappxtra)
         }
     }
 }
