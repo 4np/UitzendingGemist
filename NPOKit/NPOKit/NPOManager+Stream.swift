@@ -170,9 +170,12 @@ extension NPOManager {
                 .replacingOccurrences(of: "\\", with: "")
             
             // At this stage we have a low quality 576p stream
-            let lowQualityStreamURL = URL(string: cleanedValue)
-            DDLogDebug("stream url: \(lowQualityStreamURL)")
-            completed(lowQualityStreamURL, nil)
+            guard let adaptiveStreamURL = URL(string: cleanedValue) else {
+                completed(nil, NPOError.networkError("Could not fetch live stream url (url: \(url)) (3)"))
+                return
+            }
+            DDLogDebug("stream url: \(adaptiveStreamURL)")
+            completed(adaptiveStreamURL, nil)
             return
             
 //            // Modify the 576p stream url to direct to a high quality stream for better quality playback
