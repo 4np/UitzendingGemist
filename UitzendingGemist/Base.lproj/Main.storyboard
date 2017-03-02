@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="zgt-By-Pf4">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="zgt-By-Pf4">
     <device id="appleTV" orientation="landscape">
         <adaptation id="light"/>
     </device>
@@ -64,6 +64,10 @@
                                                         <constraint firstAttribute="width" constant="548" id="VbV-u8-k5w"/>
                                                         <constraint firstAttribute="height" constant="320" id="v9R-Kz-uPt"/>
                                                     </constraints>
+                                                </imageView>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="strip-item-8b951ebef3305f4e19053f8aa40b9ad9b41aecd7582ba23686557e4491453c37" translatesAutoresizingMaskIntoConstraints="NO" id="bMZ-9B-gFV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="548" height="380"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-5f-9Ws">
                                                     <rect key="frame" x="8" y="215" width="532" height="60"/>
@@ -1476,7 +1480,7 @@
         <scene sceneID="I7N-KK-qeK">
             <objects>
                 <navigationController navigationBarHidden="YES" id="RrE-fT-1Vq" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Hc-c0-ini">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0Hc-c0-ini">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -1534,6 +1538,7 @@
     </scenes>
     <resources>
         <image name="YouTube-logo-light" width="773" height="481"/>
+        <image name="strip-item-8b951ebef3305f4e19053f8aa40b9ad9b41aecd7582ba23686557e4491453c37" width="1" height="117"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
