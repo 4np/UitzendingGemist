@@ -59,7 +59,12 @@ class TipCollectionViewCell: UICollectionViewCell {
                 return
             }
 
-            self?.imageView.image = image
+            // add a gradient to improve readability
+            if let gradientImage = image.imageWithGradient() {
+                self?.imageView.image = gradientImage
+            } else {
+                self?.imageView.image = image
+            }
         }
     }
 }

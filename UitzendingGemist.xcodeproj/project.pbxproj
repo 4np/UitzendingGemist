@@ -12,6 +12,7 @@
 		F309EAB41D47BC38003B46A1 /* ProgramRootTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309EAB31D47BC38003B46A1 /* ProgramRootTableViewCell.swift */; };
 		F309EAB61D488F4A003B46A1 /* ProgramDetailedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309EAB51D488F4A003B46A1 /* ProgramDetailedCollectionViewController.swift */; };
 		F30FE2361D3F9D0F00ABFAE8 /* AutoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30FE2351D3F9D0F00ABFAE8 /* AutoScrollView.swift */; };
+		F310AC251E68BB76001B10E9 /* UIImage+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310AC241E68BB76001B10E9 /* UIImage+Gradient.swift */; };
 		F317B9A81D39291D00927ACD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9A71D39291D00927ACD /* HomeViewController.swift */; };
 		F317B9AA1D392DD200927ACD /* TipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9A91D392DD200927ACD /* TipCollectionViewCell.swift */; };
 		F317B9B21D3A7B2400927ACD /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9B11D3A7B2400927ACD /* EpisodeViewController.swift */; };
@@ -53,6 +54,7 @@
 		F309EAB31D47BC38003B46A1 /* ProgramRootTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramRootTableViewCell.swift; sourceTree = "<group>"; };
 		F309EAB51D488F4A003B46A1 /* ProgramDetailedCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDetailedCollectionViewController.swift; sourceTree = "<group>"; };
 		F30FE2351D3F9D0F00ABFAE8 /* AutoScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoScrollView.swift; sourceTree = "<group>"; };
+		F310AC241E68BB76001B10E9 /* UIImage+Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gradient.swift"; sourceTree = "<group>"; };
 		F317B9771D37BDA300927ACD /* NPO Sans Bold v1.01.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPO Sans Bold v1.01.otf"; sourceTree = "<group>"; };
 		F317B9781D37BDA300927ACD /* NPO Sans Regular v1.01.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NPO Sans Regular v1.01.otf"; sourceTree = "<group>"; };
 		F317B9A71D39291D00927ACD /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				F3F034731D4E073100A80682 /* NPOProgram+UI.swift */,
 				F3F034751D4E10C100A80682 /* NPOTip+UI.swift */,
 				F3C234441D633DDD0040E875 /* UICollectionView+UI.swift */,
+				F310AC241E68BB76001B10E9 /* UIImage+Gradient.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				F3FD00811D40202100034A76 /* UpdateManager.swift in Sources */,
 				F317B9B21D3A7B2400927ACD /* EpisodeViewController.swift in Sources */,
 				F3C7E8601D4FD52E00AD3809 /* ByDayRootTableViewCell.swift in Sources */,
+				F310AC251E68BB76001B10E9 /* UIImage+Gradient.swift in Sources */,
 				F33BCE911D40F3EF00CD232C /* LiveCollectionViewCell.swift in Sources */,
 				F33BCE8F1D40EF9000CD232C /* LiveViewController.swift in Sources */,
 				F317B9A81D39291D00927ACD /* HomeViewController.swift in Sources */,
