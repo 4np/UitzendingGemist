@@ -15,7 +15,7 @@ extension NPOManager {
         // old url (before 20170301): http://ida.omroep.nl/npoplayer/i.js
         let url = "http://ida.omroep.nl/app.php/auth"
         
-        Alamofire.request(url, headers: getHeaders()).responseJSON { [weak self] response in
+        Alamofire.request(url, headers: getHeaders()).responseJSON { response in
             switch response.result {
                 case .success(let responseJSON):
                     // as of 20170301 the token does not appear to require fixing?

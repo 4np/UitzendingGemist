@@ -1,17 +1,13 @@
 PODS:
-  - Alamofire (4.3.0)
+  - Alamofire (4.4.0)
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
-  - AlamofireObjectMapper (4.0.1):
+  - AlamofireObjectMapper (4.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
-  - CocoaLumberjack/Core (3.0.0)
-  - CocoaLumberjack/Default (3.0.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (3.0.0):
+  - CocoaLumberjack/Default (3.1.0)
+  - CocoaLumberjack/Swift (3.1.0):
     - CocoaLumberjack/Default
-  - CocoaLumberjack/Swift (3.0.0):
-    - CocoaLumberjack/Extensions
   - GoogleAPIClientForREST/Core (1.2.0):
     - GTMSessionFetcher (>= 1.1.7)
   - GoogleAPIClientForREST/YouTube (1.2.0):
@@ -22,35 +18,35 @@ PODS:
   - GTMSessionFetcher/Core (1.1.8)
   - GTMSessionFetcher/Full (1.1.8):
     - GTMSessionFetcher/Core (= 1.1.8)
-  - ObjectMapper (2.2.2)
-  - Realm (2.4.2):
-    - Realm/Headers (= 2.4.2)
-  - Realm/Headers (2.4.2)
-  - RealmSwift (2.4.2):
-    - Realm (= 2.4.2)
+  - ObjectMapper (2.2.5)
+  - Realm (2.4.3):
+    - Realm/Headers (= 2.4.3)
+  - Realm/Headers (2.4.3)
+  - RealmSwift (2.4.3):
+    - Realm (= 2.4.3)
   - XCDYouTubeKit (2.5.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.3)
+  - Alamofire (~> 4.4)
   - AlamofireImage (~> 3.2)
-  - AlamofireObjectMapper (~> 4.0)
+  - AlamofireObjectMapper (~> 4.1)
   - CocoaLumberjack/Swift
   - GoogleAPIClientForREST/YouTube
   - RealmSwift (~> 2.4)
   - XCDYouTubeKit (~> 2.5)
 
 SPEC CHECKSUMS:
-  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
-  AlamofireObjectMapper: 842d2eed43a4d0593ff0110d54ac86a170c4519c
-  CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
+  AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
+  CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
   GoogleAPIClientForREST: 9e5fd600a06c38abf92b5db337c5df2cfb95ee12
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
-  ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
-  Realm: d27b758e12d62a3371879a065d4c40aa212c5a54
-  RealmSwift: 9556c0fe0f0cfecacfb755ae9e68ff379fc6bead
+  ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
+  Realm: e08d60b0048ccccd3949c8c28a92c4db5712d7e9
+  RealmSwift: 30d49739ccb3385d201242736ca4dda56aec9dfc
   XCDYouTubeKit: 80eb3978dae220a0116d198bca6852c6c969fa66
 
-PODFILE CHECKSUM: 48030f1d195ca3f1bf94a21659b1b22aa22332b1
+PODFILE CHECKSUM: 6af5411d0c5a8a04be6304ad825f4a035679de48
 
 COCOAPODS: 1.2.0

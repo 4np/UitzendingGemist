@@ -48,9 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // see https://gist.github.com/erica/d20639b409fe1b318c0e
         let logLevel: DDLogLevel = _isDebugAssertConfiguration() ? .verbose : .warning
         
-        DDLog.add(DDASLLogger.sharedInstance(), with: logLevel)  // ASL = Apple System Logs
-        DDLog.add(DDTTYLogger.sharedInstance(), with: logLevel)  // TTY = Xcode console
-        DDTTYLogger.sharedInstance().colorsEnabled = true        //       use colors
+        DDLog.add(DDASLLogger.sharedInstance, with: logLevel)  // ASL = Apple System Logs
+        DDLog.add(DDTTYLogger.sharedInstance, with: logLevel)  // TTY = Xcode console
+        DDTTYLogger.sharedInstance.colorsEnabled = true        //       use colors
     }
     
     // MARK: Memory warning and logging
