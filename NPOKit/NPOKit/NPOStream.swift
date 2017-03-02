@@ -12,21 +12,22 @@ import AlamofireObjectMapper
 import AlamofireImage
 import ObjectMapper
 
-public enum NPOStreamQuality: String {
+public enum NPOStreamType: String {
+    case live = "Live"
     case high = "Hoog"
     case normal = "Normaal"
     case low = "Laag"
 }
 
 open class NPOStream: Mappable, CustomDebugStringConvertible {
-    public private(set) var quality: NPOStreamQuality?
+    public private(set) var type: NPOStreamType?
     public private(set) var contentType: String?
     public private(set) var format: String?
     // example: http://odi.omroep.nl/video/ida/h264_std/40dbe746de647f8d5418125a923c6510/58b7d7f0/VPWON_1236166/1?type=jsonp&callback=?
-    private var jsonpURL: URL?
+    private var rawURL: URL?
     
     private var url: URL? {
-        guard let url = jsonpURL else { return nil }
+        guard let url = rawURL else { return nil }
         
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         components?.query = nil
@@ -42,17 +43,31 @@ open class NPOStream: Mappable, CustomDebugStringConvertible {
     // MARK: Mapping
     
     open func mapping(map: Map) {
-        quality <- map["label"]
+        type <- map["label"]
         contentType <- map["contentType"]
         format <- map["format"]
-        jsonpURL <- (map["url"], URLTransform())
+        rawURL <- (map["url"], URLTransform())
     }
     
     // MARK: Get video url
     
     internal func getVideoStreamURL(withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
-        guard let url = self.url else {
-            completed(nil, NPOError.networkError("NPOStream does not have a url"))
+        guard let type = type else {
+            completed(nil, NPOError.networkError("NPOStream does not have a type"))
+            return
+        }
+        
+        switch type {
+            case .high, .normal, .low:
+                self.getVideoStreamURL(forURL: url, withCompletion: completed)
+            case .live:
+                NPOManager.sharedInstance.getLiveVideoStreamURL(forURL: rawURL, withCompletion: completed)
+        }
+    }
+    
+    internal func getVideoStreamURL(forURL url: URL?, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
+        guard let url = url else {
+            completed(nil, NPOError.networkError("NPOStream does not have a url (1)"))
             return
         }
         
@@ -65,6 +80,5 @@ open class NPOStream: Mappable, CustomDebugStringConvertible {
             
             completed(streamURL, nil)
         }
-
     }
 }

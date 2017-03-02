@@ -40,6 +40,22 @@ import ObjectMapper
 //        ]
 //    ]
 //}
+//
+// Example response for live / themed streams:
+//{
+//    "limited": false,
+//    "site": null,
+//    "items": [
+//        [
+//            {
+//                "label": "Live",
+//                "contentType": "live",
+//                "url": "http://livestreams.omroep.nl/live/npo/tvlive/npo2/npo2.isml/npo2.m3u8?hash=f545b16018eac4752d498dea4e5a0c58&type=jsonp&protection=url",
+//                "format": "hls"
+//            }
+//        ]
+//    ]
+//}
 
 open class NPOVideo: Mappable, CustomDebugStringConvertible {
     public private(set) var limited: Bool?
@@ -63,11 +79,13 @@ open class NPOVideo: Mappable, CustomDebugStringConvertible {
     
     public var highestQualityStream: NPOStream? {
         // high
-        if let stream = self.streams?.filter({ $0.quality == .high }).first { return stream }
+        if let stream = self.streams?.filter({ $0.type == .high }).first { return stream }
         // normal
-        if let stream = self.streams?.filter({ $0.quality == .normal }).first { return stream }
+        if let stream = self.streams?.filter({ $0.type == .normal }).first { return stream }
         // low
-        if let stream = self.streams?.filter({ $0.quality == .low }).first { return stream }
+        if let stream = self.streams?.filter({ $0.type == .low }).first { return stream }
+        // not really a quality, but the same back end returns live streams as well
+        if let stream = self.streams?.filter({ $0.type == .live }).first { return stream }
         
         return nil
     }

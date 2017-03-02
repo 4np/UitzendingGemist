@@ -11,46 +11,46 @@ import Alamofire
 import CocoaLumberjack
 
 public enum NPOLiveType: String {
-    case TV = "tvlive"
-    case THEMA = "thematv"
+    case tv = "tvlive"
+    case thema = "thematv"
 }
 
 public enum NPOLive: String {
-    case NPO_1
-    case NPO_2
-    case NPO_3
-    case NPO_ZAPP_XTRA
-    case NPO_101
-    case NPO_NIEUWS
-    case NPO_POLITIEK
-    case NPO_BEST
-    case NPO_CULTURA
-//    case NPO_ZAPP = "NPO_ZAPP"
+    case npo1 = "LI_NL1_4188102"
+    case npo2 = "LI_NL2_4188105"
+    case npo3 = "npo3" // zend uit vanaf 19:00
+    case zappxtra = "LI_NEDERLAND3_221687"
+    case zappelin = "LI_NEDERLAND3_136696"
+    case nieuws = "LI_NEDERLAND1_221673"
+    case cultura = "LI_NEDERLAND2_221679"
+    case npo101 = "LI_NEDERLAND3_221683"
+    case politiek = "LI_NEDERLAND1_221675"
+    case best = "best" // zend uit tussen 20:00 en 3:59
     
-    public static let all = [NPO_1, NPO_2, NPO_3, NPO_ZAPP_XTRA, NPO_101, NPO_NIEUWS, NPO_POLITIEK, NPO_BEST, NPO_CULTURA]
+    public static let all = [npo1, npo2, npo3, zappxtra, zappelin, npo101, nieuws, politiek, best, cultura]
     
-    internal var configuration: (name: String, shortName: String, type: NPOLiveType, audioQuality: Int, audioStream: String, videoQuality: Int) {
+    internal var configuration: (name: String, shortName: String, type: NPOLiveType) {
         switch self {
-            case .NPO_1:
-                return (name: "ned1", shortName: "ned1", type: .TV, audioQuality: 128000, audioStream: "", videoQuality: 1400000)
-            case .NPO_2:
-                return (name: "ned2", shortName: "ned2", type: .TV, audioQuality: 128000, audioStream: "_1", videoQuality: 1400000)
-            case .NPO_3:
-                return (name: "ned3", shortName: "ned3", type: .TV, audioQuality: 128000, audioStream: "", videoQuality: 1400000)
-            case .NPO_ZAPP_XTRA:
-                return (name: "zappelin24", shortName: "opvo", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
-            case .NPO_101:
-                return (name: "101tv", shortName: "_101_", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
-            case .NPO_NIEUWS:
-                return (name: "journaal24", shortName: "nosj", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
-            case .NPO_POLITIEK:
-                return (name: "politiek24", shortName: "po24", type: .THEMA, audioQuality: 128000, audioStream: "_1", videoQuality: 1000000)
-            case .NPO_BEST:
-                return (name: "best24", shortName: "hilv", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
-            case .NPO_CULTURA:
-                return (name: "cultura24", shortName: "cult", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
-//            case NPO_ZAPP_XTRA:
-//                return (name: "zapp", shortName: "ned1", type: .THEMA, audioQuality: 64000, audioStream: "_1", videoQuality: 1000000)
+        case .npo1:
+            return (name: "npo1", shortName: "ned1", type: .tv)
+        case .npo2:
+            return (name: "npo2", shortName: "ned2", type: .tv)
+        case .npo3:
+            return (name: "npo3", shortName: "ned3", type: .tv)
+        case .zappxtra:
+            return (name: "zappelin24", shortName: "opvo", type: .thema)
+        case .zappelin:
+            return (name: "zappelin24", shortName: "opvo", type: .thema)
+        case .nieuws:
+            return (name: "journaal24", shortName: "nosj", type: .thema)
+        case .cultura:
+            return (name: "cultura24", shortName: "cult", type: .thema)
+        case .npo101:
+            return (name: "101tv", shortName: "_101_", type: .thema)
+        case .politiek:
+            return (name: "politiek24", shortName: "po24", type: .thema)
+        case .best:
+            return (name: "best24", shortName: "hilv", type: .thema)
         }
     }
 }
@@ -71,23 +71,27 @@ extension NPOManager {
             // old url (before 20170301):
             // let url = "http://ida.omroep.nl/odi/?prid=\(mid)&puboptions=h264_bb,h264_sb,h264_std&adaptive=no&part=1&token=\(token)"
             let url = "http://ida.omroep.nl/app.php/\(mid)?adaptive=yes&token=\(token)"
-            //DDLogDebug("url -> \(url)")
+            //DDLogDebug("episode url -> \(url)")
             
-            let _ = self?.fetchModel(ofType: NPOVideo.self, fromURL: url) { video, error in
-                guard let video = video else {
-                    let error = error ?? NPOError.networkError("Could not fetch video model (url: \(url))")
-                    completed(nil, error)
-                    return
-                }
-                
-                guard let stream = video.highestQualityStream else {
-                    let error = error ?? NPOError.networkError("Could not fetch stream for video model (url: \(url))")
-                    completed(nil, error)
-                    return
-                }
-                
-                stream.getVideoStreamURL(withCompletion: completed)
+            self?.getVideoStream(forURL: url, withCompletion: completed)
+        }
+    }
+    
+    private func getVideoStream(forURL url: String, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
+        let _ = self.fetchModel(ofType: NPOVideo.self, fromURL: url) { video, error in
+            guard let video = video else {
+                let error = error ?? NPOError.networkError("Could not fetch video model (url: \(url))")
+                completed(nil, error)
+                return
             }
+            
+            guard let stream = video.highestQualityStream else {
+                let error = error ?? NPOError.networkError("Could not fetch stream for video model (url: \(url))")
+                completed(nil, error)
+                return
+            }
+            
+            stream.getVideoStreamURL(withCompletion: completed)
         }
     }
     
@@ -98,17 +102,63 @@ extension NPOManager {
                 return
             }
             
-            let configuration = channel.configuration
-            let url = "http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/\(configuration.type.rawValue)/\(configuration.name)/\(configuration.name).isml/\(configuration.name)-audio\(configuration.audioStream)=\(configuration.audioQuality)-video=\(configuration.videoQuality).m3u8&token=\(token)"
-            
-            let _ = self?.fetchModel(ofType: NPOLiveStream.self, fromURL: url) { liveStream, error in
-                guard let url = liveStream?.url, liveStream?.success == true else {
-                    completed(nil, error)
-                    return
+            // 1. http://ida.omroep.nl/app.php/LI_NL1_4188102?adaptive=yes&token=7t0akpumcsre8k9jqtrk0dblt7
+            //    {
+            //        "limited": false,
+            //        "site": null,
+            //        "items": [
+            //        [
+            //        {
+            //        "label": "Live",
+            //        "contentType": "live",
+            //        "url": "http://livestreams.omroep.nl/live/npo/tvlive/npo1/npo1.isml/npo1.m3u8?hash=f9ec3c0d696b8fce324f9a58b5899978&type=jsonp&protection=url",
+            //        "format": "hls"
+            //        }
+            //        ]
+            //        ]
+            //    }
+            // 2. http://livestreams.omroep.nl/live/npo/tvlive/npo1/npo1.isml/npo1.m3u8?hash=f9ec3c0d696b8fce324f9a58b5899978&type=jsonp&protection=url
+            //    setSource("http:\/\/l2cm10d0745c410058b7e13a000000.d6e09d487eeed2ac.smoote2k.npostreaming.nl\/d\/live\/npo\/tvlive\/npo1\/npo1.isml\/npo1.m3u8")
+
+            let url = "http://ida.omroep.nl/app.php/\(channel.rawValue)?adaptive=yes&token=\(token)"
+            //DDLogDebug("live url: \(url)")
+            self?.getVideoStream(forURL: url, withCompletion: completed)
+        }
+    }
+    
+    internal func getLiveVideoStreamURL(forURL url: URL?, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
+        guard let url = url else {
+            completed(nil, NPOError.networkError("NPOStream does not have a url (2)"))
+            return
+        }
+        
+        // example content of url:
+        // setSource("http:\/\/l2cme608adc6090058b7eb9f000000.d4ec18219f11558f.smoote1f.npostreaming.nl\/d\/live\/npo\/tvlive\/npo1\/npo1.isml\/npo1.m3u8")
+        
+        let _ = Alamofire.request(url, headers: self.getHeaders()).responseString { response in
+            //DDLogDebug("response: \(response.result.value)")
+            guard let value = response.result.value else {
+                var error = NPOError.networkError("Could not fetch live stream url (url: \(url)) (1)")
+                if let responseError = response.error {
+                    error = NPOError.networkError("Could not fetch live stream url (\(responseError.localizedDescription)) (2)")
                 }
-                
-                completed(url as URL, nil)
+                completed(nil, error)
+                return
             }
+            
+            let cleanedValue = value
+                .replacingOccurrences(of: "setSource(\"", with: "")
+                .replacingOccurrences(of: "\")", with: "")
+                .replacingOccurrences(of: "\\", with: "")
+            
+            guard let liveStreamURL = URL(string: cleanedValue) else {
+                completed(nil, NPOError.networkError("Could not fetch live stream url (url: \(url)) (3) [\(cleanedValue)]"))
+                return
+            }
+            
+            //DDLogDebug("cleaned live stream url: \(liveStreamURL)")
+            
+            completed(liveStreamURL, nil)
         }
     }
 }

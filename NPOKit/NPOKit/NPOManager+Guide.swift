@@ -27,7 +27,7 @@ extension NPOManager {
         for channel in channels {
             group.enter()
             
-            let path = channel.configuration.type == .TV ? "guide/\(formattedDate).json" : "guide/thema/\(formattedDate).json"
+            let path = channel.configuration.type == .tv ? "guide/\(formattedDate).json" : "guide/thema/\(formattedDate).json"
             let keypath = channel.configuration.shortName
 
             let _ = self.fetchModels(ofType: NPOBroadcast.self, fromPath: path, withKeyPath: keypath) { broadcasts, error in
