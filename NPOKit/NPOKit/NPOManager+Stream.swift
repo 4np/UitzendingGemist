@@ -18,7 +18,7 @@ public enum NPOLiveType: String {
 public enum NPOLive: String {
     case npo1 = "LI_NL1_4188102"
     case npo2 = "LI_NL2_4188105"
-    case npo3 = "npo3"                      // npo3 after 19:00
+    case npo3 = "LI_NL3_4188107"            // npo3 after 19:00
     case zappelin = "LI_NEDERLAND3_136696"  // npo3 before 19:00
     case zappxtra = "LI_NEDERLAND3_221687"
     case nieuws = "LI_NEDERLAND1_221673"
