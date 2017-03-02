@@ -12,37 +12,26 @@ import Alamofire
 extension NPOManager {
     
     internal func getToken(withCompletion completed: @escaping (_ token: String?, _ error: NPOError?) -> Void = { token, error in }) {
-        let url = "http://ida.omroep.nl/npoplayer/i.js"
+        // old url (before 20170301): http://ida.omroep.nl/npoplayer/i.js
+        let url = "http://ida.omroep.nl/app.php/auth"
         
-        Alamofire.request(url, headers: getHeaders())
-            .responseString { [weak self] response in
-                switch response.result {
-                    case .success(let value):
-                        self?.extractToken(fromJavascript: value, completed: completed)
-                        break
-                    case .failure(let error):
-                        completed(nil, .networkError(error.localizedDescription))
-                        break
-                }
+        Alamofire.request(url, headers: getHeaders()).responseJSON { [weak self] response in
+            switch response.result {
+                case .success(let responseJSON):
+                    // as of 20170301 the token does not appear to require fixing?
+                    guard let json = responseJSON as? [String: Any], let token = json["token"] as? String else {
+                        completed(nil, .networkError("Could not fetch token from json (\(responseJSON))"))
+                        return
+                    }
+
+                    //{"token":"992a564t1q555prq5jqkb2fm33"}
+                    //http://ida.omroep.nl/app.php/AT_2077064?adaptive=yes&token=992a564t1q555prq5jqkb2fm33
+                    
+                    completed(token, nil)
+                case .failure(let error):
+                    completed(nil, .networkError(error.localizedDescription))
             }
-    }
-    
-    internal func extractToken(fromJavascript script: String, completed: (_ token: String?, _ error: NPOError?) -> Void = { token, error in }) {
-        do {
-            let regex = try NSRegularExpression(pattern: "\"(.*)\"", options: NSRegularExpression.Options.caseInsensitive)
-            let matches = regex.matches(in: script, options: [], range: NSRange(location: 0, length: script.characters.count))
-            
-            guard let range = matches.first?.rangeAt(1) else {
-                completed(nil, NPOError.tokenError("Could not extract token as the pattern was not found"))
-                return
-            }
-            
-            let swiftRange = script.characters.index(script.startIndex, offsetBy: range.location) ..< script.characters.index(script.startIndex, offsetBy: range.location + range.length)
-            let token = script.substring(with: swiftRange)
-            
-            completed(self.fix(token: token), nil)
-        } catch let error as NSError {
-            completed(nil, .tokenError(error.localizedDescription))
+
         }
     }
     

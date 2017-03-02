@@ -12,23 +12,27 @@ import AlamofireObjectMapper
 import AlamofireImage
 import ObjectMapper
 
-public enum NPOStreamURLType: String {
-    case Standard = "h264_std"   // standard?
-    case Medium = "h264_bb"      // broad band?
-    case Small = "h264_sb"       // small band?
-    case Unknown
-    
-    // best stream type
-    static let best = Standard
-    
-    // all stream types (except for unknown)
-    static let all = [Standard, Medium, Small]
+public enum NPOStreamQuality: String {
+    case high = "Hoog"
+    case normal = "Normaal"
+    case low = "Laag"
 }
 
 open class NPOStream: Mappable, CustomDebugStringConvertible {
-    fileprivate var success = false
-    fileprivate var urls = [String]()
-    fileprivate var family: String?
+    public private(set) var quality: NPOStreamQuality?
+    public private(set) var contentType: String?
+    public private(set) var format: String?
+    // example: http://odi.omroep.nl/video/ida/h264_std/40dbe746de647f8d5418125a923c6510/58b7d7f0/VPWON_1236166/1?type=jsonp&callback=?
+    private var jsonpURL: URL?
+    
+    private var url: URL? {
+        guard let url = jsonpURL else { return nil }
+        
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        components?.query = nil
+        
+        return components?.url
+    }
     
     // MARK: Lifecycle
     
@@ -38,24 +42,29 @@ open class NPOStream: Mappable, CustomDebugStringConvertible {
     // MARK: Mapping
     
     open func mapping(map: Map) {
-        success <- map["succes"]
-        urls <- map["streams"]
-        family <- map["family"]
+        quality <- map["label"]
+        contentType <- map["contentType"]
+        format <- map["format"]
+        jsonpURL <- (map["url"], URLTransform())
     }
     
-    // MARK: Accessors
+    // MARK: Get video url
     
-    open func getStreamURL(forType type: NPOStreamURLType) -> URL? {
-        guard let jsonpURL = self.urls.filter({ $0.range(of: type.rawValue) != nil }).first, let jsonpComponents = URLComponents(string: jsonpURL) else {
-            return nil
+    internal func getVideoStreamURL(withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
+        guard let url = self.url else {
+            completed(nil, NPOError.networkError("NPOStream does not have a url"))
+            return
         }
         
-        // get rid of the jsonp part
-        var components = URLComponents()
-        components.scheme = jsonpComponents.scheme
-        components.host = jsonpComponents.host
-        components.path = jsonpComponents.path
-        
-        return components.url
+        let _ = NPOManager.sharedInstance.fetchModel(ofType: NPOStreamResource.self, fromURL: url.absoluteString) { streamResource, error in
+            guard let streamURL = streamResource?.url else {
+                let error = error ?? NPOError.networkError("Could not fetch stream resource (url: \(url))")
+                completed(nil, error)
+                return
+            }
+            
+            completed(streamURL, nil)
+        }
+
     }
 }

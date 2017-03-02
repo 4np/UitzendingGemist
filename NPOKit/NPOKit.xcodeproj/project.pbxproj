@@ -28,7 +28,6 @@
 		F317B9A51D3901AC00927ACD /* NPORestrictedMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9A41D3901AC00927ACD /* NPORestrictedMedia.swift */; };
 		F317B9AC1D393DB900927ACD /* NPOManager+Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9AB1D393DB900927ACD /* NPOManager+Stream.swift */; };
 		F317B9AE1D39429D00927ACD /* NPOStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9AD1D39429D00927ACD /* NPOStream.swift */; };
-		F317B9B01D395BCC00927ACD /* NPOStreamLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317B9AF1D395BCC00927ACD /* NPOStreamLocation.swift */; };
 		F32BAA9B1D3C8CC60026CAFB /* RealmProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAA9A1D3C8CC60026CAFB /* RealmProgram.swift */; };
 		F32BAA9D1D3C8CD00026CAFB /* RealmEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAA9C1D3C8CD00026CAFB /* RealmEpisode.swift */; };
 		F32BAAA41D3CA3880026CAFB /* Int+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAA31D3CA3880026CAFB /* Int+Time.swift */; };
@@ -47,6 +46,8 @@
 		F3C7E85E1D4FCB0F00AD3809 /* NPOManager+Days.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7E85D1D4FCB0F00AD3809 /* NPOManager+Days.swift */; };
 		F3C9F3FE1D366E1A007E3B8D /* NPOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C9F3FD1D366E1A007E3B8D /* NPOManager.swift */; };
 		F3D784F91DDF862F009885FE /* NPOProgramResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D784F81DDF862F009885FE /* NPOProgramResource.swift */; };
+		F3F4A98A1E680E7500B5A869 /* NPOVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4A9891E680E7500B5A869 /* NPOVideo.swift */; };
+		F3F4A98C1E6814FB00B5A869 /* NPOStreamResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4A98B1E6814FB00B5A869 /* NPOStreamResource.swift */; };
 		F3FD007D1D401B1100034A76 /* NPOManager+GitHubReleases.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD007C1D401B1100034A76 /* NPOManager+GitHubReleases.swift */; };
 		F3FD007F1D401B4100034A76 /* GitHubRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FD007E1D401B4100034A76 /* GitHubRelease.swift */; };
 /* End PBXBuildFile section */
@@ -85,7 +86,6 @@
 		F317B9A41D3901AC00927ACD /* NPORestrictedMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPORestrictedMedia.swift; sourceTree = "<group>"; };
 		F317B9AB1D393DB900927ACD /* NPOManager+Stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Stream.swift"; sourceTree = "<group>"; };
 		F317B9AD1D39429D00927ACD /* NPOStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOStream.swift; sourceTree = "<group>"; };
-		F317B9AF1D395BCC00927ACD /* NPOStreamLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOStreamLocation.swift; sourceTree = "<group>"; };
 		F32BAA9A1D3C8CC60026CAFB /* RealmProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmProgram.swift; sourceTree = "<group>"; };
 		F32BAA9C1D3C8CD00026CAFB /* RealmEpisode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmEpisode.swift; sourceTree = "<group>"; };
 		F32BAAA31D3CA3880026CAFB /* Int+Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Time.swift"; sourceTree = "<group>"; };
@@ -107,6 +107,8 @@
 		F3C7E85D1D4FCB0F00AD3809 /* NPOManager+Days.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Days.swift"; sourceTree = "<group>"; };
 		F3C9F3FD1D366E1A007E3B8D /* NPOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOManager.swift; sourceTree = "<group>"; };
 		F3D784F81DDF862F009885FE /* NPOProgramResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOProgramResource.swift; sourceTree = "<group>"; };
+		F3F4A9891E680E7500B5A869 /* NPOVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOVideo.swift; sourceTree = "<group>"; };
+		F3F4A98B1E6814FB00B5A869 /* NPOStreamResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOStreamResource.swift; sourceTree = "<group>"; };
 		F3FD007C1D401B1100034A76 /* NPOManager+GitHubReleases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+GitHubReleases.swift"; sourceTree = "<group>"; };
 		F3FD007E1D401B4100034A76 /* GitHubRelease.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubRelease.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -273,8 +275,9 @@
 		F33BCE8C1D40EF0B00CD232C /* Streams */ = {
 			isa = PBXGroup;
 			children = (
+				F3F4A9891E680E7500B5A869 /* NPOVideo.swift */,
 				F317B9AD1D39429D00927ACD /* NPOStream.swift */,
-				F317B9AF1D395BCC00927ACD /* NPOStreamLocation.swift */,
+				F3F4A98B1E6814FB00B5A869 /* NPOStreamResource.swift */,
 				F33BCE8A1D40EC6500CD232C /* NPOLiveStream.swift */,
 			);
 			name = Streams;
@@ -460,6 +463,7 @@
 				F3C9F3FE1D366E1A007E3B8D /* NPOManager.swift in Sources */,
 				F317B97B1D37BEEA00927ACD /* NPOManager+Token.swift in Sources */,
 				F348AC5E1DDF398800E9A2BE /* XCDYouTubeVideo+AVPlayer.swift in Sources */,
+				F3F4A98A1E680E7500B5A869 /* NPOVideo.swift in Sources */,
 				F317B97D1D37BF4B00927ACD /* NPOManager+Programs.swift in Sources */,
 				F3D784F91DDF862F009885FE /* NPOProgramResource.swift in Sources */,
 				F317B9901D38DD7F00927ACD /* NPOMedia.swift in Sources */,
@@ -470,10 +474,10 @@
 				F3FD007F1D401B4100034A76 /* GitHubRelease.swift in Sources */,
 				F317B98E1D37EDE300927ACD /* Mappable+CustomStringConvertible.swift in Sources */,
 				F317B9A51D3901AC00927ACD /* NPORestrictedMedia.swift in Sources */,
-				F317B9B01D395BCC00927ACD /* NPOStreamLocation.swift in Sources */,
 				F36FFCBF1D417C3900FAB6CB /* NPOManager+Guide.swift in Sources */,
 				F317B9AE1D39429D00927ACD /* NPOStream.swift in Sources */,
 				F33560C81D3A98F1002CFCEB /* NSDate+Formatting.swift in Sources */,
+				F3F4A98C1E6814FB00B5A869 /* NPOStreamResource.swift in Sources */,
 				F33560CB1D3A99D8002CFCEB /* NPOConstants.swift in Sources */,
 				F317B9A31D38F85E00927ACD /* NPOManager+Episodes.swift in Sources */,
 				F317B98C1D37EC8B00927ACD /* Mappable+CustomDebugStringConvertible.swift in Sources */,

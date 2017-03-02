@@ -68,22 +68,26 @@ extension NPOManager {
                 return
             }
             
-            let url = "http://ida.omroep.nl/odi/?prid=\(mid)&puboptions=h264_bb,h264_sb,h264_std&adaptive=no&part=1&token=\(token)"
+            // old url (before 20170301):
+            // let url = "http://ida.omroep.nl/odi/?prid=\(mid)&puboptions=h264_bb,h264_sb,h264_std&adaptive=no&part=1&token=\(token)"
+            let url = "http://ida.omroep.nl/app.php/\(mid)?adaptive=yes&token=\(token)"
+            //DDLogDebug("url -> \(url)")
             
-            let _ = self?.fetchModel(ofType: NPOStream.self, fromURL: url) { url, error in
-                guard let url = url?.getStreamURL(forType: NPOStreamURLType.best) else {
+            let _ = self?.fetchModel(ofType: NPOVideo.self, fromURL: url) { video, error in
+                guard let video = video else {
+                    let error = error ?? NPOError.networkError("Could not fetch video model (url: \(url))")
                     completed(nil, error)
                     return
                 }
                 
-                let _ = self?.getVideoStreamLocation(forURL: url, withCompletion: completed)
+                guard let stream = video.highestQualityStream else {
+                    let error = error ?? NPOError.networkError("Could not fetch stream for video model (url: \(url))")
+                    completed(nil, error)
+                    return
+                }
+                
+                stream.getVideoStreamURL(withCompletion: completed)
             }
-        }
-    }
-    
-    fileprivate func getVideoStreamLocation(forURL url: URL, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) -> Request? {
-        return self.fetchModel(ofType: NPOStreamLocation.self, fromURL: url.absoluteString) { streamLocation, error in
-            completed(streamLocation?.url, error)
         }
     }
     
