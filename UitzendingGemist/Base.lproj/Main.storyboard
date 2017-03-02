@@ -24,7 +24,7 @@
                         <viewControllerLayoutGuide type="top" id="HAL-JC-qT1"/>
                         <viewControllerLayoutGuide type="bottom" id="Kxy-ky-PmB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="cog-xu-MS9">
+                    <view key="view" contentMode="scaleToFill" id="cog-xu-MS9">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -66,7 +66,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" image="strip-item-8b951ebef3305f4e19053f8aa40b9ad9b41aecd7582ba23686557e4491453c37" translatesAutoresizingMaskIntoConstraints="NO" id="bMZ-9B-gFV">
-                                                    <rect key="frame" x="0.0" y="0.0" width="548" height="380"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="548" height="320"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-5f-9Ws">
@@ -684,7 +684,7 @@
                         <viewControllerLayoutGuide type="top" id="U0w-Oa-1Ul"/>
                         <viewControllerLayoutGuide type="bottom" id="I5J-pO-Yf0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="QeB-Pr-qZE">
+                    <view key="view" contentMode="scaleToFill" id="QeB-Pr-qZE">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1359,7 +1359,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="634" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" misplaced="YES" restorationIdentifier="byDayRootTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="byDayRootTableViewCell" id="VBA-FM-GA9" customClass="ByDayRootTableViewCell" customModule="UitzendingGemist" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="byDayRootTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="byDayRootTableViewCell" id="VBA-FM-GA9" customClass="ByDayRootTableViewCell" customModule="UitzendingGemist" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="40" width="634" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VBA-FM-GA9" id="Yff-wK-hjp">
@@ -1402,7 +1402,7 @@
         <scene sceneID="Xbg-kt-GpO">
             <objects>
                 <navigationController navigationBarHidden="YES" id="pBj-Y2-QWj" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UJj-gb-Bar">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UJj-gb-Bar">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1480,7 +1480,7 @@
         <scene sceneID="I7N-KK-qeK">
             <objects>
                 <navigationController navigationBarHidden="YES" id="RrE-fT-1Vq" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Hc-c0-ini">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0Hc-c0-ini">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
