@@ -106,7 +106,12 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
             self?.view.stopLoading()
             
             guard let url = url else {
-                DDLogError("Could not play live stream (\(error))")
+                if let alternativeChannel = channel.configuration.alternativeChannel {
+                    DDLogDebug("No stream for channel \(channel.configuration.name), switching to alternative channel \(alternativeChannel.configuration.name)")
+                    self?.play(liveChannel: alternativeChannel)
+                } else {
+                    DDLogError("Could not play live stream (\(error))")
+                }
                 return
             }
             

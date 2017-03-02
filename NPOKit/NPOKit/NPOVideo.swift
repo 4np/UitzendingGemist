@@ -58,6 +58,15 @@ import ObjectMapper
 //}
 
 open class NPOVideo: Mappable, CustomDebugStringConvertible {
+    public internal(set) var channel: NPOLive? {
+        didSet {
+            // set channel on streams
+            let streams = self.streams ?? []
+            for stream in streams {
+                stream.channel = channel
+            }
+        }
+    }
     public private(set) var limited: Bool?
     public var site: String?
     public var streams: [NPOStream]?

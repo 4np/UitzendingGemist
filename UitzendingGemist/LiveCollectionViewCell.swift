@@ -43,10 +43,10 @@ class LiveCollectionViewCell: UICollectionViewCell {
     
     internal func configure(withLiveChannel channel: NPOLive, andGuide broadcasts: [NPOBroadcast]?) {
         // set the logo image
-        self.channelLogoImageView.image = UIImage(named: "\(channel.rawValue)")
+        self.channelLogoImageView.image = UIImage(named: "\(channel.configuration.name)")
         
         // get the channel image
-        let channelImage = UIImage(named: "\(channel.rawValue)_Channel")
+        let channelImage = UIImage(named: "\(channel.configuration.name)Channel")
         
         // get the current broadcast for this channel
         if let currentBroadcast = self.getCurrentBroadcast(forGuide: broadcasts) {
