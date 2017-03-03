@@ -99,6 +99,12 @@ extension NPOManager {
                 return
             }
             
+            // check if this video is limited (not sure what that really means, but
+            // I assume it is most likely regionally limited)
+            if let limited = video.limited, limited {
+                DDLogWarn("The video is marked as (regionally?) *limited* and might not play? (video: \(video))")
+            }
+            
             // set live channel, if we know it
             video.channel = liveChannel
             
