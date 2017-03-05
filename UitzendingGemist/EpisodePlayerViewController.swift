@@ -38,11 +38,12 @@ class EpisodePlayerViewController: AVPlayerViewController {
     func play(episode: NPOEpisode, withVideoStream url: URL, beginAt seconds: Int) {
         let player = AVPlayer(url: url)
         
+        DDLogDebug("episode stream (begin at \(seconds)s) url: \(url)")
+        
         // when the player reached the end of the video, pause it
         player.actionAtItemEnd = .pause
-        
-        // observe when the player is done playing
-        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+
+        addObservers(player: player)
         
         // (re)set play data
         self.seconds = seconds
@@ -67,9 +68,54 @@ class EpisodePlayerViewController: AVPlayerViewController {
         self.player?.play()
     }
     
+    // MARK: Observers
+    
+    private func addObservers(player: AVPlayer) {
+        // observe any playback issues that may happen
+        NotificationCenter.default.addObserver(self, selector: #selector(playbackHasStalled(notification:)), name: NSNotification.Name.AVPlayerItemPlaybackStalled, object: player.currentItem)
+        NotificationCenter.default.addObserver(self, selector: #selector(playbackError(notification:)), name: NSNotification.Name.AVPlayerItemNewErrorLogEntry, object: player.currentItem)
+        NotificationCenter.default.addObserver(self, selector: #selector(playerFailedToPlayToEndTime(notification:)), name: NSNotification.Name.AVPlayerItemFailedToPlayToEndTime, object: player.currentItem)
+        
+        // observe when the player is done playing
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player)
+    }
+    
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: Notifications
+    
     @objc private func playerDidFinishPlaying(notification: NSNotification) {
+        NotificationCenter.default.removeObserver(self)
+        
         dismiss(animated: true) {
             DDLogDebug("Finished playing episode, dismissed video player")
+        }
+    }
+
+    @objc private func playerFailedToPlayToEndTime(notification: NSNotification) {
+        DDLogDebug("Player failed to play to end time")
+        removeObservers()
+    }
+    
+    @objc private func playbackHasStalled(notification: NSNotification) {
+        guard let playerItem = notification.object as? AVPlayerItem else {
+            DDLogDebug("Playback has stalled...")
+            return
+        }
+        
+        DDLogDebug("Playback has stalled (buffer full: \(playerItem.isPlaybackBufferFull), buffer empty: \(playerItem.isPlaybackBufferEmpty), likely to keep up: \(playerItem.isPlaybackLikelyToKeepUp), is proxy: \(playerItem.isProxy()))")
+    }
+    
+    @objc private func playbackError(notification: NSNotification) {
+        guard let playerItem = notification.object as? AVPlayerItem, let error = playerItem.errorLog() else { return }
+        
+        DispatchQueue.main.async {
+            DDLogDebug("Playback error: \(error) (\(error.events.count) events)")
+            for event in error.events {
+                DDLogDebug("Playback error event: \(event.errorComment) (domain: \(event.errorDomain), code: \(event.errorStatusCode))")
+            }
         }
     }
 }

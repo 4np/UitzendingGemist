@@ -180,7 +180,7 @@ extension NPOManager {
                 completed(nil, NPOError.networkError("Could not fetch live stream url (url: \(url)) (3)"))
                 return
             }
-            DDLogDebug("stream url: \(adaptiveStreamURL)")
+            //DDLogDebug("stream url: \(adaptiveStreamURL)")
             completed(adaptiveStreamURL, nil)
             return
             
