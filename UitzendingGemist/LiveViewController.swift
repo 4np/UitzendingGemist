@@ -121,6 +121,9 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
             let playerViewController = AVPlayerViewController()
             playerViewController.player = player
             
+            // handle stalling
+            player.automaticallyWaitsToMinimizeStalling = true
+            
             // present player
             self?.present(playerViewController, animated: true) {
                 playerViewController.player?.play()

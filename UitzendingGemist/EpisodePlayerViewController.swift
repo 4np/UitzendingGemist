@@ -12,12 +12,43 @@ import AVKit
 import NPOKit
 import CocoaLumberjack
 
+extension AVPlayerStatus {
+    var description: String {
+        switch self {
+        case .failed:
+            return "Failed"
+        case .readyToPlay:
+            return "ReadyToPlay"
+        case .unknown:
+            return "Unknown"
+        }
+    }
+}
+
+extension AVPlayerTimeControlStatus {
+    var description: String {
+        switch self {
+        case .paused:
+            return "Paused"
+        case .playing:
+            return "Playing"
+        case .waitingToPlayAtSpecifiedRate:
+            return "WaitingToPlayAtSpecifiedRate"
+        }
+    }
+}
+
 class EpisodePlayerViewController: AVPlayerViewController {
     // keep track of the number of seconds played
     private var seconds = 0
     private var episode: NPOEpisode?
     
     // MARK: Lifecycle
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        removeObservers()
+        super.viewWillDisappear(animated)
+    }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -35,6 +66,8 @@ class EpisodePlayerViewController: AVPlayerViewController {
     
     // MARK: Playing
     
+    private var observerContext = 0
+    
     func play(episode: NPOEpisode, withVideoStream url: URL, beginAt seconds: Int) {
         let player = AVPlayer(url: url)
         
@@ -42,6 +75,9 @@ class EpisodePlayerViewController: AVPlayerViewController {
         
         // when the player reached the end of the video, pause it
         player.actionAtItemEnd = .pause
+        
+        // handle stalling
+        player.automaticallyWaitsToMinimizeStalling = true
 
         addObservers(player: player)
         
@@ -59,7 +95,9 @@ class EpisodePlayerViewController: AVPlayerViewController {
         player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { [weak self] time in
             self?.seconds = Int(time.seconds)
         }
-
+        
+        player.addObserver(self, forKeyPath: "timeControlStatus", options: [.new, .old], context: &observerContext)
+        
         // assign locally
         self.episode = episode
         self.player = player
@@ -82,12 +120,32 @@ class EpisodePlayerViewController: AVPlayerViewController {
     
     private func removeObservers() {
         NotificationCenter.default.removeObserver(self)
+        self.player?.removeObserver(self, forKeyPath: "timeControlStatus", context: &observerContext)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        guard context == &observerContext, let item = player?.currentItem else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+            return
+        }
+        
+        guard let old = change?[.oldKey] as? Int, let new = change?[.newKey] as? Int, new != old, let timeControlStatus = AVPlayerTimeControlStatus(rawValue: new) else { return }
+
+        switch timeControlStatus {
+            case .paused:
+                DDLogDebug("Player is now paused")
+            case .playing:
+                DDLogDebug("Player is now playing")
+                DDLogDebug("Can play reverse: \(item.canPlayReverse) (slow: \(item.canPlaySlowReverse), fast: \(item.canPlayFastReverse)) and forward: slow: \(item.canPlaySlowForward), fast: \(item.canPlayFastForward)")
+            case .waitingToPlayAtSpecifiedRate:
+                DDLogDebug("Player is now waiting to play at the specified rate")
+        }
     }
     
     // MARK: Notifications
     
     @objc private func playerDidFinishPlaying(notification: NSNotification) {
-        NotificationCenter.default.removeObserver(self)
+        removeObservers()
         
         dismiss(animated: true) {
             DDLogDebug("Finished playing episode, dismissed video player")
@@ -101,7 +159,7 @@ class EpisodePlayerViewController: AVPlayerViewController {
     
     @objc private func playbackHasStalled(notification: NSNotification) {
         guard let playerItem = notification.object as? AVPlayerItem else {
-            DDLogDebug("Playback has stalled...")
+            DDLogDebug("Playback has stalled")
             return
         }
         
