@@ -37,34 +37,34 @@ public enum NPOLive: String {
     
     public static let all = [npo1, npo2, npo3, zappxtra, npo101, nieuws, cultura, best, politiek]
     
-    public var configuration: (name: String, shortName: String, type: NPOLiveType, cc: Bool, audioQuality: Int, audioChannel: String, videoQuality: Int, alternativeChannel: NPOLive?) {
+    public var configuration: (name: String, shortName: String, type: NPOLiveType, alternativeChannel: NPOLive?) {
         switch self {
         case .npo1:
-            return (name: "npo1", shortName: "ned1", type: .tv, cc: false, audioQuality: 128000, audioChannel: "audio", videoQuality: 1400000, alternativeChannel: nil)
+            return (name: "npo1", shortName: "ned1", type: .tv, alternativeChannel: nil)
         case .npo2:
-            return (name: "npo2", shortName: "ned2", type: .tv, cc: false, audioQuality: 128000, audioChannel: "audio_1", videoQuality: 1400000, alternativeChannel: nil)
+            return (name: "npo2", shortName: "ned2", type: .tv, alternativeChannel: nil)
         case .npo3:
-            return (name: "npo3", shortName: "ned3", type: .tv, cc: false, audioQuality: 128000, audioChannel: "audio", videoQuality: 1400000, alternativeChannel: .zappelin)
+            return (name: "npo3", shortName: "ned3", type: .tv, alternativeChannel: .zappelin)
         case .npo1SDH:
-            return (name: "npo1", shortName: "ned1", type: .tv, cc: true, audioQuality: 128000, audioChannel: "dut", videoQuality: 1000000, alternativeChannel: nil)
+            return (name: "npo1", shortName: "ned1", type: .tv, alternativeChannel: nil)
         case .npo2SDH:
-            return (name: "npo2", shortName: "ned2", type: .tv, cc: true, audioQuality: 128000, audioChannel: "audio_nl", videoQuality: 200000, alternativeChannel: nil)
+            return (name: "npo2", shortName: "ned2", type: .tv, alternativeChannel: nil)
         case .npo3SDH:
-            return (name: "npo3", shortName: "ned3", type: .tv, cc: true, audioQuality: 128000, audioChannel: "audio_nl", videoQuality: 200000, alternativeChannel: nil)
+            return (name: "npo3", shortName: "ned3", type: .tv, alternativeChannel: nil)
         case .zappelin:
-            return (name: "zappelin24", shortName: "ned3", type: .thema, cc: false, audioQuality: 128000, audioChannel: "audio", videoQuality: 1000000, alternativeChannel: nil)
+            return (name: "zappelin24", shortName: "ned3", type: .thema, alternativeChannel: nil)
         case .zappxtra:
-            return (name: "zappxtra", shortName: "opvo", type: .thema, cc: false, audioQuality: 64000, audioChannel: "audio_1", videoQuality: 1000000, alternativeChannel: nil)
+            return (name: "zappxtra", shortName: "opvo", type: .thema, alternativeChannel: nil)
         case .nieuws:
-            return (name: "journaal24", shortName: "nosj", type: .thema, cc: false, audioQuality: 64000, audioChannel: "audio_1", videoQuality: 1000000, alternativeChannel: nil)
+            return (name: "journaal24", shortName: "nosj", type: .thema, alternativeChannel: nil)
         case .cultura:
-            return (name: "cultura24", shortName: "cult", type: .thema, cc: false, audioQuality: 64000, audioChannel: "audio_1", videoQuality: 1000000, alternativeChannel: nil)
+            return (name: "cultura24", shortName: "cult", type: .thema, alternativeChannel: nil)
         case .npo101:
-            return (name: "101tv", shortName: "_101_", type: .thema, cc: false, audioQuality: 64000, audioChannel: "audio_1", videoQuality: 1000000, alternativeChannel: nil)
+            return (name: "101tv", shortName: "_101_", type: .thema, alternativeChannel: nil)
         case .politiek:
-            return (name: "politiek24", shortName: "po24", type: .thema, cc: false, audioQuality: 128000, audioChannel: "audio_1", videoQuality: 1000000, alternativeChannel: nil)
+            return (name: "politiek24", shortName: "po24", type: .thema, alternativeChannel: nil)
         case .best:
-            return (name: "best24", shortName: "hilv", type: .thema, cc: false, audioQuality: 64000, audioChannel: "audio_1", videoQuality: 1000000, alternativeChannel: .zappxtra)
+            return (name: "best24", shortName: "hilv", type: .thema, alternativeChannel: .zappxtra)
         }
     }
 }
@@ -149,7 +149,7 @@ extension NPOManager {
         }
     }
     
-    internal func getLiveVideoStreamURL(forURL url: URL?, andLiveChannel channel: NPOLive?, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
+    internal func getLiveVideoStreamURL(forURL url: URL?, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
         guard let url = url else {
             completed(nil, NPOError.networkError("NPOStream does not have a url (2)"))
             return
@@ -160,7 +160,7 @@ extension NPOManager {
         
         let _ = Alamofire.request(url, headers: self.getHeaders()).responseString { response in
             //DDLogDebug("response: \(response.result.value)")
-            guard let value = response.result.value, let channel = channel else {
+            guard let value = response.result.value else {
                 var error = NPOError.networkError("Could not fetch live stream url (url: \(url)) (1)")
                 if let responseError = response.error {
                     error = NPOError.networkError("Could not fetch live stream url (\(responseError.localizedDescription)) (2)")
@@ -183,27 +183,6 @@ extension NPOManager {
             //DDLogDebug("stream url: \(adaptiveStreamURL)")
             completed(adaptiveStreamURL, nil)
             return
-            
-//            // Modify the 576p stream url to direct to a high quality stream for better quality playback
-//            //
-//            // example cleaned url              : http://l2cm813037b8fe0058b7feb7000000.7af1f976c96a19cc.smoote2k.npostreaming.nl/d/live/npo/tvlive/npo1/npo1.isml/npo1.m3u8
-//            // example high quality url         : http://l2cm813037b8fe0058b7feb7000000.7af1f976c96a19cc.smoote2k.npostreaming.nl/d/live/npo/tvlive/npo1/npo1.isml/npo1-audio=128000-video=1400000.m3u8
-//            // example closed captioning url    : http://l2cm866bddee180058b89cac000000.9d4ca24fb84b31b1.smoote1e.npostreaming.nl/d/live/npo/tvlive/npo1cc/npo1cc.isml/npo1cc-dut=128000-video=100000.m3u8
-//            
-//            // remove the trailing .m3u8
-//            var highQualityValue = cleanedValue.replacingOccurrences(of: ".m3u8", with: "")
-//            
-//            // add audio and video quality
-//            highQualityValue += "\(channel.configuration.audioChannel)=\(channel.configuration.audioQuality)-video=\(channel.configuration.videoQuality).m3u8"
-//            
-//            //DDLogDebug("channel: \(channel), live stream url: \(highQualityValue)")
-//            
-//            guard let liveStreamURL = URL(string: highQualityValue) else {
-//                completed(nil, NPOError.networkError("Could not fetch live stream url (url: \(url)) (3)"))
-//                return
-//            }
-//            
-//            completed(liveStreamURL, nil)
         }
     }
 }

@@ -62,7 +62,7 @@ open class NPOStream: Mappable, CustomDebugStringConvertible {
             case .high, .normal, .low:
                 self.getVideoStreamURL(forURL: url, withCompletion: completed)
             case .live:
-                NPOManager.sharedInstance.getLiveVideoStreamURL(forURL: rawURL, andLiveChannel: channel, withCompletion: completed)
+                NPOManager.sharedInstance.getLiveVideoStreamURL(forURL: rawURL, withCompletion: completed)
         }
     }
     
