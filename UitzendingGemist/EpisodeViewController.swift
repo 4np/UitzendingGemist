@@ -308,7 +308,7 @@ class EpisodeViewController: UIViewController {
         toProgramLabel.isEnabled = (program != nil)
         toProgramLabel.text = UitzendingGemistConstants.toProgramText
         
-        markAsWatchedButton.isEnabled = true
+        markAsWatchedButton.isEnabled = canPlay
         markAsWatchedLabel.isEnabled = true
         updateWatchedButtonAndLabel()
         

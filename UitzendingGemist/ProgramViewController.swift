@@ -165,7 +165,8 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         self.broadcasterLabel.text = self.broadcasters ?? UitzendingGemistConstants.unknownText
         
         let unwatchedEpisodesCount = self.unwatchedEpisodes?.count ?? 0
-        self.playButton.isEnabled = (unwatchedEpisodesCount > 0)
+        let canPlay = program.episodes?.first?.available ?? true
+        self.playButton.isEnabled = (unwatchedEpisodesCount > 0 && canPlay)
         self.playLabel.isEnabled = (unwatchedEpisodesCount > 0)
         self.playLabel.text = UitzendingGemistConstants.playText
         
