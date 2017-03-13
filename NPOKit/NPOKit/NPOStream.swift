@@ -11,6 +11,7 @@ import RealmSwift
 import AlamofireObjectMapper
 import AlamofireImage
 import ObjectMapper
+import CocoaLumberjack
 
 public enum NPOStreamType: String {
     case live = "Live"

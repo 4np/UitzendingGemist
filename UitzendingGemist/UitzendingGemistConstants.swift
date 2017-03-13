@@ -58,8 +58,13 @@ open class UitzendingGemistConstants {
     static let unknownProgramName = NSLocalizedString("Naamloos programma", comment: "Unkown program name")
     static let genreText = NSLocalizedString("Genre", comment: "Genre")
     static let broadcasterText = NSLocalizedString("Omroep", comment: "Broadcaster")
+
+    static let warningEpisodeUnavailable = NSLocalizedString("Deze aflevering is momenteel niet beschikbaar", comment: "This episode is currently not available")
+    static let warningEpisodeUnavailableFromLocation = NSLocalizedString("Deze aflevering is niet beschikbaar op uw locatie", comment: "This episode is not available on your location")
+    static let warningEpisodeUnavailableFromCountry = NSLocalizedString("Deze aflevering is niet beschikbaar vanuit %@", comment: "This episode is not available from [some country]")
     
     static let playText = NSLocalizedString("Speel", comment: "Play")
+    static let playUnavailableText = NSLocalizedString("Niet beschikbaar", comment: "Not available")
     static let toProgramText = NSLocalizedString("Naar Programma", comment: "To Program")
     static let favoriteText = NSLocalizedString("Favoriet", comment: "Favorite")
     

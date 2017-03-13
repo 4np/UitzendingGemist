@@ -15,12 +15,11 @@ import CocoaLumberjack
 
 open class NPORestriction: Mappable, CustomDebugStringConvertible {
     open internal(set) var age = false
-    open internal(set) var location = false
-    internal var time: NPOTimeRestriction?
+    open internal(set) var location: String?
+    open internal(set) var time: NPOTimeRestriction?
     
     open var available: Bool {
-        let available = self.time?.available ?? true
-        return available && self.geoAllowed()
+        return isTimeAllowed() && isGeoAllowed()
     }
     
     // MARK: Lifecycle
@@ -37,21 +36,23 @@ open class NPORestriction: Mappable, CustomDebugStringConvertible {
         time <- map["time_restriction"]
     }
     
+    // MARK: Time check
+    
+    open func isTimeAllowed() -> Bool {
+        return self.time?.available ?? true
+    }
+    
     // MARK: Geo check
     
-    internal func geoAllowed() -> Bool {
-        guard location else {
+    open func isGeoAllowed() -> Bool {
+        guard let location = location else {
             return true
         }
         
-        //TODO: Geo check
-//        let locale = NSLocale.currentLocale()
-//        if let country = locale.objectForKey(NSLocaleCountryCode) as? String {
-//            DDLogDebug("locale: \(country)")
-//            if country == "US" {
-//                return true
-//            }
-//        }
+        // make sure that the location matches the current location
+        guard let countryCode = NPOManager.sharedInstance.geo?.countryCode, countryCode == location else {
+            return false
+        }
         
         return true
     }

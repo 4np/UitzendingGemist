@@ -12,8 +12,8 @@ import AlamofireObjectMapper
 import ObjectMapper
 
 open class NPOTimeRestriction: Mappable, CustomDebugStringConvertible {
-    internal(set) var online: Date?
-    internal(set) var offline: Date?
+    open internal(set) var online: Date?
+    open internal(set) var offline: Date?
     
     open var available: Bool {
         return self.isOnline()

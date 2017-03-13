@@ -25,6 +25,7 @@ class EpisodeViewController: UIViewController {
     @IBOutlet weak private var genreLabel: UILabel!
     @IBOutlet weak private var broadcasterTitleLabel: UILabel!
     @IBOutlet weak private var broadcasterLabel: UILabel!
+    @IBOutlet weak private var warningLabel: UILabel!
     @IBOutlet weak private var playButton: UIButton!
     @IBOutlet weak private var playLabel: UILabel!
     @IBOutlet weak private var toProgramButton: UIButton!
@@ -167,6 +168,8 @@ class EpisodeViewController: UIViewController {
         broadcasterTitleLabel.text = nil
         broadcasterLabel.text = nil
         
+        warningLabel.text = nil
+        
         playButton.isEnabled = true
         playLabel.isEnabled = true
         playLabel.text = nil
@@ -282,9 +285,24 @@ class EpisodeViewController: UIViewController {
         broadcasterTitleLabel.text = UitzendingGemistConstants.broadcasterText.uppercased()
         broadcasterLabel.text = broadcasters ?? UitzendingGemistConstants.unknownText
         
-        playButton.isEnabled = true
+        // determine is the episode can be watched
+        let canPlay = episode?.available ?? true
+        if !canPlay {
+            warningLabel.text = UitzendingGemistConstants.warningEpisodeUnavailable
+        
+            let isGeoAllowed = episode?.restriction?.isGeoAllowed() ?? true
+            if !isGeoAllowed {
+                if let countryName = NPOManager.sharedInstance.geo?.countryName {
+                    warningLabel.text = String.localizedStringWithFormat(UitzendingGemistConstants.warningEpisodeUnavailableFromCountry, countryName)
+                } else {
+                    warningLabel.text = UitzendingGemistConstants.warningEpisodeUnavailableFromLocation
+                }
+            }
+        }
+        
+        playButton.isEnabled = canPlay
         playLabel.isEnabled = true
-        playLabel.text = UitzendingGemistConstants.playText
+        playLabel.text = canPlay ? UitzendingGemistConstants.playText : UitzendingGemistConstants.playUnavailableText
         
         toProgramButton.isEnabled = (program != nil)
         toProgramLabel.isEnabled = (program != nil)

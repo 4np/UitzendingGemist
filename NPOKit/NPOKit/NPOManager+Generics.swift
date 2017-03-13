@@ -57,7 +57,7 @@ extension NPOManager {
     }
     
     internal func fetchModel<T: Mappable>(ofType type: T.Type, fromURL url: String, withKeyPath keyPath: String?, withCompletion completed: @escaping (_ element: T?, _ error: NPOError?) -> Void = { element, error in }) -> Request? {
-        //DDLogDebug("fetch model of type \(type): \(url)")
+        DDLogDebug("fetch model of type \(type): \(url)")
         return Alamofire.request(url, headers: self.getHeaders())
             .responseObject(keyPath: keyPath) { (response: DataResponse<T>) in
                 switch response.result {

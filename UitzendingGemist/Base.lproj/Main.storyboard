@@ -385,7 +385,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yi-oQ-Rbs" userLabel="Left View">
-                                        <rect key="frame" x="90" y="238" width="240" height="184"/>
+                                        <rect key="frame" x="90" y="238" width="240" height="247"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GENRE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="be2-Su-XIB">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="35"/>
@@ -399,16 +399,22 @@
                                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OMROEP" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cP8-lO-4tB">
+                                                <rect key="frame" x="0.0" y="86" width="240" height="35"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Omroep" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZx-L3-3eo">
                                                 <rect key="frame" x="0.0" y="129" width="240" height="35"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OMROEP" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cP8-lO-4tB">
-                                                <rect key="frame" x="0.0" y="86" width="240" height="35"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Warning" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Fb-Mr-Fky">
+                                                <rect key="frame" x="0.0" y="204" width="240" height="35"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -416,13 +422,16 @@
                                             <constraint firstAttribute="trailing" secondItem="UZx-L3-3eo" secondAttribute="trailing" id="05t-L1-24X"/>
                                             <constraint firstItem="be2-Su-XIB" firstAttribute="leading" secondItem="0yi-oQ-Rbs" secondAttribute="leading" id="4C8-U9-R5P"/>
                                             <constraint firstItem="UZx-L3-3eo" firstAttribute="leading" secondItem="0yi-oQ-Rbs" secondAttribute="leading" id="67V-hy-YcE"/>
-                                            <constraint firstAttribute="bottom" secondItem="UZx-L3-3eo" secondAttribute="bottom" constant="20" id="7Hh-Ea-TXF"/>
                                             <constraint firstItem="cP8-lO-4tB" firstAttribute="top" secondItem="pak-i8-Tn1" secondAttribute="bottom" constant="8" id="B0L-MH-Qf6"/>
+                                            <constraint firstItem="6Fb-Mr-Fky" firstAttribute="leading" secondItem="0yi-oQ-Rbs" secondAttribute="leading" id="Byj-NQ-MjX"/>
+                                            <constraint firstAttribute="trailing" secondItem="6Fb-Mr-Fky" secondAttribute="trailing" id="DkT-Fd-zc9"/>
+                                            <constraint firstItem="6Fb-Mr-Fky" firstAttribute="top" secondItem="UZx-L3-3eo" secondAttribute="bottom" constant="40" id="EsV-MR-xsT"/>
                                             <constraint firstAttribute="trailing" secondItem="be2-Su-XIB" secondAttribute="trailing" id="Fak-3L-99p"/>
                                             <constraint firstItem="be2-Su-XIB" firstAttribute="top" secondItem="0yi-oQ-Rbs" secondAttribute="top" id="HfO-6Y-5FB"/>
                                             <constraint firstAttribute="trailing" secondItem="cP8-lO-4tB" secondAttribute="trailing" id="MVA-cB-mKX"/>
                                             <constraint firstItem="cP8-lO-4tB" firstAttribute="leading" secondItem="0yi-oQ-Rbs" secondAttribute="leading" id="RG7-9K-Am0"/>
                                             <constraint firstItem="UZx-L3-3eo" firstAttribute="top" secondItem="cP8-lO-4tB" secondAttribute="bottom" constant="8" id="ZGA-f9-ndd"/>
+                                            <constraint firstAttribute="bottom" secondItem="6Fb-Mr-Fky" secondAttribute="bottom" constant="8" id="fj1-oS-dRY"/>
                                             <constraint firstItem="pak-i8-Tn1" firstAttribute="leading" secondItem="0yi-oQ-Rbs" secondAttribute="leading" id="jhN-gE-1a9"/>
                                             <constraint firstItem="pak-i8-Tn1" firstAttribute="top" secondItem="be2-Su-XIB" secondAttribute="bottom" constant="8" id="kmo-JG-kpr"/>
                                             <constraint firstAttribute="trailing" secondItem="pak-i8-Tn1" secondAttribute="trailing" id="sZ2-V3-tOk"/>
@@ -666,6 +675,7 @@
                         <outlet property="stillCollectionView" destination="k3Y-CL-Hvl" id="BmO-DZ-55w"/>
                         <outlet property="toProgramButton" destination="rts-xq-taD" id="p7K-dd-Ciw"/>
                         <outlet property="toProgramLabel" destination="4g8-hb-1Ce" id="z7A-0P-DrC"/>
+                        <outlet property="warningLabel" destination="6Fb-Mr-Fky" id="kDu-i1-zaD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4do-ai-hcH" userLabel="First Responder" sceneMemberID="firstResponder"/>

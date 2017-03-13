@@ -31,6 +31,8 @@
 		F32BAA9B1D3C8CC60026CAFB /* RealmProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAA9A1D3C8CC60026CAFB /* RealmProgram.swift */; };
 		F32BAA9D1D3C8CD00026CAFB /* RealmEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAA9C1D3C8CD00026CAFB /* RealmEpisode.swift */; };
 		F32BAAA41D3CA3880026CAFB /* Int+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32BAAA31D3CA3880026CAFB /* Int+Time.swift */; };
+		F32D91BF1E76E61F00A02A77 /* GEO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D91BE1E76E61F00A02A77 /* GEO.swift */; };
+		F32D91C11E76E73500A02A77 /* NPOManager+Geo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D91C01E76E73500A02A77 /* NPOManager+Geo.swift */; };
 		F33560C81D3A98F1002CFCEB /* NSDate+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33560C71D3A98F1002CFCEB /* NSDate+Formatting.swift */; };
 		F33560CB1D3A99D8002CFCEB /* NPOConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33560CA1D3A99D8002CFCEB /* NPOConstants.swift */; };
 		F33621E81D366DA900645603 /* NPOKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F33621E71D366DA900645603 /* NPOKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -89,6 +91,8 @@
 		F32BAA9A1D3C8CC60026CAFB /* RealmProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmProgram.swift; sourceTree = "<group>"; };
 		F32BAA9C1D3C8CD00026CAFB /* RealmEpisode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmEpisode.swift; sourceTree = "<group>"; };
 		F32BAAA31D3CA3880026CAFB /* Int+Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Time.swift"; sourceTree = "<group>"; };
+		F32D91BE1E76E61F00A02A77 /* GEO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GEO.swift; sourceTree = "<group>"; };
+		F32D91C01E76E73500A02A77 /* NPOManager+Geo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NPOManager+Geo.swift"; sourceTree = "<group>"; };
 		F33560C71D3A98F1002CFCEB /* NSDate+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Formatting.swift"; sourceTree = "<group>"; };
 		F33560CA1D3A99D8002CFCEB /* NPOConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOConstants.swift; sourceTree = "<group>"; };
 		F33621E41D366DA900645603 /* NPOKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NPOKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +157,7 @@
 				F317B9851D37E8F400927ACD /* NPOTip.swift */,
 				F317B9891D37EA7300927ACD /* NPOEpisode.swift */,
 				F36FFCC01D417D6300FAB6CB /* NPOBroadcast.swift */,
+				F32D91BE1E76E61F00A02A77 /* GEO.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 				F317B9AB1D393DB900927ACD /* NPOManager+Stream.swift */,
 				F3C7E85D1D4FCB0F00AD3809 /* NPOManager+Days.swift */,
 				F317B9831D37E54E00927ACD /* NPOManager+Generics.swift */,
+				F32D91C01E76E73500A02A77 /* NPOManager+Geo.swift */,
 				F317B9911D38E0FF00927ACD /* NPOManager+Image.swift */,
 				F317B9871D37E96A00927ACD /* NPOManager+Tips.swift */,
 				F317B97C1D37BF4B00927ACD /* NPOManager+Programs.swift */,
@@ -458,6 +464,7 @@
 				F3BF7E801DE1AD0100A93150 /* NPOManager+YouTubeResource.swift in Sources */,
 				F33BCE8B1D40EC6500CD232C /* NPOLiveStream.swift in Sources */,
 				F317B9841D37E54E00927ACD /* NPOManager+Generics.swift in Sources */,
+				F32D91C11E76E73500A02A77 /* NPOManager+Geo.swift in Sources */,
 				F317B99E1D38EECF00927ACD /* NPOTimeRestriction.swift in Sources */,
 				F35C03E11D3D143C0025BA4B /* NPORequest.swift in Sources */,
 				F3C9F3FE1D366E1A007E3B8D /* NPOManager.swift in Sources */,
@@ -466,6 +473,7 @@
 				F3F4A98A1E680E7500B5A869 /* NPOVideo.swift in Sources */,
 				F317B97D1D37BF4B00927ACD /* NPOManager+Programs.swift in Sources */,
 				F3D784F91DDF862F009885FE /* NPOProgramResource.swift in Sources */,
+				F32D91BF1E76E61F00A02A77 /* GEO.swift in Sources */,
 				F317B9901D38DD7F00927ACD /* NPOMedia.swift in Sources */,
 				F32BAA9D1D3C8CD00026CAFB /* RealmEpisode.swift in Sources */,
 				F317B9941D38E55C00927ACD /* NPOImage.swift in Sources */,

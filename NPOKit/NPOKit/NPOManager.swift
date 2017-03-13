@@ -86,10 +86,21 @@ open class NPOManager {
     internal var cachedProgramResources: [NPOProgramResource]?
     internal var cachedProgramResourcesLastUpdated: Date?
     
+    open internal(set) var geo: GEO?
+    
     // MARK: Init
     
     init() {
         upgradeIfNeeded()
+        
+        // fetch geo information by ip
+        getGeo { [weak self] geo, error in
+            self?.geo = geo
+            
+            if let error = error {
+                DDLogError("Could not fetch geo information (\(error))")
+            }
+        }
     }
     
     //swiftlint:disable force_unwrapping
