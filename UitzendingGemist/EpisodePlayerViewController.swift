@@ -71,7 +71,7 @@ class EpisodePlayerViewController: AVPlayerViewController {
     func play(episode: NPOEpisode, withVideoStream url: URL, beginAt seconds: Int) {
         let player = AVPlayer(url: url)
         
-        DDLogDebug("episode stream (begin at \(seconds)s) url: \(url)")
+        //DDLogDebug("Episode stream (begin at \(seconds)s) url: \(url)")
         
         // when the player reached the end of the video, pause it
         player.actionAtItemEnd = .pause
@@ -136,7 +136,9 @@ class EpisodePlayerViewController: AVPlayerViewController {
                 DDLogDebug("Player is now paused")
             case .playing:
                 DDLogDebug("Player is now playing")
-                DDLogDebug("Can play reverse: \(item.canPlayReverse) (slow: \(item.canPlaySlowReverse), fast: \(item.canPlayFastReverse)) and forward: slow: \(item.canPlaySlowForward), fast: \(item.canPlayFastForward)")
+                if !item.canPlayReverse || !item.canPlaySlowReverse || !item.canPlayFastReverse || !item.canPlaySlowForward || !item.canPlayFastForward {
+                    DDLogDebug("Can play reverse: \(item.canPlayReverse) (slow: \(item.canPlaySlowReverse), fast: \(item.canPlayFastReverse)) and forward: slow: \(item.canPlaySlowForward), fast: \(item.canPlayFastForward)")
+                }
             case .waitingToPlayAtSpecifiedRate:
                 DDLogDebug("Player is now waiting to play at the specified rate")
         }

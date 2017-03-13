@@ -117,7 +117,7 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             // set up player
             let player = AVPlayer(url: url)
-            DDLogDebug("live stream url: \(url)")
+            //DDLogDebug("live stream url: \(url)")
             let playerViewController = AVPlayerViewController()
             playerViewController.player = player
             
