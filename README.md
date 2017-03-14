@@ -20,10 +20,10 @@ using a web app hosted on a remote server.
 
 - Fast *_native_* app for Apple TV
 - Easy to use interface for browsing Programs and Episodes
+- Live streaming TV and themed channels
 - The possibility to (un)favorite programs
 - Remembers watched episodes and will allow you to resume watching
 - Will show you new unwatched episodes of favorite programs
-- Live TV (and NPO1, NPO2 and NPO3 in high quality) and themed channels
 - The ability to watch YouTube videos for Programs that have [YouTube Resources](https://github.com/4np/NPOKitResources)
 
 # Donate
