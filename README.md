@@ -26,9 +26,15 @@ using a web app hosted on a remote server.
 - Live TV (and NPO1, NPO2 and NPO3 in high quality) and themed channels
 - The ability to watch YouTube videos for Programs that have [YouTube Resources](https://github.com/4np/NPOKitResources)
 
+# Donate
+
+![donations-banner](https://cloud.githubusercontent.com/assets/1049693/23892645/c292896c-089b-11e7-9c9a-2c8f60d64c0a.jpg)
+
+If you find this application useful and you would like to do something back, you could install [Bait App](https://itunes.apple.com/nl/app/bait/id1207460654) from the MacApp Store and purchase the € 1,99 in-app purchase 🙌🏻
+
 # Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
 
-Unfortunately the app cannot be distributed in the Appstore as the NPO does not allow third parties in doing so. However, using a _free_ Apple Developer account you *can* compile it yourself and install it in your own Apple TV 4 (_but also read the note below_). While this may sound scary and difficult to non-technical users, it's really not that hard if you follow these steps :)
+Unfortunately the app cannot be distributed in the AppStore as the NPO does not allow third parties in doing so. However, using a _free_ Apple Developer account you *can* compile it yourself and install it in your own Apple TV 4 (_but also read the note below_). While this may sound scary and difficult to non-technical users, it's really not that hard if you follow these steps :)
 
 **Prerequisites:**
 
@@ -104,19 +110,22 @@ On the top left in Xcode click on the device the compiled program will be deploy
 
 Finally you are able to compile the program and deploy it onto your Apple TV! Click the play icon (see **7** in the screenshot above). The application will be compiled and deployed on your Apple TV 4. After this the application will remain on the Apple TV. 
 
+_Note: if you encounter issues or you are unable to play, this is where you should debug what it going on. Observe the Xcode console output while leaving your Apple TV connected. Alternatively you can also run in the simulator (see **6** in the screenshot above) and observe the Xcode console output to debug the issues you are experiencing._
+
 ## 9. Sit back and enjoy :)
 
 You're done! You can disconnect your Apple TV and start watching! :)
 
 # Firewalls
 
-If you have set up a firewall to filter outbound network requests, make sure to configure it to allow the following URL patterns you can expect the app to call (also see [#18](https://github.com/4np/UitzendingGemist/issues/18)):
+If you have set up a firewall to filter _outbound_ network requests, make sure to configure it to allow the following URL patterns you can expect the app to call (also see [#18](https://github.com/4np/UitzendingGemist/issues/18)):
 
 - apps-api.uitzendinggemist.nl (the API)
 - api.github.com (check for new releases)
 - *.omroep.nl (images, videos and live streams)
 - googleapis.com (youtube API)
 - youtube.com (youtube videos)
+- freegeoip.net (determine your country by ip)
 
 _Note: as the video and image content URLs come from the APIs, although unlikely, these URLs *might* change_
 
@@ -167,6 +176,10 @@ _Note: as the video and image content URLs come from the APIs, although unlikely
 ![YouTube Button](https://cloud.githubusercontent.com/assets/1049693/20447426/08b7e0da-addf-11e6-90a3-fc3a094a8d92.png)
 
 ![YouTube Channel](https://cloud.githubusercontent.com/assets/1049693/20447425/08aaed3a-addf-11e6-88f8-346ed87f6ca9.png)
+
+## Content Availability
+
+![Region Check](https://cloud.githubusercontent.com/assets/1049693/23863344/d8cf8004-080f-11e7-8752-5f92de247f33.png)
 
 # License
 
