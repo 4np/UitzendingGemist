@@ -43,6 +43,14 @@ class EpisodePlayerViewController: AVPlayerViewController {
     private var seconds = 0
     private var episode: NPOEpisode?
     
+    lazy var isDebuggingEnabled: Bool = {
+        guard let path = Bundle.main.path(forResource: "Settings", ofType: "plist"), let key = NSDictionary(contentsOfFile: path)?.object(forKey: "UGEnablePlayerDebugging") as? String else {
+            return false
+        }
+        
+        return (key == "YES")
+    }()
+    
     // MARK: Lifecycle
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -96,7 +104,10 @@ class EpisodePlayerViewController: AVPlayerViewController {
             self?.seconds = Int(time.seconds)
         }
         
-        player.addObserver(self, forKeyPath: "timeControlStatus", options: [.new, .old], context: &observerContext)
+        if isDebuggingEnabled {
+            DDLogDebug("Debugging episode video player is enabled")
+            player.addObserver(self, forKeyPath: "timeControlStatus", options: [.new, .old], context: &observerContext)
+        }
         
         // assign locally
         self.episode = episode
@@ -110,9 +121,11 @@ class EpisodePlayerViewController: AVPlayerViewController {
     
     private func addObservers(player: AVPlayer) {
         // observe any playback issues that may happen
-        NotificationCenter.default.addObserver(self, selector: #selector(playbackHasStalled(notification:)), name: NSNotification.Name.AVPlayerItemPlaybackStalled, object: player.currentItem)
-        NotificationCenter.default.addObserver(self, selector: #selector(playbackError(notification:)), name: NSNotification.Name.AVPlayerItemNewErrorLogEntry, object: player.currentItem)
-        NotificationCenter.default.addObserver(self, selector: #selector(playerFailedToPlayToEndTime(notification:)), name: NSNotification.Name.AVPlayerItemFailedToPlayToEndTime, object: player.currentItem)
+        if isDebuggingEnabled {
+            NotificationCenter.default.addObserver(self, selector: #selector(playbackHasStalled(notification:)), name: NSNotification.Name.AVPlayerItemPlaybackStalled, object: player.currentItem)
+            NotificationCenter.default.addObserver(self, selector: #selector(playbackError(notification:)), name: NSNotification.Name.AVPlayerItemNewErrorLogEntry, object: player.currentItem)
+            NotificationCenter.default.addObserver(self, selector: #selector(playerFailedToPlayToEndTime(notification:)), name: NSNotification.Name.AVPlayerItemFailedToPlayToEndTime, object: player.currentItem)
+        }
         
         // observe when the player is done playing
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player)
@@ -120,7 +133,10 @@ class EpisodePlayerViewController: AVPlayerViewController {
     
     private func removeObservers() {
         NotificationCenter.default.removeObserver(self)
-        self.player?.removeObserver(self, forKeyPath: "timeControlStatus", context: &observerContext)
+
+        if isDebuggingEnabled {
+            self.player?.removeObserver(self, forKeyPath: "timeControlStatus", context: &observerContext)
+        }
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

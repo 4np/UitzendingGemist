@@ -24,6 +24,8 @@
 		F348AC631DDF58C800E9A2BE /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348AC621DDF58C800E9A2BE /* YouTubeViewController.swift */; };
 		F348AC651DDF5A5200E9A2BE /* YouTubeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348AC641DDF5A5200E9A2BE /* YouTubeCollectionViewCell.swift */; };
 		F34A15511D3E7B88000E0D4F /* EpisodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34A15501D3E7B88000E0D4F /* EpisodeCollectionViewCell.swift */; };
+		F371CDE71E7A9D1D00AD0E77 /* NPOKit.plist in Resources */ = {isa = PBXBuildFile; fileRef = F371CDE61E7A9D1D00AD0E77 /* NPOKit.plist */; };
+		F371CDE91E7AA2D000AD0E77 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = F371CDE81E7AA2D000AD0E77 /* Settings.plist */; };
 		F39AD97C1E0ADCAC00DC9104 /* EpisodePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AD97B1E0ADCAC00DC9104 /* EpisodePlayerViewController.swift */; };
 		F3A71A881D4936CE00F331F9 /* ProgramSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A71A871D4936CE00F331F9 /* ProgramSplitViewController.swift */; };
 		F3A71A8A1D49FE1000F331F9 /* Array+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A71A891D49FE1000F331F9 /* Array+Random.swift */; };
@@ -68,6 +70,8 @@
 		F348AC621DDF58C800E9A2BE /* YouTubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
 		F348AC641DDF5A5200E9A2BE /* YouTubeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeCollectionViewCell.swift; sourceTree = "<group>"; };
 		F34A15501D3E7B88000E0D4F /* EpisodeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCollectionViewCell.swift; sourceTree = "<group>"; };
+		F371CDE61E7A9D1D00AD0E77 /* NPOKit.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NPOKit.plist; sourceTree = "<group>"; };
+		F371CDE81E7AA2D000AD0E77 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		F39AD97B1E0ADCAC00DC9104 /* EpisodePlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodePlayerViewController.swift; sourceTree = "<group>"; };
 		F3A71A871D4936CE00F331F9 /* ProgramSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramSplitViewController.swift; sourceTree = "<group>"; };
 		F3A71A891D49FE1000F331F9 /* Array+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Random.swift"; sourceTree = "<group>"; };
@@ -173,8 +177,10 @@
 			isa = PBXGroup;
 			children = (
 				F317B9791D37BDA700927ACD /* Fonts */,
+				F3D0C25B1D36650F00A5BE93 /* Main.storyboard */,
 				F3D0C25E1D36650F00A5BE93 /* Assets.xcassets */,
 				F3D0C2601D36650F00A5BE93 /* Info.plist */,
+				F371CDE61E7A9D1D00AD0E77 /* NPOKit.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -269,8 +275,8 @@
 		F3D0C2561D36650F00A5BE93 /* UitzendingGemist */ = {
 			isa = PBXGroup;
 			children = (
+				F371CDE81E7AA2D000AD0E77 /* Settings.plist */,
 				F3D0C2571D36650F00A5BE93 /* AppDelegate.swift */,
-				F3D0C25B1D36650F00A5BE93 /* Main.storyboard */,
 				F30FE23B1D3FB9EE00ABFAE8 /* Generics */,
 				F32BAAA91D3CEDD50026CAFB /* Home */,
 				F32BAAAA1D3CEDF00026CAFB /* Episode */,
@@ -349,6 +355,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3D0C25F1D36650F00A5BE93 /* Assets.xcassets in Resources */,
+				F371CDE91E7AA2D000AD0E77 /* Settings.plist in Resources */,
+				F371CDE71E7A9D1D00AD0E77 /* NPOKit.plist in Resources */,
 				F3D0C25D1D36650F00A5BE93 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

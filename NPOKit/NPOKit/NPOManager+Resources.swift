@@ -16,8 +16,7 @@ import CocoaLumberjack
 
 extension NPOManager {
     fileprivate static var youtubeService: GTLRYouTubeService? = {
-        guard let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let key = NSDictionary(contentsOfFile: path)?.object(forKey: "ytak") as? String
-        else {
+        guard let path = Bundle.main.path(forResource: "NPOKit", ofType: "plist"), let key = NSDictionary(contentsOfFile: path)?.object(forKey: "ytak") as? String else {
             return nil
         }
         
