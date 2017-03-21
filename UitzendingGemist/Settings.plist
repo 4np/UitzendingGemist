@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UGPreferedEpisodeQualityOrder</key>
-	<string>Hoog,Normaal,Laag</string>
+	<string>Adaptive,Hoog,Normaal,Laag</string>
 	<key>UGEnablePlayerDebugging</key>
 	<string>NO</string>
 </dict>

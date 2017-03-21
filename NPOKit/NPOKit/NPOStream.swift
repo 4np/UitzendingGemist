@@ -14,12 +14,13 @@ import ObjectMapper
 import CocoaLumberjack
 
 public enum NPOStreamType: String {
-    case live = "Live"
+    case adaptive = "Adaptive"
     case high = "Hoog"
     case normal = "Normaal"
     case low = "Laag"
+    case live = "Live"
     
-    internal static let preferredOrder: [NPOStreamType] = [.high, .normal, .low]
+    internal static let preferredOrder: [NPOStreamType] = [.adaptive, .high, .normal, .low]
 }
 
 open class NPOStream: Mappable, CustomDebugStringConvertible {
@@ -65,7 +66,7 @@ open class NPOStream: Mappable, CustomDebugStringConvertible {
         }
         
         switch type {
-            case .high, .normal, .low:
+            case .adaptive, .high, .normal, .low:
                 self.getVideoStreamURL(forURL: url, withCompletion: completed)
             case .live:
                 completed(url, nil)

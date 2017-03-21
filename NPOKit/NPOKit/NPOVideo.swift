@@ -86,7 +86,7 @@ open class NPOVideo: Mappable, CustomDebugStringConvertible {
     
     // MARK: Convenience
     
-    public var highestQualityStream: NPOStream? {
+    public var preferredQualityStream: NPOStream? {
         var preferredEpisodeQualityOrder = NPOManager.sharedInstance.preferredEpisodeQualityOrder
 
         // not really a quality, but the same back end returns live streams as well

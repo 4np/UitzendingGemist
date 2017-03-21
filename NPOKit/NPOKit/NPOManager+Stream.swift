@@ -82,10 +82,25 @@ extension NPOManager {
                 return
             }
             
+            // https://ida.omroep.nl/app.php/BNN_101382709?adaptive=yes&token=62i5nn3ci2vphfb8or665jqgv6
             let url = "http://ida.omroep.nl/app.php/\(mid)?adaptive=yes&token=\(token)"
             //DDLogDebug("episode url -> \(url)")
             
             self?.getVideoStream(forURL: url, andLiveChannel: nil, withCompletion: completed)
+        }
+    }
+    
+    public func getVideoStream(forLiveChannel channel: NPOLive, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
+        self.getToken { [weak self] token, error in
+            guard let token = token else {
+                completed(nil, error)
+                return
+            }
+            
+            let channelMID = channel.rawValue
+            let url = "http://ida.omroep.nl/app.php/\(channelMID)?adaptive=yes&token=\(token)"
+            //DDLogDebug("live url: \(url)")
+            self?.getVideoStream(forURL: url, andLiveChannel: channel, withCompletion: completed)
         }
     }
     
@@ -106,26 +121,15 @@ extension NPOManager {
             // set live channel, if we know it
             video.channel = liveChannel
             
-            guard let stream = video.highestQualityStream else {
+            guard let stream = video.preferredQualityStream else {
                 let error = error ?? NPOError.networkError("Could not fetch stream for video model (url: \(url))")
                 completed(nil, error)
                 return
             }
             
-            stream.getVideoStreamURL(withCompletion: completed)
-        }
-    }
-    
-    public func getVideoStream(forLiveChannel channel: NPOLive, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
-        self.getToken { [weak self] token, error in
-            guard let token = token else {
-                completed(nil, error)
-                return
-            }
+            //DDLogDebug("Stream quality \(stream.type)")
             
-            let url = "http://ida.omroep.nl/app.php/\(channel.rawValue)?adaptive=yes&token=\(token)"
-            //DDLogDebug("live url: \(url)")
-            self?.getVideoStream(forURL: url, andLiveChannel: channel, withCompletion: completed)
+            stream.getVideoStreamURL(withCompletion: completed)
         }
     }
 }
