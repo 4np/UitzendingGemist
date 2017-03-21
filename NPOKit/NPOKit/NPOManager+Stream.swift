@@ -82,8 +82,6 @@ extension NPOManager {
                 return
             }
             
-            // old url (before 20170301):
-            // let url = "http://ida.omroep.nl/odi/?prid=\(mid)&puboptions=h264_bb,h264_sb,h264_std&adaptive=no&part=1&token=\(token)"
             let url = "http://ida.omroep.nl/app.php/\(mid)?adaptive=yes&token=\(token)"
             //DDLogDebug("episode url -> \(url)")
             
@@ -155,9 +153,6 @@ extension NPOManager {
             return
         }
         
-        // example content of url:
-        // setSource("http:\/\/l2cme608adc6090058b7eb9f000000.d4ec18219f11558f.smoote1f.npostreaming.nl\/d\/live\/npo\/tvlive\/npo1\/npo1.isml\/npo1.m3u8")
-        
         let _ = Alamofire.request(url, headers: self.getHeaders()).responseString { response in
             //DDLogDebug("response: \(response.result.value)")
             guard let value = response.result.value else {
@@ -169,15 +164,10 @@ extension NPOManager {
                 return
             }
             
-            // remove crap to obtain the url
-            let cleanedValue = value
-                .replacingOccurrences(of: "setSource(\"", with: "")
-                .replacingOccurrences(of: "\")", with: "")
-                .replacingOccurrences(of: "\\", with: "")
+            //DDLogDebug("Value: \(value)")
             
-            // At this stage we have a low quality 576p stream
-            guard let adaptiveStreamURL = URL(string: cleanedValue) else {
-                completed(nil, NPOError.networkError("Could not fetch live stream url (url: \(url)) (3)"))
+            guard let adaptiveStreamURL = value.extractURL() else {
+                completed(nil, NPOError.networkError("Could not fetch live stream url (url: \(url)) (3: \(value))"))
                 return
             }
             //DDLogDebug("stream url: \(adaptiveStreamURL)")
