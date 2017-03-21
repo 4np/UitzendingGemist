@@ -26,12 +26,6 @@ using a web app hosted on a remote server.
 - Will show you new unwatched episodes of favorite programs
 - The ability to watch YouTube videos for Programs that have [YouTube Resources](https://github.com/4np/NPOKitResources)
 
-# Donate
-
-![donations-banner](https://cloud.githubusercontent.com/assets/1049693/23892645/c292896c-089b-11e7-9c9a-2c8f60d64c0a.jpg)
-
-If you find this application useful and you would like to do something back, you could install [Bait App](https://itunes.apple.com/nl/app/bait/id1207460654) from the MacApp Store and purchase the € 1,99 in-app purchase 🙌🏻
-
 # Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
 
 Unfortunately the app cannot be distributed in the AppStore as the NPO does not allow third parties in doing so. However, using a _free_ Apple Developer account you *can* compile it yourself and install it in your own Apple TV 4 (_but also read the note below_). While this may sound scary and difficult to non-technical users, it's really not that hard if you follow these steps :)
@@ -115,6 +109,12 @@ _Note: if you encounter issues or you are unable to play, this is where you shou
 ## 9. Sit back and enjoy :)
 
 You're done! You can disconnect your Apple TV and start watching! :)
+
+# Donate
+
+![donations-banner](https://cloud.githubusercontent.com/assets/1049693/23892645/c292896c-089b-11e7-9c9a-2c8f60d64c0a.jpg)
+
+If you find this application useful and you would like to do something back, you could install [Bait App](https://itunes.apple.com/nl/app/bait/id1207460654) from the MacApp Store and purchase the € 1,99 in-app purchase 🙌🏻
 
 # Firewalls
 

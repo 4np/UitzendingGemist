@@ -182,4 +182,28 @@ open class NPOManager {
         //DDLogDebug("memory usage: \(imageCache.memoryUsage), capacity: \(imageCache.memoryCapacity), prefered after purge: \(imageCache.preferredMemoryUsageAfterPurge)")
         return imageCache
     }()
+    
+    // MARK: Episode stream quality order of preference
+    
+    lazy internal var preferredEpisodeQualityOrder: [NPOStreamType] = {
+        var streamTypes = [NPOStreamType]()
+        
+        defer {
+            DDLogDebug("Episode stream quality order of preference: \(streamTypes.map { $0.rawValue })")
+        }
+        
+        // try to fetch the preferred episode quality types
+        guard let path = Bundle.main.path(forResource: "Settings", ofType: "plist"), let order = NSDictionary(contentsOfFile: path)?.object(forKey: "UGPreferedEpisodeQualityOrder") as? String else {
+            // use the default preferred order
+            streamTypes = NPOStreamType.preferredOrder
+            return streamTypes
+        }
+        
+        for type in order.components(separatedBy: ",") {
+            guard let streamType = NPOStreamType(rawValue: type.trimmed) else { continue }
+            streamTypes.append(streamType)
+        }
+        
+        return streamTypes
+    }()
 }
