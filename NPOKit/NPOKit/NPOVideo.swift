@@ -87,13 +87,18 @@ open class NPOVideo: Mappable, CustomDebugStringConvertible {
     // MARK: Convenience
     
     lazy var preferredEpisodeQualityOrder: [NPOStreamType] = {
+        var streamTypes = [NPOStreamType]()
+
+        defer {
+            DDLogDebug("Episode stream quality order of preference: \(streamTypes.map { $0.rawValue })")
+        }
+        
         // try to fetch the preferred episode quality types
         guard let path = Bundle.main.path(forResource: "Settings", ofType: "plist"), let order = NSDictionary(contentsOfFile: path)?.object(forKey: "UGPreferedEpisodeQualityOrder") as? String else {
             // use the default preferred order
-            return NPOStreamType.preferredOrder
+            streamTypes = NPOStreamType.preferredOrder
+            return streamTypes
         }
-        
-        var streamTypes = [NPOStreamType]()
         
         for type in order.components(separatedBy: ",") {
             guard let streamType = NPOStreamType(rawValue: type.trimmed) else { continue }
@@ -105,11 +110,9 @@ open class NPOVideo: Mappable, CustomDebugStringConvertible {
     
     public var highestQualityStream: NPOStream? {
         var preferredEpisodeQualityOrder = self.preferredEpisodeQualityOrder
-        
+
         // not really a quality, but the same back end returns live streams as well
         preferredEpisodeQualityOrder.append(.live)
-        
-        DDLogDebug("Preferred episode quality order: \(preferredEpisodeQualityOrder)")
         
         for streamType in preferredEpisodeQualityOrder {
             if let stream = self.streams?.filter({ $0.type == streamType }).first { return stream }
