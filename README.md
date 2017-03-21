@@ -127,7 +127,7 @@ _Note: as the video and image content URLs come from the APIs, although unlikely
 
 While the live streams are adaptive (and hence will optimise for the available bandwidth), the episode streams are actually based on order of quality which defaults to _Hoog_ (high), _Normaal_ (normal), _Laag_ (low) (in Dutch as the NPO uses these values as well). This basically means that when an episode has a high quality stream available, that is what will get played. Falling back to normal quality or lastly to low quality.
 
-If your internet connection is limited and you experience issues playing episodes you can change this order to (for example: _Laag,Normaal,Hoog_) and see if the episode stream perform more reliably:
+If your internet connection is limited and you experience issues playing episodes you can change this order to (for example) _Laag,Normaal,Hoog_ and see if the episode stream perform more reliably:
 
 ![videoqualityorderofpreference](https://cloud.githubusercontent.com/assets/1049693/24160516/5d113fe4-0e62-11e7-801f-885021617333.jpg)
 
