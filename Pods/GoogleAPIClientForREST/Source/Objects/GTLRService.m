@@ -757,6 +757,23 @@ static NSDictionary *MergeDictionaries(NSDictionary *recessiveDict, NSDictionary
               // We could not parse the JSON payload
               error = parseError;
             } else {
+              // HTTP Streaming defined by Google services is is an array
+              // of requests and replies. This code never makes one of
+              // these requests; but, some GET apis can actually be to
+              // a Streaming result (for media?), so the errors can still
+              // come back in an array.
+              if ([jsonWrapper isKindOfClass:[NSArray class]]) {
+                NSArray *jsonWrapperAsArray = (NSArray *)jsonWrapper;
+#if DEBUG
+                if (jsonWrapperAsArray.count > 1) {
+                  GTLR_DEBUG_LOG(@"Got error array with >1 item, only using first. Full list: %@",
+                                 jsonWrapperAsArray);
+                }
+#endif
+                // Use the first.
+                jsonWrapper = [jsonWrapperAsArray firstObject];
+              }
+
               // Convert the JSON error payload into a structured error
               NSMutableDictionary *errorJSON = [jsonWrapper valueForKey:@"error"];
               if (errorJSON) {
@@ -2561,7 +2578,22 @@ static NSDictionary *MergeDictionaries(NSDictionary *recessiveDict, NSDictionary
   id<GTMUIApplicationProtocol> app = [GTMSessionFetcher substituteUIApplication];
   if (app) return app;
 
-  return (id<GTMUIApplicationProtocol>)[UIApplication sharedApplication];
+  static Class applicationClass = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    BOOL isAppExtension = [[[NSBundle mainBundle] bundlePath] hasSuffix:@".appex"];
+    if (!isAppExtension) {
+      Class cls = NSClassFromString(@"UIApplication");
+      if (cls && [cls respondsToSelector:NSSelectorFromString(@"sharedApplication")]) {
+        applicationClass = cls;
+      }
+    }
+  });
+
+  if (applicationClass) {
+    app = (id<GTMUIApplicationProtocol>)[applicationClass sharedApplication];
+  }
+  return app;
 }
 #endif //  GTM_BACKGROUND_TASK_FETCHING
 

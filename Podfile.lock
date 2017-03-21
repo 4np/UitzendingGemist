@@ -8,16 +8,16 @@ PODS:
   - CocoaLumberjack/Default (3.1.0)
   - CocoaLumberjack/Swift (3.1.0):
     - CocoaLumberjack/Default
-  - GoogleAPIClientForREST/Core (1.2.0):
+  - GoogleAPIClientForREST/Core (1.2.1):
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAPIClientForREST/YouTube (1.2.0):
+  - GoogleAPIClientForREST/YouTube (1.2.1):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
-  - GTMSessionFetcher (1.1.8):
-    - GTMSessionFetcher/Full (= 1.1.8)
-  - GTMSessionFetcher/Core (1.1.8)
-  - GTMSessionFetcher/Full (1.1.8):
-    - GTMSessionFetcher/Core (= 1.1.8)
+  - GTMSessionFetcher (1.1.9):
+    - GTMSessionFetcher/Full (= 1.1.9)
+  - GTMSessionFetcher/Core (1.1.9)
+  - GTMSessionFetcher/Full (1.1.9):
+    - GTMSessionFetcher/Core (= 1.1.9)
   - NPOKit (1.0.0):
     - Alamofire (~> 4.4)
     - AlamofireImage (~> 3.2)
@@ -27,13 +27,13 @@ PODS:
     - RealmSwift (~> 2.4)
     - XCDYouTubeKit (~> 2.5)
   - ObjectMapper (2.2.5)
-  - Realm (2.4.3):
-    - Realm/Headers (= 2.4.3)
-  - Realm/Headers (2.4.3)
-  - RealmSwift (2.4.3):
-    - Realm (= 2.4.3)
+  - Realm (2.4.4):
+    - Realm/Headers (= 2.4.4)
+  - Realm/Headers (2.4.4)
+  - RealmSwift (2.4.4):
+    - Realm (= 2.4.4)
   - UIColor_Hex_Swift (3.0.2)
-  - XCDYouTubeKit (2.5.4)
+  - XCDYouTubeKit (2.5.5)
 
 DEPENDENCIES:
   - CocoaLumberjack/Swift
@@ -49,14 +49,14 @@ SPEC CHECKSUMS:
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
   CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
-  GoogleAPIClientForREST: 9e5fd600a06c38abf92b5db337c5df2cfb95ee12
-  GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
+  GoogleAPIClientForREST: a8b95a252014ce2e618df6b75dc72eca2c00b4af
+  GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   NPOKit: ed5897354133ab177de01cd122c935a5bb750eb3
   ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
-  Realm: e08d60b0048ccccd3949c8c28a92c4db5712d7e9
-  RealmSwift: 30d49739ccb3385d201242736ca4dda56aec9dfc
+  Realm: 5a280a1f5a9a3c267bebf4f41ee47911137703d7
+  RealmSwift: 0c02b9f2d4be4301c497ed10e53a0580584eb1dd
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
-  XCDYouTubeKit: 80eb3978dae220a0116d198bca6852c6c969fa66
+  XCDYouTubeKit: 86f4e7a9c2baa7b7adf6abfc28ac3ab34927be2d
 
 PODFILE CHECKSUM: '091a20fb1abcaac3e8b893f740365e6ad25fa8bf'
 
