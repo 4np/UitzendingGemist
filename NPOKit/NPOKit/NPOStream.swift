@@ -28,11 +28,14 @@ open class NPOStream: Mappable, CustomDebugStringConvertible {
     // example: http://odi.omroep.nl/video/ida/h264_std/40dbe746de647f8d5418125a923c6510/58b7d7f0/VPWON_1236166/1?type=jsonp&callback=?
     private var rawURL: URL?
     
+    // example: http://odi.omroep.nl/video/ida/h264_std/40dbe746de647f8d5418125a923c6510/58b7d7f0/VPWON_1236166/1?
     private var url: URL? {
         guard let url = rawURL else { return nil }
         
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        components?.query = nil
+        
+        // remove JSONP query items
+        components?.queryItems = components?.queryItems?.filter { !["type", "callback"].contains($0.name) }
         
         return components?.url
     }
@@ -63,7 +66,7 @@ open class NPOStream: Mappable, CustomDebugStringConvertible {
             case .high, .normal, .low:
                 self.getVideoStreamURL(forURL: url, withCompletion: completed)
             case .live:
-                NPOManager.sharedInstance.getLiveVideoStreamURL(forURL: rawURL, withCompletion: completed)
+                completed(url, nil)
         }
     }
     

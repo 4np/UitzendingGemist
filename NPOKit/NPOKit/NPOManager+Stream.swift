@@ -123,56 +123,9 @@ extension NPOManager {
                 return
             }
             
-            // 1. http://ida.omroep.nl/app.php/LI_NL1_4188102?adaptive=yes&token=7t0akpumcsre8k9jqtrk0dblt7
-            //    {
-            //        "limited": false,
-            //        "site": null,
-            //        "items": [
-            //        [
-            //        {
-            //        "label": "Live",
-            //        "contentType": "live",
-            //        "url": "http://livestreams.omroep.nl/live/npo/tvlive/npo1/npo1.isml/npo1.m3u8?hash=f9ec3c0d696b8fce324f9a58b5899978&type=jsonp&protection=url",
-            //        "format": "hls"
-            //        }
-            //        ]
-            //        ]
-            //    }
-            // 2. http://livestreams.omroep.nl/live/npo/tvlive/npo1/npo1.isml/npo1.m3u8?hash=f9ec3c0d696b8fce324f9a58b5899978&type=jsonp&protection=url
-            //    setSource("http:\/\/l2cm10d0745c410058b7e13a000000.d6e09d487eeed2ac.smoote2k.npostreaming.nl\/d\/live\/npo\/tvlive\/npo1\/npo1.isml\/npo1.m3u8")
-
             let url = "http://ida.omroep.nl/app.php/\(channel.rawValue)?adaptive=yes&token=\(token)"
             //DDLogDebug("live url: \(url)")
             self?.getVideoStream(forURL: url, andLiveChannel: channel, withCompletion: completed)
-        }
-    }
-    
-    internal func getLiveVideoStreamURL(forURL url: URL?, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
-        guard let url = url else {
-            completed(nil, NPOError.networkError("NPOStream does not have a url (2)"))
-            return
-        }
-        
-        let _ = Alamofire.request(url, headers: self.getHeaders()).responseString { response in
-            //DDLogDebug("response: \(response.result.value)")
-            guard let value = response.result.value else {
-                var error = NPOError.networkError("Could not fetch live stream url (url: \(url)) (1)")
-                if let responseError = response.error {
-                    error = NPOError.networkError("Could not fetch live stream url (\(responseError.localizedDescription)) (2)")
-                }
-                completed(nil, error)
-                return
-            }
-            
-            //DDLogDebug("Value: \(value)")
-            
-            guard let adaptiveStreamURL = value.extractURL() else {
-                completed(nil, NPOError.networkError("Could not fetch live stream url (url: \(url)) (3: \(value))"))
-                return
-            }
-            //DDLogDebug("stream url: \(adaptiveStreamURL)")
-            completed(adaptiveStreamURL, nil)
-            return
         }
     }
 }
