@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import RealmSwift
 import AlamofireObjectMapper
 import AlamofireImage
 import ObjectMapper
+import CocoaLumberjack
 
-// Example response:
+// Example response for episodes:
 //
 //{
 //    "limited":false,
@@ -86,16 +86,35 @@ open class NPOVideo: Mappable, CustomDebugStringConvertible {
     
     // MARK: Convenience
     
-    public var highestQualityStream: NPOStream? {
-        // high
-        if let stream = self.streams?.filter({ $0.type == .high }).first { return stream }
-        // normal
-        if let stream = self.streams?.filter({ $0.type == .normal }).first { return stream }
-        // low
-        if let stream = self.streams?.filter({ $0.type == .low }).first { return stream }
-        // not really a quality, but the same back end returns live streams as well
-        if let stream = self.streams?.filter({ $0.type == .live }).first { return stream }
+    lazy var preferredEpisodeQualityOrder: [NPOStreamType] = {
+        // try to fetch the preferred episode quality types
+        guard let path = Bundle.main.path(forResource: "Settings", ofType: "plist"), let order = NSDictionary(contentsOfFile: path)?.object(forKey: "UGPreferedEpisodeQualityOrder") as? String else {
+            // use the default preferred order
+            return NPOStreamType.preferredOrder
+        }
         
+        var streamTypes = [NPOStreamType]()
+        
+        for type in order.components(separatedBy: ",") {
+            guard let streamType = NPOStreamType(rawValue: type.trimmed) else { continue }
+            streamTypes.append(streamType)
+        }
+        
+        return streamTypes
+    }()
+    
+    public var highestQualityStream: NPOStream? {
+        var preferredEpisodeQualityOrder = self.preferredEpisodeQualityOrder
+        
+        // not really a quality, but the same back end returns live streams as well
+        preferredEpisodeQualityOrder.append(.live)
+        
+        DDLogDebug("Preferred episode quality order: \(preferredEpisodeQualityOrder)")
+        
+        for streamType in preferredEpisodeQualityOrder {
+            if let stream = self.streams?.filter({ $0.type == streamType }).first { return stream }
+        }
+
         return nil
     }
 }

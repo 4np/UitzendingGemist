@@ -18,6 +18,8 @@ public enum NPOStreamType: String {
     case high = "Hoog"
     case normal = "Normaal"
     case low = "Laag"
+    
+    internal static let preferredOrder: [NPOStreamType] = [.high, .normal, .low]
 }
 
 open class NPOStream: Mappable, CustomDebugStringConvertible {
