@@ -13,7 +13,7 @@ import CocoaLumberjack
 import AVKit
 import UIColor_Hex_Swift
 
-class EpisodeViewController: UIViewController {
+class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
     @IBOutlet weak private var backgroundImageView: UIImageView!
     @IBOutlet weak private var episodeImageView: UIImageView!
     @IBOutlet weak private var programNameLabel: UILabel!
@@ -139,8 +139,6 @@ class EpisodeViewController: UIViewController {
 
         return broadcasters.map({ $0.rawValue }).joined(separator: "\n")
     }
-    
-//    private var playerViewController: EpisodePlayerViewController?
     
     // MARK: Lifecycle
     
@@ -478,11 +476,34 @@ class EpisodeViewController: UIViewController {
     }
     
     private func play(episode: NPOEpisode, withVideoStream url: URL, beginAt seconds: Int) {
-        let playerViewController = EpisodePlayerViewController()
+        let playerViewController = NPOPlayerViewController()
+        playerViewController.npoDelegate = self
         
-        present(playerViewController, animated: true) {
-            playerViewController.play(episode: episode, withVideoStream: url, beginAt: seconds)
+        var title = ""
+        if let programName = self.programName {
+            title += programName
         }
+        if let episodeName = self.episodeName {
+            if title != "" { title += ": " }
+            title += episodeName
+        }
+        
+        let metadata: [String: Any?] = [
+            AVMetadataCommonKeyTitle: title,
+            AVMetadataCommonKeyDescription: self.episodeDescription,
+            AVMetadataCommonKeyPublisher: self.broadcasters,
+            AVMetadataCommonKeyArtwork: self.episodeImageView.image
+        ]
+
+        present(playerViewController, animated: true) {
+            playerViewController.play(videoStream: url, subtitles: episode.subtitleURL, beginAt: seconds, externalMetadata: metadata)
+        }
+    }
+    
+    // MARK: NPOPlayerViewControllerDelegate
+    
+    func playerDidFinishPlayback(atSeconds seconds: Int) {
+        episode?.watchDuration = seconds
     }
     
     // MARK: Favorite

@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/4np/UitzendingGemist.svg?branch=master)](https://travis-ci.org/4np/UitzendingGemist)
 [![Release](https://img.shields.io/github/release/4np/UitzendingGemist.svg)](https://github.com/4np/UitzendingGemist/releases/latest)
-[![Commits Since](https://img.shields.io/github/commits-since/4np/UitzendingGemist/1.4.1.svg?maxAge=3600)](https://github.com/4np/UitzendingGemist/commits/master)
+[![Commits Since](https://img.shields.io/github/commits-since/4np/UitzendingGemist/1.5.0.svg?maxAge=3600)](https://github.com/4np/UitzendingGemist/commits/master)
 [![Platform](https://img.shields.io/badge/platform-tvOS%2010-green.svg?maxAge=3600)](https://developer.apple.com/tvos/)
 [![Swift](https://img.shields.io/badge/language-Swift-ed523f.svg?maxAge=3600)](https://swift.org)
 [![codebeat badge](https://codebeat.co/badges/a5990b60-12ce-4f22-a875-31b2ccaecfcd)](https://codebeat.co/projects/github-com-4np-uitzendinggemist)
@@ -24,6 +24,7 @@ using a web app hosted on a remote server.
 - The possibility to (un)favorite programs
 - Remembers watched episodes and will allow you to resume watching
 - Will show you new unwatched episodes of favorite programs
+- Closed Captioning for the deaf and hearing impaired (in _Dutch_)
 - The ability to watch YouTube videos for Programs that have [YouTube Resources](https://github.com/4np/NPOKitResources)
 
 # Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
@@ -180,6 +181,10 @@ If you find this application useful and you would like to do something back, you
 ## Content Availability
 
 ![Region Check](https://cloud.githubusercontent.com/assets/1049693/23863344/d8cf8004-080f-11e7-8752-5f92de247f33.png)
+
+## Closed Captioning
+
+![screen shot 2017-03-22 at 22 32 26](https://cloud.githubusercontent.com/assets/1049693/24221660/86d5cd98-0f4f-11e7-9ae6-aed889b50f24.png)
 
 # License
 

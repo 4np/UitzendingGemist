@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupLoggers()
         
+        // Disable closed captioning (Teletext 888) by default
+        UserDefaults.standard.register(defaults: [UitzendingGemistConstants.closedCaptioningEnabledKey: false])
+        
         return true
     }
 

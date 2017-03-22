@@ -87,17 +87,27 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard indexPath.row >= 0 && indexPath.row < NPOLive.all.count else {
+        guard indexPath.row >= 0 && indexPath.row < NPOLive.all.count, let cell = collectionView.cellForItem(at: indexPath) as? LiveCollectionViewCell else {
             return
         }
         
         let channel = NPOLive.all[indexPath.row]
-        self.play(liveChannel: channel)
+        
+        var channelDescription = ""
+        if let current = cell.currentLabel.text {
+            channelDescription += current
+        }
+        if let upcoming = cell.upcommingLabel.text {
+            if channelDescription != "" { channelDescription += ", " }
+            channelDescription += upcoming
+        }
+        
+        self.play(liveChannel: channel, channelImage: cell.channelImageView.image, channelDescription: channelDescription)
     }
     
     // MARK: Playing
     
-    fileprivate func play(liveChannel channel: NPOLive) {
+    fileprivate func play(liveChannel channel: NPOLive, channelImage: UIImage?, channelDescription: String?) {
         // show progress hud
         self.view.startLoading()
         
@@ -108,25 +118,23 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
             guard let url = url else {
                 if let alternativeChannel = channel.configuration.alternativeChannel {
                     DDLogDebug("No stream for channel \(channel.configuration.name), switching to alternative channel \(alternativeChannel.configuration.name)")
-                    self?.play(liveChannel: alternativeChannel)
+                    self?.play(liveChannel: alternativeChannel, channelImage: nil, channelDescription: nil)
                 } else {
                     DDLogError("Could not play live stream (\(error))")
                 }
                 return
             }
             
-            // set up player
-            let player = AVPlayer(url: url)
-            //DDLogDebug("live stream url: \(url)")
-            let playerViewController = AVPlayerViewController()
-            playerViewController.player = player
+            let playerViewController = NPOPlayerViewController()
+            let configuration = channel.configuration
+            let metadata: [String: Any?] = [
+                AVMetadataCommonKeyTitle: configuration.name,
+                AVMetadataCommonKeyDescription: channelDescription,
+                AVMetadataCommonKeyArtwork: channelImage
+            ]
             
-            // handle stalling
-            player.automaticallyWaitsToMinimizeStalling = true
-            
-            // present player
             self?.present(playerViewController, animated: true) {
-                playerViewController.player?.play()
+                playerViewController.play(videoStream: url, externalMetadata: metadata)
             }
         }
     }

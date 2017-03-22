@@ -54,6 +54,11 @@ open class NPOEpisode: NPORestrictedMedia {
         return broadcasted.daysAgoDisplayValue
     }
     
+    open var subtitleURL: URL? {
+        guard let mid = mid else { return nil }
+        return URL(string: "https://tt888.omroep.nl/tt888/\(mid)")
+    }
+    
     // MARK: Lifecycle
     
     required public init?(map: Map) {
