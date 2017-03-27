@@ -298,7 +298,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
             }
         }
         
-        playButton.isEnabled = canPlay
+        playButton.isEnabled = true // canPlay
         playLabel.isEnabled = true
         playLabel.text = canPlay ? UitzendingGemistConstants.playText : UitzendingGemistConstants.playUnavailableText
         
