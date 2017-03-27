@@ -56,7 +56,8 @@ open class NPOEpisode: NPORestrictedMedia {
     
     open var subtitleURL: URL? {
         guard let mid = mid else { return nil }
-        return URL(string: "https://tt888.omroep.nl/tt888/\(mid)")
+        let transport = NPOManager.sharedInstance.transport
+        return URL(string: "\(transport)://tt888.omroep.nl/tt888/\(mid)")
     }
     
     // MARK: Lifecycle
