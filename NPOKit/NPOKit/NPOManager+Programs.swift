@@ -22,7 +22,7 @@ fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 extension NPOManager {
-    // http://apps-api.uitzendinggemist.nl/series.json
+    // https://apps-api.uitzendinggemist.nl/series.json
     public func getPrograms(withCompletion completed: @escaping (_ programs: [NPOProgram]?, _ error: NPOError?) -> Void = { programs, error in }) -> Request? {
         return self.fetchModels(ofType: NPOProgram.self, fromPath: "series.json") { programs, error in
             // filter programs based on whether or not they are available
@@ -40,7 +40,7 @@ extension NPOManager {
         return self.getDetails(forProgramWithMID: mid, withCompletion: completed)
     }
     
-    // http://apps-api.uitzendinggemist.nl/series/AT_2051232.json
+    // https://apps-api.uitzendinggemist.nl/series/AT_2051232.json
     fileprivate func getDetails(forProgramWithMID mid: String, withCompletion completed: @escaping (_ program: NPOProgram?, _ error: NPOError?) -> Void = { program, error in }) -> Request? {
         let path = "series/\(mid).json"
         return self.fetchModel(ofType: NPOProgram.self, fromPath: path, withCompletion: completed)

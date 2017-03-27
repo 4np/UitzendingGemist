@@ -11,8 +11,8 @@ import Alamofire
 
 extension NPOManager {
     // Get the location by ip
-    // see: http://freegeoip.net/json/
+    // see: https://freegeoip.net/json/
     public func getGeo(withCompletion completed: @escaping (_ geo: GEO?, _ error: NPOError?) -> Void = { geo, error in }) {
-        let _ = self.fetchModel(ofType: GEO.self, fromURL: "http://freegeoip.net/json/", withCompletion: completed)
+        let _ = self.fetchModel(ofType: GEO.self, fromURL: "https://freegeoip.net/json/", withCompletion: completed)
     }
 }

@@ -16,7 +16,7 @@ import CocoaLumberjack
 
 open class NPOProgram: NPORestrictedMedia {
     // program specific properties
-    // e.g. http://apps-api.uitzendinggemist.nl/episodes/AT_2049573.json
+    // e.g. https://apps-api.uitzendinggemist.nl/episodes/AT_2049573.json
     internal var online: Date?
     internal var offline: Date?
     open fileprivate(set) var episodes: [NPOEpisode]?

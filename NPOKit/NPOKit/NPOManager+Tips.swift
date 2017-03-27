@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 extension NPOManager {    
-    // http://apps-api.uitzendinggemist.nl/tips.json
+    // https://apps-api.uitzendinggemist.nl/tips.json
     public func getTips(withCompletion completed: @escaping (_ tips: [NPOTip]?, _ error: NPOError?) -> Void = { tips, error in }) -> Request? {
         return self.fetchModels(ofType: NPOTip.self, fromPath: "tips.json", withCompletion: completed)
     }

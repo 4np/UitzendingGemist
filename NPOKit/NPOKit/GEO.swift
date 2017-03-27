@@ -6,7 +6,7 @@
 //  Copyright © 2017 Jeroen Wesbeek. All rights reserved.
 //
 
-//http://freegeoip.net/json/
+//https://freegeoip.net/json/
 
 import Foundation
 import Alamofire

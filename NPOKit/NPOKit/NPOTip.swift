@@ -30,7 +30,7 @@ extension Array where Element: NPOTip {
 }
 
 open class NPOTip: NPOImage, Equatable {
-    // http://apps-api.uitzendinggemist.nl/tips.json
+    // https://apps-api.uitzendinggemist.nl/tips.json
     open fileprivate(set) var name: String?
     open fileprivate(set) var description: String?
     open fileprivate(set) var episode: NPOEpisode?

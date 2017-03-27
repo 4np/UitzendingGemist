@@ -36,9 +36,9 @@ fileprivate func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 open class NPOEpisode: NPORestrictedMedia {
     // Episode specific properties
-    // http://apps-api.uitzendinggemist.nl/episodes/AT_2049573.json
-    // http://apps-api.uitzendinggemist.nl/tips.json
-    // http://apps-api.uitzendinggemist.nl/episodes/popular.json
+    // https://apps-api.uitzendinggemist.nl/episodes/AT_2049573.json
+    // https://apps-api.uitzendinggemist.nl/tips.json
+    // https://apps-api.uitzendinggemist.nl/episodes/popular.json
     
     open internal(set) var duration: Int = 0
     open internal(set) var advisories = [String]()

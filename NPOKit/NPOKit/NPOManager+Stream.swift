@@ -83,7 +83,7 @@ extension NPOManager {
             }
             
             // https://ida.omroep.nl/app.php/BNN_101382709?adaptive=yes&token=62i5nn3ci2vphfb8or665jqgv6
-            let url = "http://ida.omroep.nl/app.php/\(mid)?adaptive=yes&token=\(token)"
+            let url = "https://ida.omroep.nl/app.php/\(mid)?adaptive=yes&token=\(token)"
             //DDLogDebug("episode url -> \(url)")
             
             self?.getVideoStream(forURL: url, andLiveChannel: nil, withCompletion: completed)
@@ -98,7 +98,7 @@ extension NPOManager {
             }
             
             let channelMID = channel.rawValue
-            let url = "http://ida.omroep.nl/app.php/\(channelMID)?adaptive=yes&token=\(token)"
+            let url = "https://ida.omroep.nl/app.php/\(channelMID)?adaptive=yes&token=\(token)"
             //DDLogDebug("live url: \(url)")
             self?.getVideoStream(forURL: url, andLiveChannel: channel, withCompletion: completed)
         }

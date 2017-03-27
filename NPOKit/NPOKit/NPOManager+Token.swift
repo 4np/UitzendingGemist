@@ -20,7 +20,7 @@ extension NPOManager {
         }
         
         // refresh token
-        let url = "http://ida.omroep.nl/app.php/auth"
+        let url = "https://ida.omroep.nl/app.php/auth"
         let _ = fetchModel(ofType: NPOToken.self, fromURL: url) { [weak self] token, error in
             //DDLogDebug("Refreshed token: \(token)")
             self?.token = token

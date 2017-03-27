@@ -79,7 +79,7 @@ public enum NPOBroadcaster: String {
 
 open class NPOManager {
     open static let sharedInstance = NPOManager()
-    internal let baseURL = "http://apps-api.uitzendinggemist.nl"
+    internal let baseURL = "https://apps-api.uitzendinggemist.nl"
     fileprivate let infoDictionary = Bundle.main.infoDictionary
     
     // cache token
