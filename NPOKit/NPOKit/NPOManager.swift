@@ -153,7 +153,7 @@ open class NPOManager {
     // MARK: Get url
     
     internal func getURL(forPath path: String) -> String {
-        return "\(transport)://apps-api.uitzendinggemist.nl/\(path)"
+        return "http://apps-api.uitzendinggemist.nl/\(path)"
     }
     
     // MARK: Request headers

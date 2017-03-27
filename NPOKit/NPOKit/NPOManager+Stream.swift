@@ -98,7 +98,6 @@ extension NPOManager {
             }
             
             let channelMID = channel.rawValue
-//            let url = "\(transport)://ida.omroep.nl/app.php/\(channelMID)?adaptive=yes&token=\(token)"
             let url = "https://ida.omroep.nl/app.php/\(channelMID)?adaptive=yes&token=\(token)"
             DDLogDebug("live url: \(url)")
             self?.getVideoStream(forURL: url, andLiveChannel: channel, withCompletion: completed)
