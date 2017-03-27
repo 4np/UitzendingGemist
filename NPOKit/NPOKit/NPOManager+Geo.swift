@@ -13,6 +13,6 @@ extension NPOManager {
     // Get the location by ip
     // see: https://freegeoip.net/json/
     public func getGeo(withCompletion completed: @escaping (_ geo: GEO?, _ error: NPOError?) -> Void = { geo, error in }) {
-        let _ = self.fetchModel(ofType: GEO.self, fromURL: "https://freegeoip.net/json/", withCompletion: completed)
+        let _ = self.fetchModel(ofType: GEO.self, fromURL: "\(transport)://freegeoip.net/json/", withCompletion: completed)
     }
 }

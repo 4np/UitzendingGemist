@@ -77,13 +77,13 @@ extension NPOManager {
         }
         
         self.getToken { [weak self] token, error in
-            guard let token = token else {
+            guard let token = token, let transport = self?.transport else {
                 completed(nil, error)
                 return
             }
             
             // https://ida.omroep.nl/app.php/BNN_101382709?adaptive=yes&token=62i5nn3ci2vphfb8or665jqgv6
-            let url = "https://ida.omroep.nl/app.php/\(mid)?adaptive=yes&token=\(token)"
+            let url = "\(transport)://ida.omroep.nl/app.php/\(mid)?adaptive=yes&token=\(token)"
             //DDLogDebug("episode url -> \(url)")
             
             self?.getVideoStream(forURL: url, andLiveChannel: nil, withCompletion: completed)
@@ -92,13 +92,13 @@ extension NPOManager {
     
     public func getVideoStream(forLiveChannel channel: NPOLive, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
         self.getToken { [weak self] token, error in
-            guard let token = token else {
+            guard let token = token, let transport = self?.transport else {
                 completed(nil, error)
                 return
             }
             
             let channelMID = channel.rawValue
-            let url = "https://ida.omroep.nl/app.php/\(channelMID)?adaptive=yes&token=\(token)"
+            let url = "\(transport)://ida.omroep.nl/app.php/\(channelMID)?adaptive=yes&token=\(token)"
             //DDLogDebug("live url: \(url)")
             self?.getVideoStream(forURL: url, andLiveChannel: channel, withCompletion: completed)
         }

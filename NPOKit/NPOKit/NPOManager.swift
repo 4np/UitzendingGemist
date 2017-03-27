@@ -79,7 +79,7 @@ public enum NPOBroadcaster: String {
 
 open class NPOManager {
     open static let sharedInstance = NPOManager()
-    internal let baseURL = "https://apps-api.uitzendinggemist.nl"
+//    internal let baseURL = "https://apps-api.uitzendinggemist.nl"
     fileprivate let infoDictionary = Bundle.main.infoDictionary
     
     // cache token
@@ -104,6 +104,8 @@ open class NPOManager {
                 DDLogError("Could not fetch geo information (\(error))")
             }
         }
+        
+        DDLogDebug("Transport --> \(transport)")
     }
     
     //swiftlint:disable force_unwrapping
@@ -154,7 +156,8 @@ open class NPOManager {
     // MARK: Get url
     
     internal func getURL(forPath path: String) -> String {
-        return "\(self.baseURL)/\(path)"
+        return "\(transport)://apps-api.uitzendinggemist.nl/\(path)"
+//        return "\(self.baseURL)/\(path)"
     }
     
     // MARK: Request headers
@@ -206,4 +209,11 @@ open class NPOManager {
         
         return streamTypes
     }()
+    
+    // MARK: Return the transport to use (http vs https)
+    
+    internal var transport: String {
+        let secureTransportIsEnabled = UserDefaults.standard.bool(forKey: "UGSecureTransportEnabled")
+        return secureTransportIsEnabled ? "https" : "http"
+    }
 }

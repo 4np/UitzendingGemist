@@ -18,7 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupLoggers()
         
         // Disable closed captioning (Teletext 888) by default
-        UserDefaults.standard.register(defaults: [UitzendingGemistConstants.closedCaptioningEnabledKey: false])
+        UserDefaults.standard.register(defaults: [
+            UitzendingGemistConstants.closedCaptioningEnabledKey: false,
+            UitzendingGemistConstants.secureTransportEnabledKey: true
+        ])
         
         return true
     }
