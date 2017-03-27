@@ -41,7 +41,7 @@ class StillCollectionViewCell: UICollectionViewCell {
         //let size = self.stillImageView.frame.size
         let size = CGSize(width: 260, height: 146)
         
-        let _ = still.getImage(ofSize: size) { [weak self] image, error, _ in
+        _ = still.getImage(ofSize: size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not fetch still image (\(error))")
                 return

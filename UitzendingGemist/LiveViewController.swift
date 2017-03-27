@@ -75,7 +75,7 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.Live.rawValue, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.live.rawValue, for: indexPath)
         
         guard let liveCell = cell as? LiveCollectionViewCell, indexPath.row >= 0 && indexPath.row < NPOLive.all.count else {
             return cell

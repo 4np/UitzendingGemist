@@ -135,7 +135,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     // MARK: Configuration
     
     func configure(withProgram program: NPOProgram) {
-        let _ = NPOManager.sharedInstance.getDetails(forProgram: program) { [weak self] program, error in
+        _ = NPOManager.sharedInstance.getDetails(forProgram: program) { [weak self] program, error in
             guard let program = program else {
                 DDLogError("Could not fetch program (\(error))")
                 return
@@ -200,7 +200,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     
     fileprivate func layoutImages(forProgram program: NPOProgram) {
         // background image
-        let _ = program.getImage(ofSize: self.backgroundImageView.frame.size) { [weak self] image, error, _ in
+        _ = program.getImage(ofSize: self.backgroundImageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not fetch image for program (\(error))")
                 return
@@ -210,7 +210,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         
         // program image
-        let _ = program.getImage(ofSize: self.programImageView.frame.size) { [weak self] image, error, _ in
+        _ = program.getImage(ofSize: self.programImageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not fetch image for program (\(error))")
                 return
@@ -264,7 +264,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.Episode.rawValue, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.episode.rawValue, for: indexPath)
         
         guard let episodeCell = cell as? EpisodeCollectionViewCell, let episodes = self.episodes, indexPath.row >= 0 && indexPath.row < episodes.count else {
             return cell
@@ -282,13 +282,13 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         
         switch segueIdentifier {
-            case Segues.ProgramToEpisode.rawValue:
+            case Segues.programToEpisode.rawValue:
                 prepareForSegueToEpisodeView(segue, sender: sender as AnyObject?)
                 break
-            case Segues.ProgramToPlayEpisode.rawValue:
+            case Segues.programToPlayEpisode.rawValue:
                 prepareForSegueToPlayEpisodeView(segue, sender: sender as AnyObject?)
                 break
-            case Segues.ProgramToYouTube.rawValue:
+            case Segues.programToYouTube.rawValue:
                 prepareForSegueToYouTubeView(segue, sender: sender as AnyObject?)
                 break
             default:

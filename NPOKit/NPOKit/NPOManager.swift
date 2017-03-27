@@ -29,57 +29,56 @@ public enum NPOError {
 }
 
 public enum NPOGenre: String {
-    case Amusement = "Amusement"
-    case Crime = "Misdaad"
-    case Cultural = "Kunst/Cultuur"
-    case Comedy = "Comedy"
-    case Documentary = "Documentaire"
-    case Drama = "Drama"
-    case Film = "Film"
-    case Health = "Gezondheid"
-    case Informative = "Informatief"
-    case Music = "Muziek"
-    case Nature = "Natuur"
-    case News = "Nieuws/actualiteiten"
-    case Religious = "Religieus"
-    case Series = "Serie/soap"
-    case Sport = "Sport"
-    case Youth = "Jeugd"
+    case amusement = "Amusement"
+    case crime = "Misdaad"
+    case cultural = "Kunst/Cultuur"
+    case comedy = "Comedy"
+    case documentary = "Documentaire"
+    case drama = "Drama"
+    case film = "Film"
+    case health = "Gezondheid"
+    case informative = "Informatief"
+    case music = "Muziek"
+    case nature = "Natuur"
+    case news = "Nieuws/actualiteiten"
+    case religious = "Religieus"
+    case series = "Serie/soap"
+    case sport = "Sport"
+    case youth = "Jeugd"
     
-    static let all = [Amusement, Crime, Cultural, Comedy, Documentary, Drama, Film, Health, Informative, Music, Nature, News, Religious, Series, Sport, Youth]
+    static let all = [amusement, crime, cultural, comedy, documentary, drama, film, health, informative, music, nature, news, religious, series, sport, youth]
 }
 
 public enum NPOBroadcaster: String {
-    case VARA = "VARA"
-    case NOS = "NOS"
-    case KRO = "KRO"
-    case NCRV = "NCRV"
-    case KRONCRV = "KRO-NCRV"
-    case AVRO = "AVRO"
-    case TROS = "TROS"
-    case AVROTROS = "AVROTROS"
-    case BNN = "BNN"
-    case EO = "EO"
-    case HUMAN = "HUMAN"
-    case IKON = "IKON"
-    case MAX = "MAX"
-    case NTR = "NTR"
-    case NPS = "NPS"
-    case OHM = "OHM"
-    case VPRO = "VPRO"
-    case WNL = "WNL"
-    case PowNed = "PowNed"
-    case BOS = "BOS"
-    case ZAPP = "NPO Zapp"
-    case ZAPPELIN = "NPO Zappelin"
-    case JoodseOmroep = "Joodse Omroep"
+    case vara = "VARA"
+    case nos = "NOS"
+    case kro = "KRO"
+    case ncrv = "NCRV"
+    case kroncrv = "KRO-NCRV"
+    case avro = "AVRO"
+    case tros = "TROS"
+    case avrotros = "AVROTROS"
+    case bnn = "BNN"
+    case eo = "EO"
+    case human = "HUMAN"
+    case ikon = "IKON"
+    case max = "MAX"
+    case ntr = "NTR"
+    case nps = "NPS"
+    case ohm = "OHM"
+    case vpro = "VPRO"
+    case wnl = "WNL"
+    case powned = "PowNed"
+    case bos = "BOS"
+    case zapp = "NPO Zapp"
+    case zappelin = "NPO Zappelin"
+    case joodseOmroep = "Joodse Omroep"
     
-    static let all = [VARA, NOS, KRO, NCRV, KRONCRV, AVRO, TROS, AVROTROS, BNN, EO, HUMAN, IKON, MAX, NTR, NPS, OHM, VPRO, WNL, PowNed, BOS, JoodseOmroep, ZAPP, ZAPPELIN]
+    static let all = [vara, nos, kro, ncrv, kroncrv, avro, tros, avrotros, bnn, eo, human, ikon, max, ntr, nps, ohm, vpro, wnl, powned, bos, joodseOmroep, zapp, zappelin]
 }
 
 open class NPOManager {
     open static let sharedInstance = NPOManager()
-//    internal let baseURL = "https://apps-api.uitzendinggemist.nl"
     fileprivate let infoDictionary = Bundle.main.infoDictionary
     
     // cache token
@@ -104,8 +103,6 @@ open class NPOManager {
                 DDLogError("Could not fetch geo information (\(error))")
             }
         }
-        
-        DDLogDebug("Transport --> \(transport)")
     }
     
     //swiftlint:disable force_unwrapping
@@ -146,7 +143,7 @@ open class NPOManager {
 
         // Realm will automatically perform the migration and opening the Realm will succeed
         do {
-            let _ = try Realm()
+            _ = try Realm()
         } catch let error as NSError {
             DDLogError("Realm schema upgrade error (\(error.localizedDescription))")
         }
@@ -157,7 +154,6 @@ open class NPOManager {
     
     internal func getURL(forPath path: String) -> String {
         return "\(transport)://apps-api.uitzendinggemist.nl/\(path)"
-//        return "\(self.baseURL)/\(path)"
     }
     
     // MARK: Request headers

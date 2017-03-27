@@ -139,7 +139,7 @@ open class NPOProgram: NPORestrictedMedia {
             
             let letter = "\(char)".lowercased()
             
-            if let _ = Int(letter) {
+            if Int(letter) != nil {
                 return "#"
             } else {
                 return letter
@@ -184,12 +184,9 @@ open class NPOProgram: NPORestrictedMedia {
         
         // get all episodes
         getEpisodes { [weak self] episodes in
-            // iterate over episodes
-            for episode in episodes {
-                // update episode watched state (if necessary)
-                if episode.watched != newState {
-                    episode.watched = newState
-                }
+            // and mark them to have the new state
+            for episode in episodes where episode.watched != newState {
+                episode.watched = newState
             }
             
             // update internal state and pass on the completion handler
@@ -244,7 +241,7 @@ open class NPOProgram: NPORestrictedMedia {
         }
         
         // fetch the episodes for this program
-        let _ = NPOManager.sharedInstance.getEpisodes(forProgram: self) { episodes, error in
+        _ = NPOManager.sharedInstance.getEpisodes(forProgram: self) { episodes, error in
             guard let episodes = episodes else {
                 DDLogError("Could not fetch episodes for program (\(error))")
                 return

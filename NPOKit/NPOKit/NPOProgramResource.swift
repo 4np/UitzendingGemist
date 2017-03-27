@@ -21,9 +21,9 @@ open class NPOProgramResource: Mappable, CustomDebugStringConvertible {
     open internal(set) var youTubePlaylist: String?
     
     internal var hasYouTubeResource: Bool {
-        if let _ = youTubeChannel {
+        if youTubeChannel != nil {
             return true
-        } else if let _ = youTubePlaylist {
+        } else if youTubePlaylist != nil {
             return true
         }
         

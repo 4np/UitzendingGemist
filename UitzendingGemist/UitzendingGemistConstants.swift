@@ -9,20 +9,20 @@
 import Foundation
 
 enum CollectionViewCells: String {
-    case Tip = "tipCollectionViewCell"
-    case OnDeck = "onDeckCollectionViewCell"
-    case Still = "stillCollectionViewCell"
-    case Program = "programCollectionViewCell"
-    case Episode = "episodeCollectionViewCell"
-    case Live = "liveCollectionViewCell"
-    case ProgramDetail = "programDetailedCollectionViewCell"
-    case DayDetail = "byDayDetailCollectionViewCell"
-    case YouTube = "youTubeCollectionViewCell"
+    case tip = "tipCollectionViewCell"
+    case onDeck = "onDeckCollectionViewCell"
+    case still = "stillCollectionViewCell"
+    case program = "programCollectionViewCell"
+    case episode = "episodeCollectionViewCell"
+    case live = "liveCollectionViewCell"
+    case programDetail = "programDetailedCollectionViewCell"
+    case dayDetail = "byDayDetailCollectionViewCell"
+    case youTube = "youTubeCollectionViewCell"
 }
 
 enum TableViewCells: String {
-    case ProgramGroup = "programRootTableViewCell"
-    case Day = "byDayRootTableViewCell"
+    case programGroup = "programRootTableViewCell"
+    case day = "byDayRootTableViewCell"
 }
 
 //enum CollectionViewHeaders: String {
@@ -31,17 +31,17 @@ enum TableViewCells: String {
 //}
 
 enum ViewControllers: String {
-    case ProgramViewController
-    case EpisodeViewController
+    case programViewController = "ProgramViewController"
+    case episodeViewController = "EpisodeViewController"
 }
 
 enum Segues: String {
-    case HomeToEpisodeDetails = "HomeToEpisodeDetailsSegue"
-    case EpisodeToProgramDetails = "EpisodeToProgramDetailsSegue"
-    case ProgramToDetails = "ProgramToProgramDetailsSegue"
-    case ProgramToEpisode = "ProgramToEpisodeSegue"
-    case ProgramToPlayEpisode = "ProgramToPlayEpisodeSegue"
-    case ProgramToYouTube = "ProgramToYouTubeSegue"
+    case homeToEpisodeDetails = "HomeToEpisodeDetailsSegue"
+    case episodeToProgramDetails = "EpisodeToProgramDetailsSegue"
+    case programToDetails = "ProgramToProgramDetailsSegue"
+    case programToEpisode = "ProgramToEpisodeSegue"
+    case programToPlayEpisode = "ProgramToPlayEpisodeSegue"
+    case programToYouTube = "ProgramToYouTubeSegue"
 }
 
 open class UitzendingGemistConstants {

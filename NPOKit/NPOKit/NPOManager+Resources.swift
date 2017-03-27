@@ -37,7 +37,7 @@ extension NPOManager {
             days < 1
         else {
             let url = "https://raw.githubusercontent.com/4np/NPOKitResources/master/ProgramResources.json"
-            let _ = self.fetchModels(ofType: NPOProgramResource.self, fromURL: url, withKeyPath: nil, withCompletion: { [weak self] resources, error in
+            _ = self.fetchModels(ofType: NPOProgramResource.self, fromURL: url, withKeyPath: nil, withCompletion: { [weak self] resources, error in
                 if let resources = resources {
                     // cache resources
                     self?.cachedProgramResources = resources

@@ -105,7 +105,7 @@ extension NPOManager {
     }
     
     private func getVideoStream(forURL url: String, andLiveChannel liveChannel: NPOLive?, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
-        let _ = self.fetchModel(ofType: NPOVideo.self, fromURL: url) { video, error in
+        _ = self.fetchModel(ofType: NPOVideo.self, fromURL: url) { video, error in
             guard let video = video else {
                 let error = error ?? NPOError.networkError("Could not fetch video model (url: \(url))")
                 completed(nil, error)

@@ -97,7 +97,7 @@ class ByDayRootTableViewController: UITableViewController {
     
     // swiftlint:disable force_cast
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCells.Day.rawValue, for: indexPath) as! ByDayRootTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCells.day.rawValue, for: indexPath) as! ByDayRootTableViewCell
         let day = days[(indexPath as NSIndexPath).row]
         if (indexPath as NSIndexPath).row > 2 {
             cell.configure(withName: day.name)

@@ -35,7 +35,7 @@ class ProgramDetailedCollectionViewController: UIViewController, UICollectionVie
     
     // swiftlint:disable force_cast
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.ProgramDetail.rawValue, for: indexPath) as! ProgramDetailedCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.programDetail.rawValue, for: indexPath) as! ProgramDetailedCollectionViewCell
         cell.configure(withProgram: programs[indexPath.row])
         return cell
     }

@@ -22,7 +22,7 @@ extension NPOManager {
         // refresh token
         let transport = NPOManager.sharedInstance.transport
         let url = "\(transport)://ida.omroep.nl/app.php/auth"
-        let _ = fetchModel(ofType: NPOToken.self, fromURL: url) { [weak self] token, error in
+        _ = fetchModel(ofType: NPOToken.self, fromURL: url) { [weak self] token, error in
             //DDLogDebug("Refreshed token: \(token)")
             self?.token = token
             completed(token?.token, error)

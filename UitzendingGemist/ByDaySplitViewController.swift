@@ -85,7 +85,7 @@ class ByDaySplitViewController: UISplitViewController {
         // launch the EpisodeViewController (unfortunately you cannot segue
         // from a SplitViewController elsewhere so this is a workaround)
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let rvc = appDelegate.window?.rootViewController,
-            let storyboard = rvc.storyboard, let vc = storyboard.instantiateViewController(withIdentifier: ViewControllers.EpisodeViewController.rawValue) as? EpisodeViewController {
+            let storyboard = rvc.storyboard, let vc = storyboard.instantiateViewController(withIdentifier: ViewControllers.episodeViewController.rawValue) as? EpisodeViewController {
             vc.configure(withEpisode: episode)
             tabBarController?.show(vc, sender: nil)
         }

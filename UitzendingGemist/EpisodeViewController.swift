@@ -224,7 +224,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
         }
         
         // fetch episode details
-        let _ = NPOManager.sharedInstance.getDetails(forEpisode: episode) { [weak self] episode, error in
+        _ = NPOManager.sharedInstance.getDetails(forEpisode: episode) { [weak self] episode, error in
             guard let episode = episode else {
                 DDLogError("Could not fetch episode details (\(error))")
                 self?.needLayout = true
@@ -243,7 +243,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
         }
         
         // fetch program details
-        let _ = NPOManager.sharedInstance.getDetails(forProgram: program) { [weak self] program, error in
+        _ = NPOManager.sharedInstance.getDetails(forProgram: program) { [weak self] program, error in
             guard let program = program else {
                 DDLogError("Could not fetch program details (\(error))")
                 self?.needLayout = true
@@ -352,7 +352,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
     }
     
     private func getImage(forTip tip: NPOTip, andImageView imageView: UIImageView) {
-        let _ = tip.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
+        _ = tip.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not get image for tip (\(error))")
                 self?.getImage(forEpisode: tip.episode, andImageView: imageView)
@@ -368,7 +368,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
             return
         }
         
-        let _ = episode.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
+        _ = episode.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not get image for episode (\(error))")
                 self?.getImage(forProgram: episode.program, andImageView: imageView)
@@ -384,7 +384,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
             return
         }
         
-        let _ = program.getImage(ofSize: imageView.frame.size) { image, error, _ in
+        _ = program.getImage(ofSize: imageView.frame.size) { image, error, _ in
             guard let image = image else {
                 DDLogError("Could not get image for program (\(error))")
                 return
@@ -405,7 +405,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.Still.rawValue, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.still.rawValue, for: indexPath)
         
         guard let stillCell = cell as? StillCollectionViewCell, let stills = episode?.stills, indexPath.row >= 0 && indexPath.row < stills.count else {
             return cell
@@ -528,7 +528,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
         }
 
         switch segueIdentifier {
-            case Segues.EpisodeToProgramDetails.rawValue:
+            case Segues.episodeToProgramDetails.rawValue:
                 prepareForSegueToProgramView(segue, sender: sender as AnyObject?)
                 break
             default:

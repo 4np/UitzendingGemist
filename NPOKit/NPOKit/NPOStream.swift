@@ -79,7 +79,7 @@ open class NPOStream: Mappable, CustomDebugStringConvertible {
             return
         }
         
-        let _ = NPOManager.sharedInstance.fetchModel(ofType: NPOStreamResource.self, fromURL: url.absoluteString) { streamResource, error in
+        _ = NPOManager.sharedInstance.fetchModel(ofType: NPOStreamResource.self, fromURL: url.absoluteString) { streamResource, error in
             guard let streamURL = streamResource?.url else {
                 let error = error ?? NPOError.networkError("Could not fetch stream resource (url: \(url))")
                 completed(nil, error)

@@ -78,7 +78,7 @@ class ProgramRootTableViewController: UITableViewController {
     // MARK: Networking
     
     fileprivate func fetchPrograms() {
-        let _ = NPOManager.sharedInstance.getPrograms { [weak self] programs, error in
+        _ = NPOManager.sharedInstance.getPrograms { [weak self] programs, error in
             guard let programs = programs else {
                 DDLogError("Could not fetch programs (\(error))")
                 return
@@ -129,7 +129,7 @@ class ProgramRootTableViewController: UITableViewController {
     
     // swiftlint:disable force_cast
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCells.ProgramGroup.rawValue, for: indexPath) as! ProgramRootTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCells.programGroup.rawValue, for: indexPath) as! ProgramRootTableViewCell
         let row = (indexPath as NSIndexPath).row
         
         if row == 0 {

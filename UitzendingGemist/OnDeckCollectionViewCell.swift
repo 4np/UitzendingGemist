@@ -52,7 +52,7 @@ class OnDeckCollectionViewCell: UICollectionViewCell {
         //let size = self.imageView.frame.size
         let size = CGSize(width: 375, height: 211)
         
-        let _ = episode.getImage(ofSize: size) { [weak self] image, _, _ in
+        _ = episode.getImage(ofSize: size) { [weak self] image, _, _ in
             self?.imageView.image = image
         }
     }

@@ -45,7 +45,7 @@ class YouTubeCollectionViewCell: UICollectionViewCell {
         let size = CGSize(width: 375, height: 211)
         
         // get image
-        let _ = NPOManager.sharedInstance.getImage(forYouTubeVideo: video, ofSize: size) { [weak self] image, _ in
+        _ = NPOManager.sharedInstance.getImage(forYouTubeVideo: video, ofSize: size) { [weak self] image, _ in
             guard let image = image else {
                 return
             }

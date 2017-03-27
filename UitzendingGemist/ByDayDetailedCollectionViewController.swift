@@ -42,7 +42,7 @@ class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewD
     func configure(withDate date: Date) {
         self.date = date
 
-        let _ = NPOManager.sharedInstance.getEpisodes(forDate: date, filterReruns: true) { [weak self] episodes, error in
+        _ = NPOManager.sharedInstance.getEpisodes(forDate: date, filterReruns: true) { [weak self] episodes, error in
             guard let episodes = episodes, let strongSelf = self else {
                 DDLogError("Could not fetch episodes for \(date) (\(error))")
                 return
@@ -69,7 +69,7 @@ class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewD
     
     // swiftlint:disable force_cast
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.DayDetail.rawValue, for: indexPath) as! ByDayDetailedCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.dayDetail.rawValue, for: indexPath) as! ByDayDetailedCollectionViewCell
         cell.configure(withEpisode: episodes[indexPath.row])
         return cell
     }

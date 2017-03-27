@@ -84,7 +84,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         // get tips
         group.enter()
-        let _ = NPOManager.sharedInstance.getTips { items, error in
+        _ = NPOManager.sharedInstance.getTips { items, error in
             defer { group.leave() }
             
             if let items = items {
@@ -142,7 +142,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             
             // set initial background image?
             if strongSelf.backgroundImageView.image == nil, let firstTip = tips.first {
-                let _ = firstTip.getImage(ofSize: strongSelf.backgroundImageView.frame.size) { image, _, _ in
+                _ = firstTip.getImage(ofSize: strongSelf.backgroundImageView.frame.size) { image, _, _ in
                     strongSelf.backgroundImageView.image = image
                 }
             }
@@ -190,7 +190,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: Segues.HomeToEpisodeDetails.rawValue, sender: collectionView)
+        performSegue(withIdentifier: Segues.homeToEpisodeDetails.rawValue, sender: collectionView)
     }
     
     // swiftlint:disable force_cast
@@ -212,7 +212,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 break
         }
         
-        let _ = image?.getImage(ofSize: self.backgroundImageView.frame.size) { [weak self] image, _, _ in
+        _ = image?.getImage(ofSize: self.backgroundImageView.frame.size) { [weak self] image, _, _ in
             self?.backgroundImageView.image = image
         }
     }
@@ -222,7 +222,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     //swiftlint:disable force_cast
     fileprivate func dequeueTipCell(forCollectionView collectionView: UICollectionView, andIndexPath indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.Tip.rawValue, for: indexPath) as! TipCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.tip.rawValue, for: indexPath) as! TipCollectionViewCell
         cell.configure(withTip: self.tips[indexPath.row])
         return cell
     }
@@ -232,7 +232,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     //swiftlint:disable force_cast
     fileprivate func dequeueOnDeckCell(forCollectionView collectionView: UICollectionView, andIndexPath indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.OnDeck.rawValue, for: indexPath) as! OnDeckCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.onDeck.rawValue, for: indexPath) as! OnDeckCollectionViewCell
         let row = (indexPath as NSIndexPath).row
         
         if row >= 0 && row < onDeck.count {
@@ -250,7 +250,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     // MARK: Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == Segues.HomeToEpisodeDetails.rawValue, let collectionView = sender as? UICollectionView, let indexPath = collectionView.indexPathsForSelectedItems?.first, let vc = segue.destination as? EpisodeViewController else {
+        guard segue.identifier == Segues.homeToEpisodeDetails.rawValue, let collectionView = sender as? UICollectionView, let indexPath = collectionView.indexPathsForSelectedItems?.first, let vc = segue.destination as? EpisodeViewController else {
             return
         }
         

@@ -14,58 +14,58 @@ import XCDYouTubeKit
 // see http://www.genyoutube.net/formats-resolution-youtube-videos.html
 enum YouTubeVideo: Int {
     // Main Stream Video Formats
-    case main_360p          = 18
-    case main_720p          = 22
-    case main_1080p         = 37
-    case main_4k            = 38 // 3072p
+    case main360p          = 18
+    case main720p          = 22
+    case main1080p         = 37
+    case main4k            = 38 // 3072p
     
     // FLV
-    case flv_360p           = 34
-    case flv_480p           = 35
+    case flv360p           = 34
+    case flv480p           = 35
     
     // WEBM
-    case webm_360p          = 43
-    case webm_480p          = 44
-    case webm_720p          = 45
-    case webm_1080p         = 46
+    case webm360p          = 43
+    case webm480p          = 44
+    case webm720p          = 45
+    case webm1080p         = 46
     
     // Apple HTTP Live Streaming (HLS)
-    case hls_360p           = 93
-    case hls_480p           = 94
-    case hls_720p           = 95
-    case hls_1080p          = 96
+    case hls360p           = 93
+    case hls480p           = 94
+    case hls720p           = 95
+    case hls1080p          = 96
     
     // DASH mp4 video (no audio!)
-    case dash_360p          = 134
-    case dash_480p          = 135
-    case dash_720p          = 136
-    case dash_1080p         = 137
+    case dash360p          = 134
+    case dash480p          = 135
+    case dash720p          = 136
+    case dash1080p         = 137
     
     // all qualities that can be played on Apple TV
     public static let playable = [
-        main_1080p, webm_1080p, dash_1080p,
-        main_720p, webm_720p, dash_720p,
-        flv_480p, webm_480p, dash_480p,
-        main_360p, flv_360p, webm_360p, dash_360p
+        main1080p, webm1080p, dash1080p,
+        main720p, webm720p, dash720p,
+        flv480p, webm480p, dash480p,
+        main360p, flv360p, webm360p, dash360p
     ]
     
-    public static let videoOnly = [dash_1080p, dash_720p, dash_480p, dash_360p]
+    public static let videoOnly = [dash1080p, dash720p, dash480p, dash360p]
 }
 
 enum YouTubeAudio: Int {
     // dash aac audio
-    case aac_48kbps         = 139
-    case aac_128kbps        = 140
-    case aac_256kbps        = 141
+    case aac48kbps         = 139
+    case aac128kbps        = 140
+    case aac256kbps        = 141
     
     // dash webm audio
-    case webm_128kbps       = 171
-    case webm_256kbps       = 172
+    case webm128kbps       = 171
+    case webm256kbps       = 172
     
     public static let audioOnly = [
-        aac_256kbps, webm_256kbps,
-        aac_128kbps, webm_128kbps,
-        aac_48kbps
+        aac256kbps, webm256kbps,
+        aac128kbps, webm128kbps,
+        aac48kbps
     ]
 }
 

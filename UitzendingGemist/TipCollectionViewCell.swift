@@ -53,7 +53,7 @@ class TipCollectionViewCell: UICollectionViewCell {
         //let size = self.imageView.frame.size
         let size = CGSize(width: 548, height: 320)
         
-        let _ = tip.getImage(ofSize: size) { [weak self] image, error, _ in
+        _ = tip.getImage(ofSize: size) { [weak self] image, error, _ in
             guard let image = image else {
                 DDLogError("Could not fetch image for tip (\(error))")
                 return

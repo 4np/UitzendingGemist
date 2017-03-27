@@ -79,7 +79,7 @@ class ProgramSplitViewController: UISplitViewController {
         // launch the ProgramViewController (unfortunately you cannot segue
         // from a SplitViewController elsewhere so this is a workaround)
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let rvc = appDelegate.window?.rootViewController,
-            let storyboard = rvc.storyboard, let vc = storyboard.instantiateViewController(withIdentifier: ViewControllers.ProgramViewController.rawValue) as? ProgramViewController {
+            let storyboard = rvc.storyboard, let vc = storyboard.instantiateViewController(withIdentifier: ViewControllers.programViewController.rawValue) as? ProgramViewController {
             vc.configure(withProgram: program)
             tabBarController?.show(vc, sender: nil)
         }

@@ -61,7 +61,7 @@ class YouTubeViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.YouTube.rawValue, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCells.youTube.rawValue, for: indexPath)
         
         guard let youTubeCell = cell as? YouTubeCollectionViewCell, let videos = self.videos, indexPath.row >= 0 && indexPath.row < videos.count else {
             return cell
@@ -82,7 +82,7 @@ class YouTubeViewController: UIViewController, UICollectionViewDataSource, UICol
         let video = videos[indexPath.row]
         
         // get image
-        let _ = NPOManager.sharedInstance.getImage(forYouTubeVideo: video, ofSize: self.backgroundImageView.frame.size) { [weak self] image, _ in
+        _ = NPOManager.sharedInstance.getImage(forYouTubeVideo: video, ofSize: self.backgroundImageView.frame.size) { [weak self] image, _ in
             guard let image = image else {
                 return
             }
