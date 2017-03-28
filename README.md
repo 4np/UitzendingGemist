@@ -19,6 +19,7 @@ using a web app hosted on a remote server.
 # Features
 
 - Fast *_native_* app for Apple TV
+- Confirmed to work abroad via [Unlocator](https://unlocator.com/account/aff/go/fMJQHpiASKffCbxepcEY?keyword=readme)
 - Easy to use interface for browsing Programs and Episodes
 - Live streaming TV and themed channels
 - The possibility to (un)favorite programs
@@ -26,6 +27,12 @@ using a web app hosted on a remote server.
 - Will show you new unwatched episodes of favorite programs
 - Closed Captioning for the deaf and hearing impaired (in _Dutch_)
 - The ability to watch YouTube videos for Programs that have [YouTube Resources](https://github.com/4np/NPOKitResources)
+
+# Donate
+
+![donations-banner](https://cloud.githubusercontent.com/assets/1049693/23892645/c292896c-089b-11e7-9c9a-2c8f60d64c0a.jpg)
+
+If you find this application useful and you would like to do something back, you could install [Bait App](https://itunes.apple.com/nl/app/bait/id1207460654) from the MacApp Store and purchase the € 1,99 in-app purchase 🙌🏻
 
 # Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
 
@@ -42,7 +49,7 @@ _Note: as of summer 2016 Apple has reduced the free Developer account provisioni
 
 ## 1. Xcode
 
-The code was developed in [Xcode 8.2.1](https://itunes.apple.com/nl/app/xcode/id497799835?mt=12) ([alternative link](https://developer.apple.com/xcode/download/)) so you need at least to have that version installed. Continue with the following steps when you have finished installing ```Xcode``` as the next steps require a finished installation.
+The code was developed in [Xcode 8.3](https://itunes.apple.com/nl/app/xcode/id497799835)([alternative link](https://developer.apple.com/xcode/download/)) so you need at least to have that version installed. Continue with the following steps when you have finished installing ```Xcode``` as the next steps require a finished installation.
 
 ## 2. Download the project
 
@@ -123,12 +130,6 @@ If you have set up a firewall to filter _outbound_ network requests, make sure t
 - freegeoip.net (determine your country by ip)
 
 _Note: as the video and image content URLs come from the APIs, although unlikely, these URLs *might* change_
-
-# Donate
-
-![donations-banner](https://cloud.githubusercontent.com/assets/1049693/23892645/c292896c-089b-11e7-9c9a-2c8f60d64c0a.jpg)
-
-If you find this application useful and you would like to do something back, you could install [Bait App](https://itunes.apple.com/nl/app/bait/id1207460654) from the MacApp Store and purchase the € 1,99 in-app purchase 🙌🏻
 
 # Screenshots
 
