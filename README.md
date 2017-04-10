@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/4np/UitzendingGemist.svg?branch=master)](https://travis-ci.org/4np/UitzendingGemist)
 [![Release](https://img.shields.io/github/release/4np/UitzendingGemist.svg)](https://github.com/4np/UitzendingGemist/releases/latest)
-[![Commits Since](https://img.shields.io/github/commits-since/4np/UitzendingGemist/1.5.0.svg?maxAge=3600)](https://github.com/4np/UitzendingGemist/commits/master)
+[![Commits Since](https://img.shields.io/github/commits-since/4np/UitzendingGemist/1.5.1.svg?maxAge=3600)](https://github.com/4np/UitzendingGemist/commits/master)
 [![Platform](https://img.shields.io/badge/platform-tvOS%2010-green.svg?maxAge=3600)](https://developer.apple.com/tvos/)
 [![Swift](https://img.shields.io/badge/language-Swift-ed523f.svg?maxAge=3600)](https://swift.org)
 [![codebeat badge](https://codebeat.co/badges/a5990b60-12ce-4f22-a875-31b2ccaecfcd)](https://codebeat.co/projects/github-com-4np-uitzendinggemist)
@@ -175,15 +175,27 @@ _Note: as the video and image content URLs come from the APIs, although unlikely
 
 ## Program with a YouTube channel
 
+Several programs [additional YouTube content](https://github.com/4np/NPOKitResources) available. 
+
 ![YouTube Button](https://cloud.githubusercontent.com/assets/1049693/20447426/08b7e0da-addf-11e6-90a3-fc3a094a8d92.png)
 
 ![YouTube Channel](https://cloud.githubusercontent.com/assets/1049693/20447425/08aaed3a-addf-11e6-88f8-346ed87f6ca9.png)
 
 ## Content Availability
 
+Content that is geographically restricted will show a warning then you are outside of The Netherlands. While the play button remains enabled you will most likely be unable to watch the video. If you encounter such warnings and are unable to play the respective videos, you might give [Unlocator](https://unlocator.com/account/aff/go/fMJQHpiASKffCbxepcEY?keyword=readme) a try. It has been confirmed to work reliably with the Uitzending Gemist tvOS app when you disable the _secure transport_ setting in the configuration screen (see below).
+
 ![Region Check](https://cloud.githubusercontent.com/assets/1049693/23863344/d8cf8004-080f-11e7-8752-5f92de247f33.png)
 
+## Configuration
+
+When using [Unlocator](https://unlocator.com/account/aff/go/fMJQHpiASKffCbxepcEY?keyword=readme) outside of The Netherland, disable the _secure transport_ setting (which is enabled by default).
+
+![Configuration](https://cloud.githubusercontent.com/assets/1049693/24857070/456dc044-1de7-11e7-89a7-463f057b68ee.png)
+
 ## Closed Captioning
+
+When closed captioning is enabled in the configuration screen (see above), all content will be subtitled (when available).
 
 ![screen shot 2017-03-22 at 22 32 26](https://cloud.githubusercontent.com/assets/1049693/24221660/86d5cd98-0f4f-11e7-9ae6-aed889b50f24.png)
 
