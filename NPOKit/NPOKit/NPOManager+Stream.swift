@@ -98,7 +98,7 @@ extension NPOManager {
             
             // https://ida.omroep.nl/app.php/BNN_101382709?adaptive=yes&token=62i5nn3ci2vphfb8or665jqgv6
             let url = "https://ida.omroep.nl/app.php/\(mid)?adaptive=yes&token=\(token)"
-            DDLogDebug("episode url -> \(url)")
+            DDLogVerbose("Playing episode (with url: \(url))")
             
             self?.getVideoStream(forURL: url, andLiveChannel: nil, withCompletion: completed)
         }
@@ -113,7 +113,7 @@ extension NPOManager {
             
             let channelMID = channel.rawValue
             let url = "https://ida.omroep.nl/app.php/\(channelMID)?adaptive=yes&token=\(token)"
-            DDLogDebug("live url: \(url)")
+            DDLogVerbose("Playing live channel \(channel) (with url: \(url))")
             self?.getVideoStream(forURL: url, andLiveChannel: channel, withCompletion: completed)
         }
     }
@@ -139,10 +139,6 @@ extension NPOManager {
                 let error = error ?? NPOError.networkError("Could not fetch stream for video model (url: \(url))")
                 completed(nil, error)
                 return
-            }
-            
-            if let streamType = stream.type {
-                DDLogDebug("Stream quality \(streamType)")
             }
             
             stream.getVideoStreamURL(withCompletion: completed)

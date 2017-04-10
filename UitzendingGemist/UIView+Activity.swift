@@ -53,7 +53,7 @@ extension UIView {
             // feedback
             let feedbackY = activityIndicator.center.y + activityIndicator.frame.height
             let feedbackLabel = UILabel(frame: CGRect(x: 0, y: feedbackY, width: bounds.width, height: 100))
-            feedbackLabel.text = UitzendingGemistConstants.waitText
+            feedbackLabel.text = String.waitText
             feedbackLabel.textColor = UIColor.orange
             feedbackLabel.textAlignment = .center
             feedbackLabel.font = UIFont.systemFont(ofSize: 42.0)

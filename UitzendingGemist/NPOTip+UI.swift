@@ -19,7 +19,7 @@ extension NPOTip {
         } else if let name = episode?.name, !name.isEmpty {
             displayName += name
         } else {
-            displayName += UitzendingGemistConstants.unknownText
+            displayName += String.unknownText
         }
         
         return displayName

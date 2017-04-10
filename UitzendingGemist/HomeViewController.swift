@@ -58,13 +58,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         // update check
         UpdateManager.sharedInstance.updateAvailable { [weak self] latestRelease, currentVersion in
             // update available, show an alert
-            let latestVersion = latestRelease?.version ?? UitzendingGemistConstants.unknownText
+            let latestVersion = latestRelease?.version ?? String.unknownText
             let downloadURL = latestRelease?.url
-            let thisVersion = currentVersion ?? UitzendingGemistConstants.unknownText
-            let downloadURLString = downloadURL?.absoluteString ?? UitzendingGemistConstants.unknownText
-            let alertText = String.localizedStringWithFormat(UitzendingGemistConstants.updateAvailableText, latestVersion, downloadURLString, thisVersion)
-            let alertController = UIAlertController(title: UitzendingGemistConstants.updateAvailableTitle, message: alertText, preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: UitzendingGemistConstants.okayButtonText, style: .cancel) { _ in
+            let thisVersion = currentVersion ?? String.unknownText
+            let downloadURLString = downloadURL?.absoluteString ?? String.unknownText
+            let alertText = String.localizedStringWithFormat(String.updateAvailableText, latestVersion, downloadURLString, thisVersion)
+            let alertController = UIAlertController(title: String.updateAvailableTitle, message: alertText, preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: String.okayButtonText, style: .cancel) { _ in
                 alertController.dismiss(animated: true, completion: nil)
             }
             alertController.addAction(cancelAction)

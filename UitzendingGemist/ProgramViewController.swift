@@ -137,7 +137,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
     func configure(withProgram program: NPOProgram) {
         _ = NPOManager.sharedInstance.getDetails(forProgram: program) { [weak self] program, error in
             guard let program = program else {
-                DDLogError("Could not fetch program (\(error))")
+                DDLogError("Could not fetch program (\(String(describing: error)))")
                 return
             }
             
@@ -159,20 +159,20 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         self.programNameLabel.text = program.getDisplayNameWithWatchedIndicator()
         self.descriptionLabel.text = program.description
         
-        self.genreTitleLabel.text = UitzendingGemistConstants.genreText.uppercased()
-        self.genreLabel.text = self.genres ?? UitzendingGemistConstants.unknownText
-        self.broadcasterTitleLabel.text = UitzendingGemistConstants.broadcasterText.uppercased()
-        self.broadcasterLabel.text = self.broadcasters ?? UitzendingGemistConstants.unknownText
+        self.genreTitleLabel.text = String.genreText.uppercased()
+        self.genreLabel.text = self.genres ?? String.unknownText
+        self.broadcasterTitleLabel.text = String.broadcasterText.uppercased()
+        self.broadcasterLabel.text = self.broadcasters ?? String.unknownText
         
         let unwatchedEpisodesCount = self.unwatchedEpisodes?.count ?? 0
         let canPlay = program.episodes?.first?.available ?? true
         self.playButton.isEnabled = (unwatchedEpisodesCount > 0 && canPlay)
         self.playLabel.isEnabled = (unwatchedEpisodesCount > 0)
-        self.playLabel.text = UitzendingGemistConstants.playText
+        self.playLabel.text = String.playText
         
         self.favoriteButton.isEnabled = (self.program != nil)
         self.favoriteLabel.isEnabled = (self.program != nil)
-        self.favoriteLabel.text = UitzendingGemistConstants.favoriteText
+        self.favoriteLabel.text = String.favoriteText
         self.updateFavoriteButtonTitleColor()
         
         markAsWatchedButton.isEnabled = true
@@ -202,7 +202,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         // background image
         _ = program.getImage(ofSize: self.backgroundImageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
-                DDLogError("Could not fetch image for program (\(error))")
+                DDLogError("Could not fetch image for program (\(String(describing: error)))")
                 return
             }
             
@@ -212,7 +212,7 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         // program image
         _ = program.getImage(ofSize: self.programImageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
-                DDLogError("Could not fetch image for program (\(error))")
+                DDLogError("Could not fetch image for program (\(String(describing: error)))")
                 return
             }
             
@@ -235,9 +235,9 @@ class ProgramViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         
         if program.watched == .unwatched || program.watched == .partially {
-            markAsWatchedLabel.text = UitzendingGemistConstants.markAllAsWatchedText
+            markAsWatchedLabel.text = String.markAllAsWatchedText
         } else {
-            markAsWatchedLabel.text = UitzendingGemistConstants.markAllAsUnwatchedText
+            markAsWatchedLabel.text = String.markAllAsUnwatchedText
         }
         
         // update the program name with the watched indicator

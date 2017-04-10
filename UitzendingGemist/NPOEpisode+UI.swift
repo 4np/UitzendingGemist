@@ -32,7 +32,7 @@ extension NPOEpisode {
         } else if let name = self.program?.name, !name.isEmpty {
             displayName += name
         } else {
-            displayName += UitzendingGemistConstants.unknownEpisodeName
+            displayName += String.unknownEpisodeName
         }
         
         return displayName
@@ -55,7 +55,7 @@ extension NPOEpisode {
         if let name = self.program?.name, !name.isEmpty {
             programName += name
         } else {
-            programName += UitzendingGemistConstants.unknownProgramName
+            programName += String.unknownProgramName
         }
         
         // define the episode name and time

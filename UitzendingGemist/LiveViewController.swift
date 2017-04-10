@@ -116,8 +116,6 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
         let closedCaptioningEnabled = UserDefaults.standard.bool(forKey: UitzendingGemistConstants.closedCaptioningEnabledKey)
         let liveChannel = closedCaptioningEnabled ? channel.sdhChannel() : channel
         
-        DDLogDebug("closed captioning enabled: \(closedCaptioningEnabled), channel: \(channel), live channel: \(liveChannel)")
-        
         NPOManager.sharedInstance.getVideoStream(forLiveChannel: liveChannel) { [weak self] url, error in
             // hide progress hud
             self?.view.stopLoading()

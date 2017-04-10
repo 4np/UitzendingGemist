@@ -72,7 +72,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
         } else if let name = tip?.name, !name.isEmpty {
             episodeName = name
         } else {
-            episodeName = UitzendingGemistConstants.unknownEpisodeName
+            episodeName = String.unknownEpisodeName
         }
         
         guard let programName = self.programName else {
@@ -226,7 +226,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
         // fetch episode details
         _ = NPOManager.sharedInstance.getDetails(forEpisode: episode) { [weak self] episode, error in
             guard let episode = episode else {
-                DDLogError("Could not fetch episode details (\(error))")
+                DDLogError("Could not fetch episode details (\(String(describing: error)))")
                 self?.needLayout = true
                 return
             }
@@ -245,7 +245,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
         // fetch program details
         _ = NPOManager.sharedInstance.getDetails(forProgram: program) { [weak self] program, error in
             guard let program = program else {
-                DDLogError("Could not fetch program details (\(error))")
+                DDLogError("Could not fetch program details (\(String(describing: error)))")
                 self?.needLayout = true
                 return
             }
@@ -278,33 +278,33 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
         durationLabel.text = episode?.duration.timeDisplayValue
         descriptionLabel.text = episodeDescription?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
-        genreTitleLabel.text = UitzendingGemistConstants.genreText.uppercased()
-        genreLabel.text = genres ?? UitzendingGemistConstants.unknownText
-        broadcasterTitleLabel.text = UitzendingGemistConstants.broadcasterText.uppercased()
-        broadcasterLabel.text = broadcasters ?? UitzendingGemistConstants.unknownText
+        genreTitleLabel.text = String.genreText.uppercased()
+        genreLabel.text = genres ?? String.unknownText
+        broadcasterTitleLabel.text = String.broadcasterText.uppercased()
+        broadcasterLabel.text = broadcasters ?? String.unknownText
         
         // determine is the episode can be watched
         let canPlay = episode?.available ?? true
         if !canPlay {
-            warningLabel.text = UitzendingGemistConstants.warningEpisodeUnavailable
+            warningLabel.text = String.warningEpisodeUnavailable
         
             let isGeoAllowed = episode?.restriction?.isGeoAllowed() ?? true
             if !isGeoAllowed {
                 if let countryName = NPOManager.sharedInstance.geo?.countryName {
-                    warningLabel.text = String.localizedStringWithFormat(UitzendingGemistConstants.warningEpisodeUnavailableFromCountry, countryName)
+                    warningLabel.text = String.localizedStringWithFormat(String.warningEpisodeUnavailableFromCountry, countryName)
                 } else {
-                    warningLabel.text = UitzendingGemistConstants.warningEpisodeUnavailableFromLocation
+                    warningLabel.text = String.warningEpisodeUnavailableFromLocation
                 }
             }
         }
         
         playButton.isEnabled = true // canPlay
         playLabel.isEnabled = true
-        playLabel.text = canPlay ? UitzendingGemistConstants.playText : UitzendingGemistConstants.playUnavailableText
+        playLabel.text = canPlay ? String.playText : String.playUnavailableText
         
         toProgramButton.isEnabled = (program != nil)
         toProgramLabel.isEnabled = (program != nil)
-        toProgramLabel.text = UitzendingGemistConstants.toProgramText
+        toProgramLabel.text = String.toProgramText
         
         markAsWatchedButton.isEnabled = canPlay
         markAsWatchedLabel.isEnabled = true
@@ -312,7 +312,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
         
         favoriteButton.isEnabled = (program != nil)
         favoriteLabel.isEnabled = (program != nil)
-        favoriteLabel.text = UitzendingGemistConstants.favoriteText
+        favoriteLabel.text = String.favoriteText
         updateFavoriteButtonTitleColor()
         
         stillCollectionView.reloadData()
@@ -331,9 +331,9 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
         }
         
         if episode.watched == .unwatched || episode.watched == .partially {
-            markAsWatchedLabel.text = UitzendingGemistConstants.markAsWatchedText
+            markAsWatchedLabel.text = String.markAsWatchedText
         } else {
-            markAsWatchedLabel.text = UitzendingGemistConstants.markAsUnwatchedText
+            markAsWatchedLabel.text = String.markAsUnwatchedText
         }
         
         episodeNameLabel.text = episodeName
@@ -354,7 +354,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
     private func getImage(forTip tip: NPOTip, andImageView imageView: UIImageView) {
         _ = tip.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
-                DDLogError("Could not get image for tip (\(error))")
+                DDLogError("Could not get image for tip (\(String(describing: error)))")
                 self?.getImage(forEpisode: tip.episode, andImageView: imageView)
                 return
             }
@@ -370,7 +370,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
         
         _ = episode.getImage(ofSize: imageView.frame.size) { [weak self] image, error, _ in
             guard let image = image else {
-                DDLogError("Could not get image for episode (\(error))")
+                DDLogError("Could not get image for episode (\(String(describing: error)))")
                 self?.getImage(forProgram: episode.program, andImageView: imageView)
                 return
             }
@@ -386,7 +386,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
         
         _ = program.getImage(ofSize: imageView.frame.size) { image, error, _ in
             guard let image = image else {
-                DDLogError("Could not get image for program (\(error))")
+                DDLogError("Could not get image for program (\(String(describing: error)))")
                 return
             }
             
@@ -436,17 +436,17 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
         }
         
         // show alert
-        let alertController = UIAlertController(title: UitzendingGemistConstants.continueWatchingTitleText, message: UitzendingGemistConstants.continueWatchingMessageText, preferredStyle: .actionSheet)
-        let coninueTitleText = String.localizedStringWithFormat(UitzendingGemistConstants.coninueWatchingFromText, episode.watchDuration.timeDisplayValue)
+        let alertController = UIAlertController(title: String.continueWatchingTitleText, message: String.continueWatchingMessageText, preferredStyle: .actionSheet)
+        let coninueTitleText = String.localizedStringWithFormat(String.coninueWatchingFromText, episode.watchDuration.timeDisplayValue)
         let continueAction = UIAlertAction(title: coninueTitleText, style: .default) { [weak self] _ in
             self?.play(beginAt: episode.watchDuration)
         }
         alertController.addAction(continueAction)
-        let fromBeginningAction = UIAlertAction(title: UitzendingGemistConstants.watchFromStartText, style: .default) { [weak self] _ in
+        let fromBeginningAction = UIAlertAction(title: String.watchFromStartText, style: .default) { [weak self] _ in
             self?.play(beginAt: 0)
         }
         alertController.addAction(fromBeginningAction)
-        let cancelAction = UIAlertAction(title: UitzendingGemistConstants.cancelText, style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: String.cancelText, style: .cancel) { _ in
             alertController.dismiss(animated: true, completion: nil)
         }
         alertController.addAction(cancelAction)
@@ -467,7 +467,7 @@ class EpisodeViewController: UIViewController, NPOPlayerViewControllerDelegate {
             self?.view.stopLoading()
             
             guard let url = url else {
-                DDLogError("Could not play episode (\(error))")
+                DDLogError("Could not play episode (\(String(describing: error)))")
                 return
             }
             

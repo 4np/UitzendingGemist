@@ -27,7 +27,7 @@ extension NPOProgram {
         }
         
         // add the program name
-        displayName += name ?? UitzendingGemistConstants.unknownProgramName
+        displayName += name ?? String.unknownProgramName
         
         return displayName
     }

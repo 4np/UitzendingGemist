@@ -35,7 +35,7 @@ class YouTubeCollectionViewCell: UICollectionViewCell {
     // MARK: Configuration
     
     func configure(withYouTubeVideo video: NPOYouTubeVideo) {
-        self.titleLabel.text = video.title ?? UitzendingGemistConstants.unknownEpisodeName
+        self.titleLabel.text = video.title ?? String.unknownEpisodeName
         self.dateLabel.text = video.published?.daysAgoDisplayValue ?? ""
         
         fetchImage(forVideo: video)

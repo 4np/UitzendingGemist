@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Memory warning and logging
     
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
-        DDLogError("Did receive memory warning (\(getMegabytesUsed()) MB)")
+        DDLogError("Did receive memory warning (\(String(describing: getMegabytesUsed())) MB)")
     }
     
     func mach_task_self() -> task_t {

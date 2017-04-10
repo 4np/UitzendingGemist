@@ -55,7 +55,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
         } else {
             // in between broadcasts; probably a commercial break
             self.channelImageView.image = channelImage
-            self.currentLabel.text = String.localizedStringWithFormat(UitzendingGemistConstants.currentBroadcast, UitzendingGemistConstants.commercials)
+            self.currentLabel.text = String.localizedStringWithFormat(String.currentBroadcast, String.commercials)
         }
         
         // get the next broadcast for this channel
@@ -70,21 +70,21 @@ class LiveCollectionViewCell: UICollectionViewCell {
     // MARK: Broadcast texts
     
     fileprivate func getCurrentText(forBroadcast broadcast: NPOBroadcast) -> String {
-        let name = (broadcast.episode?.program?.name ?? broadcast.episode?.name) ?? UitzendingGemistConstants.unknownText
-        return String.localizedStringWithFormat(UitzendingGemistConstants.currentBroadcast, name)
+        let name = (broadcast.episode?.program?.name ?? broadcast.episode?.name) ?? String.unknownText
+        return String.localizedStringWithFormat(String.currentBroadcast, name)
     }
     
     fileprivate func getUpcomingText(forBroadcast broadcast: NPOBroadcast) -> String {
-        let name = (broadcast.episode?.program?.name ?? broadcast.episode?.name) ?? UitzendingGemistConstants.unknownText
+        let name = (broadcast.episode?.program?.name ?? broadcast.episode?.name) ?? String.unknownText
         
         guard let starts = broadcast.starts else {
-            return String.localizedStringWithFormat(UitzendingGemistConstants.upcomingBroadcast, name)
+            return String.localizedStringWithFormat(String.upcomingBroadcast, name)
         }
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         let timeString = dateFormatter.string(from: starts)
-        return String.localizedStringWithFormat(UitzendingGemistConstants.upcomingBroadcastWithTime, timeString, name)
+        return String.localizedStringWithFormat(String.upcomingBroadcastWithTime, timeString, name)
     }
     
     // MARK: Broadcast filtering
