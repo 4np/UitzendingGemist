@@ -68,7 +68,7 @@ extension NPOManager {
     // https://apps-api.uitzendinggemist.nl/episodes/search/reizen.json
     public func getEpisodes(bySearchTerm term: String, withCompletion completed: @escaping (_ episodes: [NPOEpisode]?, _ error: NPOError?) -> Void = { episodes, error in }) -> Request? {
         let encodedTerm = term.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-        let path = "episodes/search/\(encodedTerm).json"
+        let path = "episodes/search/\(String(describing: encodedTerm)).json"
         return self.fetchModels(ofType: NPOEpisode.self, fromPath: path, withCompletion: completed)
     }
     

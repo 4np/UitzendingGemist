@@ -19,7 +19,7 @@ using a web app hosted on a remote server.
 # Features
 
 - Fast *_native_* app for Apple TV
-- Confirmed to work abroad via [Unlocator](https://unlocator.com/account/aff/go/fMJQHpiASKffCbxepcEY?keyword=readme)
+- Confirmed to work abroad via [Unlocator](https://unlocator.com/account/aff/go/fMJQHpiASKffCbxepcEY?keyword=readme) (_disable_ the secure transport setting in the configuration view)
 - Easy to use interface for browsing Programs and Episodes
 - Live streaming TV and themed channels
 - The possibility to (un)favorite programs
