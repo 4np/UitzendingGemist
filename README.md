@@ -189,7 +189,7 @@ Content that is geographically restricted will show a warning then you are outsi
 
 ## Configuration
 
-When using [Unlocator](https://unlocator.com/account/aff/go/fMJQHpiASKffCbxepcEY?keyword=readme) outside of The Netherland, disable the _secure transport_ setting (which is enabled by default).
+When using [Unlocator](https://unlocator.com/account/aff/go/fMJQHpiASKffCbxepcEY?keyword=readme) outside of The Netherlands, disable the _secure transport_ setting (which is enabled by default).
 
 ![Configuration](https://cloud.githubusercontent.com/assets/1049693/24857070/456dc044-1de7-11e7-89a7-463f057b68ee.png)
 
