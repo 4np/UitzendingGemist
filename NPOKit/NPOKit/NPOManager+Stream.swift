@@ -46,11 +46,11 @@ public enum NPOLive: String {
         case .npo3:
             return (name: "npo3", shortName: "ned3", type: .tv, alternativeChannel: .zappelin)
         case .npo1SDH:
-            return (name: "npo1", shortName: "ned1", type: .tv, alternativeChannel: nil)
+            return (name: "npo1", shortName: "ned1", type: .tv, alternativeChannel: .npo1)
         case .npo2SDH:
-            return (name: "npo2", shortName: "ned2", type: .tv, alternativeChannel: nil)
+            return (name: "npo2", shortName: "ned2", type: .tv, alternativeChannel: .npo2)
         case .npo3SDH:
-            return (name: "npo3", shortName: "ned3", type: .tv, alternativeChannel: nil)
+            return (name: "npo3", shortName: "ned3", type: .tv, alternativeChannel: .npo3)
         case .zappelin:
             return (name: "zappelin24", shortName: "ned3", type: .thema, alternativeChannel: nil)
         case .zappxtra:
@@ -67,6 +67,20 @@ public enum NPOLive: String {
             return (name: "best24", shortName: "hilv", type: .thema, alternativeChannel: .zappxtra)
         }
     }
+    
+    public func sdhChannel() -> NPOLive {
+        switch self {
+            case .npo1:
+                return .npo1SDH
+            case .npo2:
+                return .npo2SDH
+            case .npo3:
+                return .npo3SDH
+            default:
+                // no sdh stream
+                return self
+        }
+    }
 }
 
 extension NPOManager {
@@ -77,7 +91,7 @@ extension NPOManager {
         }
         
         self.getToken { [weak self] token, error in
-            guard let token = token, let transport = self?.transport else {
+            guard let token = token else {
                 completed(nil, error)
                 return
             }
@@ -92,7 +106,7 @@ extension NPOManager {
     
     public func getVideoStream(forLiveChannel channel: NPOLive, withCompletion completed: @escaping (_ url: URL?, _ error: NPOError?) -> Void = { url, error in }) {
         self.getToken { [weak self] token, error in
-            guard let token = token, let transport = self?.transport else {
+            guard let token = token else {
                 completed(nil, error)
                 return
             }
@@ -127,7 +141,9 @@ extension NPOManager {
                 return
             }
             
-            DDLogDebug("Stream quality \(stream.type)")
+            if let streamType = stream.type {
+                DDLogDebug("Stream quality \(streamType)")
+            }
             
             stream.getVideoStreamURL(withCompletion: completed)
         }

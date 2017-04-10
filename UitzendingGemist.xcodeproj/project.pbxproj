@@ -21,6 +21,7 @@
 		F32FFCAE1E826732006898CF /* NPOPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32FFCAD1E826732006898CF /* NPOPlayerViewController.swift */; };
 		F32FFCB11E829F6D006898CF /* String+substringWithNSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32FFCB01E829F6D006898CF /* String+substringWithNSRange.swift */; };
 		F32FFCB31E82A7B6006898CF /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32FFCB21E82A7B6006898CF /* String+Regex.swift */; };
+		F335E7E31E9B7D0800DF2888 /* String+i18n.swift in Sources */ = {isa = PBXBuildFile; fileRef = F335E7E21E9B7D0800DF2888 /* String+i18n.swift */; };
 		F33BCE8F1D40EF9000CD232C /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCE8E1D40EF9000CD232C /* LiveViewController.swift */; };
 		F33BCE911D40F3EF00CD232C /* LiveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCE901D40F3EF00CD232C /* LiveCollectionViewCell.swift */; };
 		F343082B1D3B91940070911F /* UitzendingGemistConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343082A1D3B91940070911F /* UitzendingGemistConstants.swift */; };
@@ -70,6 +71,7 @@
 		F32FFCAD1E826732006898CF /* NPOPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPOPlayerViewController.swift; sourceTree = "<group>"; };
 		F32FFCB01E829F6D006898CF /* String+substringWithNSRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+substringWithNSRange.swift"; sourceTree = "<group>"; };
 		F32FFCB21E82A7B6006898CF /* String+Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
+		F335E7E21E9B7D0800DF2888 /* String+i18n.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+i18n.swift"; sourceTree = "<group>"; };
 		F33BCE8E1D40EF9000CD232C /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		F33BCE901D40F3EF00CD232C /* LiveCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCollectionViewCell.swift; sourceTree = "<group>"; };
 		F343082A1D3B91940070911F /* UitzendingGemistConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UitzendingGemistConstants.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				F310AC241E68BB76001B10E9 /* UIImage+Gradient.swift */,
 				F32FFCB01E829F6D006898CF /* String+substringWithNSRange.swift */,
 				F32FFCB21E82A7B6006898CF /* String+Regex.swift */,
+				F335E7E21E9B7D0800DF2888 /* String+i18n.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				F3C234451D633DDD0040E875 /* UICollectionView+UI.swift in Sources */,
 				F3FD00811D40202100034A76 /* UpdateManager.swift in Sources */,
 				F317B9B21D3A7B2400927ACD /* EpisodeViewController.swift in Sources */,
+				F335E7E31E9B7D0800DF2888 /* String+i18n.swift in Sources */,
 				F3C7E8601D4FD52E00AD3809 /* ByDayRootTableViewCell.swift in Sources */,
 				F310AC251E68BB76001B10E9 /* UIImage+Gradient.swift in Sources */,
 				F33BCE911D40F3EF00CD232C /* LiveCollectionViewCell.swift in Sources */,

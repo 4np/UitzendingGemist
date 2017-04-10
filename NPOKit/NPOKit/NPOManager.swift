@@ -88,7 +88,12 @@ open class NPOManager {
     internal var cachedProgramResources: [NPOProgramResource]?
     internal var cachedProgramResourcesLastUpdated: Date?
     
+    // the geographic location where you are right now (for geo validation)
     open internal(set) var geo: GEO?
+    
+    // whether or not to force secure transport
+    // (set to false for unlocator support)
+    open var forceSecureTransport = false
     
     // MARK: Init
     
@@ -152,8 +157,13 @@ open class NPOManager {
     
     // MARK: Get url
     
+    internal var transport: String {
+        return forceSecureTransport ? "https" : "http"
+    }
+    
     internal func getURL(forPath path: String) -> String {
-        return "http://apps-api.uitzendinggemist.nl/\(path)"
+        // for unlocator to work properly, leave the transport to http
+        return "\(transport)://apps-api.uitzendinggemist.nl/\(path)"
     }
     
     // MARK: Request headers
@@ -205,11 +215,4 @@ open class NPOManager {
         
         return streamTypes
     }()
-    
-    // MARK: Return the transport to use (http vs https)
-    
-    internal var transport: String {
-        let secureTransportIsEnabled = UserDefaults.standard.bool(forKey: "UGSecureTransportEnabled")
-        return secureTransportIsEnabled ? "https" : "http"
-    }
 }

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="zgt-By-Pf4">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="zgt-By-Pf4">
     <device id="appleTV" orientation="landscape">
         <adaptation id="light"/>
     </device>
     <dependencies>
         <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -256,15 +256,24 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOa-sd-Izk">
+                                        <rect key="frame" x="1382" y="20" width="50" height="50"/>
+                                        <state key="normal" image="infoOpenIcon"/>
+                                        <state key="highlighted" image="infoOpenIcon"/>
+                                        <state key="focused" image="infoFilledIcon"/>
+                                        <connections>
+                                            <action selector="didPressClosedCaptioningHelpButton:" destination="KKr-Co-xQP" eventType="primaryActionTriggered" id="En2-bn-kgo"/>
+                                        </connections>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hearingImpairedIcon" translatesAutoresizingMaskIntoConstraints="NO" id="4vI-dn-HaA">
-                                        <rect key="frame" x="1136" y="20" width="50" height="50"/>
+                                        <rect key="frame" x="1078" y="20" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="j3n-ey-7Bv"/>
                                             <constraint firstAttribute="width" constant="50" id="s86-fz-SwL"/>
                                         </constraints>
                                     </imageView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4jd-fU-WFc">
-                                        <rect key="frame" x="1194" y="20" width="226" height="51"/>
+                                        <rect key="frame" x="1136" y="20" width="226" height="51"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                                         <segments>
                                             <segment title="Aan"/>
@@ -280,14 +289,17 @@
                                     <constraint firstAttribute="bottom" secondItem="BT5-zU-9ue" secondAttribute="bottom" constant="20" id="38R-Xy-ude"/>
                                     <constraint firstItem="4jd-fU-WFc" firstAttribute="top" secondItem="6Dz-Lz-yI1" secondAttribute="top" constant="20" id="8dI-i3-7Yg"/>
                                     <constraint firstAttribute="bottom" secondItem="Edz-48-NbA" secondAttribute="bottom" constant="19" id="8vY-nG-2NH"/>
+                                    <constraint firstAttribute="trailing" secondItem="QOa-sd-Izk" secondAttribute="trailing" constant="8" id="GKp-1t-uZ4"/>
                                     <constraint firstItem="Edz-48-NbA" firstAttribute="leading" secondItem="BT5-zU-9ue" secondAttribute="trailing" constant="8" id="GxZ-w8-yrm"/>
                                     <constraint firstItem="4jd-fU-WFc" firstAttribute="leading" secondItem="4vI-dn-HaA" secondAttribute="trailing" constant="8" id="Hnc-bU-hKs"/>
+                                    <constraint firstItem="QOa-sd-Izk" firstAttribute="top" secondItem="6Dz-Lz-yI1" secondAttribute="top" constant="20" id="Ny9-mT-Q4J"/>
                                     <constraint firstItem="4vI-dn-HaA" firstAttribute="top" secondItem="6Dz-Lz-yI1" secondAttribute="top" constant="20" id="OVl-mw-SJQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="4jd-fU-WFc" secondAttribute="trailing" constant="20" id="RUh-d2-uVj"/>
+                                    <constraint firstItem="QOa-sd-Izk" firstAttribute="leading" secondItem="4jd-fU-WFc" secondAttribute="trailing" constant="20" id="U9Y-FM-2WZ"/>
                                     <constraint firstItem="BT5-zU-9ue" firstAttribute="top" secondItem="6Dz-Lz-yI1" secondAttribute="top" constant="20" id="iaV-Nz-por"/>
                                     <constraint firstItem="BT5-zU-9ue" firstAttribute="leading" secondItem="6Dz-Lz-yI1" secondAttribute="leading" constant="20" id="mbn-qE-Rrq"/>
                                     <constraint firstAttribute="bottom" secondItem="4vI-dn-HaA" secondAttribute="bottom" constant="20" id="tYe-Gg-82M"/>
                                     <constraint firstItem="Edz-48-NbA" firstAttribute="top" secondItem="6Dz-Lz-yI1" secondAttribute="top" constant="20" id="uJR-lF-MCz"/>
+                                    <constraint firstAttribute="bottom" secondItem="QOa-sd-Izk" secondAttribute="bottom" constant="20" id="vT2-7U-AVq"/>
                                     <constraint firstAttribute="bottom" secondItem="4jd-fU-WFc" secondAttribute="bottom" constant="20" id="xSM-tE-nQO"/>
                                 </constraints>
                             </view>
@@ -307,15 +319,24 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRR-Ud-YWP">
+                                        <rect key="frame" x="1382" y="20" width="50" height="50"/>
+                                        <state key="normal" image="infoOpenIcon"/>
+                                        <state key="highlighted" image="infoOpenIcon"/>
+                                        <state key="focused" image="infoFilledIcon"/>
+                                        <connections>
+                                            <action selector="didPressSecureTransportHelpButton:" destination="KKr-Co-xQP" eventType="primaryActionTriggered" id="OkT-Eb-Sfw"/>
+                                        </connections>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="securityCheckedIcon" translatesAutoresizingMaskIntoConstraints="NO" id="irJ-FR-bSO">
-                                        <rect key="frame" x="1136" y="20" width="50" height="50"/>
+                                        <rect key="frame" x="1078" y="20" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="L8c-vk-6JA"/>
                                             <constraint firstAttribute="height" constant="50" id="r3z-pe-8Oj"/>
                                         </constraints>
                                     </imageView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="TNF-lr-K54">
-                                        <rect key="frame" x="1194" y="20" width="226" height="51"/>
+                                        <rect key="frame" x="1136" y="20" width="226" height="51"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                                         <segments>
                                             <segment title="Aan"/>
@@ -330,16 +351,19 @@
                                 <constraints>
                                     <constraint firstItem="bDR-En-33U" firstAttribute="leading" secondItem="xZw-Fw-uys" secondAttribute="trailing" constant="8" id="1ck-hG-4FT"/>
                                     <constraint firstItem="TNF-lr-K54" firstAttribute="top" secondItem="Kyc-Wf-dIq" secondAttribute="top" constant="20" id="BWr-lu-URB"/>
+                                    <constraint firstItem="HRR-Ud-YWP" firstAttribute="top" secondItem="Kyc-Wf-dIq" secondAttribute="top" constant="20" id="Frm-1n-gdP"/>
                                     <constraint firstItem="irJ-FR-bSO" firstAttribute="top" secondItem="Kyc-Wf-dIq" secondAttribute="top" constant="20" id="H8p-FY-ii1"/>
                                     <constraint firstItem="xZw-Fw-uys" firstAttribute="top" secondItem="Kyc-Wf-dIq" secondAttribute="top" constant="20" id="Kd5-cr-ziG"/>
-                                    <constraint firstAttribute="trailing" secondItem="TNF-lr-K54" secondAttribute="trailing" constant="20" id="VnI-y5-RoN"/>
                                     <constraint firstItem="xZw-Fw-uys" firstAttribute="leading" secondItem="Kyc-Wf-dIq" secondAttribute="leading" constant="20" id="Z7O-0g-fgD"/>
                                     <constraint firstItem="bDR-En-33U" firstAttribute="top" secondItem="Kyc-Wf-dIq" secondAttribute="top" constant="20" id="bX6-hS-1y6"/>
+                                    <constraint firstAttribute="trailing" secondItem="HRR-Ud-YWP" secondAttribute="trailing" constant="8" id="jNl-F4-yVN"/>
                                     <constraint firstAttribute="bottom" secondItem="TNF-lr-K54" secondAttribute="bottom" constant="20" id="lLb-Vu-rEa"/>
+                                    <constraint firstItem="HRR-Ud-YWP" firstAttribute="leading" secondItem="TNF-lr-K54" secondAttribute="trailing" constant="20" id="o8w-nQ-wb3"/>
                                     <constraint firstItem="TNF-lr-K54" firstAttribute="leading" secondItem="irJ-FR-bSO" secondAttribute="trailing" constant="8" id="qqp-c0-m8I"/>
                                     <constraint firstAttribute="bottom" secondItem="xZw-Fw-uys" secondAttribute="bottom" constant="20" id="spG-X7-Y72"/>
                                     <constraint firstAttribute="bottom" secondItem="bDR-En-33U" secondAttribute="bottom" constant="19" id="szH-lP-Ruw"/>
                                     <constraint firstAttribute="bottom" secondItem="irJ-FR-bSO" secondAttribute="bottom" constant="20" id="zFx-XX-GBW"/>
+                                    <constraint firstAttribute="bottom" secondItem="HRR-Ud-YWP" secondAttribute="bottom" constant="20" id="ztH-z8-b5R"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -370,7 +394,7 @@
                         <viewControllerLayoutGuide type="top" id="rCl-ja-lDA"/>
                         <viewControllerLayoutGuide type="bottom" id="ZbT-Wy-azo"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZeN-b7-8z8">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="ZeN-b7-8z8">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -824,7 +848,7 @@
                         <viewControllerLayoutGuide type="top" id="U0w-Oa-1Ul"/>
                         <viewControllerLayoutGuide type="bottom" id="I5J-pO-Yf0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QeB-Pr-qZE">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="QeB-Pr-qZE">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1542,7 +1566,7 @@
         <scene sceneID="Xbg-kt-GpO">
             <objects>
                 <navigationController navigationBarHidden="YES" id="pBj-Y2-QWj" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UJj-gb-Bar">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UJj-gb-Bar">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1577,7 +1601,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="634" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="programRootTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="programRootTableViewCell" id="Ore-n4-9hh" customClass="ProgramRootTableViewCell" customModule="UitzendingGemist" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" misplaced="YES" restorationIdentifier="programRootTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="programRootTableViewCell" id="Ore-n4-9hh" customClass="ProgramRootTableViewCell" customModule="UitzendingGemist" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="40" width="634" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ore-n4-9hh" id="yyK-OM-oOM">
@@ -1620,7 +1644,7 @@
         <scene sceneID="I7N-KK-qeK">
             <objects>
                 <navigationController navigationBarHidden="YES" id="RrE-fT-1Vq" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Hc-c0-ini">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0Hc-c0-ini">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -1682,6 +1706,8 @@
         <image name="closedCaptioningIcon" width="50" height="50"/>
         <image name="configurationIcon" width="50" height="50"/>
         <image name="hearingImpairedIcon" width="50" height="50"/>
+        <image name="infoFilledIcon" width="50" height="50"/>
+        <image name="infoOpenIcon" width="50" height="50"/>
         <image name="securityCheckedIcon" width="50" height="50"/>
         <image name="sslIcon" width="50" height="50"/>
     </resources>

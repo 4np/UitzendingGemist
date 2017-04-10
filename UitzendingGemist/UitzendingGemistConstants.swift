@@ -47,7 +47,7 @@ enum Segues: String {
 open class UitzendingGemistConstants {
     // user defaults
     static let closedCaptioningEnabledKey = "UGClosedCaptioningEnabled"
-    static let secureTransportEnabledKey = "UGSecureTransportEnabled"
+    static let forceSecureTransportKey = "UGForceSecureTransport"
     
     // some unicode characters to use: ⦁◔◕◖◗◉●●⌾◕◔◖●⊚⊛⌾⍟⃘⃠•๏ං௦
     static let watchedSymbol = ""

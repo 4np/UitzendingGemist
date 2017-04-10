@@ -111,7 +111,14 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
         // show progress hud
         self.view.startLoading()
         
-        NPOManager.sharedInstance.getVideoStream(forLiveChannel: channel) { [weak self] url, error in
+        // live streams do not have a separate closed captioning resource, instead
+        // they have a different (and unfortunately often a lower quality) stream
+        let closedCaptioningEnabled = UserDefaults.standard.bool(forKey: UitzendingGemistConstants.closedCaptioningEnabledKey)
+        let liveChannel = closedCaptioningEnabled ? channel.sdhChannel() : channel
+        
+        DDLogDebug("closed captioning enabled: \(closedCaptioningEnabled), channel: \(channel), live channel: \(liveChannel)")
+        
+        NPOManager.sharedInstance.getVideoStream(forLiveChannel: liveChannel) { [weak self] url, error in
             // hide progress hud
             self?.view.stopLoading()
             
@@ -120,7 +127,7 @@ class LiveViewController: UIViewController, UICollectionViewDataSource, UICollec
                     DDLogDebug("No stream for channel \(channel.configuration.name), switching to alternative channel \(alternativeChannel.configuration.name)")
                     self?.play(liveChannel: alternativeChannel, channelImage: nil, channelDescription: nil)
                 } else {
-                    DDLogError("Could not play live stream (\(error))")
+                    DDLogError("Could not play live stream (\(String(describing: error)))")
                 }
                 return
             }

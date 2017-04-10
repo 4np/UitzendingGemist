@@ -8,6 +8,7 @@
 
 import UIKit
 import CocoaLumberjack
+import NPOKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,8 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Disable closed captioning (Teletext 888) by default
         UserDefaults.standard.register(defaults: [
             UitzendingGemistConstants.closedCaptioningEnabledKey: false,
-            UitzendingGemistConstants.secureTransportEnabledKey: true
+            UitzendingGemistConstants.forceSecureTransportKey: true
         ])
+        
+        // Set whether or not we should use secure transport
+        NPOManager.sharedInstance.forceSecureTransport = UserDefaults.standard.bool(forKey: UitzendingGemistConstants.forceSecureTransportKey)
         
         return true
     }
