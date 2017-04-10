@@ -175,7 +175,7 @@ _Note: as the video and image content URLs come from the APIs, although unlikely
 
 ## Program with a YouTube channel
 
-Several programs [additional YouTube content](https://github.com/4np/NPOKitResources) available. 
+Several programs have [additional YouTube content](https://github.com/4np/NPOKitResources) available. 
 
 ![YouTube Button](https://cloud.githubusercontent.com/assets/1049693/20447426/08b7e0da-addf-11e6-90a3-fc3a094a8d92.png)
 
