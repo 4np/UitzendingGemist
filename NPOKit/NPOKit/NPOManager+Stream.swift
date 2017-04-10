@@ -98,7 +98,7 @@ extension NPOManager {
             
             // https://ida.omroep.nl/app.php/BNN_101382709?adaptive=yes&token=62i5nn3ci2vphfb8or665jqgv6
             let url = "https://ida.omroep.nl/app.php/\(mid)?adaptive=yes&token=\(token)"
-            DDLogVerbose("Playing episode (with url: \(url))")
+            DDLogDebug("Playing episode (with url: \(url))")
             
             self?.getVideoStream(forURL: url, andLiveChannel: nil, withCompletion: completed)
         }
@@ -113,7 +113,7 @@ extension NPOManager {
             
             let channelMID = channel.rawValue
             let url = "https://ida.omroep.nl/app.php/\(channelMID)?adaptive=yes&token=\(token)"
-            DDLogVerbose("Playing live channel \(channel) (with url: \(url))")
+            DDLogDebug("Playing live channel \(channel) (with url: \(url))")
             self?.getVideoStream(forURL: url, andLiveChannel: channel, withCompletion: completed)
         }
     }
@@ -129,7 +129,7 @@ extension NPOManager {
             // check if this video is limited (not sure what that really means, but
             // I assume it is most likely regionally limited)
             if let limited = video.limited, limited {
-                DDLogWarn("The video is marked as (regionally?) *limited* and might not play? (video: \(video))")
+                DDLogWarn("The video is marked as (regionally?) *limited* and might not play (video: \(video))")
             }
             
             // set live channel, if we know it
