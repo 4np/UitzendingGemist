@@ -38,7 +38,8 @@ open class NPOStream: Mappable, CustomDebugStringConvertible {
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         
         // remove JSONP query items
-        components?.queryItems = components?.queryItems?.filter { !["type", "callback"].contains($0.name) }
+        let queryItems = components?.queryItems?.filter { !["type", "callback"].contains($0.name) }
+        components?.queryItems = queryItems
         
         return components?.url
     }

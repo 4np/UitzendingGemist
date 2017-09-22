@@ -23,6 +23,14 @@
 #import <UIKit/UIKit.h>
 #endif
 
+#if !defined(GTLR_USE_FRAMEWORK_IMPORTS)
+  #if defined(COCOAPODS) && COCOAPODS
+    #define GTLR_USE_FRAMEWORK_IMPORTS 1
+  #else
+    #define GTLR_USE_FRAMEWORK_IMPORTS 0
+  #endif
+#endif
+
 #import "GTLRService.h"
 
 #import "GTLRFramework.h"
@@ -30,6 +38,15 @@
 #import "GTLRUtilities.h"
 
 #import "GTMMIMEDocument.h"
+
+#if GTLR_USE_FRAMEWORK_IMPORTS
+  #import <GTMSessionFetcher/GTMSessionFetcher.h>
+  #import <GTMSessionFetcher/GTMSessionFetcherService.h>
+#else
+  #import "GTMSessionFetcher.h"
+  #import "GTMSessionFetcherService.h"
+#endif  // GTLR_USE_FRAMEWORK_IMPORTS
+
 
 #ifndef STRIP_GTM_FETCH_LOGGING
   #error GTMSessionFetcher headers should have defaulted this if it wasn't already defined.
@@ -141,7 +158,11 @@ static NSDictionary *MergeDictionaries(NSDictionary *recessiveDict, NSDictionary
 @end
 
 #if !defined(GTLR_HAS_SESSION_UPLOAD_FETCHER_IMPORT)
-#define GTLR_HAS_SESSION_UPLOAD_FETCHER_IMPORT 0
+  #if defined(COCOAPODS) && COCOAPODS
+    #define GTLR_HAS_SESSION_UPLOAD_FETCHER_IMPORT 1
+  #else
+    #define GTLR_HAS_SESSION_UPLOAD_FETCHER_IMPORT 0
+  #endif
 #endif
 
 #if GTLR_HAS_SESSION_UPLOAD_FETCHER_IMPORT
