@@ -55,7 +55,7 @@ class TipCollectionViewCell: UICollectionViewCell {
         
         _ = tip.getImage(ofSize: size) { [weak self] image, error, _ in
             guard let image = image else {
-                DDLogError("Could not fetch image for tip (\(error))")
+                DDLogError("Could not fetch image for tip (\(String(describing: error)))")
                 return
             }
 

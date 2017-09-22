@@ -43,7 +43,7 @@ class StillCollectionViewCell: UICollectionViewCell {
         
         _ = still.getImage(ofSize: size) { [weak self] image, error, _ in
             guard let image = image else {
-                DDLogError("Could not fetch still image (\(error))")
+                DDLogError("Could not fetch still image (\(String(describing: error)))")
                 return
             }
             

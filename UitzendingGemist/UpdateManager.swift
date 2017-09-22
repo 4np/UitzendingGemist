@@ -47,7 +47,7 @@ class UpdateManager {
             self?.lastCheckDate = Date()
             
             guard let releases = releases, let latestRelease = releases.filter({ $0.active }).first, let latestVersion = latestRelease.version else {
-                DDLogError("Could not get latest version information from GitHub (\(error))")
+                DDLogError("Could not get latest version information from GitHub (\(String(describing: error)))")
                 return
             }
             

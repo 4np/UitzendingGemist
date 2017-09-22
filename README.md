@@ -41,6 +41,7 @@ Unfortunately the app cannot be distributed in the AppStore as the NPO does not 
 **Prerequisites:**
 
 - an [Apple TV](http://www.apple.com/tv/) 4th or 5th generation (the ones that have an AppStore)
+- run tvOS 10 or 11
 - a recent Apple Computer running ```macOS 10.11.x El Capitan or higher```
 - a (free) Apple Developer account (signup [here](http://developer.apple.com))
 - a [USB-C cable](http://www.apple.com/nl/shop/product/HHSP2ZM/B/belkin-usb-c-naar-usb-a-oplaadkabel?fnode=85) to connect your Apple TV to your Apple Computer

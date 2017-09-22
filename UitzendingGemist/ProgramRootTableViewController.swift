@@ -80,7 +80,7 @@ class ProgramRootTableViewController: UITableViewController {
     fileprivate func fetchPrograms() {
         _ = NPOManager.sharedInstance.getPrograms { [weak self] programs, error in
             guard let programs = programs else {
-                DDLogError("Could not fetch programs (\(error))")
+                DDLogError("Could not fetch programs (\(String(describing: error)))")
                 return
             }
             

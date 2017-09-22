@@ -44,7 +44,7 @@ class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewD
 
         _ = NPOManager.sharedInstance.getEpisodes(forDate: date, filterReruns: true) { [weak self] episodes, error in
             guard let episodes = episodes, let strongSelf = self else {
-                DDLogError("Could not fetch episodes for \(date) (\(error))")
+                DDLogError("Could not fetch episodes for \(date) (\(String(describing: error)))")
                 return
             }
             

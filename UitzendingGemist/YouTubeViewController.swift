@@ -42,7 +42,7 @@ class YouTubeViewController: UIViewController, UICollectionViewDataSource, UICol
             self?.view.stopLoading()
             
             guard let videos = videos else {
-                DDLogError("Could not fetch youtube videos for program \(program.name)")
+                DDLogError("Could not fetch youtube videos for program \(String(describing: program.name))")
                 return
             }
             

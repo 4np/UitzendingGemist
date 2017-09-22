@@ -176,14 +176,15 @@ class NPOPlayerViewController: AVPlayerViewController {
         }
     }
     
+    //swiftlint:disable:next block_based_kvo
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &observerContext, let item = player?.currentItem else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return
         }
-        
+
         guard let old = change?[.oldKey] as? Int, let new = change?[.newKey] as? Int, new != old, let timeControlStatus = AVPlayerTimeControlStatus(rawValue: new) else { return }
-        
+
         switch timeControlStatus {
         case .paused:
             DDLogDebug("Player is now paused")
@@ -227,7 +228,7 @@ class NPOPlayerViewController: AVPlayerViewController {
         DispatchQueue.main.async {
             DDLogDebug("Playback error: \(error) (\(error.events.count) events)")
             for event in error.events {
-                DDLogDebug("Playback error event: \(event.errorComment) (domain: \(event.errorDomain), code: \(event.errorStatusCode))")
+                DDLogDebug("Playback error event: \(String(describing: event.errorComment)) (domain: \(event.errorDomain), code: \(event.errorStatusCode))")
             }
         }
     }

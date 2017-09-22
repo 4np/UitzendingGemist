@@ -83,6 +83,11 @@ public extension Map {
 	public func value<T: RawRepresentable>(_ key: String, nested: Bool? = nil, delimiter: String = ".", file: StaticString = #file, function: StaticString = #function, line: UInt = #line) throws -> T {
 		return try self.value(key, nested: nested, delimiter: delimiter, using: EnumTransform(), file: file, function: function, line: line)
 	}
+	
+	/// Returns a `[RawRepresentable]` type or throws an error.
+	public func value<T: RawRepresentable>(_ key: String, nested: Bool? = nil, delimiter: String = ".", file: StaticString = #file, function: StaticString = #function, line: UInt = #line) throws -> [T] {
+		return try self.value(key, nested: nested, delimiter: delimiter, using: EnumTransform(), file: file, function: function, line: line)
+	}
 
 	// MARK: BaseMappable
 
@@ -274,7 +279,7 @@ public extension Mapper where N: ImmutableMappable {
 
 }
 
-internal extension Mapper where N: BaseMappable {
+internal extension Mapper {
 
 	internal func mapOrFail(JSON: [String: Any]) throws -> N {
 		let map = Map(mappingType: .fromJSON, JSON: JSON, context: context, shouldIncludeNilValues: shouldIncludeNilValues)

@@ -193,7 +193,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         performSegue(withIdentifier: Segues.homeToEpisodeDetails.rawValue, sender: collectionView)
     }
     
-    // swiftlint:disable force_cast
     func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         guard let indexPath = context.nextFocusedIndexPath else {
             return

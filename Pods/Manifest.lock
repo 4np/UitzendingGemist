@@ -1,37 +1,37 @@
 PODS:
-  - Alamofire (4.4.0)
-  - AlamofireImage (3.2.0):
-    - Alamofire (~> 4.1)
+  - Alamofire (4.5.1)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
   - AlamofireObjectMapper (4.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
-  - CocoaLumberjack/Default (3.1.0)
-  - CocoaLumberjack/Swift (3.1.0):
+  - CocoaLumberjack/Default (3.2.1)
+  - CocoaLumberjack/Swift (3.2.1):
     - CocoaLumberjack/Default
-  - GoogleAPIClientForREST/Core (1.2.1):
+  - GoogleAPIClientForREST/Core (1.3.0):
     - GTMSessionFetcher (>= 1.1.7)
-  - GoogleAPIClientForREST/YouTube (1.2.1):
+  - GoogleAPIClientForREST/YouTube (1.3.0):
     - GoogleAPIClientForREST/Core
     - GTMSessionFetcher (>= 1.1.7)
-  - GTMSessionFetcher (1.1.9):
-    - GTMSessionFetcher/Full (= 1.1.9)
-  - GTMSessionFetcher/Core (1.1.9)
-  - GTMSessionFetcher/Full (1.1.9):
-    - GTMSessionFetcher/Core (= 1.1.9)
+  - GTMSessionFetcher (1.1.11):
+    - GTMSessionFetcher/Full (= 1.1.11)
+  - GTMSessionFetcher/Core (1.1.11)
+  - GTMSessionFetcher/Full (1.1.11):
+    - GTMSessionFetcher/Core (= 1.1.11)
   - NPOKit (1.0.0):
-    - Alamofire (~> 4.4)
-    - AlamofireImage (~> 3.2)
+    - Alamofire (~> 4.5)
+    - AlamofireImage (~> 3.3)
     - AlamofireObjectMapper (~> 4.1)
-    - CocoaLumberjack/Swift (~> 3.1)
+    - CocoaLumberjack/Swift (~> 3.2)
     - GoogleAPIClientForREST/YouTube
-    - RealmSwift (~> 2.4)
+    - RealmSwift (~> 2.10)
     - XCDYouTubeKit (~> 2.5)
-  - ObjectMapper (2.2.5)
-  - Realm (2.4.4):
-    - Realm/Headers (= 2.4.4)
-  - Realm/Headers (2.4.4)
-  - RealmSwift (2.4.4):
-    - Realm (= 2.4.4)
+  - ObjectMapper (2.2.9)
+  - Realm (2.10.1):
+    - Realm/Headers (= 2.10.1)
+  - Realm/Headers (2.10.1)
+  - RealmSwift (2.10.1):
+    - Realm (= 2.10.1)
   - UIColor_Hex_Swift (3.0.2)
   - XCDYouTubeKit (2.5.5)
 
@@ -45,19 +45,19 @@ EXTERNAL SOURCES:
     :path: NPOKit
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
-  CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
-  GoogleAPIClientForREST: a8b95a252014ce2e618df6b75dc72eca2c00b4af
-  GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
-  NPOKit: ed5897354133ab177de01cd122c935a5bb750eb3
-  ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
-  Realm: 5a280a1f5a9a3c267bebf4f41ee47911137703d7
-  RealmSwift: 0c02b9f2d4be4301c497ed10e53a0580584eb1dd
+  CocoaLumberjack: 2800c03334042fe80589423c8d80e582dcaec482
+  GoogleAPIClientForREST: bf724227a6ad1459aab09b73800aad9184a0f64c
+  GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
+  NPOKit: c79af83c61c8fe2c3906081ceb805641af145b2e
+  ObjectMapper: 63cfe41bc6f8e7c8f44344c49901b8ae7de14c52
+  Realm: fc7a317a5c2c9ba91f5f235ede4e2ea76e9eba0c
+  RealmSwift: 505ed6c15942a2e76f5cfa78a8667cfa997ee75b
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
   XCDYouTubeKit: 86f4e7a9c2baa7b7adf6abfc28ac3ab34927be2d
 
-PODFILE CHECKSUM: '091a20fb1abcaac3e8b893f740365e6ad25fa8bf'
+PODFILE CHECKSUM: 2df2b2a2a9bf156b6bfaab38c96c985becd76e61
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.3.1
