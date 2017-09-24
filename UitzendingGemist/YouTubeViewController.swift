@@ -6,9 +6,9 @@
 //  Copyright © 2016 Jeroen Wesbeek. All rights reserved.
 //
 
-import Foundation
-import NPOKit
+import UIKit
 import CocoaLumberjack
+import NPOKit
 import AVKit
 
 class YouTubeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
