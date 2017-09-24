@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/4np/UitzendingGemist.svg?branch=master)](https://travis-ci.org/4np/UitzendingGemist)
 [![Release](https://img.shields.io/github/release/4np/UitzendingGemist.svg)](https://github.com/4np/UitzendingGemist/releases/latest)
-[![Commits Since](https://img.shields.io/github/commits-since/4np/UitzendingGemist/1.5.1.svg?maxAge=3600)](https://github.com/4np/UitzendingGemist/commits/master)
+[![Commits Since](https://img.shields.io/github/commits-since/4np/UitzendingGemist/1.6.0.svg?maxAge=3600)](https://github.com/4np/UitzendingGemist/commits/master)
 [![Platform](https://img.shields.io/badge/platform-tvOS%2010-green.svg?maxAge=3600)](https://developer.apple.com/tvos/)
 [![Swift](https://img.shields.io/badge/language-Swift-ed523f.svg?maxAge=3600)](https://swift.org)
 [![codebeat badge](https://codebeat.co/badges/a5990b60-12ce-4f22-a875-31b2ccaecfcd)](https://codebeat.co/projects/github-com-4np-uitzendinggemist)
