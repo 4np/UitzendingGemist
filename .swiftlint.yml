@@ -9,8 +9,6 @@ opt_in_rules:
 excluded:
   - Carthage
   - Pods
-  - NPOKit/Carthage
-  - NPOKit/Pods
 variable_name:
     min_length: 2
 file_length:
@@ -19,6 +17,3 @@ file_length:
 type_body_length:
     warning: 350
     error: 500
-excluded:
-  - Pods
-  - NPOKit/Pods
