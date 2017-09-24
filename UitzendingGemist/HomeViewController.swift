@@ -151,8 +151,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             strongSelf.onDeckPrograms = onDeck
             
             // update collection views
-            strongSelf.tipsCollectionView.update(usingTips: &strongSelf.tips, withNewTips: tips)
-            strongSelf.onDeckCollectionView.update(usingEpisodes: &strongSelf.onDeck, withNewEpisodes: onDeck.map { $0.mostRecentUnwatchedEpisode })
+            strongSelf.update(tipsCollectionView: strongSelf.tipsCollectionView, withNewTips: tips)
+            strongSelf.update(onDeckCollectionView: strongSelf.onDeckCollectionView, withNewEpisodes: onDeck.map { $0.mostRecentUnwatchedEpisode })
         }
     }
     //swiftlint:enable force_cast
@@ -227,6 +227,52 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     //swiftlint:enable force_cast
     
+    fileprivate func update(tipsCollectionView: UICollectionView, withNewTips newTips: [NPOTip]) {
+        // first determine the old / removed tips and remove them
+        let old = tips.enumerated().filter({ !newTips.contains($0.element) }).reversed()
+        let oldIndexPaths = old.map { IndexPath(row: $0.offset, section: 0) }
+        for oldTip in old {
+            guard oldTip.offset >= 0 && oldTip.offset < tips.count else {
+                continue
+            }
+            
+            tips.remove(at: oldTip.offset)
+        }
+        tipsCollectionView.deleteItems(at: oldIndexPaths)
+        
+        // determine the new / added episodes and insert them
+        let new = newTips.enumerated().filter({ !tips.contains($0.element) })
+        let newIndexPaths = new.map { IndexPath(row: $0.offset, section: 0) }
+        for newTip in new {
+            tips.insert(newTip.element, at: newTip.offset)
+        }
+        tipsCollectionView.insertItems(at: newIndexPaths)
+        
+        // re-order cells (if needed)
+        var done = false
+        while !done {
+            for newTip in newTips.enumerated() {
+                guard let offset = tips.index(of: newTip.element), offset != newTip.offset else {
+                    done = true
+                    continue
+                }
+                
+                // move cell
+                let from = IndexPath(row: offset, section: 0)
+                let to = IndexPath(row: newTip.offset, section: 0)
+                tipsCollectionView.moveItem(at: from, to: to)
+                
+                // move array element
+                tips.remove(at: offset)
+                tips.insert(newTip.element, at: newTip.offset)
+                done = false
+                break
+            }
+            
+            done = true
+        }
+    }
+    
     // MARK: On Deck
     
     //swiftlint:disable force_cast
@@ -245,6 +291,52 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         return cell
     }
     //swiftlint:enable force_cast
+    
+    fileprivate func update(onDeckCollectionView: UICollectionView, withNewEpisodes newEpisodes: [NPOEpisode]) {
+        // first determine the old / removed episodes and remove them
+        let old = onDeck.enumerated().filter({ !newEpisodes.contains($0.element) }).reversed()
+        let oldIndexPaths = old.map { IndexPath(row: $0.offset, section: 0) }
+        for oldEpisode in old {
+            guard oldEpisode.offset >= 0 && oldEpisode.offset < onDeck.count else {
+                continue
+            }
+            
+            onDeck.remove(at: oldEpisode.offset)
+        }
+        onDeckCollectionView.deleteItems(at: oldIndexPaths)
+        
+        // determine the new / added episodes and insert them
+        let new = newEpisodes.enumerated().filter({ !onDeck.contains($0.element) })
+        let newIndexPaths = new.map { IndexPath(row: $0.offset, section: 0) }
+        for newEpisode in new {
+            onDeck.insert(newEpisode.element, at: newEpisode.offset)
+        }
+        onDeckCollectionView.insertItems(at: newIndexPaths)
+        
+        // re-order cells (if needed)
+        var done = false
+        while !done {
+            for newEpisode in newEpisodes.enumerated() {
+                guard let offset = onDeck.index(of: newEpisode.element), offset != newEpisode.offset else {
+                    done = true
+                    continue
+                }
+                
+                // move cell
+                let from = IndexPath(row: offset, section: 0)
+                let to = IndexPath(row: newEpisode.offset, section: 0)
+                onDeckCollectionView.moveItem(at: from, to: to)
+                
+                // move array element
+                onDeck.remove(at: offset)
+                onDeck.insert(newEpisode.element, at: newEpisode.offset)
+                done = false
+                break
+            }
+            
+            done = true
+        }
+    }
 
     // MARK: Segues
     

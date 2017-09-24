@@ -48,7 +48,7 @@ class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewD
                 return
             }
             
-            strongSelf.episodeCollectionView.update(usingEpisodes: &strongSelf.episodes, withNewEpisodes: episodes)
+            strongSelf.update(episodeCollectionView: strongSelf.episodeCollectionView, withNewEpisodes: episodes)
             
             // initial configuration
             let vc = self?.splitViewController as! ByDaySplitViewController
@@ -93,4 +93,50 @@ class ByDayDetailedCollectionViewController: UIViewController, UICollectionViewD
         vc.didSelect(episode: episodes[indexPath.row])
     }
     // swiftlint:enable force_cast
+    
+    fileprivate func update(episodeCollectionView: UICollectionView, withNewEpisodes newEpisodes: [NPOEpisode]) {
+        // first determine the old / removed episodes and remove them
+        let old = episodes.enumerated().filter({ !newEpisodes.contains($0.element) }).reversed()
+        let oldIndexPaths = old.map { IndexPath(row: $0.offset, section: 0) }
+        for oldEpisode in old {
+            guard oldEpisode.offset >= 0 && oldEpisode.offset < episodes.count else {
+                continue
+            }
+            
+            episodes.remove(at: oldEpisode.offset)
+        }
+        episodeCollectionView.deleteItems(at: oldIndexPaths)
+        
+        // determine the new / added episodes and insert them
+        let new = newEpisodes.enumerated().filter({ !episodes.contains($0.element) })
+        let newIndexPaths = new.map { IndexPath(row: $0.offset, section: 0) }
+        for newEpisode in new {
+            episodes.insert(newEpisode.element, at: newEpisode.offset)
+        }
+        episodeCollectionView.insertItems(at: newIndexPaths)
+        
+        // re-order cells (if needed)
+        var done = false
+        while !done {
+            for newEpisode in newEpisodes.enumerated() {
+                guard let offset = episodes.index(of: newEpisode.element), offset != newEpisode.offset else {
+                    done = true
+                    continue
+                }
+                
+                // move cell
+                let from = IndexPath(row: offset, section: 0)
+                let to = IndexPath(row: newEpisode.offset, section: 0)
+                episodeCollectionView.moveItem(at: from, to: to)
+                
+                // move array element
+                episodes.remove(at: offset)
+                episodes.insert(newEpisode.element, at: newEpisode.offset)
+                done = false
+                break
+            }
+            
+            done = true
+        }
+    }
 }
