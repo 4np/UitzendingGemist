@@ -11,6 +11,10 @@
 
 ```UitzendingGemist``` is an unofficial native ```Uitzending Gemist``` and ```NPO Live``` application for the Apple TV 4 developed in [Swift](https://developer.apple.com/swift/). It will allow you to browse and watch all video streams of the Nederlandse Publieke Omroep's (e.g. NPO, the Dutch public broadcaster) [Uitzending Gemist](http://www.npo.nl/uitzending-gemist) website on your Apple TV.
 
+![No Signal](https://c1.staticflickr.com/8/7395/10359077813_24a8249104_b.jpg)
+
+**NOTICE**: Since the release of the NPO 2.0 website and mobile apps in spring 2017, the _old_ API this app relies on have been deprecated and in January 2018 have been pulled offline. A new tvOS app for NPO 2.0 is in development, which will be hosted in another repository and a reference will be posted here. This repository will remain online for reference sake.
+
 ![TopShelf](https://github.com/4np/UitzendingGemist/blob/master/UitzendingGemist/Assets.xcassets/App%20Icon%20&%20Top%20Shelf%20Image.brandassets/Top%20Shelf%20Image.imageset/TopShelf.png?raw=true)
 
 Watching videos is very snappy and almost instantaneous, contrary to streaming from your iDevice to Apple TV over Airplay or using the built-in player in your smart tv. This is a _truly_ native app contrary to some of the other apps that I have seen which are basically webcontainers
