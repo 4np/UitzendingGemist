@@ -1,4 +1,4 @@
-# ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png) Uitzending Gemist 
+# ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png) Uitzending Gemist
 
 [![Build Status](https://travis-ci.org/4np/UitzendingGemist.svg?branch=master)](https://travis-ci.org/4np/UitzendingGemist)
 [![Release](https://img.shields.io/github/release/4np/UitzendingGemist.svg)](https://github.com/4np/UitzendingGemist/releases/latest)
@@ -31,12 +31,6 @@ using a web app hosted on a remote server.
 - Will show you new unwatched episodes of favorite programs
 - Closed Captioning for the deaf and hearing impaired (in _Dutch_)
 - The ability to watch YouTube videos for Programs that have [YouTube Resources](https://github.com/4np/NPOKitResources)
-
-# Donate
-
-![donations-banner](https://cloud.githubusercontent.com/assets/1049693/23892645/c292896c-089b-11e7-9c9a-2c8f60d64c0a.jpg)
-
-If you find this application useful and you would like to do something back, you could install [Bait App](https://itunes.apple.com/nl/app/bait/id1207460654) from the MacApp Store and purchase the € 1,99 in-app purchase 🙌🏻
 
 # Okay, that's all great! But how do I get this on my ![Apple TV](https://cloud.githubusercontent.com/assets/1049693/11407062/c1891a92-93b0-11e5-9270-745cf4fa4152.png)?
 
