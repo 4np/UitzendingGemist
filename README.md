@@ -13,7 +13,7 @@
 
 ![No Signal](https://c1.staticflickr.com/8/7395/10359077813_24a8249104_b.jpg)
 
-**NOTICE: Due to the release of the NPO 2.0 website and mobile apps in Spring 2017, the old API this tvOS app relies on was deprecated. As of Januari 2018 the NPO has shut down the deprecated API, which consequently means this tvOS app will cease to work. A new tvOS app for NPO 2.0 is in the works, and a link will be posted here when a first alpha version is available. This repository will remain online for reference sake.**
+## **NOTICE: Due to the release of the NPO 2.0 website and mobile apps in Spring 2017, the old API this tvOS app relies on was deprecated. As of Januari 2018 the NPO has shut down the deprecated API, which consequently means this tvOS app will cease to work. Please refer to [TV Gemist](https://github.com/4np/TVGemist); the project that replaces Uitzending Gemist.**
 
 ![TopShelf](https://github.com/4np/UitzendingGemist/blob/master/UitzendingGemist/Assets.xcassets/App%20Icon%20&%20Top%20Shelf%20Image.brandassets/Top%20Shelf%20Image.imageset/TopShelf.png?raw=true)
 
